@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "migrated": 3,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "none",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "RiLinksLine",
+      "RiLinkedinBoxLine",
+      "RiDatabase2Line",
+      "SiReadme",
+      "RiHome2Line"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": true,
+    "iconInTitleEnabled": true,
+    "iconsBackgroundCheckEnabled": true
+  },
+  "README.md": {
+    "iconName": null,
+    "inheritanceIcon": "SiReadme"
+  }
+}

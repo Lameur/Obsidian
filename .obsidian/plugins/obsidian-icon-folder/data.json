@@ -24,8 +24,11 @@
     "iconInTitleEnabled": true,
     "iconsBackgroundCheckEnabled": true
   },
+  "Home.md": "RiHome2Line",
   "README.md": {
-    "iconName": null,
+    "iconName": "SiReadme",
     "inheritanceIcon": "SiReadme"
-  }
+  },
+  "Files.md": "RiDatabase2Line",
+  "Daily Note/Daily_files.md": "RiLinksLine"
 }

@@ -3,6 +3,34 @@
     {
       "basename": "Home",
       "path": "Home.md"
+    },
+    {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
+      "basename": "Files",
+      "path": "Files.md"
+    },
+    {
+      "basename": "2023-10-28",
+      "path": "Daily Note/2023-10-28.md"
+    },
+    {
+      "basename": "Daily_files",
+      "path": "Daily Note/Daily_files.md"
+    },
+    {
+      "basename": "Template",
+      "path": "Template/Template.md"
+    },
+    {
+      "basename": "Template Daily",
+      "path": "Template/Template Daily.md"
+    },
+    {
+      "basename": "Untitled",
+      "path": "Canvas/Untitled.canvas"
     }
   ],
   "omittedPaths": [],

@@ -11,12 +11,9 @@
             "id": "b2a00aee64ddd4e7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "database-plugin",
               "state": {
-                "file": "Home.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
+                "file": "Daily Note/Daily_files.md"
               }
             }
           }
@@ -94,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "Daily Note/Daily_files.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +108,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "Daily Note/Daily_files.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +131,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "Daily Note/Daily_files.md"
               }
             }
           },
@@ -213,11 +210,12 @@
   },
   "active": "b2a00aee64ddd4e7",
   "lastOpenFiles": [
-    "README.md",
-    "Files.md",
     "Home.md",
-    "Daily Note/2023-10-28.md",
+    "Files.md",
+    "README.md",
+    "Homemd.md",
     "Daily Note/Daily_files.md",
+    "Daily Note/2023-10-28.md",
     "Template/Template.md",
     "Daily Note.md",
     "Daily.md",

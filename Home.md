@@ -8,6 +8,6 @@ aliases:
 # Home
 Ceci est la page d'accueil de mon coffre [Obsidian](https://obsidian.md)
 ## Liens
-+ [readme](/README)
-+ [Files list](/Files)
-+ [Daily files](<Daily Note/Daily_files>)
++ [readme](README.md)
++ [Files list](Files.md)
++ [Daily files](<Daily Note/Daily_files.md>)

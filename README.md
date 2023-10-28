@@ -5,7 +5,7 @@ tags:
 aliases:
   - Home
 ---
-###### Go back to [Home](/Home)
+###### Go back to [Home](Home.md)
 # Obsidian
 
 This is an Obsidian vault !

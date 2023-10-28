@@ -10,7 +10,7 @@
   "centerNeedle": false,
   "showHelp": true,
   "plannerHeading": "Day planner",
-  "plannerHeadingLevel": 1,
+  "plannerHeadingLevel": 3,
   "timelineColored": false,
   "timelineStartColor": "#006466",
   "timelineEndColor": "#4d194d",

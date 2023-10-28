@@ -2,5 +2,5 @@
 tags:
   - dailyNote
 ---
-# Day planner
-#todo
+# Day planner #todo
+- [ ] 

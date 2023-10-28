@@ -4,16 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "34630bfa4dc7ff8e",
+        "id": "e547887842688522",
         "type": "tabs",
         "children": [
           {
-            "id": "b2a00aee64ddd4e7",
+            "id": "d97a098d4e0aae2b",
             "type": "leaf",
             "state": {
-              "type": "database-plugin",
+              "type": "markdown",
               "state": {
-                "file": "Daily Note/Daily_files.md"
+                "file": "Home.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -31,22 +34,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7cd405d7dd849fca",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical"
-              }
-            }
-          },
-          {
             "id": "2e257387282ae389",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#todo",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -70,8 +63,19 @@
               "type": "recent-files",
               "state": {}
             }
+          },
+          {
+            "id": "dd2ae14f4ea0a9fa",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -91,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Note/Daily_files.md",
+                "file": "Home.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -108,7 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Note/Daily_files.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Note/Daily_files.md"
+                "file": "Home.md"
               }
             }
           },
@@ -197,7 +201,6 @@
       "zk-prefixer:Create new unique note": true,
       "daily-notes:Open today's daily note": false,
       "switcher:Open quick switcher": false,
-      "random-note:Open random note": true,
       "workspaces:Manage workspace layouts": false,
       "audio-recorder:Start/stop recording": false,
       "obsidian-advanced-slides:Show Slide Preview": false,
@@ -205,22 +208,28 @@
       "table-editor-obsidian:Advanced Tables Toolbar": true,
       "templates:Insert template": true,
       "obsidian-excalidraw-plugin:Create new drawing": false,
-      "obsidian-day-planner:Timeline": false
+      "obsidian-day-planner:Timeline": false,
+      "markdown-importer:Open format converter": false
     }
   },
-  "active": "b2a00aee64ddd4e7",
+  "active": "d97a098d4e0aae2b",
   "lastOpenFiles": [
+    "Vocal.md",
+    "Recording 20231028154706.webm",
+    "Template/Template Daily.md",
+    "Template/Template.md",
+    "README.md",
     "Home.md",
     "Files.md",
-    "README.md",
-    "Homemd.md",
     "Daily Note/Daily_files.md",
     "Daily Note/2023-10-28.md",
-    "Template/Template.md",
+    "todo.md",
+    "Script",
+    "Nouveau dossier",
+    "Canvas/Map.canvas",
+    "Homemd.md",
     "Daily Note.md",
     "Daily.md",
-    "Template/Template Daily.md",
-    "Canvas/Untitled.canvas",
     "Canvas/Untitled 1.canvas",
     "Untitled.canvas",
     "Canvas",
@@ -230,7 +239,6 @@
     "Untitled 1.md",
     "obsidian.md",
     "Excalidraw/Drawing 2023-10-28 13.41.50.excalidraw.md",
-    "Nouveau dossier",
     "Daily Note",
     "Note",
     "202310281224.md",

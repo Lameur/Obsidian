@@ -169,8 +169,8 @@ config:
   cell_size: normal
   sticky_first_column: false
   group_folder_column: 
-  remove_empty_folders: false
-  automatically_group_files: true
+  remove_empty_folders: true
+  automatically_group_files: false
   hoist_files_with_empty_attributes: true
   show_metadata_created: true
   show_metadata_modified: true

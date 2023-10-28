@@ -6,8 +6,8 @@ database-plugin: basic
 ---
 
 ```yaml:dbfolder
-name: new database
-description: new description
+name: Daily_files
+description: Daily files list
 columns:
   __file__:
     key: __file__
@@ -22,6 +22,7 @@ columns:
     position: 0
     isHidden: false
     sortIndex: -1
+    width: 113
     config:
       enable_media_view: true
       link_alias_enabled: true
@@ -31,6 +32,8 @@ columns:
       task_hide_completed: true
       footer_type: none
       persist_changes: false
+      wrap_content: true
+      content_alignment: text-align-center
   __created__:
     key: __created__
     id: __created__
@@ -44,6 +47,7 @@ columns:
     position: 0
     isHidden: false
     sortIndex: -1
+    width: 116
     config:
       enable_media_view: true
       link_alias_enabled: true
@@ -66,6 +70,7 @@ columns:
     position: 0
     isHidden: false
     sortIndex: -1
+    width: 117
     config:
       enable_media_view: true
       link_alias_enabled: true
@@ -88,6 +93,7 @@ columns:
     position: 0
     isHidden: false
     sortIndex: -1
+    width: 793
     config:
       enable_media_view: true
       link_alias_enabled: true
@@ -168,8 +174,8 @@ config:
   cell_size: normal
   sticky_first_column: false
   group_folder_column: 
-  remove_empty_folders: false
-  automatically_group_files: false
+  remove_empty_folders: true
+  automatically_group_files: true
   hoist_files_with_empty_attributes: true
   show_metadata_created: true
   show_metadata_modified: true
@@ -191,7 +197,7 @@ config:
   date_format: yyyy-MM-dd
   datetime_format: "yyyy-MM-dd HH:mm:ss"
   metadata_date_format: "yyyy-MM-dd HH:mm:ss"
-  enable_footer: false
+  enable_footer: true
   implementation: default
 filters:
   enabled: false

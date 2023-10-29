@@ -5,32 +5,28 @@
       "path": "Home.md"
     },
     {
-      "basename": "Vocal",
-      "path": "Vocal.md"
-    },
-    {
-      "basename": "Recording 20231028154706",
-      "path": "Recording 20231028154706.webm"
-    },
-    {
-      "basename": "Template Daily",
-      "path": "Template/Template Daily.md"
-    },
-    {
-      "basename": "Template",
-      "path": "Template/Template.md"
+      "basename": "Files",
+      "path": "Files.md"
     },
     {
       "basename": "README",
       "path": "README.md"
     },
     {
-      "basename": "Files",
-      "path": "Files.md"
+      "basename": "Template",
+      "path": "Template/Template.md"
     },
     {
       "basename": "Daily_files",
       "path": "Daily Note/Daily_files.md"
+    },
+    {
+      "basename": "2023-10-29",
+      "path": "Daily Note/2023-10-29.md"
+    },
+    {
+      "basename": "Template Daily",
+      "path": "Template/Template Daily.md"
     },
     {
       "basename": "2023-10-28",

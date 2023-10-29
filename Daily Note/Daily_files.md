@@ -1,8 +1,9 @@
 ---
 id: 028ae734-d6b9-4a51-88e8-70baee7842d1
-
 database-plugin: basic
-
+tags:
+  - dailyNote
+  - database
 ---
 
 ```yaml:dbfolder

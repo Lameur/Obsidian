@@ -2,11 +2,12 @@
 database-plugin: basic
 tags:
   - database
+date since last modifications: yyyy
 ---
 
 ```yaml:dbfolder
 name: Files
-description: List_file_with_database
+description: 
 columns:
   __file__:
     key: __file__
@@ -165,7 +166,7 @@ columns:
       footer_type: none
       persist_changes: false
 config:
-  remove_field_when_delete_column: false
+  remove_field_when_delete_column: true
   cell_size: normal
   sticky_first_column: false
   group_folder_column: 

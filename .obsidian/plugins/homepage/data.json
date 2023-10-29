@@ -15,11 +15,12 @@
       "autoScroll": false,
       "pin": false,
       "commands": [
-        "editor:save-file"
+        "editor:save-file",
+        "remotely-save:start-sync"
       ],
       "alwaysApply": true,
       "hideReleaseNotes": false
     }
   },
-  "separateMobile": true
+  "separateMobile": false
 }

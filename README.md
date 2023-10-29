@@ -9,4 +9,4 @@ aliases:
 
 # Obsidian  
 This is an Obsidian vault !  
-YOU MUST INSTALL [Obsidian](obsidian.md) TO HAVE ALL FEATURE
+YOU MUST INSTALL [Obsidian](https://obsidian.md) TO HAVE ALL FEATURE

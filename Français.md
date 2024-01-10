@@ -1,15 +1,13 @@
 ---
-id: 542400f6-3d1f-467a-90b3-533fc1116f31
 database-plugin: basic
 tags:
-  - database
   - Files
-date since last modifications: yyyy
+  - Français
 ---
 
 ```yaml:dbfolder
-name: Files
-description: 
+name: Français
+description: new description
 columns:
   __file__:
     key: __file__
@@ -33,8 +31,6 @@ columns:
       task_hide_completed: true
       footer_type: none
       persist_changes: false
-      wrap_content: true
-      content_alignment: text-align-center
   __created__:
     key: __created__
     id: __created__
@@ -172,7 +168,7 @@ config:
   cell_size: normal
   sticky_first_column: false
   group_folder_column: 
-  remove_empty_folders: true
+  remove_empty_folders: false
   automatically_group_files: false
   hoist_files_with_empty_attributes: true
   show_metadata_created: true
@@ -182,14 +178,14 @@ config:
   show_metadata_outlinks: true
   show_metadata_tags: true
   source_data: tag
-  source_form_result: "#Files"
-  source_destination_path: /
-  row_templates_folder: /
+  source_form_result: "#Français"
+  source_destination_path: Français
+  row_templates_folder: Template
   current_row_template: 
   pagination_size: 10
   font_size: 16
   enable_js_formulas: true
-  formula_folder_path: /
+  formula_folder_path: Script
   inline_default: true
   inline_new_position: last_field
   date_format: yyyy-MM-dd

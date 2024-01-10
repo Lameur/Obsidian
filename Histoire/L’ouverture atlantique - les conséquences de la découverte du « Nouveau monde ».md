@@ -58,5 +58,7 @@ Les Portuger et les Espagnoles voir tout de linterrer de se continent est ce lan
 Ils installes des comptoirs en Afrique.  
 Les Epagnoles lance des conquêtes peu organiser.  
 Les conquistadors sont des chefs d'expéditions militaires et ~100 soldats motivée par l'or/enrichissement.  
-Ils font *pillage, meurtres, vol.  
+Ils font pillage, meurtres, vol.  
+Les conquistador ne planifie pas conquête mais s'appuie sur les devisions des amérindiens, leurs technique(chevaux, armes a feu), maladies qu'ils véhicule. Ils renverse les civilisations précolombiennes.  
+Les civilisations précolombiennes (p97) était déjà assez avancer.  
 

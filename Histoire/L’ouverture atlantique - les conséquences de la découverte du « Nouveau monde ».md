@@ -55,4 +55,4 @@ Q5p97
 #### b. Des territoires et des populations amérindiennes au services des Européens
 Ces découverte attise des conflits mais les pays se le partage grâce a un traité, le Traité de Tordesillas en 1494. : ligne imaginaire qui coupe Atlantique en deux.  
 Les Portuger et les Espagnoles voir tout de linterrer de se continent est ce lance a la conquête de l'Amérique et les colons vont s'y installer et exploiter les territoires.
-Ils installe des comptoirs en Afrique.
+Ils installes des comptoirs en Afrique.

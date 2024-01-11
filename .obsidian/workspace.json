@@ -21,6 +21,32 @@
             }
           },
           {
+            "id": "4c1641e4abc98881",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sans titre.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d854f2bd35dcda22",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Français/Clôture de la pièce de Cendrillons.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "bafecea0ebb73474",
             "type": "leaf",
             "state": {
@@ -33,7 +59,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -107,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Français/Analyse syntaxique.md",
+                "file": "Français/Clôture de la pièce de Cendrillons.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Français/Analyse syntaxique.md",
+                "file": "Français/Clôture de la pièce de Cendrillons.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -147,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Français/Analyse syntaxique.md"
+                "file": "Français/Clôture de la pièce de Cendrillons.md"
               }
             }
           },
@@ -226,12 +253,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "a5df3af97d2c4fd6",
+  "active": "d854f2bd35dcda22",
   "lastOpenFiles": [
-    "Français/Jean-Jacques Rousseau.md",
+    "Sans titre.md",
+    "Français/Clôture de la pièce de Cendrillons.md",
     "Français/Analyse syntaxique.md",
+    "Français/Jean-Jacques Rousseau.md",
     "Home.md",
-    "Sans titre 1.md",
     "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md",
     "Histoire",
     "Daily Note/2024-01-10.md",
@@ -264,7 +292,6 @@
     "Canvas/Map.canvas",
     "Homemd.md",
     "Daily Note.md",
-    "Daily.md",
     "Canvas/Untitled 1.canvas",
     "Untitled.canvas"
   ]

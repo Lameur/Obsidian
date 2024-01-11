@@ -4,63 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "6c4a58d6f1fb33cf",
+        "id": "d499acc07471867c",
         "type": "tabs",
         "children": [
           {
-            "id": "a5df3af97d2c4fd6",
+            "id": "847101b7dc95ea96",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Français/Analyse syntaxique.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4c1641e4abc98881",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Sans titre.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "d854f2bd35dcda22",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Français/Clôture de la pièce de Cendrillons.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bafecea0ebb73474",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Français/Analyse syntaxique.md",
+                "file": "Français/Phèdre.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -134,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Français/Clôture de la pièce de Cendrillons.md",
+                "file": "Français/Phèdre.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Français/Clôture de la pièce de Cendrillons.md",
+                "file": "Français/Phèdre.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Français/Clôture de la pièce de Cendrillons.md"
+                "file": "Français/Phèdre.md"
               }
             }
           },
@@ -253,13 +213,14 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d854f2bd35dcda22",
+  "active": "847101b7dc95ea96",
   "lastOpenFiles": [
+    "Home.md",
+    "Français/Phèdre.md",
     "Sans titre.md",
     "Français/Clôture de la pièce de Cendrillons.md",
     "Français/Analyse syntaxique.md",
     "Français/Jean-Jacques Rousseau.md",
-    "Home.md",
     "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md",
     "Histoire",
     "Daily Note/2024-01-10.md",
@@ -291,7 +252,6 @@
     "todo.md",
     "Canvas/Map.canvas",
     "Homemd.md",
-    "Daily Note.md",
     "Canvas/Untitled 1.canvas",
     "Untitled.canvas"
   ]

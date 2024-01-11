@@ -10,4 +10,5 @@ tags:
 2. 
 Pendant les vacances, Ronan s’est rendu au Laos. De beaux temples se trouvent au Laos
 
-Pendants les vacances, Ronan s'est rendu au Laos ou de beaux temple se trouvent
+Pendants les vacances, Ronan s'est rendu au Laos où de beaux temple se trouvent.
+Pend

@@ -52,7 +52,7 @@ Q5p97
 | Magellan puis Elcano<br>Espagne | Philippines |  |
 | Cartier<br>France | pr François Ier<br>-> en bouchure du St Leurant<br>canada : Québec |  |
 
-#### b. Des territoires et des populations amérindiennes au services des Européens
+#### b. Vers les premiers empires coloniaux eropéens
 Ces découverte attise des conflits mais les pays se le partage grâce a un traité, le Traité de Tordesillas en 1494. : ligne imaginaire qui coupe Atlantique en deux.  
 Les Portuger et les Espagnoles voir tout de linterrer de se continent est ce lance a la conquête de l'Amérique et les colons vont s'y installer et exploiter les territoires.  
 Ils installes des comptoirs en Afrique.  
@@ -61,4 +61,18 @@ Les conquistadors sont des chefs d'expéditions militaires et ~100 soldats motiv
 Ils font pillage, meurtres, vol.  
 Les conquistador ne planifie pas conquête mais s'appuie sur les devisions des amérindiens, leurs technique(chevaux, armes a feu), maladies qu'ils véhicule. Ils renverse les civilisations précolombiennes.  
 Les civilisations précolombiennes (p97) était déjà assez avancer.  
+Hernan Cortés (1519-1521) conquis l'empire aztèque (Amérique chrole). Devient la "Nouvelle Espagne".  
+Pizano (1531-1539) anéantir l'empire Inca(Pérou) qui devient le vice-royaume du Pérou.  
+ces conquêtes permette la création de vaste empire coloniaux qui impact l'Europe et les civilisation locales
 
+### 2. Des territoires et des populations amérindiennes au services des Européens 
+
+#### a. De la découvete du "Nouveau Monde" à sa colonisation et son exploitation
+Q4-5 p99  
+q4 :
+
+| Les destructions | Les constuctions |
+| --- | --- |
+| Temples<br>Briser les idoles<br>Combler les canaux (sert a construire par dessus)<br> | Maisons<br>Eglises |
+
+q5 :

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Français/Jean-Jacques Rousseau.md",
+                "file": "Français/Analyse syntaxique.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -26,15 +26,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Analyse syntaxique.md",
+                "file": "Français/Analyse syntaxique.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -108,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Analyse syntaxique.md",
+                "file": "Français/Analyse syntaxique.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Analyse syntaxique.md",
+                "file": "Français/Analyse syntaxique.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Analyse syntaxique.md"
+                "file": "Français/Analyse syntaxique.md"
               }
             }
           },
@@ -227,10 +226,10 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "bafecea0ebb73474",
+  "active": "a5df3af97d2c4fd6",
   "lastOpenFiles": [
     "Français/Jean-Jacques Rousseau.md",
-    "Analyse syntaxique.md",
+    "Français/Analyse syntaxique.md",
     "Home.md",
     "Sans titre 1.md",
     "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md",

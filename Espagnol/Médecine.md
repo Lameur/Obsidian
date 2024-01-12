@@ -1,10 +1,9 @@
-
-Traumatologue  
-Cardiologue  
-Psychologue -> 
-
+Traumatologue -> traumatisme  
+Cardiologue -> cardiaque  
+Psychologue -> Equilibre intérieur  
+ORL -> oreille et nez  
 Ophtalmologiste -> yeux  
 Dentiste -> infection dentaire  
 Pédiatre -> Jeunes  
 Médicament scientifique  
-Magie et plante hallucinogène
+chamane -> Magie et plante hallucinogène  

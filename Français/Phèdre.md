@@ -5,3 +5,11 @@ Identité :
 - Aricie, _princesse du sang royal d’Athènes, sœur des_ [_Pallantides_](https://fr.wikipedia.org/wiki/Pallantides)_, clan ennemi_ : amoureuse d’Hippolyte  
 
 Origine :  
+
+Thésée :  
+
+Phèdre :  
+
+Hippolyte :  
+
+Aricie :  

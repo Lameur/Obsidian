@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "d499acc07471867c",
+        "id": "ea18155e82e8aa7d",
         "type": "tabs",
         "children": [
           {
-            "id": "847101b7dc95ea96",
+            "id": "86c2d0d903daa3fd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Français/Phèdre.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Français/Phèdre.md",
+                "file": "Home.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Français/Phèdre.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Français/Phèdre.md"
+                "file": "Home.md"
               }
             }
           },
@@ -213,7 +213,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "847101b7dc95ea96",
+  "active": "86c2d0d903daa3fd",
   "lastOpenFiles": [
     "Home.md",
     "Français/Phèdre.md",

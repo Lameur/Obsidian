@@ -19,8 +19,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "c8efba1ea1b2e968",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Espagnol/Médecine.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -94,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "Espagnol/Médecine.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "Espagnol/Médecine.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "Espagnol/Médecine.md"
               }
             }
           },
@@ -213,11 +227,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "86c2d0d903daa3fd",
+  "active": "c8efba1ea1b2e968",
   "lastOpenFiles": [
     "Home.md",
+    "Espagnol/Médecine.md",
+    "Espagnol",
     "Français/Phèdre.md",
-    "Sans titre.md",
     "Français/Clôture de la pièce de Cendrillons.md",
     "Français/Analyse syntaxique.md",
     "Français/Jean-Jacques Rousseau.md",
@@ -242,7 +257,6 @@
     "Files.xlsm",
     "Files.xlsb",
     "Files_fichiers/tabstrip.htm",
-    "Files_fichiers/stylesheet.css",
     "Template/Template.md",
     "database Files.md",
     "database file Files.md",
@@ -251,7 +265,6 @@
     "Template/Template Daily.md",
     "todo.md",
     "Canvas/Map.canvas",
-    "Homemd.md",
     "Canvas/Untitled 1.canvas",
     "Untitled.canvas"
   ]

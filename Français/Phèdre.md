@@ -15,10 +15,16 @@ Hippolyte :
 Aricie :  
 
 Le jour = la lumière  
-Argumenter : raison, rationalité : convaincre l'autre | affect, sentiment : persuader
+Argumenter : raison, rationalité : convaincre l'autre | affect, sentiment : persuader  
+
 
 Phèdre est le personnage éponyme, pourtant Racine ne la fait pas apparaître sur scène avant la scène 3 de l'acte I. entretemps, d'autres personnages personnages parlent d'elles : Hippolyte, Thésée, Oenone. On apprend que :
 - Hippolyte la considère comme une belle-mère dur, que lui a-t-elle fait ?
 - Phèdre est à l'article de la mort et qu'elle se laisse mourir.
 - L'état de Phèdre alarme Oenone : désordre d'esprit, agitation, sensibilité extrême.
-- La raison de cet état demeure inconnue.
+- La raison de cet état demeure inconnue.  
+
+Acte I scène 3 :  
+moment 1 : Oe fait pression sur Ph.  
+moment 2 : Ph accepte de lui avouer la cause de son mal, mais ça lui est très difficile.  
+moment 3 : l'aveu de Phèdre.  

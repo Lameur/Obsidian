@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "ea18155e82e8aa7d",
+        "id": "989e2644ca5fa1d3",
         "type": "tabs",
         "children": [
           {
-            "id": "86c2d0d903daa3fd",
+            "id": "02baa9df6a16e012",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,22 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "c8efba1ea1b2e968",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Espagnol/Médecine.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -108,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Espagnol/Médecine.md",
+                "file": "Home.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Espagnol/Médecine.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Espagnol/Médecine.md"
+                "file": "Home.md"
               }
             }
           },
@@ -227,7 +213,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c8efba1ea1b2e968",
+  "active": "02baa9df6a16e012",
   "lastOpenFiles": [
     "Home.md",
     "Espagnol/Médecine.md",

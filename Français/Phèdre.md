@@ -16,7 +16,7 @@ Aricie :
 
 Le jour = la lumière  
 Argumenter : raison, rationalité : convaincre l'autre | affect, sentiment : persuader  
-
+Tout m'afflige et me nuit, et conspire à me nuire.  
 
 Phèdre est le personnage éponyme, pourtant Racine ne la fait pas apparaître sur scène avant la scène 3 de l'acte I. entretemps, d'autres personnages personnages parlent d'elles : Hippolyte, Thésée, Oenone. On apprend que :
 - Hippolyte la considère comme une belle-mère dur, que lui a-t-elle fait ?

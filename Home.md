@@ -1,5 +1,9 @@
 ---
 tags:
+  - Files
+---
+---
+tags:
   - Home
   - Files
 aliases:

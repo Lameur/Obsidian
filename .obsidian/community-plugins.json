@@ -28,7 +28,6 @@
   "text-extractor",
   "obsidian-checklist-plugin",
   "obsidian-git",
-  "make-md",
   "various-complements",
   "obsidian-textgenerator-plugin",
   "media-extended",
@@ -37,5 +36,8 @@
   "obsidian-dictionary-plugin",
   "obsidian-livesync",
   "obsidian-latex-suite",
-  "obsidian-plugin-toc"
+  "obsidian-plugin-toc",
+  "obsidian-languagetool-plugin",
+  "obsidian-linter",
+  "obsidian-projects"
 ]

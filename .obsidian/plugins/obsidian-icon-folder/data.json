@@ -31,13 +31,11 @@
     "iconInTabsEnabled": true,
     "iconInTitleEnabled": true,
     "iconsBackgroundCheckEnabled": true,
-    "iconInFrontmatterEnabled": false,
+    "iconInFrontmatterEnabled": true,
     "iconsInNotesEnabled": true,
     "iconIdentifier": ":"
   },
-  "Home.md": "RiHome2Line",
   "Files.md": "RiDatabase2Line",
   "Daily Note/Daily_files.md": "RiLinksLine",
-  "Français.md": "RiDatabase2Line",
-  "README.md": "SiReadme"
+  "Français.md": "RiDatabase2Line"
 }

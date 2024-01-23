@@ -8,7 +8,7 @@
   "syncOnStart": false,
   "savingDelay": 200,
   "lessInformationInLog": false,
-  "gcDelay": 300,
+  "gcDelay": 0,
   "versionUpFlash": "",
   "minimumChunkSize": 20,
   "longLineThreshold": 250,
@@ -21,7 +21,7 @@
   "encrypt": false,
   "passphrase": "",
   "usePathObfuscation": false,
-  "doNotDeleteFolder": false,
+  "doNotDeleteFolder": true,
   "resolveConflictsByNewerFile": false,
   "batchSave": false,
   "deviceAndVaultName": "",
@@ -29,15 +29,15 @@
   "showOwnPlugins": false,
   "showStatusOnEditor": true,
   "showOnlyIconsOnEditor": false,
-  "usePluginSync": false,
-  "autoSweepPlugins": false,
+  "usePluginSync": true,
+  "autoSweepPlugins": true,
   "autoSweepPluginsPeriodic": false,
-  "notifyPluginOrSettingUpdated": false,
+  "notifyPluginOrSettingUpdated": true,
   "checkIntegrityOnSave": false,
   "batch_size": 50,
   "batches_limit": 40,
-  "useHistory": false,
-  "disableRequestURI": false,
+  "useHistory": true,
+  "disableRequestURI": true,
   "skipOlderFilesOnSync": true,
   "checkConflictOnlyOnOpen": false,
   "showMergeDialogOnlyOnActive": false,
@@ -45,23 +45,23 @@
   "syncInternalFilesBeforeReplication": false,
   "syncInternalFilesIgnorePatterns": "\\/node_modules\\/, \\/\\.git\\/, \\/obsidian-livesync\\/",
   "syncInternalFilesInterval": 60,
-  "additionalSuffixOfDatabaseName": "",
+  "additionalSuffixOfDatabaseName": "Obsidian",
   "ignoreVersionCheck": false,
   "lastReadUpdates": 0,
-  "deleteMetadataOfDeletedFiles": false,
+  "deleteMetadataOfDeletedFiles": true,
   "syncIgnoreRegEx": "",
   "syncOnlyRegEx": "",
   "customChunkSize": 0,
   "readChunksOnline": true,
   "watchInternalFileChanges": true,
-  "automaticallyDeleteMetadataOfDeletedFiles": 0,
+  "automaticallyDeleteMetadataOfDeletedFiles": 1,
   "disableMarkdownAutoMerge": false,
   "writeDocumentsIfConflicted": false,
   "useDynamicIterationCount": false,
   "syncAfterMerge": false,
   "configPassphraseStore": "",
   "encryptedPassphrase": "",
-  "encryptedCouchDBConnection": "",
+  "encryptedCouchDBConnection": "%d2063423d2adda35d35cffe00200000084a6af715c5573a3001c1980efec936bDwizPXmIcbnWki9omwY/PNXYS2NAvb3bVdWI7iDqWBcfwb3scUqa87LhnUZ8a7E7KtE72aXNhOEoE4om9OTxuTR63iihxW+U5uiLCnN1loga25ivelmkEDTAAZtnx7cYD1EekP8N",
   "permitEmptyPassphrase": false,
   "useIndexedDBAdapter": true,
   "useTimeouts": false,
@@ -77,5 +77,808 @@
   "useIgnoreFiles": false,
   "ignoreFiles": ".gitignore",
   "syncOnEditorSave": false,
-  "pluginSyncExtendedSetting": {}
+  "pluginSyncExtendedSetting": {
+    "CONFIG/core-plugins-migration.json": {
+      "key": "CONFIG/core-plugins-migration.json",
+      "mode": 0,
+      "files": [
+        "core-plugins-migration.json"
+      ]
+    },
+    "CONFIG/app.json": {
+      "key": "CONFIG/app.json",
+      "mode": 0,
+      "files": [
+        "app.json"
+      ]
+    },
+    "CONFIG/workspace.json": {
+      "key": "CONFIG/workspace.json",
+      "mode": 0,
+      "files": [
+        "workspace.json"
+      ]
+    },
+    "CONFIG/daily-notes.json": {
+      "key": "CONFIG/daily-notes.json",
+      "mode": 0,
+      "files": [
+        "daily-notes.json"
+      ]
+    },
+    "CONFIG/switcher.json": {
+      "key": "CONFIG/switcher.json",
+      "mode": 0,
+      "files": [
+        "switcher.json"
+      ]
+    },
+    "CONFIG/workspace-mobile.json": {
+      "key": "CONFIG/workspace-mobile.json",
+      "mode": 0,
+      "files": [
+        "workspace-mobile.json"
+      ]
+    },
+    "CONFIG/note-composer.json": {
+      "key": "CONFIG/note-composer.json",
+      "mode": 0,
+      "files": [
+        "note-composer.json"
+      ]
+    },
+    "CONFIG/graph.json": {
+      "key": "CONFIG/graph.json",
+      "mode": 0,
+      "files": [
+        "graph.json"
+      ]
+    },
+    "CONFIG/backlink.json": {
+      "key": "CONFIG/backlink.json",
+      "mode": 0,
+      "files": [
+        "backlink.json"
+      ]
+    },
+    "CONFIG/templates.json": {
+      "key": "CONFIG/templates.json",
+      "mode": 0,
+      "files": [
+        "templates.json"
+      ]
+    },
+    "CONFIG/bookmarks.json": {
+      "key": "CONFIG/bookmarks.json",
+      "mode": 0,
+      "files": [
+        "bookmarks.json"
+      ]
+    },
+    "CONFIG/page-preview.json": {
+      "key": "CONFIG/page-preview.json",
+      "mode": 0,
+      "files": [
+        "page-preview.json"
+      ]
+    },
+    "CONFIG/types.json": {
+      "key": "CONFIG/types.json",
+      "mode": 0,
+      "files": [
+        "types.json"
+      ]
+    },
+    "CONFIG/canvas.json": {
+      "key": "CONFIG/canvas.json",
+      "mode": 0,
+      "files": [
+        "canvas.json"
+      ]
+    },
+    "CONFIG/file-recovery.json": {
+      "key": "CONFIG/file-recovery.json",
+      "mode": 0,
+      "files": [
+        "file-recovery.json"
+      ]
+    },
+    "CONFIG/community-plugins.json": {
+      "key": "CONFIG/community-plugins.json",
+      "mode": 0,
+      "files": [
+        "community-plugins.json"
+      ]
+    },
+    "CONFIG/vault-stats.json": {
+      "key": "CONFIG/vault-stats.json",
+      "mode": 0,
+      "files": [
+        "vault-stats.json"
+      ]
+    },
+    "CONFIG/core-plugins.json": {
+      "key": "CONFIG/core-plugins.json",
+      "mode": 0,
+      "files": [
+        "core-plugins.json"
+      ]
+    },
+    "CONFIG/hotkeys.json": {
+      "key": "CONFIG/hotkeys.json",
+      "mode": 0,
+      "files": [
+        "hotkeys.json"
+      ]
+    },
+    "CONFIG/appearance.json": {
+      "key": "CONFIG/appearance.json",
+      "mode": 0,
+      "files": [
+        "appearance.json"
+      ]
+    },
+    "CONFIG/zk-prefixer.json": {
+      "key": "CONFIG/zk-prefixer.json",
+      "mode": 0,
+      "files": [
+        "zk-prefixer.json"
+      ]
+    },
+    "CONFIG/text-generator.json": {
+      "key": "CONFIG/text-generator.json",
+      "mode": 0,
+      "files": [
+        "text-generator.json"
+      ]
+    },
+    "PLUGIN_MAIN/dataview": {
+      "key": "PLUGIN_MAIN/dataview",
+      "mode": 0,
+      "files": [
+        "plugins/dataview/main.js",
+        "plugins/dataview/manifest.json",
+        "plugins/dataview/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/dataview": {
+      "key": "PLUGIN_DATA/dataview",
+      "mode": 0,
+      "files": [
+        "plugins/dataview/data.json"
+      ]
+    },
+    "PLUGIN_DATA/omnisearch": {
+      "key": "PLUGIN_DATA/omnisearch",
+      "mode": 0,
+      "files": [
+        "plugins/omnisearch/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/omnisearch": {
+      "key": "PLUGIN_MAIN/omnisearch",
+      "mode": 0,
+      "files": [
+        "plugins/omnisearch/main.js",
+        "plugins/omnisearch/manifest.json",
+        "plugins/omnisearch/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-advanced-slides": {
+      "key": "PLUGIN_MAIN/obsidian-advanced-slides",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-advanced-slides/main.js",
+        "plugins/obsidian-advanced-slides/manifest.json",
+        "plugins/obsidian-advanced-slides/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-advanced-slides": {
+      "key": "PLUGIN_DATA/obsidian-advanced-slides",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-advanced-slides/data.json"
+      ]
+    },
+    "PLUGIN_DATA/table-editor-obsidian": {
+      "key": "PLUGIN_DATA/table-editor-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/table-editor-obsidian/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/table-editor-obsidian": {
+      "key": "PLUGIN_MAIN/table-editor-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/table-editor-obsidian/main.js",
+        "plugins/table-editor-obsidian/manifest.json",
+        "plugins/table-editor-obsidian/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-pandoc": {
+      "key": "PLUGIN_DATA/obsidian-pandoc",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-pandoc/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-pandoc": {
+      "key": "PLUGIN_MAIN/obsidian-pandoc",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-pandoc/main.js",
+        "plugins/obsidian-pandoc/manifest.json",
+        "plugins/obsidian-pandoc/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/dbfolder": {
+      "key": "PLUGIN_MAIN/dbfolder",
+      "mode": 0,
+      "files": [
+        "plugins/dbfolder/main.js",
+        "plugins/dbfolder/manifest.json",
+        "plugins/dbfolder/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/dbfolder": {
+      "key": "PLUGIN_DATA/dbfolder",
+      "mode": 0,
+      "files": [
+        "plugins/dbfolder/data.json"
+      ]
+    },
+    "PLUGIN_DATA/remotely-save": {
+      "key": "PLUGIN_DATA/remotely-save",
+      "mode": 0,
+      "files": [
+        "plugins/remotely-save/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/remotely-save": {
+      "key": "PLUGIN_MAIN/remotely-save",
+      "mode": 0,
+      "files": [
+        "plugins/remotely-save/main.js",
+        "plugins/remotely-save/manifest.json",
+        "plugins/remotely-save/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-git": {
+      "key": "PLUGIN_DATA/obsidian-git",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-git/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-emoji-toolbar": {
+      "key": "PLUGIN_MAIN/obsidian-emoji-toolbar",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-emoji-toolbar/main.js",
+        "plugins/obsidian-emoji-toolbar/manifest.json",
+        "plugins/obsidian-emoji-toolbar/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-emoji-toolbar": {
+      "key": "PLUGIN_DATA/obsidian-emoji-toolbar",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-emoji-toolbar/data.json"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-day-planner": {
+      "key": "PLUGIN_DATA/obsidian-day-planner",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-day-planner/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-day-planner": {
+      "key": "PLUGIN_MAIN/obsidian-day-planner",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-day-planner/main.js",
+        "plugins/obsidian-day-planner/manifest.json",
+        "plugins/obsidian-day-planner/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-git": {
+      "key": "PLUGIN_MAIN/obsidian-git",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-git/main.js",
+        "plugins/obsidian-git/manifest.json",
+        "plugins/obsidian-git/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/homepage": {
+      "key": "PLUGIN_DATA/homepage",
+      "mode": 0,
+      "files": [
+        "plugins/homepage/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/homepage": {
+      "key": "PLUGIN_MAIN/homepage",
+      "mode": 0,
+      "files": [
+        "plugins/homepage/main.js",
+        "plugins/homepage/manifest.json",
+        "plugins/homepage/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-tasks-plugin": {
+      "key": "PLUGIN_MAIN/obsidian-tasks-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-tasks-plugin/main.js",
+        "plugins/obsidian-tasks-plugin/manifest.json",
+        "plugins/obsidian-tasks-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-tasks-plugin": {
+      "key": "PLUGIN_DATA/obsidian-tasks-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-tasks-plugin/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-annotator": {
+      "key": "PLUGIN_MAIN/obsidian-annotator",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-annotator/main.js",
+        "plugins/obsidian-annotator/manifest.json"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-annotator": {
+      "key": "PLUGIN_DATA/obsidian-annotator",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-annotator/data.json"
+      ]
+    },
+    "PLUGIN_DATA/nldates-obsidian": {
+      "key": "PLUGIN_DATA/nldates-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/nldates-obsidian/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/nldates-obsidian": {
+      "key": "PLUGIN_MAIN/nldates-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/nldates-obsidian/main.js",
+        "plugins/nldates-obsidian/manifest.json"
+      ]
+    },
+    "PLUGIN_MAIN/better-word-count": {
+      "key": "PLUGIN_MAIN/better-word-count",
+      "mode": 0,
+      "files": [
+        "plugins/better-word-count/main.js",
+        "plugins/better-word-count/manifest.json",
+        "plugins/better-word-count/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/better-word-count": {
+      "key": "PLUGIN_DATA/better-word-count",
+      "mode": 0,
+      "files": [
+        "plugins/better-word-count/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/recent-files-obsidian": {
+      "key": "PLUGIN_MAIN/recent-files-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/recent-files-obsidian/main.js",
+        "plugins/recent-files-obsidian/manifest.json",
+        "plugins/recent-files-obsidian/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/recent-files-obsidian": {
+      "key": "PLUGIN_DATA/recent-files-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/recent-files-obsidian/data.json"
+      ]
+    },
+    "PLUGIN_DATA/text-extractor": {
+      "key": "PLUGIN_DATA/text-extractor",
+      "mode": 0,
+      "files": [
+        "plugins/text-extractor/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/text-extractor": {
+      "key": "PLUGIN_MAIN/text-extractor",
+      "mode": 0,
+      "files": [
+        "plugins/text-extractor/main.js",
+        "plugins/text-extractor/manifest.json"
+      ]
+    },
+    "PLUGIN_DATA/templater-obsidian": {
+      "key": "PLUGIN_DATA/templater-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/templater-obsidian/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/templater-obsidian": {
+      "key": "PLUGIN_MAIN/templater-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/templater-obsidian/main.js",
+        "plugins/templater-obsidian/manifest.json",
+        "plugins/templater-obsidian/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-kanban": {
+      "key": "PLUGIN_MAIN/obsidian-kanban",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-kanban/main.js",
+        "plugins/obsidian-kanban/manifest.json",
+        "plugins/obsidian-kanban/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-kanban": {
+      "key": "PLUGIN_DATA/obsidian-kanban",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-kanban/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-advanced-uri": {
+      "key": "PLUGIN_MAIN/obsidian-advanced-uri",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-advanced-uri/main.js",
+        "plugins/obsidian-advanced-uri/manifest.json"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-advanced-uri": {
+      "key": "PLUGIN_DATA/obsidian-advanced-uri",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-advanced-uri/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/note-refactor-obsidian": {
+      "key": "PLUGIN_MAIN/note-refactor-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/note-refactor-obsidian/main.js",
+        "plugins/note-refactor-obsidian/manifest.json",
+        "plugins/note-refactor-obsidian/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/note-refactor-obsidian": {
+      "key": "PLUGIN_DATA/note-refactor-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/note-refactor-obsidian/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-style-settings": {
+      "key": "PLUGIN_MAIN/obsidian-style-settings",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-style-settings/main.js",
+        "plugins/obsidian-style-settings/manifest.json",
+        "plugins/obsidian-style-settings/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/calendar": {
+      "key": "PLUGIN_MAIN/calendar",
+      "mode": 0,
+      "files": [
+        "plugins/calendar/main.js",
+        "plugins/calendar/manifest.json"
+      ]
+    },
+    "PLUGIN_DATA/calendar": {
+      "key": "PLUGIN_DATA/calendar",
+      "mode": 0,
+      "files": [
+        "plugins/calendar/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-icon-folder": {
+      "key": "PLUGIN_MAIN/obsidian-icon-folder",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-icon-folder/main.js",
+        "plugins/obsidian-icon-folder/manifest.json",
+        "plugins/obsidian-icon-folder/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-icon-folder": {
+      "key": "PLUGIN_DATA/obsidian-icon-folder",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-icon-folder/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/highlightr-plugin": {
+      "key": "PLUGIN_MAIN/highlightr-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/highlightr-plugin/main.js",
+        "plugins/highlightr-plugin/manifest.json",
+        "plugins/highlightr-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/highlightr-plugin": {
+      "key": "PLUGIN_DATA/highlightr-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/highlightr-plugin/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-checklist-plugin": {
+      "key": "PLUGIN_MAIN/obsidian-checklist-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-checklist-plugin/main.js",
+        "plugins/obsidian-checklist-plugin/manifest.json",
+        "plugins/obsidian-checklist-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-checklist-plugin": {
+      "key": "PLUGIN_DATA/obsidian-checklist-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-checklist-plugin/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-excalidraw-plugin": {
+      "key": "PLUGIN_MAIN/obsidian-excalidraw-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-excalidraw-plugin/main.js",
+        "plugins/obsidian-excalidraw-plugin/manifest.json",
+        "plugins/obsidian-excalidraw-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-excalidraw-plugin": {
+      "key": "PLUGIN_DATA/obsidian-excalidraw-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-excalidraw-plugin/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/cm-editor-syntax-highlight-obsidian": {
+      "key": "PLUGIN_MAIN/cm-editor-syntax-highlight-obsidian",
+      "mode": 0,
+      "files": [
+        "plugins/cm-editor-syntax-highlight-obsidian/main.js",
+        "plugins/cm-editor-syntax-highlight-obsidian/manifest.json",
+        "plugins/cm-editor-syntax-highlight-obsidian/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-outliner": {
+      "key": "PLUGIN_MAIN/obsidian-outliner",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-outliner/main.js",
+        "plugins/obsidian-outliner/manifest.json",
+        "plugins/obsidian-outliner/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-outliner": {
+      "key": "PLUGIN_DATA/obsidian-outliner",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-outliner/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/oz-image-plugin": {
+      "key": "PLUGIN_MAIN/oz-image-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/oz-image-plugin/main.js",
+        "plugins/oz-image-plugin/manifest.json",
+        "plugins/oz-image-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/oz-image-plugin": {
+      "key": "PLUGIN_DATA/oz-image-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/oz-image-plugin/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-mind-map": {
+      "key": "PLUGIN_MAIN/obsidian-mind-map",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-mind-map/main.js",
+        "plugins/obsidian-mind-map/manifest.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-linter": {
+      "key": "PLUGIN_MAIN/obsidian-linter",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-linter/main.js",
+        "plugins/obsidian-linter/manifest.json",
+        "plugins/obsidian-linter/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-linter": {
+      "key": "PLUGIN_DATA/obsidian-linter",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-linter/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/make-md": {
+      "key": "PLUGIN_MAIN/make-md",
+      "mode": 0,
+      "files": [
+        "plugins/make-md/main.js",
+        "plugins/make-md/manifest.json",
+        "plugins/make-md/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/make-md": {
+      "key": "PLUGIN_DATA/make-md",
+      "mode": 0,
+      "files": [
+        "plugins/make-md/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/various-complements": {
+      "key": "PLUGIN_MAIN/various-complements",
+      "mode": 0,
+      "files": [
+        "plugins/various-complements/main.js",
+        "plugins/various-complements/manifest.json",
+        "plugins/various-complements/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-projects": {
+      "key": "PLUGIN_MAIN/obsidian-projects",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-projects/main.js",
+        "plugins/obsidian-projects/manifest.json",
+        "plugins/obsidian-projects/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-projects": {
+      "key": "PLUGIN_DATA/obsidian-projects",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-projects/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-textgenerator-plugin": {
+      "key": "PLUGIN_MAIN/obsidian-textgenerator-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-textgenerator-plugin/main.js",
+        "plugins/obsidian-textgenerator-plugin/manifest.json",
+        "plugins/obsidian-textgenerator-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-textgenerator-plugin": {
+      "key": "PLUGIN_DATA/obsidian-textgenerator-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-textgenerator-plugin/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-languagetool-plugin": {
+      "key": "PLUGIN_MAIN/obsidian-languagetool-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-languagetool-plugin/main.js",
+        "plugins/obsidian-languagetool-plugin/manifest.json",
+        "plugins/obsidian-languagetool-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/media-extended": {
+      "key": "PLUGIN_MAIN/media-extended",
+      "mode": 0,
+      "files": [
+        "plugins/media-extended/main.js",
+        "plugins/media-extended/manifest.json",
+        "plugins/media-extended/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/buttons": {
+      "key": "PLUGIN_MAIN/buttons",
+      "mode": 0,
+      "files": [
+        "plugins/buttons/main.js",
+        "plugins/buttons/manifest.json",
+        "plugins/buttons/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-enhancing-mindmap": {
+      "key": "PLUGIN_MAIN/obsidian-enhancing-mindmap",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-enhancing-mindmap/main.js",
+        "plugins/obsidian-enhancing-mindmap/manifest.json",
+        "plugins/obsidian-enhancing-mindmap/styles.css"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-dictionary-plugin": {
+      "key": "PLUGIN_MAIN/obsidian-dictionary-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-dictionary-plugin/main.js",
+        "plugins/obsidian-dictionary-plugin/manifest.json",
+        "plugins/obsidian-dictionary-plugin/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-dictionary-plugin": {
+      "key": "PLUGIN_DATA/obsidian-dictionary-plugin",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-dictionary-plugin/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-livesync": {
+      "key": "PLUGIN_MAIN/obsidian-livesync",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-livesync/main.js",
+        "plugins/obsidian-livesync/manifest.json",
+        "plugins/obsidian-livesync/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-livesync": {
+      "key": "PLUGIN_DATA/obsidian-livesync",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-livesync/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-latex-suite": {
+      "key": "PLUGIN_MAIN/obsidian-latex-suite",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-latex-suite/main.js",
+        "plugins/obsidian-latex-suite/manifest.json",
+        "plugins/obsidian-latex-suite/styles.css"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-latex-suite": {
+      "key": "PLUGIN_DATA/obsidian-latex-suite",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-latex-suite/data.json"
+      ]
+    },
+    "PLUGIN_MAIN/obsidian-plugin-toc": {
+      "key": "PLUGIN_MAIN/obsidian-plugin-toc",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-plugin-toc/main.js",
+        "plugins/obsidian-plugin-toc/manifest.json"
+      ]
+    },
+    "PLUGIN_DATA/various-complements": {
+      "key": "PLUGIN_DATA/various-complements",
+      "mode": 0,
+      "files": [
+        "plugins/various-complements/data.json"
+      ]
+    },
+    "PLUGIN_DATA/obsidian-plugin-toc": {
+      "key": "PLUGIN_DATA/obsidian-plugin-toc",
+      "mode": 0,
+      "files": [
+        "plugins/obsidian-plugin-toc/data.json"
+      ]
+    }
+  }
 }

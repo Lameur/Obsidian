@@ -1,28 +1,40 @@
 {
   "recentFiles": [
     {
-      "basename": "Phèdre",
-      "path": "Français/Phèdre.md"
-    },
-    {
       "basename": "Home",
       "path": "Home.md"
-    },
-    {
-      "basename": "Médecine",
-      "path": "Espagnol/Médecine.md"
-    },
-    {
-      "basename": "Clôture de la pièce de Cendrillons",
-      "path": "Français/Clôture de la pièce de Cendrillons.md"
     },
     {
       "basename": "Analyse syntaxique",
       "path": "Français/Analyse syntaxique.md"
     },
     {
+      "basename": "Clôture de la pièce de Cendrillons",
+      "path": "Français/Clôture de la pièce de Cendrillons.md"
+    },
+    {
+      "basename": "Phèdre",
+      "path": "Français/Phèdre.md"
+    },
+    {
       "basename": "Jean-Jacques Rousseau",
       "path": "Français/Jean-Jacques Rousseau.md"
+    },
+    {
+      "basename": "Français",
+      "path": "Français.md"
+    },
+    {
+      "basename": "Files",
+      "path": "Files.md"
+    },
+    {
+      "basename": "Template",
+      "path": "Template/Template.md"
+    },
+    {
+      "basename": "Médecine",
+      "path": "Espagnol/Médecine.md"
     },
     {
       "basename": "L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde »",
@@ -35,14 +47,6 @@
     {
       "basename": "2024-01-10",
       "path": "Daily Note/2024-01-10.md"
-    },
-    {
-      "basename": "Files",
-      "path": "Files.md"
-    },
-    {
-      "basename": "Français",
-      "path": "Français.md"
     },
     {
       "basename": "Daily_files",
@@ -63,10 +67,6 @@
     {
       "basename": "2023-10-28",
       "path": "Daily Note/2023-10-28.md"
-    },
-    {
-      "basename": "Template",
-      "path": "Template/Template.md"
     },
     {
       "basename": "Template Daily",

@@ -1,3 +1,7 @@
+---
+tags:
+  - Français
+---
 Identité :  
 - Thésée, _fils d’_[_Égée_](https://fr.wikipedia.org/wiki/%C3%89g%C3%A9e_(mythologie)), roi d’Athènes, mari de Phèdre et père d’Hippolyte, absent au début de la pièce
 - Phèdre,  _femme de Thésée, fille de_ [_Minos_](https://fr.wikipedia.org/wiki/Minos) _et de_ [_Pasiphaé_](https://fr.wikipedia.org/wiki/Pasipha%C3%A9)

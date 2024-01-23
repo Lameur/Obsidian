@@ -1,6 +1,5 @@
 [
   "obsidian-style-settings",
-  "obsidian-advanced-slides",
   "templater-obsidian",
   "obsidian-tasks-plugin",
   "calendar",
@@ -23,11 +22,20 @@
   "note-refactor-obsidian",
   "obsidian-mind-map",
   "nldates-obsidian",
-  "obsidian-pandoc",
   "oz-image-plugin",
   "obsidian-outliner",
   "omnisearch",
   "text-extractor",
   "obsidian-checklist-plugin",
-  "obsidian-git"
+  "obsidian-git",
+  "make-md",
+  "various-complements",
+  "obsidian-textgenerator-plugin",
+  "media-extended",
+  "buttons",
+  "obsidian-enhancing-mindmap",
+  "obsidian-dictionary-plugin",
+  "obsidian-livesync",
+  "obsidian-latex-suite",
+  "obsidian-plugin-toc"
 ]

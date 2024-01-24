@@ -6,7 +6,7 @@ Historiographie
 
 « Nouveau monde »
 
-### 1.      Espagne et Portugal se partagent le « Nouveau monde »
+### 1. Espagne et Portugal se partagent le « Nouveau monde »
 
 #### a.      Découverte de l’Amérique rendue possible
 
@@ -76,3 +76,10 @@ q4 :
 | Temples<br>Briser les idoles<br>Combler les canaux (sert a construire par dessus)<br> | Maisons<br>Eglises |
 
 q5 :
+
+### 3. Des échanges transocéaniques intenses : vers une première mondialisation.
+#### a. transformation et intensification des échanges.
+-> p106-107
+explosion flux commerciaux (humaine sur atlantique)
+
+Or et Argent -> diverses mines du continent Amérique dans territoires ctrl par couronne d'Espagne

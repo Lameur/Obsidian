@@ -27,9 +27,22 @@
               "type": "log-log",
               "state": {}
             }
+          },
+          {
+            "id": "5222d7d41235faeb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -103,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Anglais/India 2.md",
+                "file": "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +133,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Anglais/India 2.md",
+                "file": "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Anglais/India 2.md"
+                "file": "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md"
               }
             }
           },
@@ -204,7 +217,7 @@
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true,
       "obsidian-livesync:Replicate": true,
-      "obsidian-livesync:Show log": false,
+      "obsidian-livesync:Show log": true,
       "obsidian-livesync:Show Customization sync": true,
       "obsidian-projects:Open projects": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
@@ -227,8 +240,9 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e7eefec9a91865ed",
+  "active": "5222d7d41235faeb",
   "lastOpenFiles": [
+    "Anglais/India 2.md",
     "Home.md",
     "Espagnol/Médecine.md",
     "Espagnol",

@@ -1,9 +1,10 @@
-L’ouverture atlantique : les conséquences de la découverte du « Nouveau monde »
+Évaluation Thème 2 chap 1   
+Analyse de documents  
+mercredi 7 février  
+(1:30)  
 
 Historiographie
-
-« Grandes Découvertes »
-
+"Grandes Découvertes"
 « Nouveau monde »
 
 ### 1. Espagne et Portugal se partagent le « Nouveau monde »
@@ -65,9 +66,9 @@ Hernan Cortés (1519-1521) conquis l'empire aztèque (Amérique chrole). Devient
 Pizano (1531-1539) anéantir l'empire Inca(Pérou) qui devient le vice-royaume du Pérou.  
 ces conquêtes permette la création de vaste empire coloniaux qui impact l'Europe et les civilisation locales
 
-### 2. Des territoires et des populations amérindiennes au services des Européens 
+### 2. Des territoires et des populations amérindiennes aux services des Européens 
 
-#### a. De la découvete du "Nouveau Monde" à sa colonisation et son exploitation
+#### a. De la découverte du "Nouveau Monde" à sa colonisation et son exploitation
 Q4-5 p99  
 q4 :
 
@@ -92,3 +93,4 @@ Or/Argent -> diverses mines du continent Amérique dans territoires ctrl par cou
 Les colons ont besoin de denrée.  
 Plus en plus de routes commerciales et se rallongent et mettent en liens les continents.  
 1ʳᵉ mondialisation, essor des échanges au niveau mondial du 16ᵉ au 18ᵉ siècle qui entraine indépendance des continents.  
+Attire la convatize 

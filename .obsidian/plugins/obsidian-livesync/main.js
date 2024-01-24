@@ -72,29 +72,29 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       s = s.substring(m);
       r = r.substring(m);
       m = this.diff_commonSuffix(s, r);
-      var w = s.substring(s.length - m);
+      var E = s.substring(s.length - m);
       s = s.substring(0, s.length - m);
       r = r.substring(0, r.length - m);
-      var E = this.diff_compute_(s, r, _, g);
-      if (b) E.unshift(new diff_match_patch2.Diff(0, b));
-      if (w) E.push(new diff_match_patch2.Diff(0, w));
-      this.diff_cleanupMerge(E);
-      return E;
+      var w = this.diff_compute_(s, r, _, g);
+      if (b) w.unshift(new diff_match_patch2.Diff(0, b));
+      if (E) w.push(new diff_match_patch2.Diff(0, E));
+      this.diff_cleanupMerge(w);
+      return w;
     };
     diff_match_patch2.prototype.diff_compute_ = function(s, r, u, g) {
       var _;
       if (!s) return [ new diff_match_patch2.Diff(1, r) ];
       if (!r) return [ new diff_match_patch2.Diff(o, s) ];
-      var m = s.length > r.length ? s : r, b = s.length > r.length ? r : s, w = m.indexOf(b);
-      if (-1 != w) {
-        _ = [ new diff_match_patch2.Diff(1, m.substring(0, w)), new diff_match_patch2.Diff(0, b), new diff_match_patch2.Diff(1, m.substring(w + b.length)) ];
+      var m = s.length > r.length ? s : r, b = s.length > r.length ? r : s, E = m.indexOf(b);
+      if (-1 != E) {
+        _ = [ new diff_match_patch2.Diff(1, m.substring(0, E)), new diff_match_patch2.Diff(0, b), new diff_match_patch2.Diff(1, m.substring(E + b.length)) ];
         if (s.length > r.length) _[0][0] = _[2][0] = o;
         return _;
       }
       if (1 == b.length) return [ new diff_match_patch2.Diff(o, s), new diff_match_patch2.Diff(1, r) ];
-      var E = this.diff_halfMatch_(s, r);
-      if (E) {
-        var S = E[0], L = E[1], O = E[2], D = E[3], k = E[4], C = this.diff_main(S, O, u, g), T = this.diff_main(L, D, u, g);
+      var w = this.diff_halfMatch_(s, r);
+      if (w) {
+        var S = w[0], L = w[1], O = w[2], D = w[3], k = w[4], C = this.diff_main(S, O, u, g), T = this.diff_main(L, D, u, g);
         return C.concat([ new diff_match_patch2.Diff(0, k) ], T);
       }
       if (u && s.length > 100 && r.length > 100) return this.diff_lineMode_(s, r, g); else return this.diff_bisect_(s, r, g);
@@ -107,27 +107,27 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       this.diff_charsToLines_(m, _);
       this.diff_cleanupSemantic(m);
       m.push(new diff_match_patch2.Diff(0, ""));
-      for (var b = 0, w = 0, E = 0, S = "", L = ""; b < m.length; ) {
+      for (var b = 0, E = 0, w = 0, S = "", L = ""; b < m.length; ) {
         switch (m[b][0]) {
          case 1:
-          E++;
+          w++;
           L += m[b][1];
           break;
 
          case o:
-          w++;
+          E++;
           S += m[b][1];
           break;
 
          case 0:
-          if (w >= 1 && E >= 1) {
-            m.splice(b - w - E, w + E);
-            b = b - w - E;
+          if (E >= 1 && w >= 1) {
+            m.splice(b - E - w, E + w);
+            b = b - E - w;
             for (var O = this.diff_main(S, L, false, u), D = O.length - 1; D >= 0; D--) m.splice(b, 0, O[D]);
             b += O.length;
           }
-          E = 0;
           w = 0;
+          E = 0;
           S = "";
           L = "";
           break;
@@ -138,22 +138,22 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       return m;
     };
     diff_match_patch2.prototype.diff_bisect_ = function(s, r, u) {
-      for (var g = s.length, _ = r.length, m = Math.ceil((g + _) / 2), b = m, w = 2 * m, E = new Array(w), S = new Array(w), L = 0; L < w; L++) {
-        E[L] = -1;
+      for (var g = s.length, _ = r.length, m = Math.ceil((g + _) / 2), b = m, E = 2 * m, w = new Array(E), S = new Array(E), L = 0; L < E; L++) {
+        w[L] = -1;
         S[L] = -1;
       }
-      E[b + 1] = 0;
+      w[b + 1] = 0;
       S[b + 1] = 0;
       for (var O = g - _, D = O % 2 != 0, k = 0, C = 0, T = 0, I = 0, A = 0; A < m && !((new Date).getTime() > u); A++) {
         for (var R = -A + k; R <= A - C; R += 2) {
           var x = b + R;
-          if (R == -A || R != A && E[x - 1] < E[x + 1]) V = E[x + 1]; else V = E[x - 1] + 1;
+          if (R == -A || R != A && w[x - 1] < w[x + 1]) V = w[x + 1]; else V = w[x - 1] + 1;
           for (var P = V - R; V < g && P < _ && s.charAt(V) == r.charAt(P); ) {
             V++;
             P++;
           }
-          E[x] = V;
-          if (V > g) C += 2; else if (P > _) k += 2; else if (D) if ((F = b + O - R) >= 0 && F < w && -1 != S[F]) if (V >= (B = g - S[F])) return this.diff_bisectSplit_(s, r, V, P, u);
+          w[x] = V;
+          if (V > g) C += 2; else if (P > _) k += 2; else if (D) if ((F = b + O - R) >= 0 && F < E && -1 != S[F]) if (V >= (B = g - S[F])) return this.diff_bisectSplit_(s, r, V, P, u);
         }
         for (var N = -A + T; N <= A - I; N += 2) {
           var B, F = b + N;
@@ -163,9 +163,9 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
             M++;
           }
           S[F] = B;
-          if (B > g) I += 2; else if (M > _) T += 2; else if (!D) if ((x = b + O - N) >= 0 && x < w && -1 != E[x]) {
+          if (B > g) I += 2; else if (M > _) T += 2; else if (!D) if ((x = b + O - N) >= 0 && x < E && -1 != w[x]) {
             var V;
-            P = b + (V = E[x]) - x;
+            P = b + (V = w[x]) - x;
             if (V >= (B = g - B)) return this.diff_bisectSplit_(s, r, V, P, u);
           }
         }
@@ -173,8 +173,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       return [ new diff_match_patch2.Diff(o, s), new diff_match_patch2.Diff(1, r) ];
     };
     diff_match_patch2.prototype.diff_bisectSplit_ = function(s, r, o, u, g) {
-      var _ = s.substring(0, o), m = r.substring(0, u), b = s.substring(o), w = r.substring(u), E = this.diff_main(_, m, false, g), S = this.diff_main(b, w, false, g);
-      return E.concat(S);
+      var _ = s.substring(0, o), m = r.substring(0, u), b = s.substring(o), E = r.substring(u), w = this.diff_main(_, m, false, g), S = this.diff_main(b, E, false, g);
+      return w.concat(S);
     };
     diff_match_patch2.prototype.diff_linesToChars_ = function(s, r) {
       var o = [], u = {};
@@ -182,15 +182,15 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       function diff_linesToCharsMunge_(s) {
         for (var r = "", _ = 0, m = -1, b = o.length; m < s.length - 1; ) {
           if (-1 == (m = s.indexOf("\n", _))) m = s.length - 1;
-          var w = s.substring(_, m + 1);
-          if (u.hasOwnProperty ? u.hasOwnProperty(w) : void 0 !== u[w]) r += String.fromCharCode(u[w]); else {
+          var E = s.substring(_, m + 1);
+          if (u.hasOwnProperty ? u.hasOwnProperty(E) : void 0 !== u[E]) r += String.fromCharCode(u[E]); else {
             if (b == g) {
-              w = s.substring(_);
+              E = s.substring(_);
               m = s.length;
             }
             r += String.fromCharCode(b);
-            u[w] = b;
-            o[b++] = w;
+            u[E] = b;
+            o[b++] = E;
           }
           _ = m + 1;
         }
@@ -233,10 +233,10 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       var g = Math.min(o, u);
       if (s == r) return g;
       for (var _ = 0, m = 1; ;) {
-        var b = s.substring(g - m), w = r.indexOf(b);
-        if (-1 == w) return _;
-        m += w;
-        if (0 == w || s.substring(g - m) == r.substring(0, m)) {
+        var b = s.substring(g - m), E = r.indexOf(b);
+        if (-1 == E) return _;
+        m += E;
+        if (0 == E || s.substring(g - m) == r.substring(0, m)) {
           _ = m;
           m++;
         }
@@ -248,52 +248,52 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       if (o.length < 4 || 2 * u.length < o.length) return null;
       var g = this;
       function diff_halfMatchI_(s, r, o) {
-        for (var u, _, m, b, w = s.substring(o, o + Math.floor(s.length / 4)), E = -1, S = ""; -1 != (E = r.indexOf(w, E + 1)); ) {
-          var L = g.diff_commonPrefix(s.substring(o), r.substring(E)), O = g.diff_commonSuffix(s.substring(0, o), r.substring(0, E));
+        for (var u, _, m, b, E = s.substring(o, o + Math.floor(s.length / 4)), w = -1, S = ""; -1 != (w = r.indexOf(E, w + 1)); ) {
+          var L = g.diff_commonPrefix(s.substring(o), r.substring(w)), O = g.diff_commonSuffix(s.substring(0, o), r.substring(0, w));
           if (S.length < O + L) {
-            S = r.substring(E - O, E) + r.substring(E, E + L);
+            S = r.substring(w - O, w) + r.substring(w, w + L);
             u = s.substring(0, o - O);
             _ = s.substring(o + L);
-            m = r.substring(0, E - O);
-            b = r.substring(E + L);
+            m = r.substring(0, w - O);
+            b = r.substring(w + L);
           }
         }
         if (2 * S.length >= s.length) return [ u, _, m, b, S ]; else return null;
       }
-      var _, m, b, w, E, S = diff_halfMatchI_(o, u, Math.ceil(o.length / 4)), L = diff_halfMatchI_(o, u, Math.ceil(o.length / 2));
+      var _, m, b, E, w, S = diff_halfMatchI_(o, u, Math.ceil(o.length / 4)), L = diff_halfMatchI_(o, u, Math.ceil(o.length / 2));
       if (!S && !L) return null; else if (!L) _ = S; else if (!S) _ = L; else _ = S[4].length > L[4].length ? S : L;
       if (s.length > r.length) {
         m = _[0];
         b = _[1];
-        w = _[2];
-        E = _[3];
+        E = _[2];
+        w = _[3];
       } else {
-        w = _[0];
-        E = _[1];
+        E = _[0];
+        w = _[1];
         m = _[2];
         b = _[3];
       }
-      return [ m, b, w, E, _[4] ];
+      return [ m, b, E, w, _[4] ];
     };
     diff_match_patch2.prototype.diff_cleanupSemantic = function(s) {
-      for (var r = false, u = [], g = 0, _ = null, m = 0, b = 0, w = 0, E = 0, S = 0; m < s.length; ) {
+      for (var r = false, u = [], g = 0, _ = null, m = 0, b = 0, E = 0, w = 0, S = 0; m < s.length; ) {
         if (0 == s[m][0]) {
           u[g++] = m;
-          b = E;
-          w = S;
-          E = 0;
+          b = w;
+          E = S;
+          w = 0;
           S = 0;
           _ = s[m][1];
         } else {
-          if (1 == s[m][0]) E += s[m][1].length; else S += s[m][1].length;
-          if (_ && _.length <= Math.max(b, w) && _.length <= Math.max(E, S)) {
+          if (1 == s[m][0]) w += s[m][1].length; else S += s[m][1].length;
+          if (_ && _.length <= Math.max(b, E) && _.length <= Math.max(w, S)) {
             s.splice(u[g - 1], 0, new diff_match_patch2.Diff(o, _));
             s[u[g - 1] + 1][0] = 1;
             g--;
             m = --g > 0 ? u[g - 1] : -1;
             b = 0;
-            w = 0;
             E = 0;
+            w = 0;
             S = 0;
             _ = null;
             r = true;
@@ -330,8 +330,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
     diff_match_patch2.prototype.diff_cleanupSemanticLossless = function(s) {
       function diff_cleanupSemanticScore_(s, r) {
         if (!s || !r) return 6;
-        var o = s.charAt(s.length - 1), u = r.charAt(0), g = o.match(diff_match_patch2.nonAlphaNumericRegex_), _ = u.match(diff_match_patch2.nonAlphaNumericRegex_), m = g && o.match(diff_match_patch2.whitespaceRegex_), b = _ && u.match(diff_match_patch2.whitespaceRegex_), w = m && o.match(diff_match_patch2.linebreakRegex_), E = b && u.match(diff_match_patch2.linebreakRegex_), S = w && s.match(diff_match_patch2.blanklineEndRegex_), L = E && r.match(diff_match_patch2.blanklineStartRegex_);
-        if (S || L) return 5; else if (w || E) return 4; else if (g && !m && b) return 3; else if (m || b) return 2; else if (g || _) return 1;
+        var o = s.charAt(s.length - 1), u = r.charAt(0), g = o.match(diff_match_patch2.nonAlphaNumericRegex_), _ = u.match(diff_match_patch2.nonAlphaNumericRegex_), m = g && o.match(diff_match_patch2.whitespaceRegex_), b = _ && u.match(diff_match_patch2.whitespaceRegex_), E = m && o.match(diff_match_patch2.linebreakRegex_), w = b && u.match(diff_match_patch2.linebreakRegex_), S = E && s.match(diff_match_patch2.blanklineEndRegex_), L = w && r.match(diff_match_patch2.blanklineStartRegex_);
+        if (S || L) return 5; else if (E || w) return 4; else if (g && !m && b) return 3; else if (m || b) return 2; else if (g || _) return 1;
         return 0;
       }
       for (var r = 1; r < s.length - 1; ) {
@@ -343,7 +343,7 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
             u = m + u.substring(0, u.length - _);
             g = m + g;
           }
-          for (var b = o, w = u, E = g, S = diff_cleanupSemanticScore_(o, u) + diff_cleanupSemanticScore_(u, g); u.charAt(0) === g.charAt(0); ) {
+          for (var b = o, E = u, w = g, S = diff_cleanupSemanticScore_(o, u) + diff_cleanupSemanticScore_(u, g); u.charAt(0) === g.charAt(0); ) {
             o += u.charAt(0);
             u = u.substring(1) + g.charAt(0);
             g = g.substring(1);
@@ -351,8 +351,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
             if (L >= S) {
               S = L;
               b = o;
-              w = u;
-              E = g;
+              E = u;
+              w = g;
             }
           }
           if (s[r - 1][1] != b) {
@@ -360,8 +360,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
               s.splice(r - 1, 1);
               r--;
             }
-            s[r][1] = w;
-            if (E) s[r + 1][1] = E; else {
+            s[r][1] = E;
+            if (w) s[r + 1][1] = w; else {
               s.splice(r + 1, 1);
               r--;
             }
@@ -376,31 +376,31 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
     diff_match_patch2.blanklineEndRegex_ = /\n\r?\n$/;
     diff_match_patch2.blanklineStartRegex_ = /^\r?\n\r?\n/;
     diff_match_patch2.prototype.diff_cleanupEfficiency = function(s) {
-      for (var r = false, u = [], g = 0, _ = null, m = 0, b = false, w = false, E = false, S = false; m < s.length; ) {
+      for (var r = false, u = [], g = 0, _ = null, m = 0, b = false, E = false, w = false, S = false; m < s.length; ) {
         if (0 == s[m][0]) {
-          if (s[m][1].length < this.Diff_EditCost && (E || S)) {
+          if (s[m][1].length < this.Diff_EditCost && (w || S)) {
             u[g++] = m;
-            b = E;
-            w = S;
+            b = w;
+            E = S;
             _ = s[m][1];
           } else {
             g = 0;
             _ = null;
           }
-          E = S = false;
+          w = S = false;
         } else {
-          if (s[m][0] == o) S = true; else E = true;
-          if (_ && (b && w && E && S || _.length < this.Diff_EditCost / 2 && b + w + E + S == 3)) {
+          if (s[m][0] == o) S = true; else w = true;
+          if (_ && (b && E && w && S || _.length < this.Diff_EditCost / 2 && b + E + w + S == 3)) {
             s.splice(u[g - 1], 0, new diff_match_patch2.Diff(o, _));
             s[u[g - 1] + 1][0] = 1;
             g--;
             _ = null;
-            if (b && w) {
-              E = S = true;
+            if (b && E) {
+              w = S = true;
               g = 0;
             } else {
               m = --g > 0 ? u[g - 1] : -1;
-              E = S = false;
+              w = S = false;
             }
             r = true;
           }
@@ -463,23 +463,23 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         break;
       }
       if ("" === s[s.length - 1][1]) s.pop();
-      var w = false;
+      var E = false;
       u = 1;
       for (;u < s.length - 1; ) {
         if (0 == s[u - 1][0] && 0 == s[u + 1][0]) if (s[u][1].substring(s[u][1].length - s[u - 1][1].length) == s[u - 1][1]) {
           s[u][1] = s[u - 1][1] + s[u][1].substring(0, s[u][1].length - s[u - 1][1].length);
           s[u + 1][1] = s[u - 1][1] + s[u + 1][1];
           s.splice(u - 1, 1);
-          w = true;
+          E = true;
         } else if (s[u][1].substring(0, s[u + 1][1].length) == s[u + 1][1]) {
           s[u - 1][1] += s[u + 1][1];
           s[u][1] = s[u][1].substring(s[u + 1][1].length) + s[u + 1][1];
           s.splice(u + 1, 1);
-          w = true;
+          E = true;
         }
         u++;
       }
-      if (w) this.diff_cleanupMerge(s);
+      if (E) this.diff_cleanupMerge(s);
     };
     diff_match_patch2.prototype.diff_xIndex = function(s, r) {
       var u, g = 0, _ = 0, m = 0, b = 0;
@@ -494,18 +494,18 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
     };
     diff_match_patch2.prototype.diff_prettyHtml = function(s) {
       for (var r = [], u = /&/g, g = /</g, _ = />/g, m = /\n/g, b = 0; b < s.length; b++) {
-        var w = s[b][0], E = s[b][1].replace(u, "&amp;").replace(g, "&lt;").replace(_, "&gt;").replace(m, "&para;<br>");
-        switch (w) {
+        var E = s[b][0], w = s[b][1].replace(u, "&amp;").replace(g, "&lt;").replace(_, "&gt;").replace(m, "&para;<br>");
+        switch (E) {
          case 1:
-          r[b] = '<ins style="background:#e6ffe6;">' + E + "</ins>";
+          r[b] = '<ins style="background:#e6ffe6;">' + w + "</ins>";
           break;
 
          case o:
-          r[b] = '<del style="background:#ffe6e6;">' + E + "</del>";
+          r[b] = '<del style="background:#ffe6e6;">' + w + "</del>";
           break;
 
          case 0:
-          r[b] = "<span>" + E + "</span>";
+          r[b] = "<span>" + w + "</span>";
           break;
         }
       }
@@ -558,21 +558,21 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
     };
     diff_match_patch2.prototype.diff_fromDelta = function(s, r) {
       for (var u = [], g = 0, _ = 0, m = r.split(/\t/g), b = 0; b < m.length; b++) {
-        var w = m[b].substring(1);
+        var E = m[b].substring(1);
         switch (m[b].charAt(0)) {
          case "+":
           try {
-            u[g++] = new diff_match_patch2.Diff(1, decodeURI(w));
+            u[g++] = new diff_match_patch2.Diff(1, decodeURI(E));
           } catch (s) {
-            throw new Error("Illegal escape in diff_fromDelta: " + w);
+            throw new Error("Illegal escape in diff_fromDelta: " + E);
           }
           break;
 
          case "-":
          case "=":
-          var E = parseInt(w, 10);
-          if (isNaN(E) || E < 0) throw new Error("Invalid number in diff_fromDelta: " + w);
-          var S = s.substring(_, _ += E);
+          var w = parseInt(E, 10);
+          if (isNaN(w) || w < 0) throw new Error("Invalid number in diff_fromDelta: " + E);
+          var S = s.substring(_, _ += w);
           if ("=" == m[b].charAt(0)) u[g++] = new diff_match_patch2.Diff(0, S); else u[g++] = new diff_match_patch2.Diff(o, S);
           break;
 
@@ -600,22 +600,22 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         _ = Math.min(match_bitapScore_(0, m), _);
         if (-1 != (m = s.lastIndexOf(r, o + r.length))) _ = Math.min(match_bitapScore_(0, m), _);
       }
-      var b, w, E = 1 << r.length - 1;
+      var b, E, w = 1 << r.length - 1;
       m = -1;
       for (var S, L = r.length + s.length, O = 0; O < r.length; O++) {
         b = 0;
-        w = L;
-        for (;b < w; ) {
-          if (match_bitapScore_(O, o + w) <= _) b = w; else L = w;
-          w = Math.floor((L - b) / 2 + b);
+        E = L;
+        for (;b < E; ) {
+          if (match_bitapScore_(O, o + E) <= _) b = E; else L = E;
+          E = Math.floor((L - b) / 2 + b);
         }
-        L = w;
-        var D = Math.max(1, o - w + 1), k = Math.min(o + w, s.length) + r.length, C = Array(k + 2);
+        L = E;
+        var D = Math.max(1, o - E + 1), k = Math.min(o + E, s.length) + r.length, C = Array(k + 2);
         C[k + 1] = (1 << O) - 1;
         for (var T = k; T >= D; T--) {
           var I = u[s.charAt(T - 1)];
           if (0 === O) C[T] = (C[T + 1] << 1 | 1) & I; else C[T] = (C[T + 1] << 1 | 1) & I | (S[T + 1] | S[T]) << 1 | 1 | S[T + 1];
-          if (C[T] & E) {
+          if (C[T] & w) {
             var A = match_bitapScore_(O, T - 1);
             if (A <= _) {
               _ = A;
@@ -670,44 +670,44 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         _ = u;
       } else throw new Error("Unknown call format to patch_make.");
       if (0 === _.length) return [];
-      for (var m = [], b = new diff_match_patch2.patch_obj, w = 0, E = 0, S = 0, L = g, O = g, D = 0; D < _.length; D++) {
+      for (var m = [], b = new diff_match_patch2.patch_obj, E = 0, w = 0, S = 0, L = g, O = g, D = 0; D < _.length; D++) {
         var k = _[D][0], C = _[D][1];
-        if (!w && 0 !== k) {
-          b.start1 = E;
+        if (!E && 0 !== k) {
+          b.start1 = w;
           b.start2 = S;
         }
         switch (k) {
          case 1:
-          b.diffs[w++] = _[D];
+          b.diffs[E++] = _[D];
           b.length2 += C.length;
           O = O.substring(0, S) + C + O.substring(S);
           break;
 
          case o:
           b.length1 += C.length;
-          b.diffs[w++] = _[D];
+          b.diffs[E++] = _[D];
           O = O.substring(0, S) + O.substring(S + C.length);
           break;
 
          case 0:
-          if (C.length <= 2 * this.Patch_Margin && w && _.length != D + 1) {
-            b.diffs[w++] = _[D];
+          if (C.length <= 2 * this.Patch_Margin && E && _.length != D + 1) {
+            b.diffs[E++] = _[D];
             b.length1 += C.length;
             b.length2 += C.length;
-          } else if (C.length >= 2 * this.Patch_Margin) if (w) {
+          } else if (C.length >= 2 * this.Patch_Margin) if (E) {
             this.patch_addContext_(b, L);
             m.push(b);
             b = new diff_match_patch2.patch_obj;
-            w = 0;
+            E = 0;
             L = O;
-            E = S;
+            w = S;
           }
           break;
         }
-        if (1 !== k) E += C.length;
+        if (1 !== k) w += C.length;
         if (k !== o) S += C.length;
       }
-      if (w) {
+      if (E) {
         this.patch_addContext_(b, L);
         m.push(b);
       }
@@ -733,21 +733,21 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       r = u + r + u;
       this.patch_splitMax(s);
       for (var g = 0, _ = [], m = 0; m < s.length; m++) {
-        var b, w = s[m].start2 + g, E = this.diff_text1(s[m].diffs), S = -1;
-        if (E.length > this.Match_MaxBits) {
-          if (-1 != (b = this.match_main(r, E.substring(0, this.Match_MaxBits), w))) if (-1 == (S = this.match_main(r, E.substring(E.length - this.Match_MaxBits), w + E.length - this.Match_MaxBits)) || b >= S) b = -1;
-        } else b = this.match_main(r, E, w);
+        var b, E = s[m].start2 + g, w = this.diff_text1(s[m].diffs), S = -1;
+        if (w.length > this.Match_MaxBits) {
+          if (-1 != (b = this.match_main(r, w.substring(0, this.Match_MaxBits), E))) if (-1 == (S = this.match_main(r, w.substring(w.length - this.Match_MaxBits), E + w.length - this.Match_MaxBits)) || b >= S) b = -1;
+        } else b = this.match_main(r, w, E);
         if (-1 == b) {
           _[m] = false;
           g -= s[m].length2 - s[m].length1;
         } else {
           _[m] = true;
-          g = b - w;
+          g = b - E;
           var L;
-          if (-1 == S) L = r.substring(b, b + E.length); else L = r.substring(b, S + this.Match_MaxBits);
-          if (E == L) r = r.substring(0, b) + this.diff_text2(s[m].diffs) + r.substring(b + E.length); else {
-            var O = this.diff_main(E, L, false);
-            if (E.length > this.Match_MaxBits && this.diff_levenshtein(O) / E.length > this.Patch_DeleteThreshold) _[m] = false; else {
+          if (-1 == S) L = r.substring(b, b + w.length); else L = r.substring(b, S + this.Match_MaxBits);
+          if (w == L) r = r.substring(0, b) + this.diff_text2(s[m].diffs) + r.substring(b + w.length); else {
+            var O = this.diff_main(w, L, false);
+            if (w.length > this.Match_MaxBits && this.diff_levenshtein(O) / w.length > this.Patch_DeleteThreshold) _[m] = false; else {
               this.diff_cleanupSemanticLossless(O);
               for (var D, k = 0, C = 0; C < s[m].diffs.length; C++) {
                 var T = s[m].diffs[C];
@@ -799,46 +799,46 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         var g = s[u];
         s.splice(u--, 1);
         for (var _ = g.start1, m = g.start2, b = ""; 0 !== g.diffs.length; ) {
-          var w = new diff_match_patch2.patch_obj, E = true;
-          w.start1 = _ - b.length;
-          w.start2 = m - b.length;
+          var E = new diff_match_patch2.patch_obj, w = true;
+          E.start1 = _ - b.length;
+          E.start2 = m - b.length;
           if ("" !== b) {
-            w.length1 = w.length2 = b.length;
-            w.diffs.push(new diff_match_patch2.Diff(0, b));
+            E.length1 = E.length2 = b.length;
+            E.diffs.push(new diff_match_patch2.Diff(0, b));
           }
-          for (;0 !== g.diffs.length && w.length1 < r - this.Patch_Margin; ) {
+          for (;0 !== g.diffs.length && E.length1 < r - this.Patch_Margin; ) {
             var S = g.diffs[0][0], L = g.diffs[0][1];
             if (1 === S) {
-              w.length2 += L.length;
+              E.length2 += L.length;
               m += L.length;
-              w.diffs.push(g.diffs.shift());
-              E = false;
-            } else if (S === o && 1 == w.diffs.length && 0 == w.diffs[0][0] && L.length > 2 * r) {
-              w.length1 += L.length;
+              E.diffs.push(g.diffs.shift());
+              w = false;
+            } else if (S === o && 1 == E.diffs.length && 0 == E.diffs[0][0] && L.length > 2 * r) {
+              E.length1 += L.length;
               _ += L.length;
-              E = false;
-              w.diffs.push(new diff_match_patch2.Diff(S, L));
+              w = false;
+              E.diffs.push(new diff_match_patch2.Diff(S, L));
               g.diffs.shift();
             } else {
-              L = L.substring(0, r - w.length1 - this.Patch_Margin);
-              w.length1 += L.length;
+              L = L.substring(0, r - E.length1 - this.Patch_Margin);
+              E.length1 += L.length;
               _ += L.length;
               if (0 === S) {
-                w.length2 += L.length;
+                E.length2 += L.length;
                 m += L.length;
-              } else E = false;
-              w.diffs.push(new diff_match_patch2.Diff(S, L));
+              } else w = false;
+              E.diffs.push(new diff_match_patch2.Diff(S, L));
               if (L == g.diffs[0][1]) g.diffs.shift(); else g.diffs[0][1] = g.diffs[0][1].substring(L.length);
             }
           }
-          b = (b = this.diff_text2(w.diffs)).substring(b.length - this.Patch_Margin);
+          b = (b = this.diff_text2(E.diffs)).substring(b.length - this.Patch_Margin);
           var O = this.diff_text1(g.diffs).substring(0, this.Patch_Margin);
           if ("" !== O) {
-            w.length1 += O.length;
-            w.length2 += O.length;
-            if (0 !== w.diffs.length && 0 === w.diffs[w.diffs.length - 1][0]) w.diffs[w.diffs.length - 1][1] += O; else w.diffs.push(new diff_match_patch2.Diff(0, O));
+            E.length1 += O.length;
+            E.length2 += O.length;
+            if (0 !== E.diffs.length && 0 === E.diffs[E.diffs.length - 1][0]) E.diffs[E.diffs.length - 1][1] += O; else E.diffs.push(new diff_match_patch2.Diff(0, O));
           }
-          if (!E) s.splice(++u, 0, w);
+          if (!w) s.splice(++u, 0, E);
         }
       }
     };
@@ -872,13 +872,13 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         }
         g++;
         for (;g < u.length; ) {
-          var w = u[g].charAt(0);
+          var E = u[g].charAt(0);
           try {
-            var E = decodeURI(u[g].substring(1));
+            var w = decodeURI(u[g].substring(1));
           } catch (s) {
-            throw new Error("Illegal escape in patch_fromText: " + E);
+            throw new Error("Illegal escape in patch_fromText: " + w);
           }
-          if ("-" == w) b.diffs.push(new diff_match_patch2.Diff(o, E)); else if ("+" == w) b.diffs.push(new diff_match_patch2.Diff(1, E)); else if (" " == w) b.diffs.push(new diff_match_patch2.Diff(0, E)); else if ("@" == w) break; else if ("" === w) ; else throw new Error('Invalid patch mode "' + w + '" in: ' + E);
+          if ("-" == E) b.diffs.push(new diff_match_patch2.Diff(o, w)); else if ("+" == E) b.diffs.push(new diff_match_patch2.Diff(1, w)); else if (" " == E) b.diffs.push(new diff_match_patch2.Diff(0, w)); else if ("@" == E) break; else if ("" === E) ; else throw new Error('Invalid patch mode "' + E + '" in: ' + w);
           g++;
         }
       }
@@ -941,23 +941,23 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
     }
     balanced.range = range2;
     function range2(s, r, o) {
-      var u, g, _, m, b, w = o.indexOf(s), E = o.indexOf(r, w + 1), S = w;
-      if (w >= 0 && E > 0) {
-        if (s === r) return [ w, E ];
+      var u, g, _, m, b, E = o.indexOf(s), w = o.indexOf(r, E + 1), S = E;
+      if (E >= 0 && w > 0) {
+        if (s === r) return [ E, w ];
         u = [];
         _ = o.length;
         for (;S >= 0 && !b; ) {
-          if (S == w) {
+          if (S == E) {
             u.push(S);
-            w = o.indexOf(s, S + 1);
-          } else if (1 == u.length) b = [ u.pop(), E ]; else {
+            E = o.indexOf(s, S + 1);
+          } else if (1 == u.length) b = [ u.pop(), w ]; else {
             if ((g = u.pop()) < _) {
               _ = g;
-              m = E;
+              m = w;
             }
-            E = o.indexOf(r, S + 1);
+            w = o.indexOf(r, S + 1);
           }
-          S = w < E && w >= 0 ? w : E;
+          S = E < w && E >= 0 ? E : w;
         }
         if (u.length) b = [ _, m ];
       }
@@ -987,10 +987,10 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       if (!u) return s.split(",");
       var g = u.pre, _ = u.body, m = u.post, b = g.split(",");
       b[b.length - 1] += "{" + _ + "}";
-      var w = parseCommaParts(m);
+      var E = parseCommaParts(m);
       if (m.length) {
-        b[b.length - 1] += w.shift();
-        b.push.apply(b, w);
+        b[b.length - 1] += E.shift();
+        b.push.apply(b, E);
       }
       r.push.apply(r, b);
       return r;
@@ -1011,9 +1011,9 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       var u = [], g = o("{", "}", s);
       if (!g) return [ s ];
       var m = g.pre, b = g.post.length ? expand2(g.post, false) : [ "" ];
-      if (/\$$/.test(g.pre)) for (var w = 0; w < b.length; w++) {
-        var E = m + "{" + g.body + "}" + b[w];
-        u.push(E);
+      if (/\$$/.test(g.pre)) for (var E = 0; E < b.length; E++) {
+        var w = m + "{" + g.body + "}" + b[E];
+        u.push(w);
       } else {
         var S, L, O = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(g.body), D = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(g.body), k = O || D, C = g.body.indexOf(",") >= 0;
         if (!k && !C) if (g.post.match(/,.*\}/)) return expand2(s = g.pre + "{" + g.body + _ + g.post); else return [ s ];
@@ -1048,9 +1048,9 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
           L = [];
           for (var V = 0; V < S.length; V++) L.push.apply(L, expand2(S[V], false));
         }
-        for (V = 0; V < L.length; V++) for (w = 0; w < b.length; w++) {
-          E = m + L[V] + b[w];
-          if (!r || k || E) u.push(E);
+        for (V = 0; V < L.length; V++) for (E = 0; E < b.length; E++) {
+          w = m + L[V] + b[E];
+          if (!r || k || w) u.push(w);
         }
       }
       return u;
@@ -1136,7 +1136,7 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
 }), require_lib = __commonJS({
   "node_modules/immediate/lib/index.js"(s, r) {
     "use strict";
-    var o, u, g, _ = [ require_nextTick(), require_queueMicrotask(), require_mutation(), require_messageChannel(), require_stateChange(), require_timeout() ], m = -1, b = [], w = false;
+    var o, u, g, _ = [ require_nextTick(), require_queueMicrotask(), require_mutation(), require_messageChannel(), require_stateChange(), require_timeout() ], m = -1, b = [], E = false;
     function cleanUpNextTick() {
       if (o && u) {
         o = false;
@@ -1146,7 +1146,7 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
     }
     function nextTick() {
       if (!o) {
-        w = false;
+        E = false;
         o = true;
         for (var s = b.length, r = setTimeout(cleanUpNextTick); s; ) {
           u = b;
@@ -1161,8 +1161,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         clearTimeout(r);
       }
     }
-    for (var E = -1, S = _.length; ++E < S; ) if (_[E] && _[E].test && _[E].test()) {
-      g = _[E].install(nextTick);
+    for (var w = -1, S = _.length; ++w < S; ) if (_[w] && _[w].test && _[w].test()) {
+      g = _[w].install(nextTick);
       break;
     }
     function Item(s, r) {
@@ -1192,8 +1192,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       var r = new Array(arguments.length - 1);
       if (arguments.length > 1) for (var u = 1; u < arguments.length; u++) r[u - 1] = arguments[u];
       b.push(new Item(s, r));
-      if (!w && !o) {
-        w = true;
+      if (!E && !o) {
+        E = true;
         g();
       }
     };
@@ -1284,11 +1284,11 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         b.context = m;
         throw b;
       }
-      var w = _[s];
-      if (void 0 === w) return false;
-      if ("function" == typeof w) g(w, this, r); else {
-        var E = w.length, S = arrayClone(w, E);
-        for (o = 0; o < E; ++o) g(S[o], this, r);
+      var E = _[s];
+      if (void 0 === E) return false;
+      if ("function" == typeof E) g(E, this, r); else {
+        var w = E.length, S = arrayClone(E, w);
+        for (o = 0; o < w; ++o) g(S[o], this, r);
       }
       return true;
     };
@@ -1498,14 +1498,14 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         return o;
       }
       function md51(s) {
-        var r, o, u, g, _, m, b = s.length, w = [ 1732584193, -271733879, -1732584194, 271733878 ];
-        for (r = 64; r <= b; r += 64) md5cycle(w, md5blk(s.substring(r - 64, r)));
+        var r, o, u, g, _, m, b = s.length, E = [ 1732584193, -271733879, -1732584194, 271733878 ];
+        for (r = 64; r <= b; r += 64) md5cycle(E, md5blk(s.substring(r - 64, r)));
         o = (s = s.substring(r - 64)).length;
         u = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
         for (r = 0; r < o; r += 1) u[r >> 2] |= s.charCodeAt(r) << (r % 4 << 3);
         u[r >> 2] |= 128 << (r % 4 << 3);
         if (r > 55) {
-          md5cycle(w, u);
+          md5cycle(E, u);
           for (r = 0; r < 16; r += 1) u[r] = 0;
         }
         g = (g = 8 * b).toString(16).match(/(.*?)(.{0,8})$/);
@@ -1513,8 +1513,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
         m = parseInt(g[1], 16) || 0;
         u[14] = _;
         u[15] = m;
-        md5cycle(w, u);
-        return w;
+        md5cycle(E, u);
+        return E;
       }
       function rhex(s) {
         var o, u = "";
@@ -1532,13 +1532,13 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
           if ((s = 0 | s || 0) < 0) return Math.max(s + r, 0); else return Math.min(s, r);
         }
         ArrayBuffer.prototype.slice = function(r, o) {
-          var u, g, _, m, b = this.byteLength, w = clamp(r, b), E = b;
-          if (o !== s) E = clamp(o, b);
-          if (w > E) return new ArrayBuffer(0);
-          u = E - w;
+          var u, g, _, m, b = this.byteLength, E = clamp(r, b), w = b;
+          if (o !== s) w = clamp(o, b);
+          if (E > w) return new ArrayBuffer(0);
+          u = w - E;
           g = new ArrayBuffer(u);
           _ = new Uint8Array(g);
-          m = new Uint8Array(this, w, u);
+          m = new Uint8Array(this, E, u);
           _.set(m);
           return g;
         };
@@ -1670,14 +1670,14 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       SparkMD5.ArrayBuffer.prototype._finish = SparkMD5.prototype._finish;
       SparkMD5.ArrayBuffer.hash = function(s, r) {
         var o = function md51_array(s) {
-          var r, o, u, g, _, m, b = s.length, w = [ 1732584193, -271733879, -1732584194, 271733878 ];
-          for (r = 64; r <= b; r += 64) md5cycle(w, md5blk_array(s.subarray(r - 64, r)));
+          var r, o, u, g, _, m, b = s.length, E = [ 1732584193, -271733879, -1732584194, 271733878 ];
+          for (r = 64; r <= b; r += 64) md5cycle(E, md5blk_array(s.subarray(r - 64, r)));
           o = (s = r - 64 < b ? s.subarray(r - 64) : new Uint8Array(0)).length;
           u = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
           for (r = 0; r < o; r += 1) u[r >> 2] |= s[r] << (r % 4 << 3);
           u[r >> 2] |= 128 << (r % 4 << 3);
           if (r > 55) {
-            md5cycle(w, u);
+            md5cycle(E, u);
             for (r = 0; r < 16; r += 1) u[r] = 0;
           }
           g = (g = 8 * b).toString(16).match(/(.*?)(.{0,8})$/);
@@ -1685,8 +1685,8 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
           m = parseInt(g[1], 16) || 0;
           u[14] = _;
           u[15] = m;
-          md5cycle(w, u);
-          return w;
+          md5cycle(E, u);
+          return E;
         }(new Uint8Array(s)), u = hex(o);
         return r ? hexToBinaryString(u) : u;
       };
@@ -1701,7 +1701,7 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       r.push({
         obj: s
       });
-      for (var o, u, g, _, m, b, w, E, S, L, O = ""; o = r.pop(); ) {
+      for (var o, u, g, _, m, b, E, w, S, L, O = ""; o = r.pop(); ) {
         u = o.obj;
         O += o.prefix || "";
         if (g = o.val || "") O += g; else if ("object" != typeof u) O += "undefined" == typeof u ? null : JSON.stringify(u); else if (null === u) O += "null"; else if (Array.isArray(u)) {
@@ -1720,14 +1720,14 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
           });
         } else {
           b = [];
-          for (w in u) if (u.hasOwnProperty(w)) b.push(w);
+          for (E in u) if (u.hasOwnProperty(E)) b.push(E);
           r.push({
             val: "}"
           });
           for (_ = b.length - 1; _ >= 0; _--) {
-            S = u[E = b[_]];
+            S = u[w = b[_]];
             L = _ > 0 ? "," : "";
-            L += JSON.stringify(E) + ":";
+            L += JSON.stringify(w) + ":";
             r.push({
               obj: S,
               prefix: L
@@ -1750,7 +1750,7 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
       if (Array.isArray(g)) g.push(s); else if (_ === r.length - 2) g[r.pop()] = s; else r.push(s);
     }
     s.parse = function(s) {
-      for (var r, o, u, g, _, m, b, w, E, S = [], L = [], O = 0; ;) {
+      for (var r, o, u, g, _, m, b, E, w, S = [], L = [], O = 0; ;) {
         if ("}" === (r = s[O++]) || "]" === r || "undefined" == typeof r) if (1 === S.length) return S.pop(); else {
           pop2(S.pop(), S, L);
           continue;
@@ -1813,21 +1813,21 @@ var __create = Object.create, __defProp = Object.defineProperty, __getOwnPropDes
           break;
 
          case "[":
-          w = {
-            element: [],
-            index: S.length
-          };
-          S.push(w.element);
-          L.push(w);
-          break;
-
-         case "{":
           E = {
-            element: {},
+            element: [],
             index: S.length
           };
           S.push(E.element);
           L.push(E);
+          break;
+
+         case "{":
+          w = {
+            element: {},
+            index: S.length
+          };
+          S.push(w.element);
+          L.push(w);
           break;
 
          default:
@@ -2089,8 +2089,24 @@ var symbolFilePath = Symbol(), symbolFilePathWithPrefix = Symbol(), symbolId = S
   useIgnoreFiles: false,
   ignoreFiles: ".gitignore",
   syncOnEditorSave: false,
-  pluginSyncExtendedSetting: {}
-}, PREFIXMD_LOGFILE = "LIVESYNC_LOG_", FLAGMD_REDFLAG = "redflag.md", FLAGMD_REDFLAG2 = "redflag2.md", FLAGMD_REDFLAG3 = "redflag3.md", SYNCINFO_ID = "syncinfo", SALT_OF_PASSPHRASE = "rHGMPtr6oWw7VSa3W3wpa8fT8U", PREFIX_OBFUSCATED = "f:", PREFIX_ENCRYPTED_CHUNK = "h:+", import_obsidian = require("obsidian"), import_obsidian2 = require("obsidian"), import_diff_match_patch = __toESM(require_diff_match_patch(), 1), normalizePath = import_obsidian2.normalizePath, PERIODIC_PLUGIN_SWEEP = 60, CHeader = "h:", PSCHeader = "ps:", ICHeader = "i:", ICHeaderEnd = "i;", ICHeaderLength = ICHeader.length, ICXHeader = "ix:", FileWatchEventQueueMax = 10, configURIBase = "obsidian://setuplivesync?settings=", LEVEL_INFO = LOG_LEVEL_INFO, defaultLoggerEnv = {
+  pluginSyncExtendedSetting: {},
+  syncMaxSizeInMB: 50,
+  settingSyncFile: "",
+  writeCredentialsForSettingSync: false,
+  notifyAllSettingSyncFile: false
+}, PREFERRED_SETTING_CLOUDANT = {
+  syncMaxSizeInMB: 50,
+  customChunkSize: 0,
+  concurrencyOfReadChunksOnline: 50,
+  minimumIntervalOfReadChunksOnline: 333,
+  settingSyncFile: "livesync/setting.md"
+}, PREFERRED_SETTING_SELF_HOSTED = {
+  ...PREFERRED_SETTING_CLOUDANT,
+  customChunkSize: 100,
+  concurrencyOfReadChunksOnline: 100,
+  minimumIntervalOfReadChunksOnline: 100,
+  settingSyncFile: "livesync/setting.md"
+}, PREFIXMD_LOGFILE = "LIVESYNC_LOG_", FLAGMD_REDFLAG = "redflag.md", FLAGMD_REDFLAG2 = "redflag2.md", FLAGMD_REDFLAG2_HR = "flag_rebuild.md", FLAGMD_REDFLAG3 = "redflag3.md", FLAGMD_REDFLAG3_HR = "flag_fetch.md", SYNCINFO_ID = "syncinfo", SALT_OF_PASSPHRASE = "rHGMPtr6oWw7VSa3W3wpa8fT8U", PREFIX_OBFUSCATED = "f:", PREFIX_ENCRYPTED_CHUNK = "h:+", import_obsidian = require("obsidian"), import_obsidian2 = require("obsidian"), import_diff_match_patch = __toESM(require_diff_match_patch(), 1), normalizePath = import_obsidian2.normalizePath, PERIODIC_PLUGIN_SWEEP = 60, CHeader = "h:", PSCHeader = "ps:", ICHeader = "i:", ICHeaderEnd = "i;", ICHeaderLength = ICHeader.length, ICXHeader = "ix:", FileWatchEventQueueMax = 10, configURIBase = "obsidian://setuplivesync?settings=", LEVEL_INFO = LOG_LEVEL_INFO, defaultLoggerEnv = {
   minLogLevel: LOG_LEVEL_INFO
 }, defaultLogger = function defaultLogger2(s, r = LEVEL_INFO, o) {
   if (r < defaultLoggerEnv.minLogLevel) return;
@@ -2458,9 +2474,9 @@ async function splitPieces2(s, r, o, u, g) {
   if (o || isTextBlob(_)) return splitPiecesText(await _.text(), r, o, u);
   let m = 0;
   if (g && g.endsWith(".pdf")) m = "/".charCodeAt(0);
-  let b = 1, w = Math.max(1e5, Math.min(1e8, _.size));
-  for (;w > 10; ) {
-    w /= 12.5;
+  let b = 1, E = Math.max(1e5, Math.min(1e8, _.size));
+  for (;E > 10; ) {
+    E /= 12.5;
     b++;
   }
   u = Math.floor(10 ** (b - 1));
@@ -2473,9 +2489,9 @@ async function splitPieces2(s, r, o, u, g) {
       let b = g.indexOf(m, u);
       s = -1 == b ? r : Math.min(r, b);
       if (-1 == b) b = g.indexOf(charNewLine, u);
-      const w = g.slice(0, s);
-      o += w.length;
-      yield await arrayBufferToBase64Single(w);
+      const E = g.slice(0, s);
+      o += E.length;
+      yield await arrayBufferToBase64Single(E);
     } while (o < s);
   };
 }
@@ -2567,23 +2583,23 @@ async function getKeyForEncrypt(s, r) {
   }
   const g = 15 - s.length, _ = r ? 1e3 * (g > 0 ? g : 0) + 121 - g : 1e5, m = (new TextEncoder).encode(s), b = await webcrypto.subtle.digest({
     name: "SHA-256"
-  }, m), w = await webcrypto.subtle.importKey("raw", b, {
+  }, m), E = await webcrypto.subtle.importKey("raw", b, {
     name: "PBKDF2"
-  }, false, [ "deriveKey" ]), E = webcrypto.getRandomValues(new Uint8Array(16)), S = await webcrypto.subtle.deriveKey({
+  }, false, [ "deriveKey" ]), w = webcrypto.getRandomValues(new Uint8Array(16)), S = await webcrypto.subtle.deriveKey({
     name: "PBKDF2",
-    salt: E,
+    salt: w,
     iterations: _,
     hash: "SHA-256"
-  }, w, {
+  }, E, {
     name: "AES-GCM",
     length: 256
   }, false, [ "encrypt" ]);
   KeyBuffs.set(o, {
     key: S,
-    salt: E,
+    salt: w,
     count: KEY_RECYCLE_COUNT
   });
-  return [ S, E ];
+  return [ S, w ];
 }
 
 var keyGCCount = 5 * KEY_RECYCLE_COUNT, decKeyIdx = 0, decKeyMin = 0;
@@ -2603,16 +2619,16 @@ async function getKeyForDecryption(s, r, o) {
     g.count = decKeyIdx;
     return [ g.key, g.salt ];
   }
-  const _ = 15 - s.length, m = o ? 1e3 * (_ > 0 ? _ : 0) + 121 - _ : 1e5, b = (new TextEncoder).encode(s), w = await webcrypto.subtle.digest({
+  const _ = 15 - s.length, m = o ? 1e3 * (_ > 0 ? _ : 0) + 121 - _ : 1e5, b = (new TextEncoder).encode(s), E = await webcrypto.subtle.digest({
     name: "SHA-256"
-  }, b), E = await webcrypto.subtle.importKey("raw", w, {
+  }, b), w = await webcrypto.subtle.importKey("raw", E, {
     name: "PBKDF2"
   }, false, [ "deriveKey" ]), S = await webcrypto.subtle.deriveKey({
     name: "PBKDF2",
     salt: r,
     iterations: m,
     hash: "SHA-256"
-  }, E, {
+  }, w, {
     name: "AES-GCM",
     length: 256
   }, false, [ "decrypt" ]);
@@ -2635,10 +2651,10 @@ function getNonce() {
 }
 
 async function encrypt(s, r, o) {
-  const [u, g] = await getKeyForEncrypt(r, o), _ = getSemiStaticField(), m = getNonce(), b = new Uint8Array([ ..._, ...new Uint8Array(m.buffer) ]), w = writeString(s), E = await webcrypto.subtle.encrypt({
+  const [u, g] = await getKeyForEncrypt(r, o), _ = getSemiStaticField(), m = getNonce(), b = new Uint8Array([ ..._, ...new Uint8Array(m.buffer) ]), E = writeString(s), w = await webcrypto.subtle.encrypt({
     name: "AES-GCM",
     iv: b
-  }, u, w), S = "" + await arrayBufferToBase64Single(new Uint8Array(E));
+  }, u, E), S = "" + await arrayBufferToBase64Single(new Uint8Array(w));
   return `%${uint8ArrayToHexString(b)}${uint8ArrayToHexString(g)}${S}`;
 }
 
@@ -2647,35 +2663,35 @@ async function getKeyForObfuscatePath(s, r, o) {
     name: "SHA-256"
   }, _), b = new Uint8Array(await webcrypto.subtle.digest({
     name: "SHA-256"
-  }, new Uint8Array([ ...r, ..._ ]))), w = b.slice(0, 16), E = b.slice(16, 32), S = await webcrypto.subtle.importKey("raw", m, {
+  }, new Uint8Array([ ...r, ..._ ]))), E = b.slice(0, 16), w = b.slice(16, 32), S = await webcrypto.subtle.importKey("raw", m, {
     name: "PBKDF2"
   }, false, [ "deriveKey" ]);
   return [ await webcrypto.subtle.deriveKey({
     name: "PBKDF2",
-    salt: w,
+    salt: E,
     iterations: g,
     hash: "SHA-256"
   }, S, {
     name: "AES-GCM",
     length: 256
-  }, false, [ "encrypt" ]), w, E ];
+  }, false, [ "encrypt" ]), E, w ];
 }
 
 async function obfuscatePath(s, r, o) {
   const u = writeString(s), [g, _, m] = await getKeyForObfuscatePath(r, u, o), b = await webcrypto.subtle.encrypt({
     name: "AES-GCM",
     iv: m
-  }, g, u), w = await arrayBufferToBase64Single(new Uint8Array(b));
-  return `%${uint8ArrayToHexString(m)}${uint8ArrayToHexString(_)}${w}`;
+  }, g, u), E = await arrayBufferToBase64Single(new Uint8Array(b));
+  return `%${uint8ArrayToHexString(m)}${uint8ArrayToHexString(_)}${E}`;
 }
 
 async function decryptV2(s, r, o) {
   try {
-    const u = s.substring(1, 33), g = s.substring(33, 65), _ = s.substring(65), [m] = await getKeyForDecryption(r, hexStringToUint8Array(g), o), b = hexStringToUint8Array(u), w = decodeBinary(_), E = await webcrypto.subtle.decrypt({
+    const u = s.substring(1, 33), g = s.substring(33, 65), _ = s.substring(65), [m] = await getKeyForDecryption(r, hexStringToUint8Array(g), o), b = hexStringToUint8Array(u), E = decodeBinary(_), w = await webcrypto.subtle.decrypt({
       name: "AES-GCM",
       iv: b
-    }, m, w);
-    return readString(new Uint8Array(E));
+    }, m, E);
+    return readString(new Uint8Array(w));
   } catch (s) {
     Logger("Couldn't decode! You should wrong the passphrases (V2)", LOG_LEVEL_VERBOSE);
     Logger(s, LOG_LEVEL_VERBOSE);
@@ -2687,11 +2703,11 @@ async function decrypt(s, r, o) {
   try {
     if ("%" == s[0]) return decryptV2(s, r, o);
     if (!s.startsWith("[") || !s.endsWith("]")) throw new Error("Encrypted data corrupted!");
-    const u = s.substring(1, s.length - 1).split(",").map((s => '"' == s[0] ? s.substring(1, s.length - 1) : s)), [g, _, m] = u, [b] = await getKeyForDecryption(r, hexStringToUint8Array(m), o), w = hexStringToUint8Array(_), E = atob2(g), S = E.length, L = new Uint8Array(S);
-    for (let s = S; s >= 0; --s) L[s] = E.charCodeAt(s);
+    const u = s.substring(1, s.length - 1).split(",").map((s => '"' == s[0] ? s.substring(1, s.length - 1) : s)), [g, _, m] = u, [b] = await getKeyForDecryption(r, hexStringToUint8Array(m), o), E = hexStringToUint8Array(_), w = atob2(g), S = w.length, L = new Uint8Array(S);
+    for (let s = S; s >= 0; --s) L[s] = w.charCodeAt(s);
     const O = await webcrypto.subtle.decrypt({
       name: "AES-GCM",
-      iv: w
+      iv: E
     }, b, L), D = readString(new Uint8Array(O));
     return JSON.parse(D);
   } catch (s) {
@@ -2812,28 +2828,28 @@ var _root, _hasMagic, _uflag, _parts, _parent, _parentIndex, _negs, _filledNegs,
   const o = r;
   if ("[" !== s.charAt(o)) throw new Error("not in a brace expression");
   const u = [], g = [];
-  let _ = o + 1, m = false, b = false, w = false, E = false, S = o, L = "";
+  let _ = o + 1, m = false, b = false, E = false, w = false, S = o, L = "";
   e: for (;_ < s.length; ) {
     const r = s.charAt(_);
     if ("!" !== r && "^" !== r || _ !== o + 1) {
-      if ("]" === r && m && !w) {
+      if ("]" === r && m && !E) {
         S = _ + 1;
         break;
       }
       m = true;
-      if ("\\" === r) if (!w) {
-        w = true;
+      if ("\\" === r) if (!E) {
+        E = true;
         _++;
         continue;
       }
-      if ("[" === r && !w) for (const [r, [m, w, E]] of Object.entries(posixClasses)) if (s.startsWith(r, _)) {
+      if ("[" === r && !E) for (const [r, [m, E, w]] of Object.entries(posixClasses)) if (s.startsWith(r, _)) {
         if (L) return [ "$.", false, s.length - o, true ];
         _ += r.length;
-        if (E) g.push(m); else u.push(m);
-        b = b || w;
+        if (w) g.push(m); else u.push(m);
+        b = b || E;
         continue e;
       }
-      w = false;
+      E = false;
       if (!L) if (!s.startsWith("-]", _ + 1)) if (!s.startsWith("-", _ + 1)) {
         u.push(braceEscape(r));
         _++;
@@ -2849,17 +2865,17 @@ var _root, _hasMagic, _uflag, _parts, _parent, _parentIndex, _negs, _filledNegs,
         _++;
       }
     } else {
-      E = true;
+      w = true;
       _++;
     }
   }
   if (S < _) return [ "", false, 0, false ];
   if (!u.length && !g.length) return [ "$.", false, s.length - o, true ];
-  if (0 === g.length && 1 === u.length && /^\\?.$/.test(u[0]) && !E) {
+  if (0 === g.length && 1 === u.length && /^\\?.$/.test(u[0]) && !w) {
     const s = 2 === u[0].length ? u[0].slice(-1) : u[0];
     return [ regexpEscape(s), false, S - o, false ];
   }
-  const O = "[" + (E ? "^" : "") + rangesToString(u) + "]", D = "[" + (E ? "" : "^") + rangesToString(g) + "]";
+  const O = "[" + (w ? "^" : "") + rangesToString(u) + "]", D = "[" + (w ? "" : "^") + rangesToString(g) + "]";
   return [ u.length && g.length ? "(" + O + "|" + D + ")" : u.length ? O : D, b, S - o, true ];
 }, unescape2 = (s, {windowsPathsNoEscape: r = false} = {}) => r ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1"), types = new Set([ "!", "?", "+", "*", "@" ]), isExtglobType = s => types.has(s), startNoTraversal = "(?!(?:^|/)\\.\\.?(?:$|/))", startNoDot = "(?!\\.)", addPatternStart = new Set([ "[", "." ]), justDots = new Set([ "..", "." ]), reSpecials = new Set("().*{}+?[]^$\\!"), regExpEscape = s => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), qmark = "[^/]", star = qmark + "*?", starNoEmpty = qmark + "+?", _AST = class _AST {
   constructor(s, r, o = {}) {
@@ -3041,7 +3057,7 @@ _parseAST = new WeakSet;
 
 parseAST_fn = function(s, r, o, u) {
   var g, _;
-  let m = false, b = false, w = -1, E = false;
+  let m = false, b = false, E = -1, w = false;
   if (null === r.type) {
     let _ = o, S = "";
     for (;_ < s.length; ) {
@@ -3049,8 +3065,8 @@ parseAST_fn = function(s, r, o, u) {
       if (!m && "\\" !== o) if (!b) {
         if ("[" === o) {
           b = true;
-          w = _;
-          E = false;
+          E = _;
+          w = false;
           S += o;
           continue;
         }
@@ -3062,9 +3078,9 @@ parseAST_fn = function(s, r, o, u) {
           r.push(m);
         }
       } else {
-        if (_ === w + 1) {
-          if ("^" === o || "!" === o) E = true;
-        } else if ("]" === o && !(_ === w + 2 && E)) b = false;
+        if (_ === E + 1) {
+          if ("^" === o || "!" === o) w = true;
+        } else if ("]" === o && !(_ === E + 2 && w)) b = false;
         S += o;
       } else {
         m = !m;
@@ -3082,8 +3098,8 @@ parseAST_fn = function(s, r, o, u) {
     if (!m && "\\" !== o) if (!b) {
       if ("[" === o) {
         b = true;
-        w = S;
-        E = false;
+        E = S;
+        w = false;
         D += o;
         continue;
       }
@@ -3109,9 +3125,9 @@ parseAST_fn = function(s, r, o, u) {
         S = __privateMethod(_ = _AST, _parseAST, parseAST_fn).call(_, s, r, S, u);
       }
     } else {
-      if (S === w + 1) {
-        if ("^" === o || "!" === o) E = true;
-      } else if ("]" === o && !(S === w + 2 && E)) b = false;
+      if (S === E + 1) {
+        if ("^" === o || "!" === o) w = true;
+      } else if ("]" === o && !(S === E + 2 && w)) b = false;
       D += o;
     } else {
       m = !m;
@@ -3143,12 +3159,12 @@ parseGlob_fn = function(s, r, o = false) {
     const b = s.charAt(m);
     if (!u) if ("\\" !== b) {
       if ("[" === b) {
-        const [o, u, b, w] = parseClass(s, m);
+        const [o, u, b, E] = parseClass(s, m);
         if (b) {
           g += o;
           _ = _ || u;
           m += b - 1;
-          r = r || w;
+          r = r || E;
           continue;
         }
       }
@@ -3433,9 +3449,9 @@ var globMagic = /[?*]|[+@!]\(.*?\)|\[|\]/, regExpEscape2 = s => s.replace(/[-[\]
           if (!m || "." === m || ".." === m || !b || "." === b || ".." === b) continue;
           r = true;
           o.splice(u, 1);
-          const w = o.slice(0);
-          w[u] = "**";
-          s.push(w);
+          const E = o.slice(0);
+          E[u] = "**";
+          s.push(E);
           u--;
         }
         if (!this.preserveMultipleSlashes) {
@@ -3534,15 +3550,15 @@ var globMagic = /[?*]|[+@!]\(.*?\)|\[|\]/, regExpEscape2 = s => s.replace(/[-[\]
       pattern: r
     });
     this.debug("matchOne", s.length, r.length);
-    for (var _ = 0, m = 0, b = s.length, w = r.length; _ < b && m < w; _++, m++) {
+    for (var _ = 0, m = 0, b = s.length, E = r.length; _ < b && m < E; _++, m++) {
       this.debug("matchOne loop");
-      var E = r[m], S = s[_];
-      this.debug(r, E, S);
-      if (false === E) return false;
-      if (E === GLOBSTAR) {
-        this.debug("GLOBSTAR", [ r, E, S ]);
+      var w = r[m], S = s[_];
+      this.debug(r, w, S);
+      if (false === w) return false;
+      if (w === GLOBSTAR) {
+        this.debug("GLOBSTAR", [ r, w, S ]);
         var L = _, O = m + 1;
-        if (O === w) {
+        if (O === E) {
           this.debug("** at the end");
           for (;_ < b; _++) if ("." === s[_] || ".." === s[_] || !u.dot && "." === s[_].charAt(0)) return false;
           return true;
@@ -3569,16 +3585,16 @@ var globMagic = /[?*]|[+@!]\(.*?\)|\[|\]/, regExpEscape2 = s => s.replace(/[-[\]
         return false;
       }
       let g;
-      if ("string" == typeof E) {
-        g = S === E;
-        this.debug("string match", E, S, g);
+      if ("string" == typeof w) {
+        g = S === w;
+        this.debug("string match", w, S, g);
       } else {
-        g = E.test(S);
-        this.debug("pattern match", E, S, g);
+        g = w.test(S);
+        this.debug("pattern match", w, S, g);
       }
       if (!g) return false;
     }
-    if (_ === b && m === w) return true; else if (_ === b) return o; else if (m === w) return _ === b - 1 && "" === s[_]; else throw new Error("wtf?");
+    if (_ === b && m === E) return true; else if (_ === b) return o; else if (m === E) return _ === b - 1 && "" === s[_]; else throw new Error("wtf?");
   }
   braceExpand() {
     return braceExpand(this.pattern, this.options);
@@ -3752,7 +3768,9 @@ function stripPrefix(s) {
 function shouldBeIgnored(s) {
   if (s == FLAGMD_REDFLAG) return true;
   if (s == FLAGMD_REDFLAG2) return true;
+  if (s == FLAGMD_REDFLAG2_HR) return true;
   if (s == FLAGMD_REDFLAG3) return true;
+  if (s == FLAGMD_REDFLAG3_HR) return true;
   if (s.startsWith(PREFIXMD_LOGFILE)) return true; else return false;
 }
 
@@ -3906,13 +3924,13 @@ var processNo = 0, QueueProcessor = class {
     this.yieldThreshold = 1;
     this.delay = 0;
     this.processingEntities = 0;
-    var g, _, m, b, w;
+    var g, _, m, b, E;
     this._root = this;
     this._processor = s;
     this.batchSize = null != (g = null == r ? void 0 : r.batchSize) ? g : 1;
     this.yieldThreshold = null != (m = null != (_ = null == r ? void 0 : r.yieldThreshold) ? _ : null == r ? void 0 : r.batchSize) ? m : 0;
     this.concurrentLimit = null != (b = null == r ? void 0 : r.concurrentLimit) ? b : 1;
-    this.delay = null != (w = null == r ? void 0 : r.delay) ? w : 0;
+    this.delay = null != (E = null == r ? void 0 : r.delay) ? E : 0;
     if (null == r ? void 0 : r.keepResultUntilDownstreamConnected) this._keepResultUntilDownstreamConnected = r.keepResultUntilDownstreamConnected;
     if (null == r ? void 0 : r.remainingReactiveSource) this._remainingReactiveSource = null == r ? void 0 : r.remainingReactiveSource;
     if (null == r ? void 0 : r.totalRemainingReactiveSource) this._totalRemainingReactiveSource = null == r ? void 0 : r.totalRemainingReactiveSource;
@@ -4239,17 +4257,17 @@ var enableEncryption = (s, r, o, u) => {
       var _, m;
       const b = {
         ...s
-      }, w = isEncryptedChunkEntry(b) || isSyncInfoEntry(b), E = isObfuscatedEntry(b);
-      if (w || E) {
+      }, E = isEncryptedChunkEntry(b) || isSyncInfoEntry(b), w = isObfuscatedEntry(b);
+      if (E || w) {
         if (u && g.has(b._id)) return b;
         try {
-          if (w) b.data = await decrypt(b.data, r, o);
-          if (E) b.path = await decrypt(getPath(b), r, o);
+          if (E) b.data = await decrypt(b.data, r, o);
+          if (w) b.path = await decrypt(getPath(b), r, o);
           if (u) g.set(b._id, true);
         } catch (s) {
           if (o) try {
-            if (w) b.data = await decrypt(b.data, r, false);
-            if (E) b.path = await decrypt(getPath(b), r, o);
+            if (E) b.data = await decrypt(b.data, r, false);
+            if (w) b.path = await decrypt(getPath(b), r, o);
             if (u) g.set(b._id, true);
           } catch (s) {
             if (u && "SyntaxError" == s.name) return b;
@@ -4398,8 +4416,8 @@ async function purgeChunksLocal(s, r) {
 }
 
 var _requestToCouchDBFetch = async (s, r, o, u, g, _) => {
-  const m = String.fromCharCode.apply(null, [ ...writeString(`${r}:${o}`) ]), b = window.btoa(m), w = `${s}/${u}`, E = {
-    url: w,
+  const m = String.fromCharCode.apply(null, [ ...writeString(`${r}:${o}`) ]), b = window.btoa(m), E = `${s}/${u}`, w = {
+    url: E,
     method: _ || (g ? "PUT" : "GET"),
     headers: new Headers({
       authorization: "Basic " + b,
@@ -4408,7 +4426,7 @@ var _requestToCouchDBFetch = async (s, r, o, u, g, _) => {
     contentType: "application/json",
     body: JSON.stringify(g)
   };
-  return await fetch(w, E);
+  return await fetch(E, w);
 };
 
 async function purgeChunksRemote(s, r) {
@@ -4958,7 +4976,7 @@ function appendString(s, r, o, u, g) {
 }
 
 function binaryMd5(s, r) {
-  var o = "string" == typeof s, u = o ? s.length : s.size, g = Math.min(MD5_CHUNK_SIZE, u), _ = Math.ceil(u / g), m = 0, b = o ? new import_spark_md5.default : new import_spark_md5.default.ArrayBuffer, w = o ? appendString : appendBlob;
+  var o = "string" == typeof s, u = o ? s.length : s.size, g = Math.min(MD5_CHUNK_SIZE, u), _ = Math.ceil(u / g), m = 0, b = o ? new import_spark_md5.default : new import_spark_md5.default.ArrayBuffer, E = o ? appendString : appendBlob;
   function next() {
     setImmediateShim(loadNextChunk);
   }
@@ -4969,7 +4987,7 @@ function binaryMd5(s, r) {
   }
   function loadNextChunk() {
     var r = m * g, o = r + g;
-    if (++m < _) w(b, s, r, o, next); else w(b, s, r, o, done);
+    if (++m < _) E(b, s, r, o, next); else E(b, s, r, o, done);
   }
   loadNextChunk();
 }
@@ -5108,17 +5126,17 @@ function bulkGet(s, r, o) {
   u.forEach((function(s) {
     if (g.has(s.id)) g.get(s.id).push(s); else g.set(s.id, [ s ]);
   }));
-  var _ = g.size, m = 0, b = new Array(_), w = [];
+  var _ = g.size, m = 0, b = new Array(_), E = [];
   g.forEach((function(s, r) {
-    w.push(r);
+    E.push(r);
   }));
-  var E = 0;
+  var w = 0;
   (function nextBatch() {
-    if (!(E >= w.length)) {
-      var u = Math.min(E + MAX_NUM_CONCURRENT_REQUESTS, w.length), S = w.slice(E, u);
-      (function processBatch(u, w) {
-        u.forEach((function(u, E) {
-          var S = w + E, L = g.get(u), O = pick(L[0], [ "atts_since", "attachments" ]);
+    if (!(w >= E.length)) {
+      var u = Math.min(w + MAX_NUM_CONCURRENT_REQUESTS, E.length), S = E.slice(w, u);
+      (function processBatch(u, E) {
+        u.forEach((function(u, w) {
+          var S = E + w, L = g.get(u), O = pick(L[0], [ "atts_since", "attachments" ]);
           O.open_revs = L.map((function(s) {
             return s.rev;
           }));
@@ -5161,8 +5179,8 @@ function bulkGet(s, r, o) {
             nextBatch();
           }));
         }));
-      })(S, E);
-      E += S.length;
+      })(S, w);
+      w += S.length;
     }
   })();
 }
@@ -5395,16 +5413,16 @@ var uuid = v4_default;
 
 function winningRev(s) {
   for (var r, o, u, g, _ = s.rev_tree.slice(); g = _.pop(); ) {
-    var m = g.ids, b = m[2], w = g.pos;
+    var m = g.ids, b = m[2], E = g.pos;
     if (!b.length) {
-      var E = !!m[1].deleted, S = m[0];
-      if (!r || (u !== E ? u : o !== w ? o < w : r < S)) {
+      var w = !!m[1].deleted, S = m[0];
+      if (!r || (u !== w ? u : o !== E ? o < E : r < S)) {
         r = S;
-        o = w;
-        u = E;
+        o = E;
+        u = w;
       }
     } else for (var L = 0, O = b.length; L < O; L++) _.push({
-      pos: w + 1,
+      pos: E + 1,
       ids: b[L]
     });
   }
@@ -5412,9 +5430,9 @@ function winningRev(s) {
 }
 
 function traverseRevTree(s, r) {
-  for (var o, u = s.slice(); o = u.pop(); ) for (var g = o.pos, _ = o.ids, m = _[2], b = r(0 === m.length, g, _[0], o.ctx, _[1]), w = 0, E = m.length; w < E; w++) u.push({
+  for (var o, u = s.slice(); o = u.pop(); ) for (var g = o.pos, _ = o.ids, m = _[2], b = r(0 === m.length, g, _[0], o.ctx, _[1]), E = 0, w = m.length; E < w; E++) u.push({
     pos: g + 1,
-    ids: m[w],
+    ids: m[E],
     ctx: b
   });
 }
@@ -5479,18 +5497,18 @@ function findPathToLeaf(s, r) {
 
 function rootToLeaf(s) {
   for (var r, o = [], u = s.slice(); r = u.pop(); ) {
-    var g = r.pos, _ = r.ids, m = _[0], b = _[1], w = _[2], E = 0 === w.length, S = r.history ? r.history.slice() : [];
+    var g = r.pos, _ = r.ids, m = _[0], b = _[1], E = _[2], w = 0 === E.length, S = r.history ? r.history.slice() : [];
     S.push({
       id: m,
       opts: b
     });
-    if (E) o.push({
+    if (w) o.push({
       pos: g + 1 - S.length,
       ids: S
     });
-    for (var L = 0, O = w.length; L < O; L++) u.push({
+    for (var L = 0, O = E.length; L < O; L++) u.push({
       pos: g + 1,
-      ids: w[L],
+      ids: E[L],
       history: S
     });
   }
@@ -5534,14 +5552,14 @@ function mergeTree(s, r) {
     var g = o.pop(), _ = g.tree1, m = g.tree2;
     if (_[1].status || m[1].status) _[1].status = "available" === _[1].status || "available" === m[1].status ? "available" : "missing";
     for (var b = 0; b < m[2].length; b++) if (_[2][0]) {
-      for (var w = false, E = 0; E < _[2].length; E++) if (_[2][E][0] === m[2][b][0]) {
+      for (var E = false, w = 0; w < _[2].length; w++) if (_[2][w][0] === m[2][b][0]) {
         o.push({
-          tree1: _[2][E],
+          tree1: _[2][w],
           tree2: m[2][b]
         });
-        w = true;
+        E = true;
       }
-      if (!w) {
+      if (!E) {
         u = "new_branch";
         insertSorted(_[2], m[2][b], compareTree);
       }
@@ -5562,18 +5580,18 @@ function doMerge(s, r, o) {
     tree: [ r ],
     conflicts: "new_leaf"
   };
-  for (var b = 0, w = s.length; b < w; b++) {
-    var E = s[b];
-    if (E.pos === r.pos && E.ids[0] === r.ids[0]) {
-      u = mergeTree(E.ids, r.ids);
+  for (var b = 0, E = s.length; b < E; b++) {
+    var w = s[b];
+    if (w.pos === r.pos && w.ids[0] === r.ids[0]) {
+      u = mergeTree(w.ids, r.ids);
       g.push({
-        pos: E.pos,
+        pos: w.pos,
         ids: u.tree
       });
       _ = _ || u.conflicts;
       m = true;
     } else if (true !== o) {
-      var S = E.pos < r.pos ? E : r, L = E.pos < r.pos ? r : E, O = L.pos - S.pos, D = [], k = [];
+      var S = w.pos < r.pos ? w : r, L = w.pos < r.pos ? r : w, O = L.pos - S.pos, D = [], k = [];
       k.push({
         ids: S.ids,
         diff: O,
@@ -5590,7 +5608,7 @@ function doMerge(s, r, o) {
         }); else if (C.ids[0] === L.ids[0]) D.push(C);
       }
       var R = D[0];
-      if (!R) g.push(E); else {
+      if (!R) g.push(w); else {
         u = mergeTree(R.ids, L.ids);
         R.parent[2][R.parentIdx] = u.tree;
         g.push({
@@ -5600,7 +5618,7 @@ function doMerge(s, r, o) {
         _ = _ || u.conflicts;
         m = true;
       }
-    } else g.push(E);
+    } else g.push(w);
   }
   if (!m) g.push(r);
   g.sort(sortByPos$1);
@@ -5612,21 +5630,21 @@ function doMerge(s, r, o) {
 
 function stem(s, r) {
   for (var o, u, g = rootToLeaf(s), _ = 0, m = g.length; _ < m; _++) {
-    var b, w = g[_], E = w.ids;
-    if (E.length > r) {
+    var b, E = g[_], w = E.ids;
+    if (w.length > r) {
       if (!o) o = {};
-      var S = E.length - r;
+      var S = w.length - r;
       b = {
-        pos: w.pos + S,
-        ids: pathToTree(E, S)
+        pos: E.pos + S,
+        ids: pathToTree(w, S)
       };
       for (var L = 0; L < S; L++) {
-        var O = w.pos + L + "-" + E[L].id;
+        var O = E.pos + L + "-" + w[L].id;
         o[O] = true;
       }
     } else b = {
-      pos: w.pos,
-      ids: pathToTree(E, 0)
+      pos: E.pos,
+      ids: pathToTree(w, 0)
     };
     if (u) u = doMerge(u, b, true).tree; else u = [ b ];
   }
@@ -5676,9 +5694,9 @@ function removeLeafFromPath(s, r) {
 function revExists(s, r) {
   for (var o, u = s.slice(), g = r.split("-"), _ = parseInt(g[0], 10), m = g[1]; o = u.pop(); ) {
     if (o.pos === _ && o.ids[0] === m) return true;
-    for (var b = o.ids[2], w = 0, E = b.length; w < E; w++) u.push({
+    for (var b = o.ids[2], E = 0, w = b.length; E < w; E++) u.push({
       pos: o.pos + 1,
-      ids: b[w]
+      ids: b[E]
     });
   }
   return false;
@@ -5702,19 +5720,19 @@ function isLocalId(s) {
 
 function latest(s, r) {
   for (var o, u = r.rev_tree.slice(); o = u.pop(); ) {
-    var g = o.pos, _ = o.ids, m = _[0], b = _[1], w = _[2], E = 0 === w.length, S = o.history ? o.history.slice() : [];
+    var g = o.pos, _ = o.ids, m = _[0], b = _[1], E = _[2], w = 0 === E.length, S = o.history ? o.history.slice() : [];
     S.push({
       id: m,
       pos: g,
       opts: b
     });
-    if (E) for (var L = 0, O = S.length; L < O; L++) {
+    if (w) for (var L = 0, O = S.length; L < O; L++) {
       var D = S[L];
       if (D.pos + "-" + D.id === s) return g + "-" + m;
     }
-    for (var k = 0, C = w.length; k < C; k++) u.push({
+    for (var k = 0, C = E.length; k < C; k++) u.push({
       pos: g + 1,
-      ids: w[k],
+      ids: E[k],
       history: S
     });
   }
@@ -5820,8 +5838,8 @@ function parseNumber(s, r) {
     if (g) b = -b;
     r += MAGNITUDE_DIGITS;
     for (;;) {
-      var w = s[r];
-      if ("\0" === w) break; else _ += w;
+      var E = s[r];
+      if ("\0" === E) break; else _ += E;
       r++;
     }
     if (1 === (_ = _.split(".")).length) o = parseInt(_, 10); else o = parseFloat(_[0] + "." + _[1]);
@@ -5882,21 +5900,21 @@ function parseIndexableString(s) {
       break;
 
      case "5":
-      var w = {
-        element: [],
-        index: r.length
-      };
-      r.push(w.element);
-      o.push(w);
-      break;
-
-     case "6":
       var E = {
-        element: {},
+        element: [],
         index: r.length
       };
       r.push(E.element);
       o.push(E);
+      break;
+
+     case "6":
+      var w = {
+        element: {},
+        index: r.length
+      };
+      r.push(w.element);
+      o.push(w);
       break;
 
      default:
@@ -6769,9 +6787,9 @@ var AbstractPouchDB = class extends import_events2.default {
           }); else if (m) return o(m); else (function processDoc(r, o) {
             var u = s[r].slice(0);
             traverseRevTree(o, (function(s, o, g, _, m) {
-              var b = o + "-" + g, w = u.indexOf(b);
-              if (-1 !== w) {
-                u.splice(w, 1);
+              var b = o + "-" + g, E = u.indexOf(b);
+              if (-1 !== E) {
+                u.splice(E, 1);
                 if ("available" !== m.status) addToMissing(r, b);
               }
             }));
@@ -6780,11 +6798,11 @@ var AbstractPouchDB = class extends import_events2.default {
             }));
           })(r, b);
           if (++g === u.length) {
-            var w = {};
+            var E = {};
             _.forEach((function(s, r) {
-              w[r] = s;
+              E[r] = s;
             }));
-            return o(null, w);
+            return o(null, E);
           }
         }));
       }), this);
@@ -6839,7 +6857,7 @@ var AbstractPouchDB = class extends import_events2.default {
             binary: r.binary
           }, (function(s, r) {
             if (!s) {
-              for (var m, b = 0, w = g.length; b < w; b++) if (g[b].ok && g[b].ok._rev === r._rev) {
+              for (var m, b = 0, E = g.length; b < E; b++) if (g[b].ok && g[b].ok._rev === r._rev) {
                 m = true;
                 break;
               }
@@ -6860,12 +6878,12 @@ var AbstractPouchDB = class extends import_events2.default {
         }
         var _ = g.doc, m = g.metadata, b = g.ctx;
         if (r.conflicts) {
-          var w = collectConflicts(m);
-          if (w.length) _._conflicts = w;
+          var E = collectConflicts(m);
+          if (E.length) _._conflicts = E;
         }
         if (isDeleted(m, _._rev)) _._deleted = true;
         if (r.revs || r.revs_info) {
-          for (var E = _._rev.split("-"), S = parseInt(E[0], 10), L = E[1], O = rootToLeaf(m.rev_tree), D = null, k = 0; k < O.length; k++) {
+          for (var w = _._rev.split("-"), S = parseInt(w[0], 10), L = w[1], O = rootToLeaf(m.rev_tree), D = null, k = 0; k < O.length; k++) {
             var C = O[k], T = C.ids.map((function(s) {
               return s.id;
             })).indexOf(L);
@@ -7167,9 +7185,9 @@ function parseAdapter(s, r) {
   };
   var u = PouchDB.adapters, g = PouchDB.preferredAdapters, _ = PouchDB.prefix, m = r.adapter;
   if (!m) for (var b = 0; b < g.length && "idb" === (m = g[b]) && "websql" in u && hasLocalStorage() && localStorage["_pouch__websqldb_" + _ + s]; ++b) guardedConsole("log", 'PouchDB is downgrading "' + s + '" to WebSQL to avoid data loss, because it was already opened with WebSQL.');
-  var w = u[m];
+  var E = u[m];
   return {
-    name: (w && "use_prefix" in w ? w.use_prefix : true) ? _ + s : s,
+    name: (E && "use_prefix" in E ? E.use_prefix : true) ? _ + s : s,
     adapter: m
   };
 }
@@ -7447,13 +7465,13 @@ function parseDoc(s, r, o) {
     metadata: {},
     data: {}
   };
-  for (var w in s) if (Object.prototype.hasOwnProperty.call(s, w)) {
-    var E = "_" === w[0];
-    if (E && !reservedWords[w]) {
-      var S = createError(DOC_VALIDATION, w);
-      S.message = DOC_VALIDATION.message + ": " + w;
+  for (var E in s) if (Object.prototype.hasOwnProperty.call(s, E)) {
+    var w = "_" === E[0];
+    if (w && !reservedWords[E]) {
+      var S = createError(DOC_VALIDATION, E);
+      S.message = DOC_VALIDATION.message + ": " + E;
       throw S;
-    } else if (E && !dataWords[w]) b.metadata[w.slice(1)] = s[w]; else b.data[w] = s[w];
+    } else if (w && !dataWords[E]) b.metadata[E.slice(1)] = s[E]; else b.data[E] = s[E];
   }
   return b;
 }
@@ -7521,15 +7539,15 @@ function updateDoc(s, r, o, u, g, _, m, b) {
     u[g] = o;
     return _();
   }
-  var w = r.winningRev || winningRev(r), E = "deleted" in r ? r.deleted : isDeleted(r, w), S = "deleted" in o.metadata ? o.metadata.deleted : isDeleted(o.metadata), L = /^1-/.test(o.metadata.rev);
-  if (E && !S && b && L) {
+  var E = r.winningRev || winningRev(r), w = "deleted" in r ? r.deleted : isDeleted(r, E), S = "deleted" in o.metadata ? o.metadata.deleted : isDeleted(o.metadata), L = /^1-/.test(o.metadata.rev);
+  if (w && !S && b && L) {
     var O = o.data;
-    O._rev = w;
+    O._rev = E;
     O._id = o.metadata.id;
     o = parseDoc(O, b);
   }
   var D = merge(r.rev_tree, o.metadata.rev_tree[0], s);
-  if (b && (E && S && "new_leaf" !== D.conflicts || !E && "new_leaf" !== D.conflicts || E && !S && "new_branch" === D.conflicts)) {
+  if (b && (w && S && "new_leaf" !== D.conflicts || !w && "new_leaf" !== D.conflicts || w && !S && "new_branch" === D.conflicts)) {
     var k = createError(REV_CONFLICT);
     u[g] = k;
     return _();
@@ -7538,7 +7556,7 @@ function updateDoc(s, r, o, u, g, _, m, b) {
   o.metadata.rev_tree = D.tree;
   o.stemmedRevs = D.stemmedRevs || [];
   if (r.rev_map) o.metadata.rev_map = r.rev_map;
-  var T, I = winningRev(o.metadata), A = isDeleted(o.metadata, I), R = E === A ? 0 : E < A ? -1 : 1;
+  var T, I = winningRev(o.metadata), A = isDeleted(o.metadata, I), R = w === A ? 0 : w < A ? -1 : 1;
   if (C === I) T = A; else T = isDeleted(o.metadata, C);
   m(o, I, A, T, true, R, g, _);
 }
@@ -7547,11 +7565,11 @@ function rootIsMissing(s) {
   return "missing" === s.metadata.rev_tree[0].ids[1].status;
 }
 
-function processDocs(s, r, o, u, g, _, m, b, w) {
+function processDocs(s, r, o, u, g, _, m, b, E) {
   s = s || 1e3;
-  var E = b.new_edits, S = new ExportedMap, L = 0, O = r.length;
+  var w = b.new_edits, S = new ExportedMap, L = 0, O = r.length;
   function checkAllDocsDone() {
-    if (++L === O && w) w();
+    if (++L === O && E) E();
   }
   r.forEach((function(s, r) {
     if (!s._id || !isLocalId(s._id)) {
@@ -7576,8 +7594,8 @@ function processDocs(s, r, o, u, g, _, m, b, w) {
       if (++g < r.length) nextDoc(); else checkAllDocsDone();
     }
     function nextDoc() {
-      var w = r[g], S = w[0], L = w[1];
-      if (u.has(o)) updateDoc(s, u.get(o), S, _, L, docWritten, m, E); else {
+      var E = r[g], S = E[0], L = E[1];
+      if (u.has(o)) updateDoc(s, u.get(o), S, _, L, docWritten, m, w); else {
         var O = merge([], S.metadata.rev_tree[0], s);
         S.metadata.rev_tree = O.tree;
         S.stemmedRevs = O.stemmedRevs || [];
@@ -7587,9 +7605,9 @@ function processDocs(s, r, o, u, g, _, m, b, w) {
             _[r] = createError(MISSING_DOC, "deleted");
             return o();
           }
-          if (E && rootIsMissing(s)) {
-            var w = createError(REV_CONFLICT);
-            _[r] = w;
+          if (w && rootIsMissing(s)) {
+            var E = createError(REV_CONFLICT);
+            _[r] = E;
             return o();
           }
           m(s, u, g, g, false, g ? 0 : 1, r, o);
@@ -7752,7 +7770,7 @@ function openTransactionSafely(s, r, o) {
 var changesHandler$1 = new Changes;
 
 function idbBulkDocs(s, r, o, u, g, _) {
-  for (var m, b, w, E, S, L, O, D, k = r.docs, C = 0, T = k.length; C < T; C++) {
+  for (var m, b, E, w, S, L, O, D, k = r.docs, C = 0, T = k.length; C < T; C++) {
     var I = k[C];
     if (!I._id || !isLocalId(I._id)) if ((I = k[C] = parseDoc(I, o.new_edits, s)).error && !O) O = I;
   }
@@ -7767,8 +7785,8 @@ function idbBulkDocs(s, r, o, u, g, _) {
       m.ontimeout = idbError(_);
       m.oncomplete = complete;
       b = m.objectStore(DOC_STORE);
-      w = m.objectStore(BY_SEQ_STORE);
-      E = m.objectStore(ATTACH_STORE);
+      E = m.objectStore(BY_SEQ_STORE);
+      w = m.objectStore(ATTACH_STORE);
       S = m.objectStore(ATTACH_AND_SEQ_STORE);
       (L = m.objectStore(META_STORE)).get(META_STORE).onsuccess = function(s) {
         D = s.target.result;
@@ -7786,7 +7804,7 @@ function idbBulkDocs(s, r, o, u, g, _) {
         var o, u = 0;
         r.forEach((function(g) {
           (function verifyAttachment(s, r) {
-            E.get(s).onsuccess = function(o) {
+            w.get(s).onsuccess = function(o) {
               if (!o.target.result) {
                 var u = createError(MISSING_STUB, "unknown stub attachment with digest " + s);
                 u.status = 412;
@@ -7807,8 +7825,8 @@ function idbBulkDocs(s, r, o, u, g, _) {
         }
         (function fetchExistingDocs() {
           if (k.length) for (var r = 0, g = 0, _ = k.length; g < _; g++) {
-            var w = k[g];
-            if (!w._id || !isLocalId(w._id)) b.get(w.metadata.id).onsuccess = readMetadata; else checkDone();
+            var E = k[g];
+            if (!E._id || !isLocalId(E._id)) b.get(E.metadata.id).onsuccess = readMetadata; else checkDone();
           }
           function checkDone() {
             if (++r === k.length) (function idbProcessDocs() {
@@ -7843,33 +7861,33 @@ function idbBulkDocs(s, r, o, u, g, _) {
   function writeDoc(s, r, o, u, g, _, m, b) {
     s.metadata.winningRev = r;
     s.metadata.deleted = o;
-    var w = s.data;
-    w._id = s.metadata.id;
-    w._rev = s.metadata.rev;
-    if (u) w._deleted = true;
-    if (w._attachments && Object.keys(w._attachments).length) return function writeAttachments(s, r, o, u, g, _) {
-      var m = s.data, b = 0, w = Object.keys(m._attachments);
+    var E = s.data;
+    E._id = s.metadata.id;
+    E._rev = s.metadata.rev;
+    if (u) E._deleted = true;
+    if (E._attachments && Object.keys(E._attachments).length) return function writeAttachments(s, r, o, u, g, _) {
+      var m = s.data, b = 0, E = Object.keys(m._attachments);
       function collectResults() {
-        if (b === w.length) finishDoc(s, r, o, u, g, _);
+        if (b === E.length) finishDoc(s, r, o, u, g, _);
       }
       function attachmentSaved() {
         b++;
         collectResults();
       }
-      w.forEach((function(o) {
+      E.forEach((function(o) {
         var u = s.data._attachments[o];
         if (!u.stub) {
           var g = u.data;
           delete u.data;
           u.revpos = parseInt(r, 10);
           (function saveAttachment(s, r, o) {
-            E.count(s).onsuccess = function(u) {
+            w.count(s).onsuccess = function(u) {
               if (u.target.result) return o();
               var g = {
                 digest: s,
                 body: r
               };
-              E.put(g).onsuccess = o;
+              w.put(g).onsuccess = o;
             };
           })(u.digest, g, attachmentSaved);
         } else {
@@ -7882,18 +7900,18 @@ function idbBulkDocs(s, r, o, u, g, _) {
     updateDocCountIfReady();
     finishDoc(s, r, o, g, m, b);
   }
-  function finishDoc(s, r, o, g, _, E) {
+  function finishDoc(s, r, o, g, _, w) {
     var L = s.data, O = s.metadata;
     L._doc_id_rev = O.id + "::" + O.rev;
     delete L._id;
     delete L._rev;
     function afterPutDoc(_) {
-      var w = s.stemmedRevs || [];
-      if (g && u.auto_compaction) w = w.concat(compactTree(s.metadata));
-      if (w && w.length) compactRevs(w, s.metadata.id, m);
+      var E = s.stemmedRevs || [];
+      if (g && u.auto_compaction) E = E.concat(compactTree(s.metadata));
+      if (E && E.length) compactRevs(E, s.metadata.id, m);
       O.seq = _.target.result;
-      var E = encodeMetadata(O, r, o);
-      b.put(E).onsuccess = afterPutMetadata;
+      var w = encodeMetadata(O, r, o);
+      b.put(w).onsuccess = afterPutMetadata;
     }
     function afterPutMetadata() {
       x[_] = {
@@ -7921,15 +7939,15 @@ function idbBulkDocs(s, r, o, u, g, _) {
           };
         }
         for (var _ = 0; _ < g.length; _++) add(g[_]);
-      })(s, O.seq, E);
+      })(s, O.seq, w);
     }
-    var D = w.put(L);
+    var D = E.put(L);
     D.onsuccess = afterPutDoc;
     D.onerror = function afterPutDocError(s) {
       s.preventDefault();
       s.stopPropagation();
-      w.index("_doc_id_rev").getKey(L._doc_id_rev).onsuccess = function(s) {
-        w.put(L, s.target.result).onsuccess = afterPutDoc;
+      E.index("_doc_id_rev").getKey(L._doc_id_rev).onsuccess = function(s) {
+        E.put(L, s.target.result).onsuccess = afterPutDoc;
       };
     };
   }
@@ -8015,8 +8033,8 @@ function createKeyRange(s, r, o, u, g) {
 }
 
 function idbAllDocs(s, r, o) {
-  var u, g, _ = "startkey" in s ? s.startkey : false, m = "endkey" in s ? s.endkey : false, b = "key" in s ? s.key : false, w = "keys" in s ? s.keys : false, E = s.skip || 0, S = "number" == typeof s.limit ? s.limit : -1, L = false !== s.inclusive_end;
-  if (!w) if ((g = (u = createKeyRange(_, m, L, b, s.descending)) && u.error) && !("DataError" === g.name && 0 === g.code)) return o(createError(IDB_ERROR, g.name, g.message));
+  var u, g, _ = "startkey" in s ? s.startkey : false, m = "endkey" in s ? s.endkey : false, b = "key" in s ? s.key : false, E = "keys" in s ? s.keys : false, w = s.skip || 0, S = "number" == typeof s.limit ? s.limit : -1, L = false !== s.inclusive_end;
+  if (!E) if ((g = (u = createKeyRange(_, m, L, b, s.descending)) && u.error) && !("DataError" === g.name && 0 === g.code)) return o(createError(IDB_ERROR, g.name, g.message));
   var O = [ DOC_STORE, BY_SEQ_STORE, META_STORE ];
   if (s.attachments) O.push(ATTACH_STORE);
   var D = openTransactionSafely(r, O, "readonly");
@@ -8052,12 +8070,12 @@ function idbAllDocs(s, r, o) {
       }
     };
     if (o.deleted) {
-      if (w) {
+      if (E) {
         P.push(u);
         u.value.deleted = true;
         u.doc = null;
       }
-    } else if (E-- <= 0) {
+    } else if (w-- <= 0) {
       P.push(u);
       if (s.include_docs) (function fetchDocAsynchronously(r, o, u) {
         var g = r.id + "::" + u;
@@ -8075,7 +8093,7 @@ function idbAllDocs(s, r, o) {
   function processBatch(s) {
     for (var r = 0, o = s.length; r < o && P.length !== S; r++) {
       var u = s[r];
-      if (!u.error || !w) {
+      if (!u.error || !E) {
         var g = decodeMetadata(u);
         allDocsInner(g.winningRev, g);
       } else P.push(u);
@@ -8097,13 +8115,13 @@ function idbAllDocs(s, r, o) {
     o(null, r);
   }
   if (!g && 0 !== S) {
-    if (w) return allDocsKeys(s.keys, I, onBatch);
+    if (E) return allDocsKeys(s.keys, I, onBatch);
     if (-1 === S) return getAll(I, u, (function onGetAll(r) {
       var o = r.target.result;
       if (s.descending) o = o.reverse();
       processBatch(o);
     }));
-    runBatchedCursor(I, u, s.descending, S + E, onBatch);
+    runBatchedCursor(I, u, s.descending, S + w, onBatch);
   }
 }
 
@@ -8175,7 +8193,7 @@ function changes(s, r, o, u) {
   s.since = s.since || 0;
   var m = s.since, b = "limit" in s ? s.limit : -1;
   if (0 === b) b = 1;
-  var w, E, S, L, O = [], D = 0, k = filterChange(s), C = new ExportedMap;
+  var E, w, S, L, O = [], D = 0, k = filterChange(s), C = new ExportedMap;
   function onGetMetadata(s, r, o, u) {
     if (o.seq !== r) return u();
     if (o.winningRev === s._rev) return u(o, s);
@@ -8194,16 +8212,16 @@ function changes(s, r, o, u) {
   if (s.attachments) T.push(ATTACH_STORE);
   var I = openTransactionSafely(u, T, "readonly");
   if (I.error) return s.complete(I.error);
-  (w = I.txn).onabort = idbError(s.complete);
-  w.oncomplete = function onTxnComplete() {
+  (E = I.txn).onabort = idbError(s.complete);
+  E.oncomplete = function onTxnComplete() {
     if (!s.continuous && s.attachments) postProcessAttachments(O).then(finish); else finish();
   };
-  E = w.objectStore(BY_SEQ_STORE);
-  S = w.objectStore(DOC_STORE);
-  L = E.index("_doc_id_rev");
-  runBatchedCursor(E, s.since && !s.descending ? IDBKeyRange.lowerBound(s.since, true) : null, s.descending, b, (function onBatch(r, o, u) {
+  w = E.objectStore(BY_SEQ_STORE);
+  S = E.objectStore(DOC_STORE);
+  L = w.index("_doc_id_rev");
+  runBatchedCursor(w, s.since && !s.descending ? IDBKeyRange.lowerBound(s.since, true) : null, s.descending, b, (function onBatch(r, o, u) {
     if (u && r.length) {
-      var g = new Array(r.length), E = new Array(r.length), L = 0;
+      var g = new Array(r.length), w = new Array(r.length), L = 0;
       o.forEach((function(o, m) {
         (function fetchWinningDocAndMetadata(s, r, o) {
           if (_ && !_.has(s._id)) return o();
@@ -8215,14 +8233,14 @@ function changes(s, r, o, u) {
             onGetMetadata(s, r, u, o);
           };
         })(decodeDoc(o), r[m], (function(o, _) {
-          E[m] = o;
+          w[m] = o;
           g[m] = _;
           if (++L === r.length) (function onBatchDone() {
             for (var r = [], o = 0, _ = g.length; o < _ && D !== b; o++) {
               var m = g[o];
               if (m) {
-                var w = E[o];
-                r.push(processMetadataAndWinningDoc(w, m));
+                var E = w[o];
+                r.push(processMetadataAndWinningDoc(E, m));
               }
             }
             Promise.all(r).then((function(r) {
@@ -8242,7 +8260,7 @@ function changes(s, r, o, u) {
       D++;
       if (s.return_docs) O.push(u);
       if (s.attachments && s.include_docs) return new Promise((function(r) {
-        fetchAttachmentsIfNecessary(o, s, w, (function() {
+        fetchAttachmentsIfNecessary(o, s, E, (function() {
           postProcessAttachments([ u ], s.binary).then((function() {
             r(u);
           }));
@@ -8290,9 +8308,9 @@ function init(s, r, o) {
     u.openCursor().onsuccess = function(s) {
       var _ = s.target.result;
       if (_) {
-        var m = _.value, b = m.id, w = isLocalId(b), E = winningRev(m);
-        if (w) {
-          var S = b + "::" + E, L = b + "::", O = b + "::~", D = g.index("_doc_id_rev"), k = IDBKeyRange.bound(L, O, false, false), C = D.openCursor(k);
+        var m = _.value, b = m.id, E = isLocalId(b), w = winningRev(m);
+        if (E) {
+          var S = b + "::" + w, L = b + "::", O = b + "::~", D = g.index("_doc_id_rev"), k = IDBKeyRange.bound(L, O, false, false), C = D.openCursor(k);
           C.onsuccess = function(s) {
             if (!(C = s.target.result)) {
               u.delete(_.primaryKey);
@@ -8315,10 +8333,10 @@ function init(s, r, o) {
       o.openCursor().onsuccess = function(s) {
         var o = s.target.result;
         if (!o) return r();
-        for (var u = o.value, _ = o.primaryKey, m = Object.keys(u._attachments || {}), b = {}, w = 0; w < m.length; w++) b[u._attachments[m[w]].digest] = true;
-        var E = Object.keys(b);
-        for (w = 0; w < E.length; w++) {
-          var S = E[w];
+        for (var u = o.value, _ = o.primaryKey, m = Object.keys(u._attachments || {}), b = {}, E = 0; E < m.length; E++) b[u._attachments[m[E]].digest] = true;
+        var w = Object.keys(b);
+        for (E = 0; E < w.length; E++) {
+          var S = w[E];
           g.put({
             seq: _,
             digestSeq: S + "::" + _
@@ -8377,9 +8395,9 @@ function init(s, r, o) {
   s._get = function idb_get(s, r, o) {
     var u, _, m, b = r.ctx;
     if (!b) {
-      var w = openTransactionSafely(g, [ DOC_STORE, BY_SEQ_STORE, ATTACH_STORE ], "readonly");
-      if (w.error) return o(w.error);
-      b = w.txn;
+      var E = openTransactionSafely(g, [ DOC_STORE, BY_SEQ_STORE, ATTACH_STORE ], "readonly");
+      if (E.error) return o(E.error);
+      b = E.txn;
     }
     function finish() {
       o(m, {
@@ -8401,8 +8419,8 @@ function init(s, r, o) {
           return finish();
         }
       } else o = r.latest ? latest(r.rev, _) : r.rev;
-      var g = b.objectStore(BY_SEQ_STORE), w = _.id + "::" + o;
-      g.index("_doc_id_rev").get(w).onsuccess = function(s) {
+      var g = b.objectStore(BY_SEQ_STORE), E = _.id + "::" + o;
+      g.index("_doc_id_rev").get(E).onsuccess = function(s) {
         if (u = s.target.result) u = decodeDoc(u);
         if (!u) {
           m = createError(MISSING_DOC, "missing");
@@ -8419,9 +8437,9 @@ function init(s, r, o) {
       if (b.error) return _(b.error);
       m = b.txn;
     }
-    var w = o.digest, E = o.content_type;
-    m.objectStore(ATTACH_STORE).get(w).onsuccess = function(s) {
-      readBlobData(s.target.result.body, E, u.binary, (function(s) {
+    var E = o.digest, w = o.content_type;
+    m.objectStore(ATTACH_STORE).get(E).onsuccess = function(s) {
+      readBlobData(s.target.result.body, w, u.binary, (function(s) {
         _(null, s);
       }));
     };
@@ -8506,15 +8524,15 @@ function init(s, r, o) {
     if (!u) s._rev = "0-1"; else s._rev = "0-" + (parseInt(u.split("-")[1], 10) + 1);
     var m, b = r.ctx;
     if (!b) {
-      var w = openTransactionSafely(g, [ LOCAL_STORE ], "readwrite");
-      if (w.error) return o(w.error);
-      (b = w.txn).onerror = idbError(o);
+      var E = openTransactionSafely(g, [ LOCAL_STORE ], "readwrite");
+      if (E.error) return o(E.error);
+      (b = E.txn).onerror = idbError(o);
       b.oncomplete = function() {
         if (m) o(null, m);
       };
     }
-    var E, S = b.objectStore(LOCAL_STORE);
-    if (u) (E = S.get(_)).onsuccess = function(g) {
+    var w, S = b.objectStore(LOCAL_STORE);
+    if (u) (w = S.get(_)).onsuccess = function(g) {
       var _ = g.target.result;
       if (!_ || _._rev !== u) o(createError(REV_CONFLICT)); else S.put(s).onsuccess = function() {
         m = {
@@ -8525,12 +8543,12 @@ function init(s, r, o) {
         if (r.ctx) o(null, m);
       };
     }; else {
-      (E = S.add(s)).onerror = function(s) {
+      (w = S.add(s)).onerror = function(s) {
         o(createError(REV_CONFLICT));
         s.preventDefault();
         s.stopPropagation();
       };
-      E.onsuccess = function() {
+      w.onsuccess = function() {
         m = {
           ok: true,
           id: s._id,
@@ -8553,12 +8571,12 @@ function init(s, r, o) {
         if (u) o(null, u);
       };
     }
-    var b = s._id, w = _.objectStore(LOCAL_STORE), E = w.get(b);
-    E.onerror = idbError(o);
-    E.onsuccess = function(g) {
+    var b = s._id, E = _.objectStore(LOCAL_STORE), w = E.get(b);
+    w.onerror = idbError(o);
+    w.onsuccess = function(g) {
       var _ = g.target.result;
       if (!_ || _._rev !== s._rev) o(createError(MISSING_DOC)); else {
-        w.delete(b);
+        E.delete(b);
         u = {
           ok: true,
           id: b,
@@ -8663,13 +8681,13 @@ function init(s, r, o) {
       g.close();
       cachedDBs.delete(u);
     };
-    var m, b, w, E, S = g.transaction([ META_STORE, DETECT_BLOB_SUPPORT_STORE, DOC_STORE ], "readwrite"), L = false;
+    var m, b, E, w, S = g.transaction([ META_STORE, DETECT_BLOB_SUPPORT_STORE, DOC_STORE ], "readwrite"), L = false;
     function completeSetup() {
-      if ("undefined" != typeof w && L) {
+      if ("undefined" != typeof E && L) {
         s._meta = {
           name: u,
-          instanceId: E,
-          blobSupport: w
+          instanceId: w,
+          blobSupport: E
         };
         cachedDBs.set(u, {
           idb: g,
@@ -8681,7 +8699,7 @@ function init(s, r, o) {
     function storeMetaDocIfReady() {
       if ("undefined" != typeof b && "undefined" != typeof m) {
         var s = u + "_id";
-        if (s in m) E = m[s]; else m[s] = E = uuid();
+        if (s in m) w = m[s]; else m[s] = w = uuid();
         m.docCount = b;
         S.objectStore(META_STORE).put(m);
       }
@@ -8698,7 +8716,7 @@ function init(s, r, o) {
     }));
     if (!blobSupportPromise) blobSupportPromise = checkBlobSupport(S);
     blobSupportPromise.then((function(s) {
-      w = s;
+      E = s;
       completeSetup();
     }));
     S.oncomplete = function() {
@@ -8832,11 +8850,11 @@ function maintainNativeIndexes(s, r) {
     g.forEach((function(s) {
       if (-1 === b.indexOf(s) && -1 === m.indexOf(s)) o.deleteIndex(s);
     }));
-    var w = m.filter((function(s) {
+    var E = m.filter((function(s) {
       return -1 === g.indexOf(s);
     }));
     try {
-      w.forEach((function(s) {
+      E.forEach((function(s) {
         o.createIndex(s, _[s]);
       }));
     } catch (s) {
@@ -8974,7 +8992,7 @@ function getAttachment(s, r, o, u, g, _) {
 }
 
 function bulkDocs(s, r, o, u, g, _, m) {
-  var b, w, E, S = [], L = [], O = g.revs_limit || 1e3, D = -1 === g.name.indexOf("-mrview-");
+  var b, E, w, S = [], L = [], O = g.revs_limit || 1e3, D = -1 === g.name.indexOf("-mrview-");
   const k = g.auto_compaction;
   function docsRevsLimit(s) {
     return /^_local/.test(s.id) ? 1 : O;
@@ -8998,7 +9016,7 @@ function bulkDocs(s, r, o, u, g, _, m) {
     return r;
   }
   function updateSeq(s) {
-    if (s === E) b.objectStore(META_STORE2).put(u);
+    if (s === w) b.objectStore(META_STORE2).put(u);
   }
   for (var C = 0, T = r.docs.length; C < T; C++) {
     var I;
@@ -9055,7 +9073,7 @@ function bulkDocs(s, r, o, u, g, _, m) {
     s._openTransactionSafely([ DOC_STORE2, META_STORE2 ], "readwrite", (function(s, r) {
       if (s) return m(s);
       (b = r).onabort = function() {
-        m(w || createError(UNKNOWN_ERROR, "transaction was aborted"));
+        m(E || createError(UNKNOWN_ERROR, "transaction was aborted"));
       };
       b.ontimeout = idbError2(m);
       b.oncomplete = function() {
@@ -9084,9 +9102,9 @@ function bulkDocs(s, r, o, u, g, _, m) {
                   var b = merge(u.rev_tree, r.rev_tree[0], docsRevsLimit(r));
                   r.stemmedRevs = b.stemmedRevs;
                   r.rev_tree = b.tree;
-                  var w = u.revs;
-                  w[r.rev] = r.revs[r.rev];
-                  r.revs = w;
+                  var E = u.revs;
+                  E[r.rev] = r.revs[r.rev];
+                  r.revs = E;
                   r.attachments = u.attachments;
                   if (o.new_edits && (u.deleted && r.deleted || !u.deleted && "new_leaf" !== b.conflicts || u.deleted && !r.deleted && "new_branch" === b.conflicts || u.rev === r.rev)) return createError(REV_CONFLICT);
                   r.wasDeleted = u.deleted;
@@ -9102,10 +9120,10 @@ function bulkDocs(s, r, o, u, g, _, m) {
               }
               if (b.error) S[m] = b; else {
                 _[b.id] = b;
-                E = m;
+                w = m;
                 (function write(s, r, o) {
                   var g = winningRev(r), _ = r.rev, m = /^_local/.test(r.id), b = r.revs[g].data;
-                  const E = r.isNewDoc;
+                  const w = r.isNewDoc;
                   if (D) {
                     var L = rewrite(b);
                     if (L) {
@@ -9124,7 +9142,7 @@ function bulkDocs(s, r, o, u, g, _, m) {
                   delete r.isNewDoc;
                   delete r.wasDeleted;
                   let C = r.stemmedRevs || [];
-                  if (k && !E) {
+                  if (k && !w) {
                     const s = compactTree(r);
                     if (s.length) C = C.concat(s);
                   }
@@ -9137,7 +9155,7 @@ function bulkDocs(s, r, o, u, g, _, m) {
                     var I = b._attachments[T];
                     if (I.stub) {
                       if (!(I.digest in r.attachments)) {
-                        w = createError(MISSING_STUB);
+                        E = createError(MISSING_STUB);
                         s.abort();
                         return;
                       }
@@ -9237,8 +9255,8 @@ function allDocs(s, r, o, u) {
     if (o.update_seq) g.update_seq = r.seq;
     return u(null, g);
   }
-  var _, m = [], b = [], w = "startkey" in o ? o.startkey : false, E = "endkey" in o ? o.endkey : false, S = "key" in o ? o.key : false, L = "keys" in o ? o.keys : false, O = o.skip || 0, D = "number" == typeof o.limit ? o.limit : -1, k = false !== o.inclusive_end, C = "descending" in o && o.descending ? "prev" : null;
-  if (!L) if ((_ = createKeyRange2(w, E, k, S, C)) && _.error) return handleKeyRangeError(o, r, _.error, u);
+  var _, m = [], b = [], E = "startkey" in o ? o.startkey : false, w = "endkey" in o ? o.endkey : false, S = "key" in o ? o.key : false, L = "keys" in o ? o.keys : false, O = o.skip || 0, D = "number" == typeof o.limit ? o.limit : -1, k = false !== o.inclusive_end, C = "descending" in o && o.descending ? "prev" : null;
+  if (!L) if ((_ = createKeyRange2(E, w, k, S, C)) && _.error) return handleKeyRangeError(o, r, _.error, u);
   var T = s.txn.objectStore(DOC_STORE2);
   s.txn.oncomplete = function onTxnComplete() {
     Promise.all(b).then((function() {
@@ -9310,8 +9328,8 @@ function changes2(s, r, o, u, g) {
   }
   var m = "limit" in g ? g.limit : -1;
   if (0 === m) m = 1;
-  var b, w = s.txn.objectStore(DOC_STORE2).index("seq"), E = filterChange(g), S = 0, L = g.since || 0, O = [], D = [];
-  if (g.descending) b = w.openCursor(null, "prev"); else b = w.openCursor(IDBKeyRange.lowerBound(g.since, true));
+  var b, E = s.txn.objectStore(DOC_STORE2).index("seq"), w = filterChange(g), S = 0, L = g.since || 0, O = [], D = [];
+  if (g.descending) b = E.openCursor(null, "prev"); else b = E.openCursor(IDBKeyRange.lowerBound(g.since, true));
   s.txn.oncomplete = function onTxnComplete() {
     Promise.all(D).then((function() {
       g.complete(null, {
@@ -9331,15 +9349,15 @@ function changes2(s, r, o, u, g) {
       var u = g.processChange(o.data, o, g);
       u.seq = o.seq;
       L = o.seq;
-      var _ = E(u);
+      var _ = w(u);
       if ("object" == typeof _) return g.complete(_);
       if (_) {
         S++;
         if (g.return_docs) O.push(u);
         if (g.include_docs && g.attachments && o.data._attachments) {
           var b = [];
-          for (var w in o.data._attachments) {
-            var k = processAttachment(w, o, u.doc, g.binary);
+          for (var E in o.data._attachments) {
+            var k = processAttachment(E, o, u.doc, g.binary);
             b.push(k);
             D.push(k);
           }
@@ -9465,10 +9483,10 @@ function query(s, r, o, u) {
   return new Promise((function(s, m) {
     g.get("_design/" + _[0]).then((function(b) {
       if (isPartialFilterView(b, _[1])) return u(r, o).then(s, m);
-      var w = rawIndexFields(b, _[1]);
-      if (!w) throw new Error("ddoc " + b._id + " with view " + _[1] + " does not have map.options.def.fields defined.");
-      var E = o.skip, S = Number.isInteger(o.limit) && o.limit;
-      return getIndexHandle(g, w, m).then((function(r) {
+      var E = rawIndexFields(b, _[1]);
+      if (!E) throw new Error("ddoc " + b._id + " with view " + _[1] + " does not have map.options.def.fields defined.");
+      var w = o.skip, S = Number.isInteger(o.limit) && o.limit;
+      return getIndexHandle(g, E, m).then((function(r) {
         var u = generateKeyRange(o), g = r.openCursor(u, o.descending ? "prev" : "next"), _ = [];
         g.onerror = idbError2(m);
         g.onsuccess = function(r) {
@@ -9476,15 +9494,15 @@ function query(s, r, o, u) {
           if (!o || 0 === S) return s({
             rows: _
           });
-          if (!E) {
+          if (!w) {
             if (S) S -= 1;
             _.push({
               doc: externaliseRecord(o.value)
             });
             o.continue();
           } else {
-            o.advance(E);
-            E = false;
+            o.advance(w);
+            w = false;
           }
         };
       }));
@@ -9644,13 +9662,13 @@ var index_es_default3 = index2;
 
 function pool(s, r) {
   return new Promise((function(o, u) {
-    var g, _ = 0, m = 0, b = 0, w = s.length;
+    var g, _ = 0, m = 0, b = 0, E = s.length;
     function runNext() {
       _++;
       s[m++]().then(onSuccess, onError);
     }
     function doNext() {
-      if (++b === w) if (g) u(g); else o(); else runNextBatch();
+      if (++b === E) if (g) u(g); else o(); else runNextBatch();
     }
     function onSuccess() {
       _--;
@@ -9662,7 +9680,7 @@ function pool(s, r) {
       doNext();
     }
     function runNextBatch() {
-      for (;_ < r && m < w; ) runNext();
+      for (;_ < r && m < E; ) runNext();
     }
     runNextBatch();
   }));
@@ -9924,18 +9942,18 @@ function HttpPouch(s, r) {
         return function() {
           return async function fetchData(g) {
             const _ = o[g], m = encodeDocId(s._id) + "/" + encodeAttachmentId(g) + "?rev=" + s._rev, b = await ourFetch(genDBUrl(u, m));
-            let w, E;
-            if ("buffer" in b) w = await b.buffer(); else w = await b.blob();
+            let E, w;
+            if ("buffer" in b) E = await b.buffer(); else E = await b.blob();
             if (r.binary) {
-              let s = Object.getOwnPropertyDescriptor(w.__proto__, "type");
-              if (!s || s.set) w.type = _.content_type;
-              E = w;
-            } else E = await new Promise((function(s) {
-              blobToBase64(w, s);
+              let s = Object.getOwnPropertyDescriptor(E.__proto__, "type");
+              if (!s || s.set) E.type = _.content_type;
+              w = E;
+            } else w = await new Promise((function(s) {
+              blobToBase64(E, s);
             }));
             delete _.stub;
             delete _.length;
-            _.data = E;
+            _.data = w;
           }(g);
         };
       })), 5);
@@ -10003,8 +10021,8 @@ function HttpPouch(s, r) {
       let r;
       if ("undefined" != typeof process && !process.browser && "function" == typeof s.buffer) r = await s.buffer(); else r = await s.blob();
       if ("undefined" != typeof process && !process.browser) {
-        var w = Object.getOwnPropertyDescriptor(r.__proto__, "type");
-        if (!w || w.set) r.type = b;
+        var E = Object.getOwnPropertyDescriptor(r.__proto__, "type");
+        if (!E || E.set) r.type = b;
       }
       g(null, r);
     } catch (s) {
@@ -10029,8 +10047,8 @@ function HttpPouch(s, r) {
       o = null;
     }
     const b = encodeDocId(s) + "/" + encodeAttachmentId(r);
-    let w = genDBUrl(u, b);
-    if (o) w += "?rev=" + o;
+    let E = genDBUrl(u, b);
+    if (o) E += "?rev=" + o;
     if ("string" == typeof g) {
       let s;
       try {
@@ -10041,7 +10059,7 @@ function HttpPouch(s, r) {
       g = s ? binStringToBluffer(s, _) : "";
     }
     try {
-      m(null, (await fetchJSON(w, {
+      m(null, (await fetchJSON(E, {
         headers: new h({
           "Content-Type": _
         }),
@@ -10139,21 +10157,21 @@ function HttpPouch(s, r) {
       g.view = s.view;
     }
     if (s.query_params && "object" == typeof s.query_params) for (let r in s.query_params) if (Object.prototype.hasOwnProperty.call(s.query_params, r)) g[r] = s.query_params[r];
-    let b, w = "GET";
+    let b, E = "GET";
     if (s.doc_ids) {
       g.filter = "_doc_ids";
-      w = "POST";
+      E = "POST";
       b = {
         doc_ids: s.doc_ids
       };
     } else if (s.selector) {
       g.filter = "_selector";
-      w = "POST";
+      E = "POST";
       b = {
         selector: s.selector
       };
     }
-    let E, S = new a;
+    let w, S = new a;
     const fetchData = async function(o, L) {
       if (s.aborted) return;
       g.since = o;
@@ -10163,10 +10181,10 @@ function HttpPouch(s, r) {
       } else g.limit = !_ || m > r ? r : m;
       let O = genDBUrl(u, "_changes" + paramsToStr(g)), D = {
         signal: S.signal,
-        method: w,
+        method: E,
         body: JSON.stringify(b)
       };
-      E = o;
+      w = o;
       if (!s.aborted) try {
         await setup2();
         L(null, (await fetchJSON(O, D)).data);
@@ -10202,10 +10220,10 @@ function HttpPouch(s, r) {
         s.complete(o);
         return;
       }
-      if (u && u.last_seq) E = u.last_seq;
+      if (u && u.last_seq) w = u.last_seq;
       let b = _ && m <= 0 || u && g < r || s.descending;
       if (s.continuous && !(_ && m <= 0) || !b) (0, import_immediate.default)((function() {
-        fetchData(E, fetched);
+        fetchData(w, fetched);
       })); else s.complete(null, L);
     };
     fetchData(s.since || 0, fetched);
@@ -10390,22 +10408,22 @@ async function createView(s, r, o, u, g, _) {
     b = s._cachedViews = s._cachedViews || {};
     if (b[m]) return b[m];
   }
-  const w = s.info().then((async function(w) {
-    const E = w.db_name + "-mrview-" + (g ? "temp" : stringMd5(m));
+  const E = s.info().then((async function(E) {
+    const w = E.db_name + "-mrview-" + (g ? "temp" : stringMd5(m));
     await upsert(s, "_local/" + _, (function diffFunction(s) {
       s.views = s.views || {};
       let o = r;
       if (-1 === o.indexOf("/")) o = r + "/" + r;
       const u = s.views[o] = s.views[o] || {};
-      if (!u[E]) {
-        u[E] = true;
+      if (!u[w]) {
+        u[w] = true;
         return s;
       }
     }));
-    const S = (await s.registerDependentDatabase(E)).db;
+    const S = (await s.registerDependentDatabase(w)).db;
     S.auto_compaction = true;
     const L = {
-      name: E,
+      name: w,
       db: S,
       sourceDB: s,
       adapter: s.adapter,
@@ -10424,8 +10442,8 @@ async function createView(s, r, o, u, g, _) {
     }));
     return L;
   }));
-  if (b) b[m] = w;
-  return w;
+  if (b) b[m] = E;
+  return E;
 }
 
 var persistentQueues = {}, tempViewQueue = new TaskQueue2, CHANGES_BATCH_SIZE2 = 50;
@@ -10551,12 +10569,12 @@ function createAbstractMapReduce(s, r, o, u) {
           if ("undefined" != typeof r && null !== r) o.value = normalizeKey(r);
           u.push(o);
         }));
-        let b = s.seq || 0, w = 0;
-        const E = {
+        let b = s.seq || 0, E = 0;
+        const w = {
           view: s.name,
-          indexed_docs: w
+          indexed_docs: E
         };
-        s.sourceDB.emit("indexing", E);
+        s.sourceDB.emit("indexing", w);
         const S = new TaskQueue2;
         function createIndexableKeysToKeyValues(s) {
           const r = new ExportedMap;
@@ -10579,10 +10597,10 @@ function createAbstractMapReduce(s, r, o, u) {
             }));
           }();
           await async function processNextBatch() {
-            return function processBatch(r, E) {
+            return function processBatch(r, w) {
               var L = r.results;
-              if (!L.length && !E.length) return;
-              for (let s of E) if (L.findIndex((function(r) {
+              if (!L.length && !w.length) return;
+              for (let s of w) if (L.findIndex((function(r) {
                 return r.id === s.docId;
               })) < 0) {
                 const r = {
@@ -10603,17 +10621,17 @@ function createAbstractMapReduce(s, r, o, u) {
               }
               var O = function createDocIdsToChangesAndEmits(r) {
                 const o = new ExportedMap;
-                for (let _ = 0, w = r.length; _ < w; _++) {
-                  const w = r[_];
-                  if ("_" !== w.doc._id[0]) {
+                for (let _ = 0, E = r.length; _ < E; _++) {
+                  const E = r[_];
+                  if ("_" !== E.doc._id[0]) {
                     u = [];
-                    g = w.doc;
+                    g = E.doc;
                     if (!g._deleted) tryMap(s.sourceDB, m, g);
                     u.sort(sortByKeyThenValue);
                     const r = createIndexableKeysToKeyValues(u);
-                    o.set(w.doc._id, [ r, w.changes ]);
+                    o.set(E.doc._id, [ r, E.changes ]);
                   }
-                  b = w.seq;
+                  b = E.seq;
                 }
                 return o;
               }(L);
@@ -10631,7 +10649,7 @@ function createAbstractMapReduce(s, r, o, u) {
                           const u = "_local/doc_" + s, g = {
                             _id: u,
                             keys: []
-                          }, _ = o.get(s), m = _[0], b = _[1], w = await function getMetaDoc() {
+                          }, _ = o.get(s), m = _[0], b = _[1], E = await function getMetaDoc() {
                             if (isGenOne(b)) return Promise.resolve(g); else return r.db.get(u).catch(defaultsTo(g));
                           }();
                           return function processKeyValueDocs(s, r) {
@@ -10661,14 +10679,14 @@ function createAbstractMapReduce(s, r, o, u) {
                             s.keys = uniq(g.concat(s.keys));
                             o.push(s);
                             return o;
-                          }(w, await function getKeyValueDocs(s) {
+                          }(E, await function getKeyValueDocs(s) {
                             if (!s.keys.length) return Promise.resolve({
                               rows: []
                             }); else return r.db.allDocs({
                               keys: s.keys,
                               include_docs: true
                             });
-                          }(w));
+                          }(E));
                         }(o, s, r);
                       }))).then((function(r) {
                         var g = flatten(r);
@@ -10699,16 +10717,16 @@ function createAbstractMapReduce(s, r, o, u) {
                   }(s, r, o);
                 };
               }(O, b));
-              w += L.length;
+              E += L.length;
               const D = {
                 view: s.name,
                 last_seq: r.last_seq,
                 results_count: L.length,
-                indexed_docs: w
+                indexed_docs: E
               };
               s.sourceDB.emit("indexing", D);
               s.sourceDB.activeTasks.update(_, {
-                completed_items: w
+                completed_items: E
               });
               if (!(L.length < o.changes_batch_size)) return processNextBatch(); else return;
             }(await s.sourceDB.changes({
@@ -10834,12 +10852,12 @@ function createAbstractMapReduce(s, r, o, u) {
               attachments: r.attachments,
               binary: r.binary
             });
-            var w = new ExportedMap;
+            var E = new ExportedMap;
             u.rows.forEach((function(s) {
-              w.set(s.id, s.doc);
+              E.set(s.id, s.doc);
             }));
             m.forEach((function(s) {
-              var r = rowToDocId(s), o = w.get(r);
+              var r = rowToDocId(s), o = E.get(r);
               if (o) s.doc = o;
             }));
             return b;
@@ -10947,24 +10965,24 @@ function createAbstractMapReduce(s, r, o, u) {
               }
             }
             if ("string" == typeof r) {
-              const b = parseViewName(r), w = await s.fetch("_design/" + b[0] + "/_view/" + b[1] + _, {
+              const b = parseViewName(r), E = await s.fetch("_design/" + b[0] + "/_view/" + b[1] + _, {
                 headers: new h({
                   "Content-Type": "application/json"
                 }),
                 method: m,
                 body: JSON.stringify(u)
               });
-              g = w.ok;
-              const E = await w.json();
+              g = E.ok;
+              const w = await E.json();
               if (!g) {
-                E.status = w.status;
-                throw generateErrorFromResponse(E);
+                w.status = E.status;
+                throw generateErrorFromResponse(w);
               }
-              E.rows.forEach((function(s) {
+              w.rows.forEach((function(s) {
                 if (s.value && s.value.error && "builtin_reduce_error" === s.value.error) throw new Error(s.reason);
               }));
               return new Promise((function(s) {
-                s(E);
+                s(w);
               })).then(postprocessAttachments(o));
             }
             u = u || {};
@@ -10979,13 +10997,13 @@ function createAbstractMapReduce(s, r, o, u) {
               body: JSON.stringify(u)
             });
             g = b.ok;
-            const w = await b.json();
+            const E = await b.json();
             if (!g) {
-              w.status = b.status;
-              throw generateErrorFromResponse(w);
+              E.status = b.status;
+              throw generateErrorFromResponse(E);
             }
             return new Promise((function(s) {
-              s(w);
+              s(E);
             })).then(postprocessAttachments(o));
           }(r, o, g);
           const _ = {
@@ -11003,9 +11021,9 @@ function createAbstractMapReduce(s, r, o, u) {
             }));
             return tempViewQueue.finish();
           } else {
-            const m = o, b = parseViewName(m), w = b[0], E = b[1], S = await r.get("_design/" + w);
-            if (!(o = S.views && S.views[E])) throw new NotFoundError(`ddoc ${S._id} has no view named ${E}`);
-            u(S, E);
+            const m = o, b = parseViewName(m), E = b[0], w = b[1], S = await r.get("_design/" + E);
+            if (!(o = S.views && S.views[w])) throw new NotFoundError(`ddoc ${S._id} has no view named ${w}`);
+            u(S, w);
             checkQueryParseError(g, o);
             const L = await createView(r, m, o.map, o.reduce, false, s);
             if ("ok" === g.stale || "update_after" === g.stale) {
@@ -11455,7 +11473,7 @@ function backOff(s, r, o, u) {
 }
 
 function replicate(s, r, o, u, g) {
-  var _, m, b, w, E = [], S = {
+  var _, m, b, E, w = [], S = {
     seq: 0,
     changes: [],
     docs: []
@@ -11539,10 +11557,10 @@ function replicate(s, r, o, u, g) {
     }
     L = true;
     s.info().then((function(r) {
-      var o = s.activeTasks.get(w);
+      var o = s.activeTasks.get(E);
       if (_ && o) {
         var u = o.completed_items || 0, g = parseInt(r.update_seq, 10) - parseInt(k, 10);
-        s.activeTasks.update(w, {
+        s.activeTasks.update(E, {
           completed_items: u + _.changes.length,
           total_items: g
         });
@@ -11575,8 +11593,8 @@ function replicate(s, r, o, u, g) {
     }));
   }
   function startNextBatch() {
-    if (!u.cancelled && !_) if (0 !== E.length) {
-      _ = E.shift();
+    if (!u.cancelled && !_) if (0 !== w.length) {
+      _ = w.shift();
       u.emit("checkpoint", {
         start_next_batch: _.seq
       });
@@ -11605,7 +11623,7 @@ function replicate(s, r, o, u, g) {
   function processPendingBatch(s) {
     if (0 !== S.changes.length) {
       if (s || O || S.changes.length >= I) {
-        E.push(S);
+        w.push(S);
         S = {
           seq: 0,
           changes: [],
@@ -11617,7 +11635,7 @@ function replicate(s, r, o, u, g) {
         }
         startNextBatch();
       }
-    } else if (0 === E.length && !_) {
+    } else if (0 === w.length && !_) {
       if (T && M.live || O) {
         u.state = "pending";
         u.emit("paused");
@@ -11630,7 +11648,7 @@ function replicate(s, r, o, u, g) {
       if (!r.message) r.message = s;
       g.ok = false;
       g.status = "aborting";
-      E = [];
+      w = [];
       S = {
         seq: 0,
         changes: [],
@@ -11649,7 +11667,7 @@ function replicate(s, r, o, u, g) {
       g.end_time = (new Date).toISOString();
       g.last_seq = C;
       D = true;
-      s.activeTasks.remove(w, _);
+      s.activeTasks.remove(E, _);
       if (_) {
         (_ = createError(_)).result = g;
         var m = (_.name || "").toLowerCase();
@@ -11675,13 +11693,13 @@ function replicate(s, r, o, u, g) {
         pending_batch: S.seq
       });
       (0, import_immediate.default)((function() {
-        processPendingBatch(0 === E.length && M.live);
+        processPendingBatch(0 === w.length && M.live);
       }));
     } else {
-      var m = s.activeTasks.get(w);
+      var m = s.activeTasks.get(E);
       if (m) {
         var b = m.completed_items || 0;
-        s.activeTasks.update(w, {
+        s.activeTasks.update(E, {
           completed_items: ++b
         });
       }
@@ -11721,7 +11739,7 @@ function replicate(s, r, o, u, g) {
     abortReplication("changes rejected", s);
   }
   function getChanges() {
-    if (!x && !O && E.length < A) {
+    if (!x && !O && w.length < A) {
       x = true;
       if (u._changes) {
         u.removeListener("cancel", u._abortChanges);
@@ -11746,7 +11764,7 @@ function replicate(s, r, o, u, g) {
   function createTask(r) {
     return s.info().then((function(u) {
       var g = "undefined" == typeof o.since ? parseInt(u.update_seq, 10) - parseInt(r, 10) : parseInt(u.update_seq, 10);
-      w = s.activeTasks.add({
+      E = s.activeTasks.add({
         name: `${T ? "continuous " : ""}replication from ${u.db_name}`,
         total_items: g
       });
@@ -12062,8 +12080,8 @@ function checkFieldValueType(s, r, o) {
   }
   if ("$exists" === s) if ("boolean" != typeof r) u = "Query operator $exists must be a boolean.";
   if ("$type" === s) {
-    var w = [ "null", "boolean", "number", "string", "array", "object" ], E = '"' + w.slice(0, w.length - 1).join('", "') + '", or "' + w[w.length - 1] + '"';
-    if ("string" != typeof r) u = "Query operator $type must be a string. Supported values: " + E + "."; else if (-1 == w.indexOf(r)) u = "Query operator $type must be a string. Supported values: " + E + ".";
+    var E = [ "null", "boolean", "number", "string", "array", "object" ], w = '"' + E.slice(0, E.length - 1).join('", "') + '", or "' + E[E.length - 1] + '"';
+    if ("string" != typeof r) u = "Query operator $type must be a string. Supported values: " + w + "."; else if (-1 == E.indexOf(r)) u = "Query operator $type must be a string. Supported values: " + w + ".";
   }
   if ("$size" === s) if (parseInt(r, 10) !== r) u = "Query operator $size must be a integer.";
   if ("$regex" === s) if ("string" != typeof r) if (o) u = "Query operator $regex must be a string."; else if (!(r instanceof RegExp)) u = "Query operator $regex must be a string or an instance of a javascript regular expression.";
@@ -12236,8 +12254,8 @@ function createDeepMultiMapper(s, r, o) {
   return function(u) {
     if (!o || matchesSelector(u, o)) {
       for (var g = [], _ = 0, m = s.length; _ < m; _++) {
-        for (var b = parseField(s[_]), w = u, E = 0, S = b.length; E < S; E++) if ("undefined" == typeof (w = w[b[E]])) return;
-        g.push(w);
+        for (var b = parseField(s[_]), E = u, w = 0, S = b.length; w < S; w++) if ("undefined" == typeof (E = E[b[w]])) return;
+        g.push(E);
       }
       r(g);
     }
@@ -12416,13 +12434,13 @@ function createIndex$1(s, r) {
   function getMd5() {
     return o || (o = stringMd5(JSON.stringify(r)));
   }
-  var g = r.name || "idx-" + getMd5(), _ = r.ddoc || "idx-" + getMd5(), m = "_design/" + _, b = false, w = false;
+  var g = r.name || "idx-" + getMd5(), _ = r.ddoc || "idx-" + getMd5(), m = "_design/" + _, b = false, E = false;
   s.constructor.emit("debug", [ "find", "creating index", m ]);
   return upsert(s, m, (function updateDdoc(s) {
     if (s._rev && "query" !== s.language) b = true;
     s.language = "query";
     s.views = s.views || {};
-    if (w = !!s.views[g]) return false;
+    if (E = !!s.views[g]) return false;
     s.views[g] = {
       map: {
         fields: mergeObjects(r.index.fields),
@@ -12445,7 +12463,7 @@ function createIndex$1(s, r) {
       return {
         id: m,
         name: g,
-        result: w ? "exists" : "created"
+        result: E ? "exists" : "created"
       };
     }));
   }));
@@ -12588,9 +12606,9 @@ function findBestMatchingIndex(s, r, o, u, g) {
   if (1 === _.length && !g) return _[0];
   var b = arrayToObject(r);
   if (g) {
-    var w = "_design/" + g[0], E = 2 === g.length ? g[1] : false, S = _.find((function(s) {
-      if (E && s.ddoc === w && E === s.name) return true;
-      if (s.ddoc === w) return true; else return false;
+    var E = "_design/" + g[0], w = 2 === g.length ? g[1] : false, S = _.find((function(s) {
+      if (w && s.ddoc === E && w === s.name) return true;
+      if (s.ddoc === E) return true; else return false;
     }));
     if (!S) throw {
       error: "unknown_error",
@@ -12693,18 +12711,18 @@ function getMultiFieldQueryOpts(s, r) {
     if (false !== u) b.push(COLLATE_HI);
     _ = g.slice(s);
   }
-  for (var w = 0, E = g.length; w < E; w++) {
-    var S = s[g[w]];
+  for (var E = 0, w = g.length; E < w; E++) {
+    var S = s[g[E]];
     if (!S || !Object.keys(S).length) {
-      finish(w);
+      finish(E);
       break;
     } else if (Object.keys(S).some(isNonLogicalMatcher)) {
-      finish(w);
+      finish(E);
       break;
-    } else if (w > 0) {
-      var L = "$gt" in S || "$gte" in S || "$lt" in S || "$lte" in S, O = Object.keys(s[g[w - 1]]), D = arrayEquals(O, [ "$eq" ]), k = arrayEquals(O, Object.keys(S));
+    } else if (E > 0) {
+      var L = "$gt" in S || "$gte" in S || "$lt" in S || "$lte" in S, O = Object.keys(s[g[E - 1]]), D = arrayEquals(O, [ "$eq" ]), k = arrayEquals(O, Object.keys(S));
       if (L && !D && !k) {
-        finish(w);
+        finish(E);
         break;
       }
     }
@@ -13433,9 +13451,9 @@ function make_dirty(s, r) {
 }
 
 function init2(s, r, o, u, g, _, m, b = [ -1 ]) {
-  const w = current_component;
+  const E = current_component;
   set_current_component(s);
-  const E = s.$$ = {
+  const w = s.$$ = {
     fragment: null,
     ctx: [],
     props: _,
@@ -13447,39 +13465,39 @@ function init2(s, r, o, u, g, _, m, b = [ -1 ]) {
     on_disconnect: [],
     before_update: [],
     after_update: [],
-    context: new Map(r.context || (w ? w.$$.context : [])),
+    context: new Map(r.context || (E ? E.$$.context : [])),
     callbacks: blank_object(),
     dirty: b,
     skip_bound: false,
-    root: r.target || w.$$.root
+    root: r.target || E.$$.root
   };
-  m && m(E.root);
+  m && m(w.root);
   let S = false;
-  E.ctx = o ? o(s, r.props || {}, ((r, o, ...u) => {
+  w.ctx = o ? o(s, r.props || {}, ((r, o, ...u) => {
     const _ = u.length ? u[0] : o;
-    if (E.ctx && g(E.ctx[r], E.ctx[r] = _)) {
-      if (!E.skip_bound && E.bound[r]) E.bound[r](_);
+    if (w.ctx && g(w.ctx[r], w.ctx[r] = _)) {
+      if (!w.skip_bound && w.bound[r]) w.bound[r](_);
       if (S) make_dirty(s, r);
     }
     return o;
   })) : [];
-  E.update();
+  w.update();
   S = true;
-  run_all(E.before_update);
-  E.fragment = u ? u(E.ctx) : false;
+  run_all(w.before_update);
+  w.fragment = u ? u(w.ctx) : false;
   if (r.target) {
     if (r.hydrate) {
       start_hydrating();
       const s = children(r.target);
-      E.fragment && E.fragment.l(s);
+      w.fragment && w.fragment.l(s);
       s.forEach(detach);
-    } else E.fragment && E.fragment.c();
+    } else w.fragment && w.fragment.c();
     if (r.intro) transition_in(s.$$.fragment);
     mount_component(s, r.target, r.anchor);
     end_hydrating();
     flush();
   }
-  set_current_component(w);
+  set_current_component(E);
 }
 
 if ("function" == typeof HTMLElement) SvelteElement = class extends HTMLElement {
@@ -13773,7 +13791,7 @@ function get_each_context_1(s, r, o) {
 }
 
 function create_else_block(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V = new Date(s[3].mtime).toLocaleString() + "", G = s[5].length + "", j = new Date(s[4].mtime).toLocaleString() + "", q = s[6].length + "", U = ensure_array_like(s[11]), z = [];
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V = new Date(s[3].mtime).toLocaleString() + "", G = s[5].length + "", j = new Date(s[4].mtime).toLocaleString() + "", q = s[6].length + "", U = ensure_array_like(s[11]), z = [];
   for (let r = 0; r < U.length; r += 1) z[r] = create_each_block_1(get_each_context_1(s, U, r));
   function select_block_type_1(s, r) {
     if (false != s[8]) return create_if_block_3; else return create_else_block_1;
@@ -13791,8 +13809,8 @@ function create_else_block(s) {
       m = space();
       if (K) K.c();
       b = text(" ,");
-      w = text(V);
-      E = space();
+      E = text(V);
+      w = space();
       S = text(G);
       L = text(" letters");
       O = space();
@@ -13826,8 +13844,8 @@ function create_else_block(s) {
       append(g, m);
       if (K) K.m(g, null);
       append(g, b);
-      append(g, w);
       append(g, E);
+      append(g, w);
       append(g, S);
       append(g, L);
       insert(V, O, G);
@@ -13880,7 +13898,7 @@ function create_else_block(s) {
         K.d(1);
         K = null;
       }
-      if (8 & o && V !== (V = new Date(s[3].mtime).toLocaleString() + "")) set_data(w, V);
+      if (8 & o && V !== (V = new Date(s[3].mtime).toLocaleString() + "")) set_data(E, V);
       if (32 & o && G !== (G = s[5].length + "")) set_data(S, G);
       if (4 & o) set_data(k, s[2]);
       if (s[3]._id == s[4]._id) if (Q) Q.p(s, o); else {
@@ -13929,10 +13947,10 @@ function create_if_block(s) {
       attr(g, "class", "svelte-guf68w");
       attr(u, "class", "buttons svelte-guf68w");
     },
-    m(b, w) {
-      insert(b, r, w);
-      insert(b, o, w);
-      insert(b, u, w);
+    m(b, E) {
+      insert(b, r, E);
+      insert(b, o, E);
+      insert(b, u, E);
       append(u, g);
       if (!_) {
         m = listen(g, "click", s[12]);
@@ -13953,8 +13971,8 @@ function create_if_block(s) {
 }
 
 function create_if_block_4(s) {
-  let r, o, u, g, _, m, b, w, E, S, L = false, O = s[28][1] + "";
-  w = init_binding_group(s[21][0]);
+  let r, o, u, g, _, m, b, E, w, S, L = false, O = s[28][1] + "";
+  E = init_binding_group(s[21][0]);
   return {
     c() {
       r = element("label");
@@ -13969,7 +13987,7 @@ function create_if_block_4(s) {
       attr(o, "class", "sls-setting-tab svelte-guf68w");
       attr(_, "class", "sls-setting-menu-btn svelte-guf68w");
       attr(r, "class", b = null_to_empty("sls-setting-label " + (s[28][0] == s[7] ? "selected" : "")) + " svelte-guf68w");
-      w.p(o);
+      E.p(o);
     },
     m(u, b) {
       insert(u, r, b);
@@ -13978,9 +13996,9 @@ function create_if_block_4(s) {
       append(r, g);
       append(r, _);
       append(_, m);
-      if (!E) {
+      if (!w) {
         S = listen(o, "change", s[20]);
-        E = true;
+        w = true;
       }
     },
     p(s, g) {
@@ -13995,8 +14013,8 @@ function create_if_block_4(s) {
     },
     d(s) {
       if (s) detach(r);
-      w.r();
-      E = false;
+      E.r();
+      w = false;
       S();
     }
   };
@@ -14201,14 +14219,14 @@ function revStringToRevNumber(s) {
 }
 
 function instance(s, r, o) {
-  let u, g, _, m, b, w, {docs: E = []} = r, {callback: S = (async (s, r) => {
+  let u, g, _, m, b, E, {docs: w = []} = r, {callback: S = (async (s, r) => {
     Promise.resolve();
   })} = r, {filename: L = ""} = r, {nameA: O = "A"} = r, {nameB: D = "B"} = r, {defaultSelect: k = ""} = r, C = "", T = "", I = {}, A = {}, R = {}, x = {}, P = k;
   function docToString(s) {
     return "plain" == s.datatype ? getDocData(s.data) : readString(new Uint8Array(decodeBinary(s.data)));
   }
   s.$$set = s => {
-    if ("docs" in s) o(13, E = s.docs);
+    if ("docs" in s) o(13, w = s.docs);
     if ("callback" in s) o(14, S = s.callback);
     if ("filename" in s) o(0, L = s.filename);
     if ("nameA" in s) o(1, O = s.nameA);
@@ -14216,13 +14234,13 @@ function instance(s, r, o) {
     if ("defaultSelect" in s) o(15, k = s.defaultSelect);
   };
   s.$$.update = () => {
-    if (991352 & s.$$.dirty) if (E && E.length >= 1) {
-      if (E[0].mtime < E[1].mtime) {
-        o(3, m = E[0]);
-        o(4, b = E[1]);
+    if (991352 & s.$$.dirty) if (w && w.length >= 1) {
+      if (w[0].mtime < w[1].mtime) {
+        o(3, m = w[0]);
+        o(4, b = w[1]);
       } else {
-        o(3, m = E[1]);
-        o(4, b = E[0]);
+        o(3, m = w[1]);
+        o(4, b = w[0]);
       }
       o(5, C = docToString(m));
       o(6, T = docToString(b));
@@ -14247,7 +14265,7 @@ function instance(s, r, o) {
       BA: x
     });
     if (640 & s.$$.dirty) o(8, g = P in u ? u[P] : {});
-    if (65792 & s.$$.dirty) o(10, w = function getJsonDiff(s, r) {
+    if (65792 & s.$$.dirty) o(10, E = function getJsonDiff(s, r) {
       return function getDiff(s, r) {
         const o = new import_diff_match_patch.diff_match_patch, u = o.diff_linesToChars_(s, r), g = o.diff_main(u.chars1, u.chars2, false);
         o.diff_charsToLines_(g, u.lineArray);
@@ -14256,7 +14274,7 @@ function instance(s, r, o) {
     }(I, g));
     if (6 & s.$$.dirty) o(11, _ = [ [ "", "Not now" ], [ "A", O || "A" ], [ "B", D || "B" ], [ "AB", `${O || "A"} + ${D || "B"}` ], [ "BA", `${D || "B"} + ${O || "A"}` ] ]);
   };
-  return [ L, O, D, m, b, C, T, P, g, u, w, _, function apply() {
+  return [ L, O, D, m, b, C, T, P, g, u, E, _, function apply() {
     if (m._id == b._id) {
       if ("A" == P) return S(m._rev, null);
       if ("B" == P) return S(b._rev, null);
@@ -14267,7 +14285,7 @@ function instance(s, r, o) {
     if ("BA" == P) return S(null, JSON.stringify(x, null, 2));
     if ("AB" == P) return S(null, JSON.stringify(R, null, 2));
     S(null, null);
-  }, E, S, k, I, A, R, x, function input_change_handler() {
+  }, w, S, k, I, A, R, x, function input_change_handler() {
     P = this.__value;
     o(7, P);
   }, [ [] ] ];
@@ -14457,10 +14475,10 @@ function deserialize2(s) {
     mtime: m,
     files: []
   });
-  let w = "";
+  let E = "";
   do {
-    w = r.next();
-    if (!w) break;
+    E = r.next();
+    if (!E) break;
     const s = r.next(), o = r.next();
     r.nextLine();
     const u = Number(r.next()), g = Number(r.next());
@@ -14473,7 +14491,7 @@ function deserialize2(s) {
       _.push(m);
     } while ("" != m);
     b.files.push({
-      filename: w,
+      filename: E,
       displayName: s,
       version: o,
       mtime: u,
@@ -14481,7 +14499,7 @@ function deserialize2(s) {
       data: _
     });
     r.nextLine();
-  } while (w);
+  } while (E);
   return b;
 }
 
@@ -14856,7 +14874,7 @@ var pluginList = writable([]), pluginIsEnumerating = writable(false), ConfigSync
     return await serialized(`plugin-${u}`, (async () => {
       const r = this.getFileCategory(s);
       let u = 0, g = [];
-      const _ = "CONFIG" == r || "SNIPPET" == r ? s.split("/").reverse()[0] : s.split("/").reverse()[1], m = s.split("/").slice(0, -1).join("/"), b = this.filenameToUnifiedKey(s, o), w = await this.path2id(b), E = {
+      const _ = "CONFIG" == r || "SNIPPET" == r ? s.split("/").reverse()[0] : s.split("/").reverse()[1], m = s.split("/").slice(0, -1).join("/"), b = this.filenameToUnifiedKey(s, o), E = await this.path2id(b), w = {
         category: r,
         files: [],
         name: _,
@@ -14865,30 +14883,30 @@ var pluginList = writable([]), pluginIsEnumerating = writable(false), ConfigSync
       };
       if ("CONFIG" == r || "SNIPPET" == r || "PLUGIN_ETC" == r || "PLUGIN_DATA" == r) {
         g = [ s ];
-        if ("PLUGIN_ETC" == r) E.displayName = s.split("/").slice(-1).join("/");
+        if ("PLUGIN_ETC" == r) w.displayName = s.split("/").slice(-1).join("/");
       } else if ("PLUGIN_MAIN" == r) g = [ "manifest.json", "main.js", "styles.css" ].map((s => `${m}/${s}`)); else if ("THEME" == r) g = [ "manifest.json", "theme.css" ].map((s => `${m}/${s}`));
       for (const s of g) {
         const r = await this.makeEntryFromFile(s);
         if (false != r) {
-          if (r.version) E.version = r.version;
-          if (r.displayName) E.displayName = r.displayName;
+          if (r.version) w.version = r.version;
+          if (r.displayName) w.displayName = r.displayName;
           u = 0 == u ? r.mtime : (r.mtime + u) / 2;
-          E.files.push(r);
+          w.files.push(r);
         }
       }
-      E.mtime = u;
-      if (0 == E.files.length) {
+      w.mtime = u;
+      if (0 == w.files.length) {
         Logger(`Nothing left: deleting.. ${s}`);
         await this.deleteConfigOnDatabase(b);
         await this.updatePluginList(false, b);
         return;
       }
-      const S = createTextBlob(serialize(E));
+      const S = createTextBlob(serialize(w));
       try {
         const s = await this.localDatabase.getDBEntryMeta(b, null, false);
         let r;
         if (false === s) r = {
-          _id: w,
+          _id: E,
           path: b,
           data: S,
           mtime: u,
@@ -15032,14 +15050,14 @@ function create_else_block_3(s) {
       b.disabled = true;
       attr(b, "class", "svelte-tsbdtg");
     },
-    m(s, w) {
-      insert(s, r, w);
-      insert(s, o, w);
-      insert(s, u, w);
-      insert(s, g, w);
-      insert(s, _, w);
-      insert(s, m, w);
-      insert(s, b, w);
+    m(s, E) {
+      insert(s, r, E);
+      insert(s, o, E);
+      insert(s, u, E);
+      insert(s, g, E);
+      insert(s, _, E);
+      insert(s, m, E);
+      insert(s, b, E);
     },
     p: noop,
     d(s) {
@@ -15094,7 +15112,7 @@ function create_if_block2(s) {
 }
 
 function create_if_block_12(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I, A, R = ensure_array_like(s[8]), x = [];
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I, A, R = ensure_array_like(s[8]), x = [];
   for (let r = 0; r < R.length; r += 1) x[r] = create_each_block2(get_each_context2(s, R, r));
   function select_block_type_1(s, r) {
     if (s[6] || s[1] && "" != s[2]) return create_if_block_42; else return create_else_block_2;
@@ -15109,8 +15127,8 @@ function create_if_block_12(s) {
       _ = element("span");
       m = text(s[4]);
       b = space();
-      w = element("span");
-      E = text(s[5]);
+      E = element("span");
+      w = text(s[5]);
       S = space();
       L = element("select");
       O = element("option");
@@ -15123,7 +15141,7 @@ function create_if_block_12(s) {
       T = empty();
       attr(o, "class", "message svelte-tsbdtg");
       attr(_, "class", "message svelte-tsbdtg");
-      attr(w, "class", "message svelte-tsbdtg");
+      attr(E, "class", "message svelte-tsbdtg");
       attr(r, "class", "messages svelte-tsbdtg");
       O.__value = D = "";
       set_input_value(O, O.__value);
@@ -15137,8 +15155,8 @@ function create_if_block_12(s) {
       append(r, _);
       append(_, m);
       append(r, b);
-      append(r, w);
-      append(w, E);
+      append(r, E);
+      append(E, w);
       insert(D, S, R);
       insert(D, L, R);
       append(L, O);
@@ -15157,7 +15175,7 @@ function create_if_block_12(s) {
     p(s, r) {
       if (8 & r[0]) set_data(u, s[3]);
       if (16 & r[0]) set_data(m, s[4]);
-      if (32 & r[0]) set_data(E, s[5]);
+      if (32 & r[0]) set_data(w, s[5]);
       if (256 & r[0]) {
         R = ensure_array_like(s[8]);
         let o;
@@ -15464,7 +15482,7 @@ function create_fragment2(s) {
 }
 
 function instance2(s, r, o) {
-  let {list: u = []} = r, {thisTerm: g = ""} = r, {hideNotApplicable: _ = false} = r, {selectNewest: m = 0} = r, {applyAllPluse: b = 0} = r, {applyData: w} = r, {compareData: E} = r, {deleteData: S} = r, {hidden: L} = r, {plugin: O} = r, {isMaintenanceMode: D = false} = r;
+  let {list: u = []} = r, {thisTerm: g = ""} = r, {hideNotApplicable: _ = false} = r, {selectNewest: m = 0} = r, {applyAllPluse: b = 0} = r, {applyData: E} = r, {compareData: w} = r, {deleteData: S} = r, {hidden: L} = r, {plugin: O} = r, {isMaintenanceMode: D = false} = r;
   const k = O.addOnConfigSync;
   let C = "", T = "", I = "", A = "", R = false, x = false, P = 0, N = 0, B = [];
   async function comparePlugin(s, r) {
@@ -15489,10 +15507,10 @@ function instance2(s, r, o) {
         m = true;
       }
     }
-    const w = (null == s ? void 0 : s.version) || "0.0.0", E = (null == r ? void 0 : r.version) || "0.0.0";
+    const E = (null == s ? void 0 : s.version) || "0.0.0", w = (null == r ? void 0 : r.version) || "0.0.0";
     if ((null == s ? void 0 : s.version) || (null == r ? void 0 : r.version)) {
-      const s = versionNumberString2Number(w), r = versionNumberString2Number(E);
-      if (s == r) _ = "⚖️ Same ver."; else if (s > r) _ = `⚠ Lower ${w} > ${E}`; else if (s < r) _ = `✓ Higher ${w} < ${E}`;
+      const s = versionNumberString2Number(E), r = versionNumberString2Number(w);
+      if (s == r) _ = "⚖️ Same ver."; else if (s > r) _ = `⚠ Lower ${E} > ${w}`; else if (s < r) _ = `✓ Higher ${E} < ${w}`;
     }
     if (m) {
       const {canApply: o, equivalency: u, canCompare: m} = await async function checkEquivalency(s, r) {
@@ -15540,7 +15558,7 @@ function instance2(s, r, o) {
   }
   async function applySelected() {
     const s = u.find((s => s.term == g)), r = u.find((s => s.term == C));
-    if (r && await w(r)) k.updatePluginList(true, null == s ? void 0 : s.documentPath);
+    if (r && await E(r)) k.updatePluginList(true, null == s ? void 0 : s.documentPath);
   }
   s.$$set = s => {
     if ("list" in s) o(13, u = s.list);
@@ -15548,8 +15566,8 @@ function instance2(s, r, o) {
     if ("hideNotApplicable" in s) o(15, _ = s.hideNotApplicable);
     if ("selectNewest" in s) o(16, m = s.selectNewest);
     if ("applyAllPluse" in s) o(17, b = s.applyAllPluse);
-    if ("applyData" in s) o(18, w = s.applyData);
-    if ("compareData" in s) o(19, E = s.compareData);
+    if ("applyData" in s) o(18, E = s.applyData);
+    if ("compareData" in s) o(19, w = s.compareData);
     if ("deleteData" in s) o(20, S = s.deleteData);
     if ("hidden" in s) o(0, L = s.hidden);
     if ("plugin" in s) o(21, O = s.plugin);
@@ -15607,7 +15625,7 @@ function instance2(s, r, o) {
   };
   return [ L, D, C, T, I, A, R, x, B, applySelected, async function compareSelected() {
     const s = u.find((s => s.term == g)), r = u.find((s => s.term == C));
-    if (s && r && await E(s, r)) k.updatePluginList(true, s.documentPath);
+    if (s && r && await w(s, r)) k.updatePluginList(true, s.documentPath);
   }, async function deleteSelected() {
     const s = u.find((s => s.term == C));
     if (s && await S(s)) k.reloadPluginList(true);
@@ -15622,7 +15640,7 @@ function instance2(s, r, o) {
       await k.storeCustomizationFiles(o, r);
       await k.updatePluginList(false, k.filenameToUnifiedKey(o, r));
     }
-  }, u, g, _, m, b, w, E, S, O, P, N, function select_change_handler() {
+  }, u, g, _, m, b, E, w, S, O, P, N, function select_change_handler() {
     C = select_value(this);
     o(2, C);
     o(8, B);
@@ -15649,59 +15667,65 @@ var PluginCombo = class extends SvelteComponent {
 }, PluginCombo_default = PluginCombo, import_obsidian3 = require("obsidian");
 
 function add_css3(s) {
-  append_styles(s, "svelte-17wm1te", "h3.svelte-17wm1te.svelte-17wm1te{position:sticky;top:0;background-color:var(--modal-background)}.labelrow.svelte-17wm1te.svelte-17wm1te{margin-left:0.4em;display:flex;justify-content:flex-start;align-items:center;border-top:1px solid var(--background-modifier-border);padding:4px;flex-wrap:wrap}.filerow.svelte-17wm1te.svelte-17wm1te{margin-left:1.25em;display:flex;justify-content:flex-start;align-items:center;padding-right:4px;flex-wrap:wrap}.filerow.hideeven.svelte-17wm1te.svelte-17wm1te:has(.even),.labelrow.hideeven.svelte-17wm1te.svelte-17wm1te:has(.even){display:none}.noterow.svelte-17wm1te.svelte-17wm1te{min-height:2em;display:flex}button.status.svelte-17wm1te.svelte-17wm1te{flex-grow:0;margin:2px 4px;min-width:3em;max-width:4em}.statusnote.svelte-17wm1te.svelte-17wm1te{display:flex;justify-content:flex-end;padding-right:var(--size-4-12);align-items:center;min-width:10em;flex-grow:1}.title.svelte-17wm1te.svelte-17wm1te{color:var(--text-normal);font-size:var(--font-ui-medium);line-height:var(--line-height-tight);margin-right:auto}.filetitle.svelte-17wm1te.svelte-17wm1te{color:var(--text-normal);font-size:var(--font-ui-medium);line-height:var(--line-height-tight);margin-right:auto}.buttons.svelte-17wm1te.svelte-17wm1te{display:flex;flex-direction:row;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}.buttons.svelte-17wm1te>button.svelte-17wm1te{margin-left:4px;width:auto}label.svelte-17wm1te.svelte-17wm1te{display:flex;justify-content:center;align-items:center}label.svelte-17wm1te>span.svelte-17wm1te{margin-right:0.25em}.is-mobile .title.svelte-17wm1te.svelte-17wm1te,.is-mobile .filetitle.svelte-17wm1te.svelte-17wm1te{width:100%}.center.svelte-17wm1te.svelte-17wm1te{display:flex;justify-content:center;align-items:center;min-height:3em}");
+  append_styles(s, "svelte-664idh", "h3.svelte-664idh.svelte-664idh{position:sticky;top:0;background-color:var(--modal-background)}.labelrow.svelte-664idh.svelte-664idh{margin-left:0.4em;display:flex;justify-content:flex-start;align-items:center;border-top:1px solid var(--background-modifier-border);padding:4px;flex-wrap:wrap}.filerow.svelte-664idh.svelte-664idh{margin-left:1.25em;display:flex;justify-content:flex-start;align-items:center;padding-right:4px;flex-wrap:wrap}.filerow.hideeven.svelte-664idh.svelte-664idh:has(.even),.labelrow.hideeven.svelte-664idh.svelte-664idh:has(.even){display:none}.noterow.svelte-664idh.svelte-664idh{min-height:2em;display:flex}button.status.svelte-664idh.svelte-664idh{flex-grow:0;margin:2px 4px;min-width:3em;max-width:4em}.statusnote.svelte-664idh.svelte-664idh{display:flex;justify-content:flex-end;padding-right:var(--size-4-12);align-items:center;min-width:10em;flex-grow:1}.title.svelte-664idh.svelte-664idh{color:var(--text-normal);font-size:var(--font-ui-medium);line-height:var(--line-height-tight);margin-right:auto}.filetitle.svelte-664idh.svelte-664idh{color:var(--text-normal);font-size:var(--font-ui-medium);line-height:var(--line-height-tight);margin-right:auto}.buttons.svelte-664idh.svelte-664idh{display:flex;flex-direction:row;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}.buttons.svelte-664idh>button.svelte-664idh{margin-left:4px;width:auto}label.svelte-664idh.svelte-664idh{display:flex;justify-content:center;align-items:center}label.svelte-664idh>span.svelte-664idh{margin-right:0.25em}.is-mobile .title.svelte-664idh.svelte-664idh,.is-mobile .filetitle.svelte-664idh.svelte-664idh{width:100%}.center.svelte-664idh.svelte-664idh{display:flex;justify-content:center;align-items:center;min-height:3em}.maintenancerow.svelte-664idh.svelte-664idh{display:flex;justify-content:flex-end;align-items:center}.maintenancerow.svelte-664idh label.svelte-664idh{margin-right:0.5em;margin-left:0.5em}");
 }
 
 function get_each_context3(s, r, o) {
-  var u, g, _;
-  const m = s.slice();
-  m[48] = r[o][0];
-  m[49] = r[o][1];
-  const b = `${PREFIX_PLUGIN_ALL}/${m[48]}`;
-  m[50] = b;
-  const w = null != (u = m[4].get(m[50])) ? u : MODE_SELECTIVE;
-  m[51] = w;
-  const E = `${PREFIX_PLUGIN_MAIN}/${m[48]}`;
-  m[52] = E;
-  const S = null != (g = m[4].get(m[52])) ? g : MODE_SELECTIVE;
-  m[53] = S;
-  const L = `${PREFIX_PLUGIN_DATA}/${m[48]}`;
-  m[54] = L;
-  const O = null != (_ = m[4].get(m[54])) ? _ : MODE_SELECTIVE;
-  m[55] = O;
-  return m;
-}
-
-function get_each_context_12(s, r, o) {
   const u = s.slice();
-  u[58] = r[o][0];
-  u[59] = r[o][1];
+  u[53] = r[o];
   return u;
 }
 
+function get_each_context_12(s, r, o) {
+  var u, g, _;
+  const m = s.slice();
+  m[56] = r[o][0];
+  m[57] = r[o][1];
+  const b = `${PREFIX_PLUGIN_ALL}/${m[56]}`;
+  m[58] = b;
+  const E = null != (u = m[5].get(m[58])) ? u : MODE_SELECTIVE;
+  m[59] = E;
+  const w = `${PREFIX_PLUGIN_MAIN}/${m[56]}`;
+  m[60] = w;
+  const S = null != (g = m[5].get(m[60])) ? g : MODE_SELECTIVE;
+  m[61] = S;
+  const L = `${PREFIX_PLUGIN_DATA}/${m[56]}`;
+  m[62] = L;
+  const O = null != (_ = m[5].get(m[62])) ? _ : MODE_SELECTIVE;
+  m[63] = O;
+  return m;
+}
+
 function get_each_context_2(s, r, o) {
+  const u = s.slice();
+  u[66] = r[o][0];
+  u[67] = r[o][1];
+  return u;
+}
+
+function get_each_context_3(s, r, o) {
   var u;
   const g = s.slice();
-  g[48] = r[o];
-  const _ = `${g[58]}/${g[48]}`;
-  g[62] = _;
-  const m = null != (u = g[4].get(g[62])) ? u : MODE_SELECTIVE;
-  g[63] = m;
+  g[56] = r[o];
+  const _ = `${g[66]}/${g[56]}`;
+  g[70] = _;
+  const m = null != (u = g[5].get(g[70])) ? u : MODE_SELECTIVE;
+  g[71] = m;
   return g;
 }
 
-function create_if_block_7(s) {
+function create_if_block_8(s) {
   let r, o, u;
   return {
     c() {
       r = element("button");
       r.textContent = "Reload";
-      attr(r, "class", "svelte-17wm1te");
+      attr(r, "class", "svelte-664idh");
     },
     m(g, _) {
       insert(g, r, _);
       if (!o) {
-        u = listen(r, "click", s[25]);
+        u = listen(r, "click", s[28]);
         o = true;
       }
     },
@@ -15714,7 +15738,7 @@ function create_if_block_7(s) {
   };
 }
 
-function create_if_block_6(s) {
+function create_if_block_7(s) {
   let r;
   return {
     c() {
@@ -15731,15 +15755,15 @@ function create_if_block_6(s) {
 }
 
 function create_else_block3(s) {
-  let r, o, u, g, _, m = ensure_array_like(Object.entries(s[9]).filter(s[28])), b = [];
-  for (let r = 0; r < m.length; r += 1) b[r] = create_each_block_12(get_each_context_12(s, m, r));
+  let r, o, u, g, _, m = ensure_array_like(Object.entries(s[11]).filter(s[31])), b = [];
+  for (let r = 0; r < m.length; r += 1) b[r] = create_each_block_2(get_each_context_2(s, m, r));
   const out = s => transition_out(b[s], 1, 1, (() => {
     b[s] = null;
   }));
-  let w = ensure_array_like(groupBy(filterList(s[0], [ "PLUGIN_MAIN", "PLUGIN_DATA", "PLUGIN_ETC" ]), "name")), E = [];
-  for (let r = 0; r < w.length; r += 1) E[r] = create_each_block3(get_each_context3(s, w, r));
-  const out_1 = s => transition_out(E[s], 1, 1, (() => {
-    E[s] = null;
+  let E = ensure_array_like(groupBy(filterList(s[0], [ "PLUGIN_MAIN", "PLUGIN_DATA", "PLUGIN_ETC" ]), "name")), w = [];
+  for (let r = 0; r < E.length; r += 1) w[r] = create_each_block_12(get_each_context_12(s, E, r));
+  const out_1 = s => transition_out(w[s], 1, 1, (() => {
+    w[s] = null;
   }));
   return {
     c() {
@@ -15749,8 +15773,8 @@ function create_else_block3(s) {
       u = element("h3");
       u.textContent = "Plugins";
       g = space();
-      for (let s = 0; s < E.length; s += 1) E[s].c();
-      attr(u, "class", "svelte-17wm1te");
+      for (let s = 0; s < w.length; s += 1) w[s].c();
+      attr(u, "class", "svelte-664idh");
     },
     m(s, m) {
       for (let r = 0; r < b.length; r += 1) if (b[r]) b[r].m(s, m);
@@ -15758,20 +15782,20 @@ function create_else_block3(s) {
       insert(s, o, m);
       append(o, u);
       append(o, g);
-      for (let s = 0; s < E.length; s += 1) if (E[s]) E[s].m(o, null);
+      for (let s = 0; s < w.length; s += 1) if (w[s]) w[s].m(o, null);
       _ = true;
     },
     p(s, u) {
-      if (115317 & u[0]) {
-        m = ensure_array_like(Object.entries(s[9]).filter(s[28]));
+      if (461157 & u[0]) {
+        m = ensure_array_like(Object.entries(s[11]).filter(s[31]));
         let o;
         for (o = 0; o < m.length; o += 1) {
-          const g = get_each_context_12(s, m, o);
+          const g = get_each_context_2(s, m, o);
           if (b[o]) {
             b[o].p(g, u);
             transition_in(b[o], 1);
           } else {
-            b[o] = create_each_block_12(g);
+            b[o] = create_each_block_2(g);
             b[o].c();
             transition_in(b[o], 1);
             b[o].m(r.parentNode, r);
@@ -15781,38 +15805,38 @@ function create_else_block3(s) {
         for (o = m.length; o < b.length; o += 1) out(o);
         check_outros();
       }
-      if (114773 & u[0]) {
-        w = ensure_array_like(groupBy(filterList(s[0], [ "PLUGIN_MAIN", "PLUGIN_DATA", "PLUGIN_ETC" ]), "name"));
+      if (459045 & u[0]) {
+        E = ensure_array_like(groupBy(filterList(s[0], [ "PLUGIN_MAIN", "PLUGIN_DATA", "PLUGIN_ETC" ]), "name"));
         let r;
-        for (r = 0; r < w.length; r += 1) {
-          const g = get_each_context3(s, w, r);
-          if (E[r]) {
-            E[r].p(g, u);
-            transition_in(E[r], 1);
+        for (r = 0; r < E.length; r += 1) {
+          const g = get_each_context_12(s, E, r);
+          if (w[r]) {
+            w[r].p(g, u);
+            transition_in(w[r], 1);
           } else {
-            E[r] = create_each_block3(g);
-            E[r].c();
-            transition_in(E[r], 1);
-            E[r].m(o, null);
+            w[r] = create_each_block_12(g);
+            w[r].c();
+            transition_in(w[r], 1);
+            w[r].m(o, null);
           }
         }
         group_outros();
-        for (r = w.length; r < E.length; r += 1) out_1(r);
+        for (r = E.length; r < w.length; r += 1) out_1(r);
         check_outros();
       }
     },
     i(s) {
       if (!_) {
         for (let s = 0; s < m.length; s += 1) transition_in(b[s]);
-        for (let s = 0; s < w.length; s += 1) transition_in(E[s]);
+        for (let s = 0; s < E.length; s += 1) transition_in(w[s]);
         _ = true;
       }
     },
     o(s) {
       b = b.filter(Boolean);
       for (let s = 0; s < b.length; s += 1) transition_out(b[s]);
-      E = E.filter(Boolean);
-      for (let s = 0; s < E.length; s += 1) transition_out(E[s]);
+      w = w.filter(Boolean);
+      for (let s = 0; s < w.length; s += 1) transition_out(w[s]);
       _ = false;
     },
     d(s) {
@@ -15821,18 +15845,18 @@ function create_else_block3(s) {
         detach(o);
       }
       destroy_each(b, s);
-      destroy_each(E, s);
+      destroy_each(w, s);
     }
   };
 }
 
-function create_if_block3(s) {
+function create_if_block_13(s) {
   let r;
   return {
     c() {
       r = element("div");
       r.textContent = "No Items.";
-      attr(r, "class", "center svelte-17wm1te");
+      attr(r, "class", "center svelte-664idh");
     },
     m(s, o) {
       insert(s, r, o);
@@ -15847,19 +15871,19 @@ function create_if_block3(s) {
 }
 
 function create_else_block_4(s) {
-  let r, o, u = s[15][s[63]] + "";
+  let r, o, u = s[17][s[71]] + "";
   return {
     c() {
       r = element("div");
       o = text(u);
-      attr(r, "class", "statusnote svelte-17wm1te");
+      attr(r, "class", "statusnote svelte-664idh");
     },
     m(s, u) {
       insert(s, r, u);
       append(r, o);
     },
     p(s, r) {
-      if (48 & r[0] && u !== (u = s[15][s[63]] + "")) set_data(o, u);
+      if (96 & r[0] && u !== (u = s[17][s[71]] + "")) set_data(o, u);
     },
     i: noop,
     o: noop,
@@ -15869,12 +15893,12 @@ function create_else_block_4(s) {
   };
 }
 
-function create_if_block_52(s) {
+function create_if_block_6(s) {
   let r, o;
   function func_1(...r) {
-    return s[30](s[58], s[48], ...r);
+    return s[33](s[66], s[56], ...r);
   }
-  const u = [ s[6], {
+  const u = [ s[8], {
     list: s[0].filter(func_1)
   }, {
     hidden: false
@@ -15894,7 +15918,7 @@ function create_if_block_52(s) {
     },
     p(o, g) {
       s = o;
-      const _ = 609 & g[0] ? get_spread_update(u, [ 64 & g[0] && get_spread_object(s[6]), 545 & g[0] && {
+      const _ = 2369 & g[0] ? get_spread_update(u, [ 256 & g[0] && get_spread_object(s[8]), 2113 & g[0] && {
         list: s[0].filter(func_1)
       }, u[2] ]) : {};
       r.$set(_);
@@ -15915,17 +15939,17 @@ function create_if_block_52(s) {
   };
 }
 
-function create_each_block_2(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C = s[16](s[63]) + "", T = s[48] + "";
+function create_each_block_3(s) {
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C = s[18](s[71]) + "", T = s[56] + "";
   function click_handler_6(...r) {
-    return s[29](s[58], s[48], s[62], ...r);
+    return s[32](s[66], s[56], s[70], ...r);
   }
-  const I = [ create_if_block_52, create_else_block_4 ], A = [];
+  const I = [ create_if_block_6, create_else_block_4 ], A = [];
   function select_block_type_1(s, r) {
-    if (s[63] == MODE_SELECTIVE) return 0; else return 1;
+    if (s[71] == MODE_SELECTIVE) return 0; else return 1;
   }
-  E = select_block_type_1(s);
-  S = A[E] = I[E](s);
+  w = select_block_type_1(s);
+  S = A[w] = I[w](s);
   return {
     c() {
       r = element("div");
@@ -15935,12 +15959,12 @@ function create_each_block_2(s) {
       _ = space();
       m = element("span");
       b = text(T);
-      w = space();
+      E = space();
       S.c();
-      attr(u, "class", "status svelte-17wm1te");
+      attr(u, "class", "status svelte-664idh");
       attr(m, "class", "name");
-      attr(o, "class", "title svelte-17wm1te");
-      attr(r, "class", L = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te");
+      attr(o, "class", "title svelte-664idh");
+      attr(r, "class", L = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-664idh");
     },
     m(s, S) {
       insert(s, r, S);
@@ -15950,8 +15974,8 @@ function create_each_block_2(s) {
       append(o, _);
       append(o, m);
       append(m, b);
-      append(r, w);
-      A[E].m(r, null);
+      append(r, E);
+      A[w].m(r, null);
       O = true;
       if (!D) {
         k = listen(u, "click", click_handler_6);
@@ -15960,25 +15984,25 @@ function create_each_block_2(s) {
     },
     p(o, u) {
       s = o;
-      if ((!O || 48 & u[0]) && C !== (C = s[16](s[63]) + "")) set_data(g, C);
-      if ((!O || 32 & u[0]) && T !== (T = s[48] + "")) set_data(b, T);
-      let _ = E;
-      E = select_block_type_1(s);
-      if (E === _) A[E].p(s, u); else {
+      if ((!O || 96 & u[0]) && C !== (C = s[18](s[71]) + "")) set_data(g, C);
+      if ((!O || 64 & u[0]) && T !== (T = s[56] + "")) set_data(b, T);
+      let _ = w;
+      w = select_block_type_1(s);
+      if (w === _) A[w].p(s, u); else {
         group_outros();
         transition_out(A[_], 1, 1, (() => {
           A[_] = null;
         }));
         check_outros();
-        S = A[E];
+        S = A[w];
         if (!S) {
-          S = A[E] = I[E](s);
+          S = A[w] = I[w](s);
           S.c();
         } else S.p(s, u);
         transition_in(S, 1);
         S.m(r, null);
       }
-      if (!O || 4 & u[0] && L !== (L = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te")) attr(r, "class", L);
+      if (!O || 4 & u[0] && L !== (L = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-664idh")) attr(r, "class", L);
     },
     i(s) {
       if (!O) {
@@ -15992,18 +16016,18 @@ function create_each_block_2(s) {
     },
     d(s) {
       if (s) detach(r);
-      A[E].d();
+      A[w].d();
       D = false;
       k();
     }
   };
 }
 
-function create_each_block_12(s) {
-  let r, o, u, g, _, m = s[59] + "", b = ensure_array_like(s[5][s[58]]), w = [];
-  for (let r = 0; r < b.length; r += 1) w[r] = create_each_block_2(get_each_context_2(s, b, r));
-  const out = s => transition_out(w[s], 1, 1, (() => {
-    w[s] = null;
+function create_each_block_2(s) {
+  let r, o, u, g, _, m = s[67] + "", b = ensure_array_like(s[6][s[66]]), E = [];
+  for (let r = 0; r < b.length; r += 1) E[r] = create_each_block_3(get_each_context_3(s, b, r));
+  const out = s => transition_out(E[s], 1, 1, (() => {
+    E[s] = null;
   }));
   return {
     c() {
@@ -16011,61 +16035,61 @@ function create_each_block_12(s) {
       o = element("h3");
       u = text(m);
       g = space();
-      for (let s = 0; s < w.length; s += 1) w[s].c();
-      attr(o, "class", "svelte-17wm1te");
+      for (let s = 0; s < E.length; s += 1) E[s].c();
+      attr(o, "class", "svelte-664idh");
     },
     m(s, m) {
       insert(s, r, m);
       append(r, o);
       append(o, u);
       append(r, g);
-      for (let s = 0; s < w.length; s += 1) if (w[s]) w[s].m(r, null);
+      for (let s = 0; s < E.length; s += 1) if (E[s]) E[s].m(r, null);
       _ = true;
     },
     p(s, o) {
-      if ((!_ || 32 & o[0]) && m !== (m = s[59] + "")) set_data(u, m);
-      if (115317 & o[0]) {
-        b = ensure_array_like(s[5][s[58]]);
+      if ((!_ || 64 & o[0]) && m !== (m = s[67] + "")) set_data(u, m);
+      if (461157 & o[0]) {
+        b = ensure_array_like(s[6][s[66]]);
         let u;
         for (u = 0; u < b.length; u += 1) {
-          const g = get_each_context_2(s, b, u);
-          if (w[u]) {
-            w[u].p(g, o);
-            transition_in(w[u], 1);
+          const g = get_each_context_3(s, b, u);
+          if (E[u]) {
+            E[u].p(g, o);
+            transition_in(E[u], 1);
           } else {
-            w[u] = create_each_block_2(g);
-            w[u].c();
-            transition_in(w[u], 1);
-            w[u].m(r, null);
+            E[u] = create_each_block_3(g);
+            E[u].c();
+            transition_in(E[u], 1);
+            E[u].m(r, null);
           }
         }
         group_outros();
-        for (u = b.length; u < w.length; u += 1) out(u);
+        for (u = b.length; u < E.length; u += 1) out(u);
         check_outros();
       }
     },
     i(s) {
       if (!_) {
-        for (let s = 0; s < b.length; s += 1) transition_in(w[s]);
+        for (let s = 0; s < b.length; s += 1) transition_in(E[s]);
         _ = true;
       }
     },
     o(s) {
-      w = w.filter(Boolean);
-      for (let s = 0; s < w.length; s += 1) transition_out(w[s]);
+      E = E.filter(Boolean);
+      for (let s = 0; s < E.length; s += 1) transition_out(E[s]);
       _ = false;
     },
     d(s) {
       if (s) detach(r);
-      destroy_each(w, s);
+      destroy_each(E, s);
     }
   };
 }
 
-function create_if_block_43(s) {
+function create_if_block_52(s) {
   let r, o;
-  const u = [ s[6], {
-    list: s[49]
+  const u = [ s[8], {
+    list: s[57]
   }, {
     hidden: true
   } ];
@@ -16083,8 +16107,8 @@ function create_if_block_43(s) {
       o = true;
     },
     p(s, o) {
-      const g = 65 & o[0] ? get_spread_update(u, [ 64 & o[0] && get_spread_object(s[6]), 1 & o[0] && {
-        list: s[49]
+      const g = 257 & o[0] ? get_spread_update(u, [ 256 & o[0] && get_spread_object(s[8]), 1 & o[0] && {
+        list: s[57]
       }, u[2] ]) : {};
       r.$set(g);
     },
@@ -16105,15 +16129,15 @@ function create_if_block_43(s) {
 }
 
 function create_else_block_32(s) {
-  let r, o, u, g, _ = s[15][s[51]] + "";
+  let r, o, u, g, _ = s[17][s[59]] + "";
   return {
     c() {
       r = element("div");
       o = element("div");
       u = text(_);
       g = space();
-      attr(o, "class", "statusnote svelte-17wm1te");
-      attr(r, "class", "noterow svelte-17wm1te");
+      attr(o, "class", "statusnote svelte-664idh");
+      attr(r, "class", "noterow svelte-664idh");
     },
     m(s, _) {
       insert(s, r, _);
@@ -16122,7 +16146,7 @@ function create_else_block_32(s) {
       append(r, g);
     },
     p(s, r) {
-      if (17 & r[0] && _ !== (_ = s[15][s[51]] + "")) set_data(u, _);
+      if (33 & r[0] && _ !== (_ = s[17][s[59]] + "")) set_data(u, _);
     },
     i: noop,
     o: noop,
@@ -16132,23 +16156,23 @@ function create_else_block_32(s) {
   };
 }
 
-function create_if_block_13(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V = s[16](s[53]) + "", G = s[16](s[55]) + "";
+function create_if_block_23(s) {
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V = s[18](s[61]) + "", G = s[18](s[63]) + "";
   function click_handler_8(...r) {
-    return s[32](s[48], s[52], ...r);
+    return s[35](s[56], s[60], ...r);
   }
-  const j = [ create_if_block_33, create_else_block_22 ], q = [];
+  const j = [ create_if_block_43, create_else_block_22 ], q = [];
   function select_block_type_3(s, r) {
-    if (s[53] == MODE_SELECTIVE) return 0; else return 1;
+    if (s[61] == MODE_SELECTIVE) return 0; else return 1;
   }
-  w = select_block_type_3(s);
-  E = q[w] = j[w](s);
+  E = select_block_type_3(s);
+  w = q[E] = j[E](s);
   function click_handler_9(...r) {
-    return s[33](s[48], s[54], ...r);
+    return s[36](s[56], s[62], ...r);
   }
-  const U = [ create_if_block_23, create_else_block_13 ], z = [];
+  const U = [ create_if_block_33, create_else_block_13 ], z = [];
   function select_block_type_4(s, r) {
-    if (s[55] == MODE_SELECTIVE) return 0; else return 1;
+    if (s[63] == MODE_SELECTIVE) return 0; else return 1;
   }
   R = select_block_type_4(s);
   x = z[R] = U[R](s);
@@ -16162,7 +16186,7 @@ function create_if_block_13(s) {
       m = element("span");
       m.textContent = "MAIN";
       b = space();
-      E.c();
+      w.c();
       L = space();
       O = element("div");
       D = element("div");
@@ -16174,26 +16198,26 @@ function create_if_block_13(s) {
       A = space();
       x.c();
       P = space();
-      attr(u, "class", "status svelte-17wm1te");
+      attr(u, "class", "status svelte-664idh");
       attr(m, "class", "name");
-      attr(o, "class", "filetitle svelte-17wm1te");
-      attr(r, "class", S = "filerow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te");
-      attr(k, "class", "status svelte-17wm1te");
+      attr(o, "class", "filetitle svelte-664idh");
+      attr(r, "class", S = "filerow " + (s[2] ? "hideeven" : "") + " svelte-664idh");
+      attr(k, "class", "status svelte-664idh");
       attr(I, "class", "name");
-      attr(D, "class", "filetitle svelte-17wm1te");
-      attr(O, "class", N = "filerow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te");
+      attr(D, "class", "filetitle svelte-664idh");
+      attr(O, "class", N = "filerow " + (s[2] ? "hideeven" : "") + " svelte-664idh");
     },
-    m(s, E) {
-      insert(s, r, E);
+    m(s, w) {
+      insert(s, r, w);
       append(r, o);
       append(o, u);
       append(u, g);
       append(o, _);
       append(o, m);
       append(r, b);
-      q[w].m(r, null);
-      insert(s, L, E);
-      insert(s, O, E);
+      q[E].m(r, null);
+      insert(s, L, w);
+      insert(s, O, w);
       append(O, D);
       append(D, k);
       append(k, C);
@@ -16210,25 +16234,25 @@ function create_if_block_13(s) {
     },
     p(o, u) {
       s = o;
-      if ((!B || 17 & u[0]) && V !== (V = s[16](s[53]) + "")) set_data(g, V);
-      let _ = w;
-      w = select_block_type_3(s);
-      if (w === _) q[w].p(s, u); else {
+      if ((!B || 33 & u[0]) && V !== (V = s[18](s[61]) + "")) set_data(g, V);
+      let _ = E;
+      E = select_block_type_3(s);
+      if (E === _) q[E].p(s, u); else {
         group_outros();
         transition_out(q[_], 1, 1, (() => {
           q[_] = null;
         }));
         check_outros();
-        E = q[w];
-        if (!E) {
-          E = q[w] = j[w](s);
-          E.c();
-        } else E.p(s, u);
-        transition_in(E, 1);
-        E.m(r, null);
+        w = q[E];
+        if (!w) {
+          w = q[E] = j[E](s);
+          w.c();
+        } else w.p(s, u);
+        transition_in(w, 1);
+        w.m(r, null);
       }
-      if (!B || 4 & u[0] && S !== (S = "filerow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te")) attr(r, "class", S);
-      if ((!B || 17 & u[0]) && G !== (G = s[16](s[55]) + "")) set_data(C, G);
+      if (!B || 4 & u[0] && S !== (S = "filerow " + (s[2] ? "hideeven" : "") + " svelte-664idh")) attr(r, "class", S);
+      if ((!B || 33 & u[0]) && G !== (G = s[18](s[63]) + "")) set_data(C, G);
       let m = R;
       R = select_block_type_4(s);
       if (R === m) z[R].p(s, u); else {
@@ -16245,17 +16269,17 @@ function create_if_block_13(s) {
         transition_in(x, 1);
         x.m(O, P);
       }
-      if (!B || 4 & u[0] && N !== (N = "filerow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te")) attr(O, "class", N);
+      if (!B || 4 & u[0] && N !== (N = "filerow " + (s[2] ? "hideeven" : "") + " svelte-664idh")) attr(O, "class", N);
     },
     i(s) {
       if (!B) {
-        transition_in(E);
+        transition_in(w);
         transition_in(x);
         B = true;
       }
     },
     o(s) {
-      transition_out(E);
+      transition_out(w);
       transition_out(x);
       B = false;
     },
@@ -16265,7 +16289,7 @@ function create_if_block_13(s) {
         detach(L);
         detach(O);
       }
-      q[w].d();
+      q[E].d();
       z[R].d();
       F = false;
       run_all(M);
@@ -16274,19 +16298,19 @@ function create_if_block_13(s) {
 }
 
 function create_else_block_22(s) {
-  let r, o, u = s[15][s[53]] + "";
+  let r, o, u = s[17][s[61]] + "";
   return {
     c() {
       r = element("div");
       o = text(u);
-      attr(r, "class", "statusnote svelte-17wm1te");
+      attr(r, "class", "statusnote svelte-664idh");
     },
     m(s, u) {
       insert(s, r, u);
       append(r, o);
     },
     p(s, r) {
-      if (17 & r[0] && u !== (u = s[15][s[53]] + "")) set_data(o, u);
+      if (33 & r[0] && u !== (u = s[17][s[61]] + "")) set_data(o, u);
     },
     i: noop,
     o: noop,
@@ -16296,10 +16320,10 @@ function create_else_block_22(s) {
   };
 }
 
-function create_if_block_33(s) {
+function create_if_block_43(s) {
   let r, o;
-  const u = [ s[6], {
-    list: filterList(s[49], [ "PLUGIN_MAIN" ])
+  const u = [ s[8], {
+    list: filterList(s[57], [ "PLUGIN_MAIN" ])
   }, {
     hidden: false
   } ];
@@ -16317,8 +16341,8 @@ function create_if_block_33(s) {
       o = true;
     },
     p(s, o) {
-      const g = 65 & o[0] ? get_spread_update(u, [ 64 & o[0] && get_spread_object(s[6]), 1 & o[0] && {
-        list: filterList(s[49], [ "PLUGIN_MAIN" ])
+      const g = 257 & o[0] ? get_spread_update(u, [ 256 & o[0] && get_spread_object(s[8]), 1 & o[0] && {
+        list: filterList(s[57], [ "PLUGIN_MAIN" ])
       }, u[2] ]) : {};
       r.$set(g);
     },
@@ -16339,19 +16363,19 @@ function create_if_block_33(s) {
 }
 
 function create_else_block_13(s) {
-  let r, o, u = s[15][s[55]] + "";
+  let r, o, u = s[17][s[63]] + "";
   return {
     c() {
       r = element("div");
       o = text(u);
-      attr(r, "class", "statusnote svelte-17wm1te");
+      attr(r, "class", "statusnote svelte-664idh");
     },
     m(s, u) {
       insert(s, r, u);
       append(r, o);
     },
     p(s, r) {
-      if (17 & r[0] && u !== (u = s[15][s[55]] + "")) set_data(o, u);
+      if (33 & r[0] && u !== (u = s[17][s[63]] + "")) set_data(o, u);
     },
     i: noop,
     o: noop,
@@ -16361,10 +16385,10 @@ function create_else_block_13(s) {
   };
 }
 
-function create_if_block_23(s) {
+function create_if_block_33(s) {
   let r, o;
-  const u = [ s[6], {
-    list: filterList(s[49], [ "PLUGIN_DATA" ])
+  const u = [ s[8], {
+    list: filterList(s[57], [ "PLUGIN_DATA" ])
   }, {
     hidden: false
   } ];
@@ -16382,8 +16406,8 @@ function create_if_block_23(s) {
       o = true;
     },
     p(s, o) {
-      const g = 65 & o[0] ? get_spread_update(u, [ 64 & o[0] && get_spread_object(s[6]), 1 & o[0] && {
-        list: filterList(s[49], [ "PLUGIN_DATA" ])
+      const g = 257 & o[0] ? get_spread_update(u, [ 256 & o[0] && get_spread_object(s[8]), 1 & o[0] && {
+        list: filterList(s[57], [ "PLUGIN_DATA" ])
       }, u[2] ]) : {};
       r.$set(g);
     },
@@ -16403,15 +16427,15 @@ function create_if_block_23(s) {
   };
 }
 
-function create_each_block3(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I = s[16](s[51]) + "", A = s[48] + "";
+function create_each_block_12(s) {
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I = s[18](s[59]) + "", A = s[56] + "";
   function click_handler_7(...r) {
-    return s[31](s[48], s[50], ...r);
+    return s[34](s[56], s[58], ...r);
   }
-  let R = s[51] == MODE_SELECTIVE && create_if_block_43(s);
-  const x = [ create_if_block_13, create_else_block_32 ], P = [];
+  let R = s[59] == MODE_SELECTIVE && create_if_block_52(s);
+  const x = [ create_if_block_23, create_else_block_32 ], P = [];
   function select_block_type_2(s, r) {
-    if (s[51] == MODE_SELECTIVE) return 0; else return 1;
+    if (s[59] == MODE_SELECTIVE) return 0; else return 1;
   }
   L = select_block_type_2(s);
   O = P[L] = x[L](s);
@@ -16424,29 +16448,29 @@ function create_each_block3(s) {
       _ = space();
       m = element("span");
       b = text(A);
-      w = space();
+      E = space();
       if (R) R.c();
       S = space();
       O.c();
       D = empty();
-      attr(u, "class", "status svelte-17wm1te");
+      attr(u, "class", "status svelte-664idh");
       attr(m, "class", "name");
-      attr(o, "class", "title svelte-17wm1te");
-      attr(r, "class", E = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te");
+      attr(o, "class", "title svelte-664idh");
+      attr(r, "class", w = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-664idh");
     },
-    m(s, E) {
-      insert(s, r, E);
+    m(s, w) {
+      insert(s, r, w);
       append(r, o);
       append(o, u);
       append(u, g);
       append(o, _);
       append(o, m);
       append(m, b);
-      append(r, w);
+      append(r, E);
       if (R) R.m(r, null);
-      insert(s, S, E);
-      P[L].m(s, E);
-      insert(s, D, E);
+      insert(s, S, w);
+      P[L].m(s, w);
+      insert(s, D, w);
       k = true;
       if (!C) {
         T = listen(u, "click", click_handler_7);
@@ -16455,13 +16479,13 @@ function create_each_block3(s) {
     },
     p(o, u) {
       s = o;
-      if ((!k || 17 & u[0]) && I !== (I = s[16](s[51]) + "")) set_data(g, I);
-      if ((!k || 1 & u[0]) && A !== (A = s[48] + "")) set_data(b, A);
-      if (s[51] == MODE_SELECTIVE) if (R) {
+      if ((!k || 33 & u[0]) && I !== (I = s[18](s[59]) + "")) set_data(g, I);
+      if ((!k || 1 & u[0]) && A !== (A = s[56] + "")) set_data(b, A);
+      if (s[59] == MODE_SELECTIVE) if (R) {
         R.p(s, u);
-        if (17 & u[0]) transition_in(R, 1);
+        if (33 & u[0]) transition_in(R, 1);
       } else {
-        R = create_if_block_43(s);
+        R = create_if_block_52(s);
         R.c();
         transition_in(R, 1);
         R.m(r, null);
@@ -16472,7 +16496,7 @@ function create_each_block3(s) {
         }));
         check_outros();
       }
-      if (!k || 4 & u[0] && E !== (E = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-17wm1te")) attr(r, "class", E);
+      if (!k || 4 & u[0] && w !== (w = "labelrow " + (s[2] ? "hideeven" : "") + " svelte-664idh")) attr(r, "class", w);
       let _ = L;
       L = select_block_type_2(s);
       if (L === _) P[L].p(s, u); else {
@@ -16516,14 +16540,112 @@ function create_each_block3(s) {
   };
 }
 
+function create_if_block3(s) {
+  let r, o, u, g, _, m, b, E, w, S, L, O, D = ensure_array_like(s[4]), k = [];
+  for (let r = 0; r < D.length; r += 1) k[r] = create_each_block3(get_each_context3(s, D, r));
+  return {
+    c() {
+      r = element("div");
+      o = element("div");
+      u = element("h3");
+      u.textContent = "Maintenance Commands";
+      g = space();
+      _ = element("div");
+      m = element("label");
+      m.textContent = "Delete All of";
+      b = space();
+      E = element("select");
+      for (let s = 0; s < k.length; s += 1) k[s].c();
+      w = space();
+      S = element("button");
+      S.textContent = "🗑️";
+      attr(u, "class", "svelte-664idh");
+      attr(m, "for", "");
+      attr(m, "class", "svelte-664idh");
+      if (void 0 === s[7]) add_render_callback((() => s[37].call(E)));
+      attr(S, "class", "status svelte-664idh");
+      attr(_, "class", "maintenancerow svelte-664idh");
+      attr(r, "class", "list");
+    },
+    m(D, C) {
+      insert(D, r, C);
+      append(r, o);
+      append(o, u);
+      append(o, g);
+      append(o, _);
+      append(_, m);
+      append(_, b);
+      append(_, E);
+      for (let s = 0; s < k.length; s += 1) if (k[s]) k[s].m(E, null);
+      select_option(E, s[7], true);
+      append(_, w);
+      append(_, S);
+      if (!L) {
+        O = [ listen(E, "change", s[37]), listen(S, "click", s[38]) ];
+        L = true;
+      }
+    },
+    p(s, r) {
+      if (16 & r[0]) {
+        D = ensure_array_like(s[4]);
+        let o;
+        for (o = 0; o < D.length; o += 1) {
+          const u = get_each_context3(s, D, o);
+          if (k[o]) k[o].p(u, r); else {
+            k[o] = create_each_block3(u);
+            k[o].c();
+            k[o].m(E, null);
+          }
+        }
+        for (;o < k.length; o += 1) k[o].d(1);
+        k.length = D.length;
+      }
+      if (144 & r[0]) select_option(E, s[7]);
+    },
+    d(s) {
+      if (s) detach(r);
+      destroy_each(k, s);
+      L = false;
+      run_all(O);
+    }
+  };
+}
+
+function create_each_block3(s) {
+  let r, o, u, g = s[53] + "";
+  return {
+    c() {
+      r = element("option");
+      o = text(g);
+      r.__value = u = s[53];
+      set_input_value(r, r.__value);
+    },
+    m(s, u) {
+      insert(s, r, u);
+      append(r, o);
+    },
+    p(s, _) {
+      if (16 & _[0] && g !== (g = s[53] + "")) set_data(o, g);
+      if (16 & _[0] && u !== (u = s[53])) {
+        r.__value = u;
+        set_input_value(r, r.__value);
+      }
+    },
+    d(s) {
+      if (s) detach(r);
+    }
+  };
+}
+
 function create_fragment3(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V, G, j, q, U, z, W, H = s[1] && create_if_block_7(s), K = s[3] && create_if_block_6(s);
-  const Q = [ create_if_block3, create_else_block3 ], J = [];
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V, G, j, q, U, z, W, H, K = s[1] && create_if_block_8(s), Q = s[3] && create_if_block_7(s);
+  const J = [ create_if_block_13, create_else_block3 ], Y = [];
   function select_block_type(s, r) {
     if (0 == s[0].length) return 0; else return 1;
   }
   A = select_block_type(s);
-  R = J[A] = Q[A](s);
+  R = Y[A] = J[A](s);
+  let X = s[1] && create_if_block3(s);
   return {
     c() {
       r = element("div");
@@ -16535,10 +16657,10 @@ function create_fragment3(s) {
       m = element("button");
       m.textContent = "Sync once";
       b = space();
-      w = element("button");
-      w.textContent = "Refresh";
-      E = space();
-      if (H) H.c();
+      E = element("button");
+      E.textContent = "Refresh";
+      w = space();
+      if (K) K.c();
       S = space();
       L = element("button");
       L.textContent = "Select All Shiny";
@@ -16547,131 +16669,144 @@ function create_fragment3(s) {
       k = element("button");
       k.textContent = "Apply All";
       C = space();
-      if (K) K.c();
+      if (Q) Q.c();
       T = space();
       I = element("div");
       R.c();
       x = space();
-      P = element("div");
-      N = element("label");
-      B = element("span");
-      B.textContent = "Hide not applicable items";
-      F = element("input");
-      M = space();
-      V = element("div");
-      G = element("label");
-      j = element("span");
-      j.textContent = "Maintenance mode";
-      q = element("input");
-      attr(g, "class", "svelte-17wm1te");
-      attr(m, "class", "svelte-17wm1te");
-      attr(w, "class", "svelte-17wm1te");
-      attr(L, "class", "svelte-17wm1te");
-      attr(u, "class", "buttons svelte-17wm1te");
-      attr(k, "class", "svelte-17wm1te");
-      attr(D, "class", "buttons svelte-17wm1te");
+      if (X) X.c();
+      P = space();
+      N = element("div");
+      B = element("label");
+      F = element("span");
+      F.textContent = "Hide not applicable items";
+      M = element("input");
+      V = space();
+      G = element("div");
+      j = element("label");
+      q = element("span");
+      q.textContent = "Maintenance mode";
+      U = element("input");
+      attr(g, "class", "svelte-664idh");
+      attr(m, "class", "svelte-664idh");
+      attr(E, "class", "svelte-664idh");
+      attr(L, "class", "svelte-664idh");
+      attr(u, "class", "buttons svelte-664idh");
+      attr(k, "class", "svelte-664idh");
+      attr(D, "class", "buttons svelte-664idh");
       attr(I, "class", "list");
-      attr(B, "class", "svelte-17wm1te");
-      attr(F, "type", "checkbox");
-      attr(N, "class", "svelte-17wm1te");
-      attr(P, "class", "buttons svelte-17wm1te");
-      attr(j, "class", "svelte-17wm1te");
-      attr(q, "type", "checkbox");
-      attr(G, "class", "svelte-17wm1te");
-      attr(V, "class", "buttons svelte-17wm1te");
+      attr(F, "class", "svelte-664idh");
+      attr(M, "type", "checkbox");
+      attr(B, "class", "svelte-664idh");
+      attr(N, "class", "buttons svelte-664idh");
+      attr(q, "class", "svelte-664idh");
+      attr(U, "type", "checkbox");
+      attr(j, "class", "svelte-664idh");
+      attr(G, "class", "buttons svelte-664idh");
     },
-    m(R, Q) {
-      insert(R, r, Q);
+    m(R, J) {
+      insert(R, r, J);
       append(r, o);
       append(o, u);
       append(u, g);
       append(u, _);
       append(u, m);
       append(u, b);
-      append(u, w);
       append(u, E);
-      if (H) H.m(u, null);
+      append(u, w);
+      if (K) K.m(u, null);
       append(u, S);
       append(u, L);
       append(o, O);
       append(o, D);
       append(D, k);
       append(r, C);
-      if (K) K.m(r, null);
+      if (Q) Q.m(r, null);
       append(r, T);
       append(r, I);
-      J[A].m(I, null);
+      Y[A].m(I, null);
       append(r, x);
+      if (X) X.m(r, null);
       append(r, P);
-      append(P, N);
+      append(r, N);
       append(N, B);
-      append(N, F);
-      F.checked = s[2];
-      append(r, M);
+      append(B, F);
+      append(B, M);
+      M.checked = s[2];
       append(r, V);
-      append(V, G);
+      append(r, G);
       append(G, j);
-      append(G, q);
-      q.checked = s[1];
-      U = true;
-      if (!z) {
-        W = [ listen(g, "click", s[22]), listen(m, "click", s[23]), listen(w, "click", s[24]), listen(L, "click", s[26]), listen(k, "click", s[27]), listen(F, "change", s[34]), listen(q, "change", s[35]) ];
-        z = true;
+      append(j, q);
+      append(j, U);
+      U.checked = s[1];
+      z = true;
+      if (!W) {
+        H = [ listen(g, "click", s[25]), listen(m, "click", s[26]), listen(E, "click", s[27]), listen(L, "click", s[29]), listen(k, "click", s[30]), listen(M, "change", s[39]), listen(U, "change", s[40]) ];
+        W = true;
       }
     },
     p(s, o) {
-      if (s[1]) if (H) H.p(s, o); else {
-        H = create_if_block_7(s);
-        H.c();
-        H.m(u, S);
-      } else if (H) {
-        H.d(1);
-        H = null;
-      }
-      if (s[3]) if (K) ; else {
-        K = create_if_block_6(s);
+      if (s[1]) if (K) K.p(s, o); else {
+        K = create_if_block_8(s);
         K.c();
-        K.m(r, T);
+        K.m(u, S);
       } else if (K) {
         K.d(1);
         K = null;
       }
+      if (s[3]) if (Q) ; else {
+        Q = create_if_block_7(s);
+        Q.c();
+        Q.m(r, T);
+      } else if (Q) {
+        Q.d(1);
+        Q = null;
+      }
       let g = A;
       A = select_block_type(s);
-      if (A === g) J[A].p(s, o); else {
+      if (A === g) Y[A].p(s, o); else {
         group_outros();
-        transition_out(J[g], 1, 1, (() => {
-          J[g] = null;
+        transition_out(Y[g], 1, 1, (() => {
+          Y[g] = null;
         }));
         check_outros();
-        R = J[A];
+        R = Y[A];
         if (!R) {
-          R = J[A] = Q[A](s);
+          R = Y[A] = J[A](s);
           R.c();
         } else R.p(s, o);
         transition_in(R, 1);
         R.m(I, null);
       }
-      if (4 & o[0]) F.checked = s[2];
-      if (2 & o[0]) q.checked = s[1];
+      if (s[1]) if (X) X.p(s, o); else {
+        X = create_if_block3(s);
+        X.c();
+        X.m(r, P);
+      } else if (X) {
+        X.d(1);
+        X = null;
+      }
+      if (4 & o[0]) M.checked = s[2];
+      if (2 & o[0]) U.checked = s[1];
     },
     i(s) {
-      if (!U) {
+      if (!z) {
         transition_in(R);
-        U = true;
+        z = true;
       }
     },
     o(s) {
       transition_out(R);
-      U = false;
+      z = false;
     },
     d(s) {
       if (s) detach(r);
-      if (H) H.d();
       if (K) K.d();
-      J[A].d();
-      z = false;
-      run_all(W);
+      if (Q) Q.d();
+      Y[A].d();
+      if (X) X.d();
+      W = false;
+      run_all(H);
     }
   };
 }
@@ -16696,15 +16831,17 @@ function groupBy(s, r) {
 function instance3(s, r, o) {
   let u, g, _, {plugin: m} = r;
   const b = m.addOnConfigSync;
-  let w = [], E = 0, S = false, L = false, O = 0, D = false;
+  let E = [], w = 0, S = false, L = false, O = 0, D = false;
   async function requestUpdate() {
     await b.updatePluginList(true);
   }
   async function requestReload() {
     await b.reloadPluginList(true);
   }
+  let k = [];
   pluginList.subscribe((s => {
-    o(0, w = s);
+    o(0, E = s);
+    o(4, k = unique(E.map((s => s.term))));
   }));
   pluginIsEnumerating.subscribe((s => {
     o(3, L = s);
@@ -16720,10 +16857,10 @@ function instance3(s, r, o) {
     await m.replicate(true);
   }
   function selectAllNewest() {
-    o(18, E++, E);
+    o(21, w++, w);
   }
   function applyAll() {
-    o(19, O++, O);
+    o(22, O++, O);
   }
   async function applyData(s) {
     return await b.applyData(s);
@@ -16739,9 +16876,9 @@ function instance3(s, r, o) {
     const g = new import_obsidian3.Menu;
     g.addItem((s => s.setTitle(r).setIsLabel(true)));
     g.addSeparator();
-    const _ = null !== (u = T.get(o)) && void 0 !== u ? u : MODE_SELECTIVE;
+    const _ = null !== (u = I.get(o)) && void 0 !== u ? u : MODE_SELECTIVE;
     for (const r of [ MODE_SELECTIVE, MODE_AUTOMATIC, MODE_PAUSED ]) g.addItem((u => {
-      u.setTitle(`${getIcon(r)}:${C[r]}`).onClick((u => {
+      u.setTitle(`${getIcon(r)}:${T[r]}`).onClick((u => {
         if (r === MODE_AUTOMATIC) askOverwriteModeForAutomatic(s, o); else setMode(o, r);
       })).setChecked(_ == r).setDisabled(_ == r);
     }));
@@ -16772,11 +16909,11 @@ function instance3(s, r, o) {
     }));
     o.showAtMouseEvent(s);
   }
-  const k = {
+  const C = {
     [MODE_SELECTIVE]: "🔀",
     [MODE_PAUSED]: "⛔",
     [MODE_AUTOMATIC]: "✨"
-  }, C = {
+  }, T = {
     [MODE_SELECTIVE]: "Selective",
     [MODE_PAUSED]: "Ignore",
     [MODE_AUTOMATIC]: "Automatic"
@@ -16786,34 +16923,39 @@ function instance3(s, r, o) {
       setMode(PREFIX_PLUGIN_DATA + s.substring(PREFIX_PLUGIN_ALL.length), r);
       setMode(PREFIX_PLUGIN_MAIN + s.substring(PREFIX_PLUGIN_ALL.length), r);
     }
-    const u = unique(w.filter((r => `${r.category}/${r.name}` == s)).map((s => s.files)).flat().map((s => s.filename)));
-    T.set(s, r);
-    o(4, I = T);
-    if (!(s in m.settings.pluginSyncExtendedSetting)) o(17, m.settings.pluginSyncExtendedSetting[s] = {
+    const u = unique(E.filter((r => `${r.category}/${r.name}` == s)).map((s => s.files)).flat().map((s => s.filename)));
+    I.set(s, r);
+    o(5, A = I);
+    if (!(s in m.settings.pluginSyncExtendedSetting)) o(20, m.settings.pluginSyncExtendedSetting[s] = {
       key: s,
       mode: r,
       files: []
     }, m);
-    o(17, m.settings.pluginSyncExtendedSetting[s].files = u, m);
-    o(17, m.settings.pluginSyncExtendedSetting[s].mode = r, m);
+    o(20, m.settings.pluginSyncExtendedSetting[s].files = u, m);
+    o(20, m.settings.pluginSyncExtendedSetting[s].mode = r, m);
     m.saveSettingData();
   }
   function getIcon(s) {
-    if (s in k) return k[s];
+    if (s in C) return C[s];
   }
-  let T = new Map, I = new Map;
-  for (const {key: s, mode: r} of Object.values(m.settings.pluginSyncExtendedSetting)) T.set(s, r);
-  I = T;
-  let A = {};
+  let I = new Map, A = new Map;
+  for (const {key: s, mode: r} of Object.values(m.settings.pluginSyncExtendedSetting)) I.set(s, r);
+  A = I;
+  let R = {}, x = "";
+  async function deleteAllItems(s) {
+    const r = E.filter((r => r.term == s));
+    for (const s of r) await deleteData(s);
+    b.reloadPluginList(true);
+  }
   s.$$set = s => {
-    if ("plugin" in s) o(17, m = s.plugin);
+    if ("plugin" in s) o(20, m = s.plugin);
   };
   s.$$.update = () => {
-    if (131072 & s.$$.dirty[0]) o(21, g = m.deviceAndVaultName);
-    if (4063234 & s.$$.dirty[0]) o(6, _ = {
+    if (1048576 & s.$$.dirty[0]) o(24, g = m.deviceAndVaultName);
+    if (32505858 & s.$$.dirty[0]) o(8, _ = {
       thisTerm: g,
       hideNotApplicable: u,
-      selectNewest: E,
+      selectNewest: w,
       applyAllPluse: O,
       applyData,
       compareData,
@@ -16821,9 +16963,9 @@ function instance3(s, r, o) {
       plugin: m,
       isMaintenanceMode: D
     });
-    if (131073 & s.$$.dirty[0]) {
+    if (1048577 & s.$$.dirty[0]) {
       const s = Object.keys(m.settings.pluginSyncExtendedSetting);
-      o(5, A = [ ...w, ...s.map((s => `${s}///`.split("/"))).filter((s => s[0] && s[1])).map((s => ({
+      o(6, R = [ ...E, ...s.map((s => `${s}///`.split("/"))).filter((s => s[0] && s[1])).map((s => ({
         category: s[0],
         name: s[1],
         displayName: s[1]
@@ -16839,12 +16981,18 @@ function instance3(s, r, o) {
       }), {}));
     }
   };
-  o(20, u = false);
-  return [ w, D, S, L, I, A, _, requestUpdate, requestReload, {
+  o(23, u = false);
+  return [ E, D, S, L, k, A, R, x, _, requestUpdate, requestReload, {
     CONFIG: "Configuration",
     THEME: "Themes",
     SNIPPET: "Snippets"
-  }, scanAgain, replicate2, selectAllNewest, applyAll, askMode, C, getIcon, m, E, O, u, g, () => scanAgain(), () => replicate2(), () => requestUpdate(), () => requestReload(), () => selectAllNewest(), () => applyAll(), ([s, r]) => s in A, (s, r, o, u) => askMode(u, `${s}/${r}`, o), (s, r, o) => o.category == s && o.name == r, (s, r, o) => askMode(o, `${PREFIX_PLUGIN_ALL}/${s}`, r), (s, r, o) => askMode(o, `${PREFIX_PLUGIN_MAIN}/${s}/MAIN`, r), (s, r, o) => askMode(o, `${PREFIX_PLUGIN_DATA}/${s}`, r), function input0_change_handler() {
+  }, scanAgain, replicate2, selectAllNewest, applyAll, askMode, T, getIcon, deleteAllItems, m, w, O, u, g, () => scanAgain(), () => replicate2(), () => requestUpdate(), () => requestReload(), () => selectAllNewest(), () => applyAll(), ([s, r]) => s in R, (s, r, o, u) => askMode(u, `${s}/${r}`, o), (s, r, o) => o.category == s && o.name == r, (s, r, o) => askMode(o, `${PREFIX_PLUGIN_ALL}/${s}`, r), (s, r, o) => askMode(o, `${PREFIX_PLUGIN_MAIN}/${s}/MAIN`, r), (s, r, o) => askMode(o, `${PREFIX_PLUGIN_DATA}/${s}`, r), function select_change_handler() {
+    x = select_value(this);
+    o(7, x);
+    o(4, k);
+  }, s => {
+    deleteAllItems(x);
+  }, function input0_change_handler() {
     S = this.checked;
     o(2, S);
   }, function input1_change_handler() {
@@ -16857,7 +17005,7 @@ var PluginPane = class extends SvelteComponent {
   constructor(s) {
     super();
     init2(this, s, instance3, create_fragment3, safe_not_equal, {
-      plugin: 17
+      plugin: 20
     }, add_css3, [ -1, -1, -1 ]);
   }
 }, PluginPane_default = PluginPane, PluginDialogModal = class extends import_obsidian.Modal {
@@ -17254,7 +17402,7 @@ var askYesNo = (s, r) => new Promise((o => {
     }
   }
 }, _requestToCouchDB = async (s, r, o, u, g, _, m) => {
-  const b = String.fromCharCode.apply(null, [ ...writeString(`${r}:${o}`) ]), w = {
+  const b = String.fromCharCode.apply(null, [ ...writeString(`${r}:${o}`) ]), E = {
     url: `${s}/${g}`,
     method: m || (_ ? "PUT" : "GET"),
     headers: {
@@ -17264,7 +17412,7 @@ var askYesNo = (s, r) => new Promise((o => {
     contentType: "application/json",
     body: _ ? JSON.stringify(_) : void 0
   };
-  return await (0, import_obsidian.requestUrl)(w);
+  return await (0, import_obsidian.requestUrl)(E);
 }, requestToCouchDB = async (s, r, o, u, g, _, m) => {
   const b = "_node/_local/_config" + (g ? "/" + g : "");
   return await _requestToCouchDB(s, r, o, u, b, _, m);
@@ -17321,22 +17469,22 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
         s.addClass("selected");
       }));
     }));
-    const b = s.createDiv(), w = b.createEl("h3", {
+    const b = s.createDiv(), E = b.createEl("h3", {
       text: "Updates"
-    }), E = b.createEl("div", {
+    }), w = b.createEl("div", {
       text: ""
-    }), S = "0.22.1", L = ~~(versionNumberString2Number(S) / 1e3), O = createSpan();
+    }), S = "0.22.2", L = ~~(versionNumberString2Number(S) / 1e3), O = createSpan();
     O.addClass("sls-header-button");
     O.innerHTML = "<button> OK, I read all. </button>";
     if (L > this.plugin.settings.lastReadUpdates) {
-      const s = w.appendChild(O);
+      const s = E.appendChild(O);
       s.querySelector("button").addEventListener("click", (async () => {
         this.plugin.settings.lastReadUpdates = L;
         await this.plugin.saveSettings();
         s.remove();
       }));
     }
-    import_obsidian.MarkdownRenderer.render(this.plugin.app, "### 0.22.0\nA few years passed since Self-hosted LiveSync was born, and our codebase had been very complicated. This could be patient now, but it should be a tremendous hurt.\nTherefore at v0.22.0, for future maintainability, I refined task scheduling logic totally.\n\nOf course, I think this would be our suffering in some cases. However, I would love to ask you for your cooperation and contribution.\n\nSorry for being absent so much long. And thank you for your patience!\n\nNote: we got a very performance improvement.\n\n#### Version history\n- 0.22.1\n  - New feature:\n    - We can perform automatic conflict resolution for inactive files, and postpone only manual ones by `Postpone manual resolution of inactive files`.\n    - Now we can see the image in the document history dialogue.\n      - We can see the difference of the image, in the document history dialogue.\n        - And also we can highlight differences.\n  - Improved:\n    - Hidden file sync has been stabilised.\n    - Now automatically reloads the conflict-resolution dialogue when new conflicted revisions have arrived.\n  - Fixed:\n    - No longer periodic process runs after unloading the plug-in.\n    - Now the modification of binary files is surely stored in the storage.\n- 0.22.0\n  - Refined:\n    - Task scheduling logics has been rewritten.\n    - Screen updates are also now efficient.\n    - Possibly many bugs and fragile behaviour has been fixed.\n    - Status updates and logging have been thinned out to display.\n  - Fixed:\n    - Remote-chunk-fetching now works with keeping request intervals\n  - New feature:\n    - We can show only the icons in the editor.\n    - Progress indicators have been more meaningful:\n      -   📥 Unprocessed transferred items\n      -   📄 Working database operation\n      -   💾 Working write storage processes\n      -   ⏳ Working read storage processes\n      -   🛫 Pending read storage processes\n      -   ⚙️ Working or pending storage processes of hidden files\n      -   🧩 Waiting chunks\n      -   🔌 Working Customisation items (Configuration, snippets and plug-ins)\n\n\n... To continue on to `updates_old.md`.", E, "/", this.plugin);
+    import_obsidian.MarkdownRenderer.render(this.plugin.app, "### 0.22.0\nA few years passed since Self-hosted LiveSync was born, and our codebase had been very complicated. This could be patient now, but it should be a tremendous hurt.\nTherefore at v0.22.0, for future maintainability, I refined task scheduling logic totally.\n\nOf course, I think this would be our suffering in some cases. However, I would love to ask you for your cooperation and contribution.\n\nSorry for being absent so much long. And thank you for your patience!\n\nNote: we got a very performance improvement.\nNote at 0.22.2: **Now, to rescue mobile devices, Maximum file size is set to 50 by default**. Please configure the limit as you need. If you do not want to limit the sizes, set zero manually, please.\n\n#### Version history\n- 0.22.2\n  - Fixed:\n    - Now the results of resolving conflicts are surely synchronised.\n  - Modified:\n    - Some setting items got new clear names. (`Sync Settings` -> `Targets`).\n  - New feature:\n    - We can limit the synchronising files by their size. (`Sync Settings` -> `Targets` -> `Maximum file size`).\n      - It depends on the size of the newer one.\n      - At Obsidian 1.5.3 on mobile, we should set this to around 50MB to avoid restarting Obsidian.\n    - Now the settings could be stored in a specific markdown file to synchronise or switch it (`General Setting` -> `Share settings via markdown`).\n      - [Screwdriver](https://github.com/vrtmrz/obsidian-screwdriver) is quite good, but mostly we only need this.\n    - Customisation of the obsoleted device is now able to be deleted at once.\n      - We have to put the maintenance mode in at the Customisation sync dialogue.\n- 0.22.1\n  - New feature:\n    - We can perform automatic conflict resolution for inactive files, and postpone only manual ones by `Postpone manual resolution of inactive files`.\n    - Now we can see the image in the document history dialogue.\n      - We can see the difference of the image, in the document history dialogue.\n        - And also we can highlight differences.\n  - Improved:\n    - Hidden file sync has been stabilised.\n    - Now automatically reloads the conflict-resolution dialogue when new conflicted revisions have arrived.\n  - Fixed:\n    - No longer periodic process runs after unloading the plug-in.\n    - Now the modification of binary files is surely stored in the storage.\n- 0.22.0\n  - Refined:\n    - Task scheduling logics has been rewritten.\n    - Screen updates are also now efficient.\n    - Possibly many bugs and fragile behaviour has been fixed.\n    - Status updates and logging have been thinned out to display.\n  - Fixed:\n    - Remote-chunk-fetching now works with keeping request intervals\n  - New feature:\n    - We can show only the icons in the editor.\n    - Progress indicators have been more meaningful:\n      -   📥 Unprocessed transferred items\n      -   📄 Working database operation\n      -   💾 Working write storage processes\n      -   ⏳ Working read storage processes\n      -   🛫 Pending read storage processes\n      -   ⚙️ Working or pending storage processes of hidden files\n      -   🧩 Waiting chunks\n      -   🔌 Working Customisation items (Configuration, snippets and plug-ins)\n\n\n... To continue on to `updates_old.md`.", w, "/", this.plugin);
     addScreenElement("100", b);
     const isAnySyncEnabled = () => {
       if (this.plugin.settings.liveSync) return true;
@@ -17424,24 +17572,24 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
         T.addClass("sls-hidden");
       }
       if (this.plugin.settings.liveSync) {
-        H.forEach((s => {
+        Q.forEach((s => {
           s.setDisabled(true).setTooltip("");
         }));
-        W.forEach((s => {
+        K.forEach((s => {
           s.setDisabled(false).setTooltip("");
         }));
       } else if (this.plugin.settings.syncOnFileOpen || this.plugin.settings.syncOnSave || this.plugin.settings.syncOnEditorSave || this.plugin.settings.syncOnStart || this.plugin.settings.periodicReplication || this.plugin.settings.syncAfterMerge) {
-        H.forEach((s => {
+        Q.forEach((s => {
           s.setDisabled(false).setTooltip("");
         }));
-        W.forEach((s => {
+        K.forEach((s => {
           s.setDisabled(true).setTooltip("");
         }));
       } else {
-        H.forEach((s => {
+        Q.forEach((s => {
           s.setDisabled(false).setTooltip("");
         }));
-        W.forEach((s => {
+        K.forEach((s => {
           s.setDisabled(false).setTooltip("");
         }));
       }
@@ -17467,7 +17615,7 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
     }))));
     new import_obsidian.Setting(C).setName("Check database configuration").addButton((s => s.setButtonText("Check").setDisabled(false).onClick((async () => {
       const checkConfig = async () => {
-        var s, r, o, u, g, _, m, b, w, E, S;
+        var s, r, o, u, g, _, m, b, E, w, S;
         Logger("Checking database configuration", LOG_LEVEL_INFO);
         const L = createDiv();
         L.innerHTML = "<span></span>";
@@ -17536,7 +17684,7 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
             addResult("❗ cors.credentials is wrong");
             addConfigFixButton("Set cors.credentials", "cors/credentials", "true");
           } else addResult("✔ cors.credentials is ok.");
-          const O = ((null != (E = null == (w = null == L ? void 0 : L.cors) ? void 0 : w.origins) ? E : "") + "").split(",");
+          const O = ((null != (w = null == (E = null == L ? void 0 : L.cors) ? void 0 : E.origins) ? w : "") + "").split(",");
           if ("*" == (null == (S = null == L ? void 0 : L.cors) ? void 0 : S.origins) || -1 !== O.indexOf("app://obsidian.md") && -1 !== O.indexOf("capacitor://localhost") && -1 !== O.indexOf("http://localhost")) addResult("✔ cors.origins is ok."); else {
             addResult("❗ cors.origins is wrong");
             addConfigFixButton("Set cors.origins", "cors/origins", "app://obsidian.md,capacitor://localhost,http://localhost");
@@ -17762,21 +17910,56 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       s.inputEl.setAttribute("type", "number");
     }));
     V.createEl("h4", {
+      text: "Share settings via markdown"
+    });
+    let G, j = this.plugin.settings.settingSyncFile;
+    new import_obsidian.Setting(V).setName("Filename").setDesc("If you set this, all settings are saved in a markdown file. You will also be notified when new settings were arrived. You can set different files by the platform.").addText((s => {
+      s.setPlaceholder("livesync/setting.md").setValue(j).onChange((s => {
+        j = s;
+        if (j == this.plugin.settings.settingSyncFile) {
+          G.removeCta();
+          G.setDisabled(true);
+        } else {
+          G.setCta();
+          G.setDisabled(false);
+        }
+      }));
+    })).addButton((s => {
+      s.setButtonText("Apply").onClick((async () => {
+        this.plugin.settings.settingSyncFile = j;
+        await this.plugin.saveSettings();
+        this.display();
+      }));
+      G = s;
+    }));
+    new import_obsidian.Setting(V).setName("Write credentials in the file").setDesc("(Not recommended) If set, credentials will be stored in the file.").addToggle((s => {
+      s.setValue(this.plugin.settings.writeCredentialsForSettingSync).onChange((async s => {
+        this.plugin.settings.writeCredentialsForSettingSync = s;
+        await this.plugin.saveSettings();
+      }));
+    }));
+    new import_obsidian.Setting(V).setName("Notify all setting files").addToggle((s => {
+      s.setValue(this.plugin.settings.notifyAllSettingSyncFile).onChange((async s => {
+        this.plugin.settings.notifyAllSettingSyncFile = s;
+        await this.plugin.saveSettings();
+      }));
+    }));
+    V.createEl("h4", {
       text: "Advanced Confidentiality"
     });
-    const G = {
+    const q = {
       "": "Default",
       LOCALSTORAGE: "Use a custom passphrase",
       ASK_AT_LAUNCH: "Ask an passphrase at every launch"
     };
-    new import_obsidian.Setting(V).setName("Encrypting sensitive configuration items").addDropdown((s => s.addOptions(G).setValue(this.plugin.settings.configPassphraseStore).onChange((async s => {
+    new import_obsidian.Setting(V).setName("Encrypting sensitive configuration items").addDropdown((s => s.addOptions(q).setValue(this.plugin.settings.configPassphraseStore).onChange((async s => {
       this.plugin.settings.configPassphraseStore = s;
       this.plugin.usedPassphrase = "";
-      q.setDisabled("LOCALSTORAGE" != this.plugin.settings.configPassphraseStore);
+      z.setDisabled("LOCALSTORAGE" != this.plugin.settings.configPassphraseStore);
       await this.plugin.saveSettings();
     })))).setClass("wizardHidden");
-    const j = localStorage.getItem("ls-setting-passphrase") || "", q = new import_obsidian.Setting(V).setName("Passphrase of sensitive configuration items").setDesc("This passphrase will not be copied to another device. It will be set to `Default` until you configure it again.").addText((s => {
-      s.setPlaceholder("").setValue(j).onChange((async s => {
+    const U = localStorage.getItem("ls-setting-passphrase") || "", z = new import_obsidian.Setting(V).setName("Passphrase of sensitive configuration items").setDesc("This passphrase will not be copied to another device. It will be set to `Default` until you configure it again.").addText((s => {
+      s.setPlaceholder("").setValue(U).onChange((async s => {
         this.plugin.usedPassphrase = "";
         localStorage.setItem("ls-setting-passphrase", s);
         await this.plugin.saveSettings();
@@ -17784,14 +17967,14 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.inputEl.setAttribute("type", "password");
     })).setClass("wizardHidden");
-    q.setDisabled("LOCALSTORAGE" != this.plugin.settings.configPassphraseStore);
+    z.setDisabled("LOCALSTORAGE" != this.plugin.settings.configPassphraseStore);
     addScreenElement("20", V);
-    const U = s.createDiv();
-    U.createEl("h3", {
+    const W = s.createDiv();
+    W.createEl("h3", {
       text: "Sync Settings"
     });
     if ("" != this.plugin.settings.versionUpFlash) {
-      const s = U.createEl("div", {
+      const s = W.createEl("div", {
         text: this.plugin.settings.versionUpFlash
       });
       s.createEl("button", {
@@ -17807,17 +17990,17 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.addClass("op-warn");
     }
-    let z = "NONE";
-    U.createEl("div", {
+    let H = "NONE";
+    W.createEl("div", {
       text: "Please select any preset to complete wizard."
     }).addClasses([ "op-warn-info", "wizardOnly" ]);
-    new import_obsidian.Setting(U).setName("Presets").setDesc("Apply preset configuration").addDropdown((s => s.addOptions({
+    new import_obsidian.Setting(W).setName("Presets").setDesc("Apply preset configuration").addDropdown((s => s.addOptions({
       NONE: "",
       LIVESYNC: "LiveSync",
       PERIODIC: "Periodic w/ batch",
       DISABLE: "Disable all automatic"
-    }).setValue(z).onChange((s => z = s)))).addButton((s => s.setButtonText("Apply").setDisabled(false).setCta().onClick((async () => {
-      if ("" == z) {
+    }).setValue(H).onChange((s => H = s)))).addButton((s => s.setButtonText("Apply").setDisabled(false).setCta().onClick((async () => {
+      if ("" == H) {
         Logger("Select any preset.", LOG_LEVEL_NOTICE);
         return;
       }
@@ -17843,13 +18026,13 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
         syncOnFileOpen: true,
         syncAfterMerge: true
       };
-      if ("LIVESYNC" == z) {
+      if ("LIVESYNC" == H) {
         this.plugin.settings = {
           ...this.plugin.settings,
           ...r
         };
         Logger("Synchronization setting configured as LiveSync.", LOG_LEVEL_NOTICE);
-      } else if ("PERIODIC" == z) {
+      } else if ("PERIODIC" == H) {
         this.plugin.settings = {
           ...this.plugin.settings,
           ...o
@@ -17880,17 +18063,17 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
         this.plugin.app.commands.executeCommandById("obsidian-livesync:livesync-copysetupuri");
       }
     }))));
-    U.createEl("h4", {
+    W.createEl("h4", {
       text: "Synchronization Methods"
     }).addClass("wizardHidden");
-    const W = [], H = [];
-    let K = "";
-    if (this.plugin.settings.liveSync) K = "LIVESYNC"; else if (this.plugin.settings.periodicReplication) K = "PERIODIC";
-    new import_obsidian.Setting(U).setName("Sync Mode").setClass("wizardHidden").addDropdown((s => s.addOptions({
+    const K = [], Q = [];
+    let J = "";
+    if (this.plugin.settings.liveSync) J = "LIVESYNC"; else if (this.plugin.settings.periodicReplication) J = "PERIODIC";
+    new import_obsidian.Setting(W).setName("Sync Mode").setClass("wizardHidden").addDropdown((s => s.addOptions({
       "": "On events",
       PERIODIC: "Periodic and On events",
       LIVESYNC: "LiveSync"
-    }).setValue(K).onChange((async s => {
+    }).setValue(J).onChange((async s => {
       this.plugin.settings.liveSync = false;
       this.plugin.settings.periodicReplication = false;
       if ("LIVESYNC" == s) this.plugin.settings.liveSync = true; else if ("PERIODIC" == s) this.plugin.settings.periodicReplication = true;
@@ -17900,7 +18083,7 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       this.display();
     }))));
     if (!this.plugin.settings.liveSync) {
-      if (this.plugin.settings.periodicReplication) new import_obsidian.Setting(U).setName("Periodic Sync interval").setDesc("Interval (sec)").setClass("wizardHidden").addText((s => {
+      if (this.plugin.settings.periodicReplication) new import_obsidian.Setting(W).setName("Periodic Sync interval").setDesc("Interval (sec)").setClass("wizardHidden").addText((s => {
         s.setPlaceholder("").setValue(this.plugin.settings.periodicReplicationInterval + "").onChange((async s => {
           let r = Number(s);
           if (isNaN(r) || r > 5e3) r = 0;
@@ -17910,80 +18093,80 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
         }));
         s.inputEl.setAttribute("type", "number");
       }));
-      new import_obsidian.Setting(U).setName("Sync on Save").setDesc("When you save file, sync automatically").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnSave).onChange((async s => {
+      new import_obsidian.Setting(W).setName("Sync on Save").setDesc("When you save file, sync automatically").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnSave).onChange((async s => {
         this.plugin.settings.syncOnSave = s;
         await this.plugin.saveSettings();
         applyDisplayEnabled();
       }))));
-      new import_obsidian.Setting(U).setName("Sync on Editor Save").setDesc("When you save file on the editor, sync automatically").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnEditorSave).onChange((async s => {
+      new import_obsidian.Setting(W).setName("Sync on Editor Save").setDesc("When you save file on the editor, sync automatically").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnEditorSave).onChange((async s => {
         this.plugin.settings.syncOnEditorSave = s;
         await this.plugin.saveSettings();
         applyDisplayEnabled();
       }))));
-      new import_obsidian.Setting(U).setName("Sync on File Open").setDesc("When you open file, sync automatically").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnFileOpen).onChange((async s => {
+      new import_obsidian.Setting(W).setName("Sync on File Open").setDesc("When you open file, sync automatically").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnFileOpen).onChange((async s => {
         this.plugin.settings.syncOnFileOpen = s;
         await this.plugin.saveSettings();
         applyDisplayEnabled();
       }))));
-      new import_obsidian.Setting(U).setName("Sync on Start").setDesc("Start synchronization after launching Obsidian.").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnStart).onChange((async s => {
+      new import_obsidian.Setting(W).setName("Sync on Start").setDesc("Start synchronization after launching Obsidian.").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncOnStart).onChange((async s => {
         this.plugin.settings.syncOnStart = s;
         await this.plugin.saveSettings();
         applyDisplayEnabled();
       }))));
-      new import_obsidian.Setting(U).setName("Sync after merging file").setDesc("Sync automatically after merging files").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncAfterMerge).onChange((async s => {
+      new import_obsidian.Setting(W).setName("Sync after merging file").setDesc("Sync automatically after merging files").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncAfterMerge).onChange((async s => {
         this.plugin.settings.syncAfterMerge = s;
         await this.plugin.saveSettings();
         applyDisplayEnabled();
       }))));
     }
-    U.createEl("h4", {
+    W.createEl("h4", {
       text: "Deletions propagation"
     }).addClass("wizardHidden");
-    new import_obsidian.Setting(U).setName("Use the trash bin").setDesc("Do not delete files that are deleted in remote, just move to trash.").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.trashInsteadDelete).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Use the trash bin").setDesc("Do not delete files that are deleted in remote, just move to trash.").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.trashInsteadDelete).onChange((async s => {
       this.plugin.settings.trashInsteadDelete = s;
       await this.plugin.saveSettings();
     }))));
-    new import_obsidian.Setting(U).setName("Keep empty folder").setDesc("Normally, a folder is deleted when it becomes empty after a synchronization. Enabling this will prevent it from getting deleted").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.doNotDeleteFolder).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Keep empty folder").setDesc("Normally, a folder is deleted when it becomes empty after a synchronization. Enabling this will prevent it from getting deleted").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.doNotDeleteFolder).onChange((async s => {
       this.plugin.settings.doNotDeleteFolder = s;
       await this.plugin.saveSettings();
     }))));
-    U.createEl("h4", {
+    W.createEl("h4", {
       text: "Conflict resolution"
     }).addClass("wizardHidden");
-    new import_obsidian.Setting(U).setName("Always overwrite with a newer file (beta)").setDesc("(Def off) Resolve conflicts by newer files automatically.").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.resolveConflictsByNewerFile).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Always overwrite with a newer file (beta)").setDesc("(Def off) Resolve conflicts by newer files automatically.").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.resolveConflictsByNewerFile).onChange((async s => {
       this.plugin.settings.resolveConflictsByNewerFile = s;
       await this.plugin.saveSettings();
     }))));
-    new import_obsidian.Setting(U).setName("Postpone resolution of inactive files").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.checkConflictOnlyOnOpen).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Postpone resolution of inactive files").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.checkConflictOnlyOnOpen).onChange((async s => {
       this.plugin.settings.checkConflictOnlyOnOpen = s;
       await this.plugin.saveSettings();
     }))));
-    new import_obsidian.Setting(U).setName("Postpone manual resolution of inactive files").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.showMergeDialogOnlyOnActive).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Postpone manual resolution of inactive files").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.showMergeDialogOnlyOnActive).onChange((async s => {
       this.plugin.settings.showMergeDialogOnlyOnActive = s;
       await this.plugin.saveSettings();
     }))));
-    U.createEl("h4", {
+    W.createEl("h4", {
       text: "Compatibility"
     }).addClass("wizardHidden");
-    new import_obsidian.Setting(U).setName("Always resolve conflict manually").setDesc("If this switch is turned on, a merge dialog will be displayed, even if the sensible-merge is possible automatically. (Turn on to previous behavior)").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.disableMarkdownAutoMerge).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Always resolve conflict manually").setDesc("If this switch is turned on, a merge dialog will be displayed, even if the sensible-merge is possible automatically. (Turn on to previous behavior)").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.disableMarkdownAutoMerge).onChange((async s => {
       this.plugin.settings.disableMarkdownAutoMerge = s;
       await this.plugin.saveSettings();
     }))));
-    new import_obsidian.Setting(U).setName("Always reflect synchronized changes even if the note has a conflict").setDesc("Turn on to previous behavior").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.writeDocumentsIfConflicted).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Always reflect synchronized changes even if the note has a conflict").setDesc("Turn on to previous behavior").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.writeDocumentsIfConflicted).onChange((async s => {
       this.plugin.settings.writeDocumentsIfConflicted = s;
       await this.plugin.saveSettings();
     }))));
-    U.createEl("h4", {
+    W.createEl("h4", {
       text: "Hidden files"
     }).addClass("wizardHidden");
-    new import_obsidian.Setting(U).setName("Hidden file synchronization").setClass("wizardHidden").settingEl.createDiv("").innerText = this.plugin.settings.syncInternalFiles ? "🔁 : Enabled" : "⏹️ : Disabled";
-    if (this.plugin.settings.syncInternalFiles) new import_obsidian.Setting(U).setName("Disable Hidden files sync").setClass("wizardHidden").addButton((s => {
+    new import_obsidian.Setting(W).setName("Hidden file synchronization").setClass("wizardHidden").settingEl.createDiv("").innerText = this.plugin.settings.syncInternalFiles ? "🔁 : Enabled" : "⏹️ : Disabled";
+    if (this.plugin.settings.syncInternalFiles) new import_obsidian.Setting(W).setName("Disable Hidden files sync").setClass("wizardHidden").addButton((s => {
       s.setButtonText("Disable").onClick((async () => {
         this.plugin.settings.syncInternalFiles = false;
         await this.plugin.saveSettings();
         this.display();
       }));
-    })); else new import_obsidian.Setting(U).setName("Enable Hidden files sync").setClass("wizardHidden").addButton((s => {
+    })); else new import_obsidian.Setting(W).setName("Enable Hidden files sync").setClass("wizardHidden").addButton((s => {
       s.setButtonText("Merge").onClick((async () => {
         this.plugin.app.setting.close();
         await this.plugin.addOnSetup.configureHiddenFileSync("MERGE");
@@ -17999,11 +18182,11 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
         await this.plugin.addOnSetup.configureHiddenFileSync("OVERWRITE");
       }));
     }));
-    if (!this.plugin.settings.watchInternalFileChanges) new import_obsidian.Setting(U).setName("Scan for hidden files before replication").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncInternalFilesBeforeReplication).onChange((async s => {
+    if (!this.plugin.settings.watchInternalFileChanges) new import_obsidian.Setting(W).setName("Scan for hidden files before replication").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.syncInternalFilesBeforeReplication).onChange((async s => {
       this.plugin.settings.syncInternalFilesBeforeReplication = s;
       await this.plugin.saveSettings();
     }))));
-    new import_obsidian.Setting(U).setName("Scan hidden files periodically").setDesc("Seconds, 0 to disable").setClass("wizardHidden").addText((s => {
+    new import_obsidian.Setting(W).setName("Scan hidden files periodically").setDesc("Seconds, 0 to disable").setClass("wizardHidden").addText((s => {
       s.setPlaceholder("").setValue(this.plugin.settings.syncInternalFilesInterval + "").onChange((async s => {
         let r = Number(s);
         if (0 !== r && (isNaN(r) || r < 10)) r = 10;
@@ -18012,37 +18195,37 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.inputEl.setAttribute("type", "number");
     }));
-    let Q = null;
-    const J = "\\/node_modules\\/, \\/\\.git\\/, \\/obsidian-livesync\\/", Y = J + ",\\/workspace$ ,\\/workspace.json$";
-    new import_obsidian.Setting(U).setName("Folders and files to ignore").setDesc("Regular expression, If you use hidden file sync between desktop and mobile, adding `workspace$` is recommended.").setClass("wizardHidden").addTextArea((s => {
+    let Y = null;
+    const X = "\\/node_modules\\/, \\/\\.git\\/, \\/obsidian-livesync\\/", Z = X + ",\\/workspace$ ,\\/workspace.json$,\\/workspace-mobile.json$";
+    new import_obsidian.Setting(W).setName("Folders and files to ignore").setDesc("Regular expression, If you use hidden file sync between desktop and mobile, adding `workspace$` is recommended.").setClass("wizardHidden").addTextArea((s => {
       s.setValue(this.plugin.settings.syncInternalFilesIgnorePatterns).setPlaceholder("\\/node_modules\\/, \\/\\.git\\/").onChange((async s => {
         this.plugin.settings.syncInternalFilesIgnorePatterns = s;
         await this.plugin.saveSettings();
       }));
-      Q = s;
+      Y = s;
       return s;
     }));
-    new import_obsidian.Setting(U).setName("Restore the skip pattern to default").setClass("wizardHidden").addButton((s => {
+    new import_obsidian.Setting(W).setName("Restore the skip pattern to default").setClass("wizardHidden").addButton((s => {
       s.setButtonText("Default").onClick((async () => {
-        Q.setValue(J);
-        this.plugin.settings.syncInternalFilesIgnorePatterns = J;
+        Y.setValue(X);
+        this.plugin.settings.syncInternalFilesIgnorePatterns = X;
         await this.plugin.saveSettings();
       }));
     })).addButton((s => {
       s.setButtonText("Cross-platform").onClick((async () => {
-        Q.setValue(Y);
-        this.plugin.settings.syncInternalFilesIgnorePatterns = Y;
+        Y.setValue(Z);
+        this.plugin.settings.syncInternalFilesIgnorePatterns = Z;
         await this.plugin.saveSettings();
       }));
     }));
-    U.createEl("h4", {
+    W.createEl("h4", {
       text: "Performance tweaks"
     }).addClass("wizardHidden");
-    new import_obsidian.Setting(U).setName("Batch database update").setDesc("Reducing the frequency with which on-disk changes are reflected into the DB").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.batchSave).onChange((async s => {
+    new import_obsidian.Setting(W).setName("Batch database update").setDesc("Reducing the frequency with which on-disk changes are reflected into the DB").setClass("wizardHidden").addToggle((s => s.setValue(this.plugin.settings.batchSave).onChange((async s => {
       this.plugin.settings.batchSave = s;
       await this.plugin.saveSettings();
     }))));
-    new import_obsidian.Setting(U).setName("Enhance chunk size").setDesc("Enhance chunk size for binary files (Ratio). This cannot be increased when using IBM Cloudant.").setClass("wizardHidden").addText((s => {
+    new import_obsidian.Setting(W).setName("Enhance chunk size").setDesc("Enhance chunk size for binary files (Ratio). This cannot be increased when using IBM Cloudant.").setClass("wizardHidden").addText((s => {
       s.setPlaceholder("").setValue(this.plugin.settings.customChunkSize + "").onChange((async s => {
         let r = Number(s);
         if (isNaN(r) || r < 1) r = 0;
@@ -18051,31 +18234,17 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.inputEl.setAttribute("type", "number");
     }));
-    new import_obsidian.Setting(U).setName("Fetch chunks on demand").setDesc("(ex. Read chunks online) If this option is enabled, LiveSync reads chunks online directly instead of replicating them locally. Increasing Custom chunk size is recommended.").setClass("wizardHidden").addToggle((s => {
+    new import_obsidian.Setting(W).setName("Fetch chunks on demand").setDesc("(ex. Read chunks online) If this option is enabled, LiveSync reads chunks online directly instead of replicating them locally. Increasing Custom chunk size is recommended.").setClass("wizardHidden").addToggle((s => {
       s.setValue(this.plugin.settings.readChunksOnline).onChange((async s => {
         this.plugin.settings.readChunksOnline = s;
         await this.plugin.saveSettings();
       }));
       return s;
     }));
-    U.createEl("h4", {
-      text: (0, import_obsidian.sanitizeHTMLToDom)("Synchronization target filters")
+    W.createEl("h4", {
+      text: (0, import_obsidian.sanitizeHTMLToDom)("Targets")
     }).addClass("wizardHidden");
-    new import_obsidian.Setting(U).setName("Regular expression to ignore files").setDesc("If this is set, any changes to local and remote files that match this will be skipped.").setClass("wizardHidden").addTextArea((s => {
-      s.setValue(this.plugin.settings.syncIgnoreRegEx).setPlaceholder("\\.pdf$").onChange((async s => {
-        let r = false;
-        try {
-          new RegExp(s);
-          r = true;
-        } catch (s) {}
-        if (r || "" == s.trim()) {
-          this.plugin.settings.syncIgnoreRegEx = s;
-          await this.plugin.saveSettings();
-        }
-      }));
-      return s;
-    }));
-    new import_obsidian.Setting(U).setName("Regular expression for restricting synchronization targets").setDesc("If this is set, changes to local and remote files that only match this will be processed.").setClass("wizardHidden").addTextArea((s => {
+    new import_obsidian.Setting(W).setName("Synchronising files").setDesc("(RegExp) Empty to sync all files. set filter as a regular expression to limit synchronising files.").setClass("wizardHidden").addTextArea((s => {
       s.setValue(this.plugin.settings.syncOnlyRegEx).setPlaceholder("\\.md$|\\.txt").onChange((async s => {
         let r = false;
         try {
@@ -18089,7 +18258,30 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       return s;
     }));
-    new import_obsidian.Setting(U).setName("(Beta) Use ignore files").setDesc("If this is set, changes to local files which are matched by the ignore files will be skipped. Remote changes are determined using local ignore files.").setClass("wizardHidden").addToggle((s => {
+    new import_obsidian.Setting(W).setName("Non-Synchronising files").setDesc("(RegExp) If this is set, any changes to local and remote files that match this will be skipped.").setClass("wizardHidden").addTextArea((s => {
+      s.setValue(this.plugin.settings.syncIgnoreRegEx).setPlaceholder("\\.pdf$").onChange((async s => {
+        let r = false;
+        try {
+          new RegExp(s);
+          r = true;
+        } catch (s) {}
+        if (r || "" == s.trim()) {
+          this.plugin.settings.syncIgnoreRegEx = s;
+          await this.plugin.saveSettings();
+        }
+      }));
+      return s;
+    }));
+    new import_obsidian.Setting(W).setName("Maximum file size").setDesc("(MB) If this is set, changes to local and remote files that are larger than this will be skipped. If the file becomes smaller again, a newer one will be used.").setClass("wizardHidden").addText((s => {
+      s.setPlaceholder("").setValue(this.plugin.settings.syncMaxSizeInMB + "").onChange((async s => {
+        let r = Number(s);
+        if (isNaN(r) || r < 1) r = 0;
+        this.plugin.settings.syncMaxSizeInMB = r;
+        await this.plugin.saveSettings();
+      }));
+      s.inputEl.setAttribute("type", "number");
+    }));
+    new import_obsidian.Setting(W).setName("(Beta) Use ignore files").setDesc("If this is set, changes to local files which are matched by the ignore files will be skipped. Remote changes are determined using local ignore files.").setClass("wizardHidden").addToggle((s => {
       s.setValue(this.plugin.settings.useIgnoreFiles).onChange((async s => {
         this.plugin.settings.useIgnoreFiles = s;
         await this.plugin.saveSettings();
@@ -18097,45 +18289,45 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       return s;
     }));
-    if (this.plugin.settings.useIgnoreFiles) new import_obsidian.Setting(U).setName("Ignore files").setDesc("We can use multiple ignore files, e.g.) `.gitignore, .dockerignore`").setClass("wizardHidden").addTextArea((s => {
+    if (this.plugin.settings.useIgnoreFiles) new import_obsidian.Setting(W).setName("Ignore files").setDesc("We can use multiple ignore files, e.g.) `.gitignore, .dockerignore`").setClass("wizardHidden").addTextArea((s => {
       s.setValue(this.plugin.settings.ignoreFiles).setPlaceholder(".gitignore, .dockerignore").onChange((async s => {
         this.plugin.settings.ignoreFiles = s;
         await this.plugin.saveSettings();
       }));
       return s;
     }));
-    U.createEl("h4", {
+    W.createEl("h4", {
       text: (0, import_obsidian.sanitizeHTMLToDom)("Advanced settings")
     }).addClass("wizardHidden");
-    U.createEl("div", {
+    W.createEl("div", {
       text: "If you reached the payload size limit when using IBM Cloudant, please decrease batch size and batch limit to a lower value."
     }).addClass("wizardHidden");
-    new import_obsidian.Setting(U).setName("Batch size").setDesc("Number of change feed items to process at a time. Defaults to 50.").setClass("wizardHidden").addText((s => {
+    new import_obsidian.Setting(W).setName("Batch size").setDesc("Number of change feed items to process at a time. Defaults to 50. Minimum is 2.").setClass("wizardHidden").addText((s => {
       s.setPlaceholder("").setValue(this.plugin.settings.batch_size + "").onChange((async s => {
         let r = Number(s);
-        if (isNaN(r) || r < 10) r = 10;
+        if (isNaN(r) || r < 2) r = 2;
         this.plugin.settings.batch_size = r;
         await this.plugin.saveSettings();
       }));
       s.inputEl.setAttribute("type", "number");
     }));
-    new import_obsidian.Setting(U).setName("Batch limit").setDesc("Number of batches to process at a time. Defaults to 40. This along with batch size controls how many docs are kept in memory at a time.").setClass("wizardHidden").addText((s => {
+    new import_obsidian.Setting(W).setName("Batch limit").setDesc("Number of batches to process at a time. Defaults to 40. Minimum is 2. This along with batch size controls how many docs are kept in memory at a time.").setClass("wizardHidden").addText((s => {
       s.setPlaceholder("").setValue(this.plugin.settings.batches_limit + "").onChange((async s => {
         let r = Number(s);
-        if (isNaN(r) || r < 10) r = 10;
+        if (isNaN(r) || r < 2) r = 2;
         this.plugin.settings.batches_limit = r;
         await this.plugin.saveSettings();
       }));
       s.inputEl.setAttribute("type", "number");
     }));
-    new import_obsidian.Setting(U).setName("Use timeouts instead of heartbeats").setDesc("If this option is enabled, PouchDB will hold the connection open for 60 seconds, and if no change arrives in that time, close and reopen the socket, instead of holding it open indefinitely. Useful when a proxy limits request duration but can increase resource usage.").setClass("wizardHidden").addToggle((s => {
+    new import_obsidian.Setting(W).setName("Use timeouts instead of heartbeats").setDesc("If this option is enabled, PouchDB will hold the connection open for 60 seconds, and if no change arrives in that time, close and reopen the socket, instead of holding it open indefinitely. Useful when a proxy limits request duration but can increase resource usage.").setClass("wizardHidden").addToggle((s => {
       s.setValue(this.plugin.settings.useTimeouts).onChange((async s => {
         this.plugin.settings.useTimeouts = s;
         await this.plugin.saveSettings();
       }));
       return s;
     }));
-    new import_obsidian.Setting(U).setName("Batch size of on-demand fetching").setDesc("").setClass("wizardHidden").addText((s => {
+    new import_obsidian.Setting(W).setName("Batch size of on-demand fetching").setDesc("").setClass("wizardHidden").addText((s => {
       s.setPlaceholder("").setValue(this.plugin.settings.concurrencyOfReadChunksOnline + "").onChange((async s => {
         let r = Number(s);
         if (isNaN(r) || r < 10) r = 10;
@@ -18144,7 +18336,7 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.inputEl.setAttribute("type", "number");
     }));
-    new import_obsidian.Setting(U).setName("The delay for consecutive on-demand fetches").setDesc("").setClass("wizardHidden").addText((s => {
+    new import_obsidian.Setting(W).setName("The delay for consecutive on-demand fetches").setDesc("").setClass("wizardHidden").addText((s => {
       s.setPlaceholder("").setValue(this.plugin.settings.minimumIntervalOfReadChunksOnline + "").onChange((async s => {
         let r = Number(s);
         if (isNaN(r) || r < 10) r = 10;
@@ -18153,12 +18345,12 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.inputEl.setAttribute("type", "number");
     }));
-    addScreenElement("30", U);
-    const X = s.createDiv();
-    X.createEl("h3", {
+    addScreenElement("30", W);
+    const ee = s.createDiv();
+    ee.createEl("h3", {
       text: "Hatch"
     });
-    new import_obsidian.Setting(X).setName("Make report to inform the issue").addButton((s => s.setButtonText("Make report").setDisabled(false).onClick((async () => {
+    new import_obsidian.Setting(ee).setName("Make report to inform the issue").addButton((s => s.setButtonText("Make report").setDisabled(false).onClick((async () => {
       let s = {};
       const r = "𝑅𝐸𝐷𝐴𝐶𝑇𝐸𝐷";
       try {
@@ -18182,14 +18374,15 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       o.encryptedPassphrase = r;
       o.encryptedCouchDBConnection = r;
       o.pluginSyncExtendedSetting = {};
-      const u = `----remote config----\n${(0, import_obsidian.stringifyYaml)(s)}\n---- Plug-in config ---\nversion:${S}\n${(0, 
+      const u = `---- Obsidian info ----\n${navigator.userAgent}\n---- remote config ----\n${(0, 
+      import_obsidian.stringifyYaml)(s)}\n---- Plug-in config ---\nversion:${S}\n${(0, 
       import_obsidian.stringifyYaml)(o)}`;
       console.log(u);
       await navigator.clipboard.writeText(u);
       Logger("Information has been copied to clipboard", LOG_LEVEL_NOTICE);
     }))));
     if (this.plugin.replicator.remoteLockedAndDeviceNotAccepted) {
-      const s = X.createEl("div", {
+      const s = ee.createEl("div", {
         text: "To prevent unwanted vault corruption, the remote database has been locked for synchronization, and this device was not marked as 'resolved'. it caused by some operations like this. re-initialized. Local database initialization should be required. please back your vault up, reset local database, and press 'Mark this device as resolved'. "
       });
       s.createEl("button", {
@@ -18203,7 +18396,7 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.addClass("op-warn");
     } else if (this.plugin.replicator.remoteLocked) {
-      const s = X.createEl("div", {
+      const s = ee.createEl("div", {
         text: "To prevent unwanted vault corruption, the remote database has been locked for synchronization. (This device is marked 'resolved') When all your devices are marked 'resolved', unlock the database."
       });
       s.createEl("button", {
@@ -18217,10 +18410,10 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.addClass("op-warn");
     }
-    X.createEl("div", {
+    ee.createEl("div", {
       text: "To stop the boot up sequence for fixing problems on databases, you can put redflag.md on top of your vault (Rebooting obsidian is required)."
     }).addClass("op-warn-info");
-    new import_obsidian.Setting(X).setName("Verify and repair all files").setDesc("Verify and repair all files and update database without restoring").addButton((s => s.setButtonText("Verify and repair").setDisabled(false).setWarning().onClick((async () => {
+    new import_obsidian.Setting(ee).setName("Verify and repair all files").setDesc("Verify and repair all files and update database without restoring").addButton((s => s.setButtonText("Verify and repair").setDisabled(false).setWarning().onClick((async () => {
       const s = Semaphore(10), r = this.app.vault.getFiles();
       let o = 0;
       const u = r.map((u => (async u => {
@@ -18241,7 +18434,7 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       await Promise.all(u);
       Logger("done", LOG_LEVEL_NOTICE, "verify");
     }))));
-    new import_obsidian.Setting(X).setName("Check and convert non-path-obfuscated files").setDesc("").addButton((s => s.setButtonText("Perform").setDisabled(false).setWarning().onClick((async () => {
+    new import_obsidian.Setting(ee).setName("Check and convert non-path-obfuscated files").setDesc("").addButton((s => s.setButtonText("Perform").setDisabled(false).setWarning().onClick((async () => {
       var s, r, o;
       for await (const u of this.plugin.localDatabase.findAllDocNames()) if (!u.startsWith("f:")) {
         const g = await this.plugin.path2id(u), _ = await this.plugin.localDatabase.getRaw(u);
@@ -18261,17 +18454,17 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
           null == (r = s._revs_info) || r.shift();
           const b = null == (o = s._revs_info) ? void 0 : o.shift();
           if (b) m._rev = b.rev; else m._rev = "1-" + `00000000000000000000000000000000${~~(1e9 * Math.random())}${~~(1e9 * Math.random())}${~~(1e9 * Math.random())}${~~(1e9 * Math.random())}`.slice(-32);
-          const w = await this.plugin.localDatabase.putRaw(m, {
+          const E = await this.plugin.localDatabase.putRaw(m, {
             force: true
           });
-          if (w.ok) {
+          if (E.ok) {
             Logger(`${u} has been converted as conflicted document`, LOG_LEVEL_NOTICE);
             _._deleted = true;
             if ((await this.plugin.localDatabase.putRaw(_)).ok) Logger(`Old ${u} has been deleted`, LOG_LEVEL_NOTICE);
             await this.plugin.queueConflictCheck(u);
           } else {
             Logger(`Converting ${u} Failed!`, LOG_LEVEL_NOTICE);
-            Logger(w, LOG_LEVEL_VERBOSE);
+            Logger(E, LOG_LEVEL_VERBOSE);
           }
         } catch (s) {
           if (404 == (null == s ? void 0 : s.status)) {
@@ -18288,7 +18481,7 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }
       Logger("Converting finished", LOG_LEVEL_NOTICE);
     }))));
-    new import_obsidian.Setting(X).setName("Delete all customization sync data").addButton((s => s.setButtonText("Delete").setDisabled(false).setWarning().onClick((async () => {
+    new import_obsidian.Setting(ee).setName("Delete all customization sync data").addButton((s => s.setButtonText("Delete").setDisabled(false).setWarning().onClick((async () => {
       Logger("Deleting customization sync data", LOG_LEVEL_NOTICE);
       const s = (await this.plugin.localDatabase.allDocsRaw({
         startkey: "ix:",
@@ -18300,40 +18493,40 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       })));
       Logger(`${(await this.plugin.localDatabase.bulkDocsRaw(s)).length} items have been removed, to confirm how many items are left, please perform it again.`, LOG_LEVEL_NOTICE);
     }))));
-    new import_obsidian.Setting(X).setName("Suspend file watching").setDesc("Stop watching for file change.").addToggle((s => s.setValue(this.plugin.settings.suspendFileWatching).onChange((async s => {
+    new import_obsidian.Setting(ee).setName("Suspend file watching").setDesc("Stop watching for file change.").addToggle((s => s.setValue(this.plugin.settings.suspendFileWatching).onChange((async s => {
       this.plugin.settings.suspendFileWatching = s;
       await this.plugin.saveSettings();
       scheduleTask("configReload", 250, (async () => {
         if ("yes" == await askYesNo(this.app, "Do you want to restart and reload Obsidian now?")) this.app.commands.executeCommandById("app:reload");
       }));
     }))));
-    new import_obsidian.Setting(X).setName("Suspend database reflecting").setDesc("Stop reflecting database changes to storage files.").addToggle((s => s.setValue(this.plugin.settings.suspendParseReplicationResult).onChange((async s => {
+    new import_obsidian.Setting(ee).setName("Suspend database reflecting").setDesc("Stop reflecting database changes to storage files.").addToggle((s => s.setValue(this.plugin.settings.suspendParseReplicationResult).onChange((async s => {
       this.plugin.settings.suspendParseReplicationResult = s;
       await this.plugin.saveSettings();
       scheduleTask("configReload", 250, (async () => {
         if ("yes" == await askYesNo(this.app, "Do you want to restart and reload Obsidian now?")) this.app.commands.executeCommandById("app:reload");
       }));
     }))));
-    new import_obsidian.Setting(X).setName("Write logs into the file").setDesc("Warning! This will have a serious impact on performance. And the logs will not be synchronised under the default name. Please be careful with logs; they often contain your confidential information.").addToggle((s => s.setValue(this.plugin.settings.writeLogToTheFile).onChange((async s => {
+    new import_obsidian.Setting(ee).setName("Write logs into the file").setDesc("Warning! This will have a serious impact on performance. And the logs will not be synchronised under the default name. Please be careful with logs; they often contain your confidential information.").addToggle((s => s.setValue(this.plugin.settings.writeLogToTheFile).onChange((async s => {
       this.plugin.settings.writeLogToTheFile = s;
       await this.plugin.saveSettings();
     }))));
-    new import_obsidian.Setting(X).setName("Do not pace synchronization").setDesc("If this toggle enabled, synchronisation will not be paced by queued entries. If synchronisation has been deadlocked, please make this enabled once.").addToggle((s => s.setValue(this.plugin.settings.doNotPaceReplication).onChange((async s => {
+    new import_obsidian.Setting(ee).setName("Do not pace synchronization").setDesc("If this toggle enabled, synchronisation will not be paced by queued entries. If synchronisation has been deadlocked, please make this enabled once.").addToggle((s => s.setValue(this.plugin.settings.doNotPaceReplication).onChange((async s => {
       this.plugin.settings.doNotPaceReplication = s;
       await this.plugin.saveSettings();
     }))));
-    X.createEl("h4", {
+    ee.createEl("h4", {
       text: (0, import_obsidian.sanitizeHTMLToDom)("Compatibility"),
       cls: "wizardHidden"
     });
-    new import_obsidian.Setting(X).setName("Do not keep metadata of deleted files.").setClass("wizardHidden").addToggle((s => {
+    new import_obsidian.Setting(ee).setName("Do not keep metadata of deleted files.").setClass("wizardHidden").addToggle((s => {
       s.setValue(this.plugin.settings.deleteMetadataOfDeletedFiles).onChange((async s => {
         this.plugin.settings.deleteMetadataOfDeletedFiles = s;
         await this.plugin.saveSettings();
         this.display();
       }));
     }));
-    if (this.plugin.settings.deleteMetadataOfDeletedFiles) new import_obsidian.Setting(X).setName("Delete old metadata of deleted files on start-up").setClass("wizardHidden").setDesc("(Days passed, 0 to disable automatic-deletion)").addText((s => {
+    if (this.plugin.settings.deleteMetadataOfDeletedFiles) new import_obsidian.Setting(ee).setName("Delete old metadata of deleted files on start-up").setClass("wizardHidden").setDesc("(Days passed, 0 to disable automatic-deletion)").addText((s => {
       s.setPlaceholder("").setValue(this.plugin.settings.automaticallyDeleteMetadataOfDeletedFiles + "").onChange((async s => {
         let r = Number(s);
         if (isNaN(r)) r = 0;
@@ -18342,31 +18535,31 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       }));
       s.inputEl.setAttribute("type", "number");
     }));
-    new import_obsidian.Setting(X).setName("Use an old adapter for compatibility").setDesc("This option is not compatible with a database made by older versions. Changing this configuration will fetch the remote database again.").setClass("wizardHidden").addToggle((s => s.setValue(!this.plugin.settings.useIndexedDBAdapter).onChange((async s => {
+    new import_obsidian.Setting(ee).setName("Use an old adapter for compatibility").setDesc("This option is not compatible with a database made by older versions. Changing this configuration will fetch the remote database again.").setClass("wizardHidden").addToggle((s => s.setValue(!this.plugin.settings.useIndexedDBAdapter).onChange((async s => {
       this.plugin.settings.useIndexedDBAdapter = !s;
       await this.plugin.saveSettings();
       await rebuildDB("localOnly");
     }))));
-    new import_obsidian.Setting(X).setName("Scan changes on customization sync").setDesc("Do not use internal API").addToggle((s => s.setValue(!this.plugin.settings.watchInternalFileChanges).onChange((async s => {
+    new import_obsidian.Setting(ee).setName("Scan changes on customization sync").setDesc("Do not use internal API").addToggle((s => s.setValue(!this.plugin.settings.watchInternalFileChanges).onChange((async s => {
       this.plugin.settings.watchInternalFileChanges = !s;
       await this.plugin.saveSettings();
     }))));
-    let Z = this.plugin.settings.additionalSuffixOfDatabaseName + "";
-    new import_obsidian.Setting(X).setName("Database suffix").setDesc("LiveSync could not treat multiple vaults which have same name, please add some suffix from here.").addText((s => {
-      s.setPlaceholder("").setValue(Z).onChange((s => {
-        Z = s;
+    let te = this.plugin.settings.additionalSuffixOfDatabaseName + "";
+    new import_obsidian.Setting(ee).setName("Database suffix").setDesc("LiveSync could not treat multiple vaults which have same name, please add some suffix from here.").addText((s => {
+      s.setPlaceholder("").setValue(te).onChange((s => {
+        te = s;
       }));
     })).addButton((s => {
       s.setButtonText("Change").onClick((async () => {
-        if (this.plugin.settings.additionalSuffixOfDatabaseName != Z) {
-          this.plugin.settings.additionalSuffixOfDatabaseName = Z;
+        if (this.plugin.settings.additionalSuffixOfDatabaseName != te) {
+          this.plugin.settings.additionalSuffixOfDatabaseName = te;
           await this.plugin.saveSettings();
           Logger("Suffix has been changed. Reopening database...", LOG_LEVEL_NOTICE);
           await this.plugin.initializeDatabase();
         } else Logger("Suffix was not changed.", LOG_LEVEL_NOTICE);
       }));
     }));
-    new import_obsidian.Setting(X).setName("The Hash algorithm for chunk IDs").setDesc("xxhash64 is the current default.").setClass("wizardHidden").addDropdown((s => s.addOptions({
+    new import_obsidian.Setting(ee).setName("The Hash algorithm for chunk IDs").setDesc("xxhash64 is the current default.").setClass("wizardHidden").addDropdown((s => s.addOptions({
       "": "Old Algorithm",
       xxhash32: "xxhash32 (Fast)",
       xxhash64: "xxhash64 (Fastest)",
@@ -18375,25 +18568,25 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       this.plugin.settings.hashAlg = s;
       await this.plugin.saveSettings();
     })))).setClass("wizardHidden");
-    new import_obsidian.Setting(X).setName("Fetch database with previous behaviour").setDesc("").addToggle((s => s.setValue(this.plugin.settings.doNotSuspendOnFetching).onChange((async s => {
+    new import_obsidian.Setting(ee).setName("Fetch database with previous behaviour").setDesc("").addToggle((s => s.setValue(this.plugin.settings.doNotSuspendOnFetching).onChange((async s => {
       this.plugin.settings.doNotSuspendOnFetching = s;
       await this.plugin.saveSettings();
     }))));
-    addScreenElement("50", X);
-    const ee = s.createDiv();
-    ee.createEl("h3", {
+    addScreenElement("50", ee);
+    const ne = s.createDiv();
+    ne.createEl("h3", {
       text: "Customization sync (beta)"
     });
-    const te = new import_obsidian.Setting(ee).setName("Device name").setDesc("Unique name between all synchronized devices").addText((s => {
+    const ie = new import_obsidian.Setting(ne).setName("Device name").setDesc("Unique name between all synchronized devices").addText((s => {
       s.setPlaceholder("desktop").setValue(this.plugin.deviceAndVaultName).onChange((async s => {
         this.plugin.deviceAndVaultName = s;
         await this.plugin.saveSettings();
       }));
     })), updateDisabledOfDeviceAndVaultName = () => {
-      te.setDisabled(this.plugin.settings.usePluginSync);
+      ie.setDisabled(this.plugin.settings.usePluginSync);
     };
     updateDisabledOfDeviceAndVaultName();
-    new import_obsidian.Setting(ee).setName("Enable customization sync").addToggle((s => s.setValue(this.plugin.settings.usePluginSync).onChange((async r => {
+    new import_obsidian.Setting(ne).setName("Enable customization sync").addToggle((s => s.setValue(this.plugin.settings.usePluginSync).onChange((async r => {
       if (r && "" == this.plugin.deviceAndVaultName.trim()) {
         Logger("We have to configure `Device name` to use this feature.", LOG_LEVEL_NOTICE);
         s.setValue(false);
@@ -18404,65 +18597,65 @@ var ObsidianLiveSyncSettingTab = class extends import_obsidian.PluginSettingTab 
       await this.plugin.saveSettings();
     }))));
     if (this.plugin.settings.usePluginSync) {
-      new import_obsidian.Setting(ee).setName("Scan customization automatically").setDesc("Scan customization before replicating.").addToggle((s => s.setValue(this.plugin.settings.autoSweepPlugins).onChange((async s => {
+      new import_obsidian.Setting(ne).setName("Scan customization automatically").setDesc("Scan customization before replicating.").addToggle((s => s.setValue(this.plugin.settings.autoSweepPlugins).onChange((async s => {
         this.plugin.settings.autoSweepPlugins = s;
         updateDisabledOfDeviceAndVaultName();
         await this.plugin.saveSettings();
       }))));
-      if (!this.plugin.settings.watchInternalFileChanges) new import_obsidian.Setting(ee).setName("Scan customization periodically").setDesc("Scan customization every 1 minute.").addToggle((s => s.setValue(this.plugin.settings.autoSweepPluginsPeriodic).onChange((async s => {
+      if (!this.plugin.settings.watchInternalFileChanges) new import_obsidian.Setting(ne).setName("Scan customization periodically").setDesc("Scan customization every 1 minute.").addToggle((s => s.setValue(this.plugin.settings.autoSweepPluginsPeriodic).onChange((async s => {
         this.plugin.settings.autoSweepPluginsPeriodic = s;
         updateDisabledOfDeviceAndVaultName();
         await this.plugin.saveSettings();
       }))));
-      new import_obsidian.Setting(ee).setName("Notify customized").setDesc("Notify when other device has newly customized.").addToggle((s => s.setValue(this.plugin.settings.notifyPluginOrSettingUpdated).onChange((async s => {
+      new import_obsidian.Setting(ne).setName("Notify customized").setDesc("Notify when other device has newly customized.").addToggle((s => s.setValue(this.plugin.settings.notifyPluginOrSettingUpdated).onChange((async s => {
         this.plugin.settings.notifyPluginOrSettingUpdated = s;
         await this.plugin.saveSettings();
       }))));
-      new import_obsidian.Setting(ee).setName("Open").setDesc("Open the dialog").addButton((s => {
+      new import_obsidian.Setting(ne).setName("Open").setDesc("Open the dialog").addButton((s => {
         s.setButtonText("Open").setDisabled(false).onClick((() => {
           this.plugin.addOnConfigSync.showPluginSyncModal();
         }));
       }));
     }
     updateDisabledOfDeviceAndVaultName();
-    addScreenElement("60", ee);
-    const ne = s.createDiv();
-    ne.createEl("h3", {
+    addScreenElement("60", ne);
+    const se = s.createDiv();
+    se.createEl("h3", {
       text: "Maintain databases"
     });
-    ne.createEl("h4", {
+    se.createEl("h4", {
       text: "The remote database"
     });
-    new import_obsidian.Setting(ne).setName("Lock remote database").setDesc("Lock remote database to prevent synchronization with other devices.").addButton((s => s.setButtonText("Lock").setDisabled(false).setWarning().onClick((async () => {
+    new import_obsidian.Setting(se).setName("Lock remote database").setDesc("Lock remote database to prevent synchronization with other devices.").addButton((s => s.setButtonText("Lock").setDisabled(false).setWarning().onClick((async () => {
       await this.plugin.markRemoteLocked();
     }))));
-    new import_obsidian.Setting(ne).setName("Overwrite remote database").setDesc("Overwrite remote database with local DB and passphrase.").addButton((s => s.setButtonText("Send").setWarning().setDisabled(false).onClick((async () => {
+    new import_obsidian.Setting(se).setName("Overwrite remote database").setDesc("Overwrite remote database with local DB and passphrase.").addButton((s => s.setButtonText("Send").setWarning().setDisabled(false).onClick((async () => {
       await rebuildDB("remoteOnly");
     }))));
-    ne.createEl("h4", {
+    se.createEl("h4", {
       text: "The local database"
     });
-    new import_obsidian.Setting(ne).setName("Fetch rebuilt DB").setDesc("Restore or reconstruct local database from remote database.").addButton((s => s.setButtonText("Fetch").setWarning().setDisabled(false).onClick((async () => {
+    new import_obsidian.Setting(se).setName("Fetch rebuilt DB").setDesc("Restore or reconstruct local database from remote database.").addButton((s => s.setButtonText("Fetch").setWarning().setDisabled(false).onClick((async () => {
       await rebuildDB("localOnly");
     }))));
-    new import_obsidian.Setting(ne).setName("Discard local database to reset or uninstall Self-hosted LiveSync").addButton((s => s.setButtonText("Discard").setWarning().setDisabled(false).onClick((async () => {
+    new import_obsidian.Setting(se).setName("Discard local database to reset or uninstall Self-hosted LiveSync").addButton((s => s.setButtonText("Discard").setWarning().setDisabled(false).onClick((async () => {
       await this.plugin.resetLocalDatabase();
       await this.plugin.initializeDatabase();
     }))));
-    ne.createEl("h4", {
+    se.createEl("h4", {
       text: "Both databases"
     });
-    new import_obsidian.Setting(ne).setName("(Beta2) Clean up databases").setDesc("Delete unused chunks to shrink the database. This feature requires disabling 'Use an old adapter for compatibility'").addButton((s => s.setButtonText("DryRun").setDisabled(false).onClick((async () => {
+    new import_obsidian.Setting(se).setName("(Beta2) Clean up databases").setDesc("Delete unused chunks to shrink the database. This feature requires disabling 'Use an old adapter for compatibility'").addButton((s => s.setButtonText("DryRun").setDisabled(false).onClick((async () => {
       await this.plugin.dryRunGC();
     })))).addButton((s => s.setButtonText("Perform cleaning").setDisabled(false).setWarning().onClick((async () => {
       this.plugin.app.setting.close();
       await this.plugin.dbGC();
     }))));
-    new import_obsidian.Setting(ne).setName("Rebuild everything").setDesc("Rebuild local and remote database with local files.").addButton((s => s.setButtonText("Rebuild").setWarning().setDisabled(false).onClick((async () => {
+    new import_obsidian.Setting(se).setName("Rebuild everything").setDesc("Rebuild local and remote database with local files.").addButton((s => s.setButtonText("Rebuild").setWarning().setDisabled(false).onClick((async () => {
       await rebuildDB("rebuildBothByThisDevice");
     }))));
     applyDisplayEnabled();
-    addScreenElement("70", ne);
+    addScreenElement("70", se);
     applyDisplayEnabled();
     if ("" == this.selectedScreen) if (L != this.plugin.settings.lastReadUpdates) if (JSON.stringify(this.plugin.settings) != JSON.stringify(DEFAULT_SETTINGS)) changeDisplay("100"); else changeDisplay("110"); else if (isAnySyncEnabled()) changeDisplay("20"); else changeDisplay("110"); else changeDisplay(this.selectedScreen);
   }
@@ -18759,33 +18952,38 @@ var e, DocumentHistoryModal = class extends import_obsidian.Modal {
     } ], null);
   }
   async appendWatchEvent(s, r) {
-    for (const o of s) {
-      if (shouldBeIgnored(o.file.path)) continue;
-      const s = [ 0, 0, 0, 0, 0, 0 ].map((s => `${Math.floor(1e5 * Math.random())}`)).join("-"), u = o.type, g = o.file, _ = o.oldPath;
-      if (g instanceof import_obsidian.TFolder) continue;
-      if (!await this.plugin.isTargetFile(g.path)) continue;
+    var o;
+    for (const u of s) {
+      if (shouldBeIgnored(u.file.path)) continue;
+      const s = [ 0, 0, 0, 0, 0, 0 ].map((s => `${Math.floor(1e5 * Math.random())}`)).join("-"), g = u.type, _ = u.file, m = u.oldPath, b = _ instanceof import_obsidian.TFile ? _.stat.size : null != (o = null == _ ? void 0 : _.size) ? o : 0;
+      if (this.plugin.isFileSizeExceeded(b) && ("CREATE" == g || "CHANGED" == g)) {
+        Logger(`The storage file has been changed but exceeds the maximum size. Skipping: ${u.file.path}`, LOG_LEVEL_NOTICE);
+        continue;
+      }
+      if (_ instanceof import_obsidian.TFolder) continue;
+      if (!await this.plugin.isTargetFile(_.path)) continue;
       if (this.plugin.settings.suspendFileWatching) continue;
-      let m;
-      if (g instanceof import_obsidian.TFile && ("CREATE" == u || "CHANGED" == u)) {
-        if (this.plugin.vaultAccess.recentlyTouched(g)) continue;
-        if (!isPlainText(g.name)) m = await this.plugin.vaultAccess.vaultReadBinary(g); else {
-          m = await this.plugin.vaultAccess.vaultCacheRead(g);
-          if (!m) m = await this.plugin.vaultAccess.vaultRead(g);
+      let E;
+      if (_ instanceof import_obsidian.TFile && ("CREATE" == g || "CHANGED" == g)) {
+        if (this.plugin.vaultAccess.recentlyTouched(_)) continue;
+        if (!isPlainText(_.name)) E = await this.plugin.vaultAccess.vaultReadBinary(_); else {
+          E = await this.plugin.vaultAccess.vaultCacheRead(_);
+          if (!E) E = await this.plugin.vaultAccess.vaultRead(_);
         }
       }
-      const b = g instanceof import_obsidian.TFile ? {
-        ctime: g.stat.ctime,
-        mtime: g.stat.mtime,
-        file: g,
-        path: g.path,
-        size: g.stat.size
-      } : g;
-      this.plugin.fileEventQueue.enqueueWithKey(`file-${b.path}`, {
-        type: u,
+      const w = _ instanceof import_obsidian.TFile ? {
+        ctime: _.stat.ctime,
+        mtime: _.stat.mtime,
+        file: _,
+        path: _.path,
+        size: _.stat.size
+      } : _;
+      this.plugin.fileEventQueue.enqueueWithKey(`file-${w.path}`, {
+        type: g,
         args: {
-          file: b,
-          oldPath: _,
-          cache: m,
+          file: w,
+          oldPath: m,
+          cache: E,
           ctx: r
         },
         key: s
@@ -18837,24 +19035,24 @@ async function xxhash_wasm_default() {
 var t2 = new Uint8Array([ 0, 97, 115, 109, 1, 0, 0, 0, 1, 48, 8, 96, 3, 127, 127, 127, 0, 96, 3, 127, 127, 127, 1, 127, 96, 2, 127, 127, 0, 96, 2, 127, 126, 0, 96, 1, 127, 1, 127, 96, 1, 127, 1, 126, 96, 3, 127, 127, 126, 1, 126, 96, 3, 126, 127, 127, 1, 126, 3, 11, 10, 1, 1, 2, 0, 4, 6, 7, 3, 0, 5, 5, 3, 1, 0, 1, 7, 85, 9, 3, 109, 101, 109, 2, 0, 5, 120, 120, 104, 51, 50, 0, 0, 6, 105, 110, 105, 116, 51, 50, 0, 2, 8, 117, 112, 100, 97, 116, 101, 51, 50, 0, 3, 8, 100, 105, 103, 101, 115, 116, 51, 50, 0, 4, 5, 120, 120, 104, 54, 52, 0, 5, 6, 105, 110, 105, 116, 54, 52, 0, 7, 8, 117, 112, 100, 97, 116, 101, 54, 52, 0, 8, 8, 100, 105, 103, 101, 115, 116, 54, 52, 0, 9, 10, 211, 23, 10, 242, 1, 1, 4, 127, 32, 0, 32, 1, 106, 33, 3, 32, 1, 65, 16, 79, 4, 127, 32, 3, 65, 16, 107, 33, 6, 32, 2, 65, 168, 136, 141, 161, 2, 106, 33, 3, 32, 2, 65, 247, 148, 175, 175, 120, 106, 33, 4, 32, 2, 65, 177, 243, 221, 241, 121, 107, 33, 5, 3, 64, 32, 0, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 3, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 3, 32, 0, 65, 4, 106, 34, 0, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 4, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 4, 32, 0, 65, 4, 106, 34, 0, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 2, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 2, 32, 0, 65, 4, 106, 34, 0, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 5, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 5, 32, 0, 65, 4, 106, 34, 0, 32, 6, 77, 13, 0, 11, 32, 2, 65, 12, 119, 32, 5, 65, 18, 119, 106, 32, 4, 65, 7, 119, 106, 32, 3, 65, 1, 119, 106, 5, 32, 2, 65, 177, 207, 217, 178, 1, 106, 11, 32, 1, 106, 32, 0, 32, 1, 65, 15, 113, 16, 1, 11, 146, 1, 0, 32, 1, 32, 2, 106, 33, 2, 3, 64, 32, 1, 65, 4, 106, 32, 2, 75, 69, 4, 64, 32, 1, 40, 2, 0, 65, 189, 220, 202, 149, 124, 108, 32, 0, 106, 65, 17, 119, 65, 175, 214, 211, 190, 2, 108, 33, 0, 32, 1, 65, 4, 106, 33, 1, 12, 1, 11, 11, 3, 64, 32, 1, 32, 2, 79, 69, 4, 64, 32, 1, 45, 0, 0, 65, 177, 207, 217, 178, 1, 108, 32, 0, 106, 65, 11, 119, 65, 177, 243, 221, 241, 121, 108, 33, 0, 32, 1, 65, 1, 106, 33, 1, 12, 1, 11, 11, 32, 0, 65, 15, 118, 32, 0, 115, 65, 247, 148, 175, 175, 120, 108, 34, 0, 32, 0, 65, 13, 118, 115, 65, 189, 220, 202, 149, 124, 108, 34, 0, 32, 0, 65, 16, 118, 115, 11, 63, 0, 32, 0, 65, 8, 106, 32, 1, 65, 168, 136, 141, 161, 2, 106, 54, 2, 0, 32, 0, 65, 12, 106, 32, 1, 65, 247, 148, 175, 175, 120, 106, 54, 2, 0, 32, 0, 65, 16, 106, 32, 1, 54, 2, 0, 32, 0, 65, 20, 106, 32, 1, 65, 177, 243, 221, 241, 121, 107, 54, 2, 0, 11, 211, 4, 1, 6, 127, 32, 1, 32, 2, 106, 33, 6, 32, 0, 65, 24, 106, 33, 5, 32, 0, 65, 40, 106, 40, 2, 0, 33, 3, 32, 0, 32, 0, 40, 2, 0, 32, 2, 106, 54, 2, 0, 32, 0, 65, 4, 106, 34, 4, 32, 4, 40, 2, 0, 32, 2, 65, 16, 79, 32, 0, 40, 2, 0, 65, 16, 79, 114, 114, 54, 2, 0, 32, 2, 32, 3, 106, 65, 16, 73, 4, 64, 32, 3, 32, 5, 106, 32, 1, 32, 2, 252, 10, 0, 0, 32, 0, 65, 40, 106, 32, 2, 32, 3, 106, 54, 2, 0, 15, 11, 32, 3, 4, 64, 32, 3, 32, 5, 106, 32, 1, 65, 16, 32, 3, 107, 34, 2, 252, 10, 0, 0, 32, 0, 65, 8, 106, 34, 3, 40, 2, 0, 32, 5, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 4, 32, 3, 32, 4, 54, 2, 0, 32, 0, 65, 12, 106, 34, 3, 40, 2, 0, 32, 5, 65, 4, 106, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 4, 32, 3, 32, 4, 54, 2, 0, 32, 0, 65, 16, 106, 34, 3, 40, 2, 0, 32, 5, 65, 8, 106, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 4, 32, 3, 32, 4, 54, 2, 0, 32, 0, 65, 20, 106, 34, 3, 40, 2, 0, 32, 5, 65, 12, 106, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 4, 32, 3, 32, 4, 54, 2, 0, 32, 0, 65, 40, 106, 65, 0, 54, 2, 0, 32, 1, 32, 2, 106, 33, 1, 11, 32, 1, 32, 6, 65, 16, 107, 77, 4, 64, 32, 6, 65, 16, 107, 33, 8, 32, 0, 65, 8, 106, 40, 2, 0, 33, 2, 32, 0, 65, 12, 106, 40, 2, 0, 33, 3, 32, 0, 65, 16, 106, 40, 2, 0, 33, 4, 32, 0, 65, 20, 106, 40, 2, 0, 33, 7, 3, 64, 32, 1, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 2, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 2, 32, 1, 65, 4, 106, 34, 1, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 3, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 3, 32, 1, 65, 4, 106, 34, 1, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 4, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 4, 32, 1, 65, 4, 106, 34, 1, 40, 2, 0, 65, 247, 148, 175, 175, 120, 108, 32, 7, 106, 65, 13, 119, 65, 177, 243, 221, 241, 121, 108, 33, 7, 32, 1, 65, 4, 106, 34, 1, 32, 8, 77, 13, 0, 11, 32, 0, 65, 8, 106, 32, 2, 54, 2, 0, 32, 0, 65, 12, 106, 32, 3, 54, 2, 0, 32, 0, 65, 16, 106, 32, 4, 54, 2, 0, 32, 0, 65, 20, 106, 32, 7, 54, 2, 0, 11, 32, 1, 32, 6, 73, 4, 64, 32, 5, 32, 1, 32, 6, 32, 1, 107, 34, 1, 252, 10, 0, 0, 32, 0, 65, 40, 106, 32, 1, 54, 2, 0, 11, 11, 97, 1, 1, 127, 32, 0, 65, 16, 106, 40, 2, 0, 33, 1, 32, 0, 65, 4, 106, 40, 2, 0, 4, 127, 32, 1, 65, 12, 119, 32, 0, 65, 20, 106, 40, 2, 0, 65, 18, 119, 106, 32, 0, 65, 12, 106, 40, 2, 0, 65, 7, 119, 106, 32, 0, 65, 8, 106, 40, 2, 0, 65, 1, 119, 106, 5, 32, 1, 65, 177, 207, 217, 178, 1, 106, 11, 32, 0, 40, 2, 0, 106, 32, 0, 65, 24, 106, 32, 0, 65, 40, 106, 40, 2, 0, 16, 1, 11, 157, 4, 2, 1, 127, 3, 126, 32, 0, 32, 1, 106, 33, 3, 32, 1, 65, 32, 79, 4, 126, 32, 3, 65, 32, 107, 33, 3, 32, 2, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 124, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 124, 33, 4, 32, 2, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 124, 33, 5, 32, 2, 66, 0, 124, 33, 6, 32, 2, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 125, 33, 2, 3, 64, 32, 0, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 4, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 4, 32, 0, 65, 8, 106, 34, 0, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 5, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 5, 32, 0, 65, 8, 106, 34, 0, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 6, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 6, 32, 0, 65, 8, 106, 34, 0, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 2, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 2, 32, 0, 65, 8, 106, 34, 0, 32, 3, 77, 13, 0, 11, 32, 6, 66, 12, 137, 32, 2, 66, 18, 137, 124, 32, 5, 66, 7, 137, 124, 32, 4, 66, 1, 137, 124, 32, 4, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 32, 5, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 32, 6, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 32, 2, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 5, 32, 2, 66, 197, 207, 217, 178, 241, 229, 186, 234, 39, 124, 11, 32, 1, 173, 124, 32, 0, 32, 1, 65, 31, 113, 16, 6, 11, 137, 2, 0, 32, 1, 32, 2, 106, 33, 2, 3, 64, 32, 1, 65, 8, 106, 32, 2, 77, 4, 64, 32, 1, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 32, 0, 133, 66, 27, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 33, 0, 32, 1, 65, 8, 106, 33, 1, 12, 1, 11, 11, 32, 1, 65, 4, 106, 32, 2, 77, 4, 64, 32, 1, 53, 2, 0, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 32, 0, 133, 66, 23, 137, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 249, 243, 221, 241, 153, 246, 153, 171, 22, 124, 33, 0, 32, 1, 65, 4, 106, 33, 1, 11, 3, 64, 32, 1, 32, 2, 73, 4, 64, 32, 1, 49, 0, 0, 66, 197, 207, 217, 178, 241, 229, 186, 234, 39, 126, 32, 0, 133, 66, 11, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 0, 32, 1, 65, 1, 106, 33, 1, 12, 1, 11, 11, 32, 0, 66, 33, 136, 32, 0, 133, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 34, 0, 32, 0, 66, 29, 136, 133, 66, 249, 243, 221, 241, 153, 246, 153, 171, 22, 126, 34, 0, 32, 0, 66, 32, 136, 133, 11, 88, 0, 32, 0, 65, 8, 106, 32, 1, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 124, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 124, 55, 3, 0, 32, 0, 65, 16, 106, 32, 1, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 124, 55, 3, 0, 32, 0, 65, 24, 106, 32, 1, 55, 3, 0, 32, 0, 65, 32, 106, 32, 1, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 125, 55, 3, 0, 11, 132, 5, 2, 3, 127, 4, 126, 32, 1, 32, 2, 106, 33, 5, 32, 0, 65, 40, 106, 33, 4, 32, 0, 65, 200, 0, 106, 40, 2, 0, 33, 3, 32, 0, 32, 0, 41, 3, 0, 32, 2, 173, 124, 55, 3, 0, 32, 2, 32, 3, 106, 65, 32, 73, 4, 64, 32, 3, 32, 4, 106, 32, 1, 32, 2, 252, 10, 0, 0, 32, 0, 65, 200, 0, 106, 32, 2, 32, 3, 106, 54, 2, 0, 15, 11, 32, 3, 4, 64, 32, 3, 32, 4, 106, 32, 1, 65, 32, 32, 3, 107, 34, 2, 252, 10, 0, 0, 32, 0, 65, 8, 106, 34, 3, 41, 3, 0, 32, 4, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 6, 32, 3, 32, 6, 55, 3, 0, 32, 0, 65, 16, 106, 34, 3, 41, 3, 0, 32, 4, 65, 8, 106, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 6, 32, 3, 32, 6, 55, 3, 0, 32, 0, 65, 24, 106, 34, 3, 41, 3, 0, 32, 4, 65, 16, 106, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 6, 32, 3, 32, 6, 55, 3, 0, 32, 0, 65, 32, 106, 34, 3, 41, 3, 0, 32, 4, 65, 24, 106, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 6, 32, 3, 32, 6, 55, 3, 0, 32, 0, 65, 200, 0, 106, 65, 0, 54, 2, 0, 32, 1, 32, 2, 106, 33, 1, 11, 32, 1, 65, 32, 106, 32, 5, 77, 4, 64, 32, 5, 65, 32, 107, 33, 2, 32, 0, 65, 8, 106, 41, 3, 0, 33, 6, 32, 0, 65, 16, 106, 41, 3, 0, 33, 7, 32, 0, 65, 24, 106, 41, 3, 0, 33, 8, 32, 0, 65, 32, 106, 41, 3, 0, 33, 9, 3, 64, 32, 1, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 6, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 6, 32, 1, 65, 8, 106, 34, 1, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 7, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 7, 32, 1, 65, 8, 106, 34, 1, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 8, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 8, 32, 1, 65, 8, 106, 34, 1, 41, 3, 0, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 32, 9, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 33, 9, 32, 1, 65, 8, 106, 34, 1, 32, 2, 77, 13, 0, 11, 32, 0, 65, 8, 106, 32, 6, 55, 3, 0, 32, 0, 65, 16, 106, 32, 7, 55, 3, 0, 32, 0, 65, 24, 106, 32, 8, 55, 3, 0, 32, 0, 65, 32, 106, 32, 9, 55, 3, 0, 11, 32, 1, 32, 5, 73, 4, 64, 32, 4, 32, 1, 32, 5, 32, 1, 107, 34, 1, 252, 10, 0, 0, 32, 0, 65, 200, 0, 106, 32, 1, 54, 2, 0, 11, 11, 200, 2, 1, 5, 126, 32, 0, 65, 24, 106, 41, 3, 0, 33, 1, 32, 0, 41, 3, 0, 34, 2, 66, 32, 90, 4, 126, 32, 0, 65, 8, 106, 41, 3, 0, 34, 3, 66, 1, 137, 32, 0, 65, 16, 106, 41, 3, 0, 34, 4, 66, 7, 137, 124, 32, 1, 66, 12, 137, 32, 0, 65, 32, 106, 41, 3, 0, 34, 5, 66, 18, 137, 124, 124, 32, 3, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 32, 4, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 32, 1, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 32, 5, 66, 207, 214, 211, 190, 210, 199, 171, 217, 66, 126, 66, 0, 124, 66, 31, 137, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 133, 66, 135, 149, 175, 175, 152, 182, 222, 155, 158, 127, 126, 66, 227, 220, 202, 149, 252, 206, 242, 245, 133, 127, 124, 5, 32, 1, 66, 197, 207, 217, 178, 241, 229, 186, 234, 39, 124, 11, 32, 2, 124, 32, 0, 65, 40, 106, 32, 2, 66, 31, 131, 167, 16, 6, 11 ]);
 
 async function e2() {
-  const {instance: {exports: {mem: s, xxh32: r, xxh64: o, init32: u, update32: g, digest32: _, init64: m, update64: b, digest64: w}}} = await WebAssembly.instantiate(t2);
-  let E = new Uint8Array(s.buffer);
+  const {instance: {exports: {mem: s, xxh32: r, xxh64: o, init32: u, update32: g, digest32: _, init64: m, update64: b, digest64: E}}} = await WebAssembly.instantiate(t2);
+  let w = new Uint8Array(s.buffer);
   function c(r, o) {
     if (s.buffer.byteLength < r + o) {
       const u = Math.ceil((r + o - s.buffer.byteLength) / 65536);
-      s.grow(u), E = new Uint8Array(s.buffer);
+      s.grow(u), w = new Uint8Array(s.buffer);
     }
   }
   function l(s, r, o, u, g, _) {
     c(s);
     const m = new Uint8Array(s);
-    return E.set(m), o(0, r), m.set(E.slice(0, s)), {
+    return w.set(m), o(0, r), m.set(w.slice(0, s)), {
       update(r) {
         let o;
-        return E.set(m), "string" == typeof r ? (c(3 * r.length, s), o = L.encodeInto(r, E.subarray(s)).written) : (c(r.byteLength, s), 
-        E.set(r, s), o = r.byteLength), u(0, s, o), m.set(E.slice(0, s)), this;
+        return w.set(m), "string" == typeof r ? (c(3 * r.length, s), o = L.encodeInto(r, w.subarray(s)).written) : (c(r.byteLength, s), 
+        w.set(r, s), o = r.byteLength), u(0, s, o), m.set(w.slice(0, s)), this;
       },
-      digest: () => (E.set(m), _(g(0)))
+      digest: () => (w.set(m), _(g(0)))
     };
   }
   function d3(s) {
@@ -18867,11 +19065,11 @@ async function e2() {
   const L = new TextEncoder, O = BigInt(0);
   function p(s) {
     let o = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
-    return c(3 * s.length, 0), d3(r(0, L.encodeInto(s, E).written, o));
+    return c(3 * s.length, 0), d3(r(0, L.encodeInto(s, w).written, o));
   }
   function v(s) {
     let r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : O;
-    return c(3 * s.length, 0), y(o(0, L.encodeInto(s, E).written, r));
+    return c(3 * s.length, 0), y(o(0, L.encodeInto(s, w).written, r));
   }
   return {
     h32: p,
@@ -18880,7 +19078,7 @@ async function e2() {
     },
     h32Raw(s) {
       let o = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
-      return c(s.byteLength, 0), E.set(s), d3(r(0, s.byteLength, o));
+      return c(s.byteLength, 0), w.set(s), d3(r(0, s.byteLength, o));
     },
     create32() {
       return l(48, arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0, u, g, _, d3);
@@ -18891,10 +19089,10 @@ async function e2() {
     },
     h64Raw(s) {
       let r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : O;
-      return c(s.byteLength, 0), E.set(s), y(o(0, s.byteLength, r));
+      return c(s.byteLength, 0), w.set(s), y(o(0, s.byteLength, r));
     },
     create64() {
-      return l(88, arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : O, m, b, w, y);
+      return l(88, arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : O, m, b, E, y);
     }
   };
 }
@@ -18904,7 +19102,7 @@ async function putDBEntry(s, r, o) {
   const g = s.id2path(r._id, r);
   if (!s.isTargetFile(g)) return false;
   const _ = stripAllPrefixes(g), m = [];
-  let b = 0, w = 0, E = 0;
+  let b = 0, E = 0, w = 0;
   const S = Math.floor(MAX_DOC_SIZE_BIN * (1 * (s.settings.customChunkSize || 0) + 1));
   let L = false, O = 0;
   const D = s.settings.passphrase, k = s.settings.minimumChunkSize;
@@ -18918,7 +19116,7 @@ async function putDBEntry(s, r, o) {
     if (g) {
       u = "";
       o = g;
-      E++;
+      w++;
       O++;
       I.set(o, r);
     } else {
@@ -18964,7 +19162,7 @@ async function putDBEntry(s, r, o) {
         A = false;
       } else {
         const r = s.doc;
-        if ("leaf" == r.type && r.data == I.get(s.key)) E++; else if ("leaf" == r.type) {
+        if ("leaf" == r.type && r.data == I.get(s.key)) w++; else if ("leaf" == r.type) {
           Logger(`Hash collided on saving! If possible, please report the following string\nA:--${I.get(s.key)}--\nB:--${r.data}--`, LOG_LEVEL_NOTICE);
           Logger(`This document could not be saved:${_}`, LOG_LEVEL_NOTICE);
           A = false;
@@ -18982,8 +19180,8 @@ async function putDBEntry(s, r, o) {
         continue;
       }
       s.hashCaches.set(r, u);
-      w++;
-    } else if (409 == (null == o ? void 0 : o.status)) E++; else {
+      E++;
+    } else if (409 == (null == o ? void 0 : o.status)) w++; else {
       Logger(`Save failed..: ${_} (${o.id} rev:${o.rev})`, LOG_LEVEL_NOTICE);
       Logger(o);
       A = false;
@@ -18994,7 +19192,7 @@ async function putDBEntry(s, r, o) {
     A = false;
   }
   if (A) {
-    Logger(`Content saved:${_} ,chunks: ${b} (new:${w}, skip:${E}, cache:${O})`);
+    Logger(`Content saved:${_} ,chunks: ${b} (new:${E}, skip:${w}, cache:${O})`);
     const o = {
       children: m,
       _id: r._id,
@@ -19064,7 +19262,7 @@ async function getDBEntryMeta(s, r, o, u = false) {
 async function getDBEntryFromMeta(s, r, o, u = false, g = true, _ = false) {
   const m = s.id2path(r._id, r);
   if (!s.isTargetFile(m)) return false;
-  const b = stripAllPrefixes(m), w = "deleted" in r ? r.deleted : void 0;
+  const b = stripAllPrefixes(m), E = "deleted" in r ? r.deleted : void 0;
   if (!r.type || r.type && "notes" == r.type) {
     const o = r, g = {
       data: o.data,
@@ -19077,7 +19275,7 @@ async function getDBEntryFromMeta(s, r, o, u = false, g = true, _ = false) {
       _conflicts: r._conflicts,
       children: [],
       datatype: "newnote",
-      deleted: w,
+      deleted: E,
       type: "newnote"
     };
     if ("undefined" != typeof s.corruptedEntries[g._id]) delete s.corruptedEntries[g._id];
@@ -19093,7 +19291,7 @@ async function getDBEntryFromMeta(s, r, o, u = false, g = true, _ = false) {
       Logger(r);
     }
     let _ = [];
-    const m = Math.min(10, Math.ceil(r.children.length / 10)) + 1, E = s.settings.doNotPaceReplication ? () => {} : await globalConcurrencyController.acquire(m);
+    const m = Math.min(10, Math.ceil(r.children.length / 10)) + 1, w = s.settings.doNotPaceReplication ? () => {} : await globalConcurrencyController.acquire(m);
     try {
       if (s.settings.readChunksOnline) {
         const u = await s.collectChunks(r.children, false, g);
@@ -19138,7 +19336,7 @@ async function getDBEntryFromMeta(s, r, o, u = false, g = true, _ = false) {
         return false;
       }
     } finally {
-      E();
+      w();
     }
     const S = {
       data: _,
@@ -19151,7 +19349,7 @@ async function getDBEntryFromMeta(s, r, o, u = false, g = true, _ = false) {
       children: r.children,
       datatype: r.type,
       _conflicts: r._conflicts,
-      deleted: w,
+      deleted: E,
       type: r.type
     };
     if (u) {
@@ -19840,9 +20038,9 @@ var idbProxyableTypes, cursorAdvanceMethods, LiveSyncDBReplicator = class {
     const b = new AbortController;
     if (this.controller) this.controller.abort();
     this.controller = b;
-    const w = genReplication(s, b.signal);
+    const E = genReplication(s, b.signal);
     try {
-      for await (const [s, m] of w) {
+      for await (const [s, m] of E) {
         const b = await globalConcurrencyController.tryAcquire(1, REPLICATION_BUSY_TIMEOUT);
         if (false === b) {
           Logger("Replication stopped for busy.", r ? LOG_LEVEL_NOTICE : LOG_LEVEL_INFO, "sync");
@@ -19933,30 +20131,30 @@ var idbProxyableTypes, cursorAdvanceMethods, LiveSyncDBReplicator = class {
     this.maxPullSeq = Number(`${m.info.update_seq}`.split("-")[0]);
     this.maxPushSeq = Number(`${(await _.info()).update_seq}`.split("-")[0]);
     if (r) Logger("Looking for the point last synchronized point.", LOG_LEVEL_NOTICE, "sync");
-    const {db: b, syncOptionBase: w} = m;
+    const {db: b, syncOptionBase: E} = m;
     this.syncStatus = "STARTED";
     this.updateInfo();
-    const E = this.docArrived, S = this.docSent;
+    const w = this.docArrived, S = this.docSent;
     if (!o) this.originalSetting = s;
     this.terminateSync();
     let L;
     if ("sync" == u) L = _.sync(b, {
       checkpoint: "target",
-      ...w
+      ...E
     }); else if ("pullOnly" == u) L = _.replicate.from(b, {
       checkpoint: "target",
-      ...w,
+      ...E,
       ...s.readChunksOnline ? {
         filter: "replicate/pull"
       } : {}
     }); else if ("pushOnly" == u) L = _.replicate.to(b, {
       checkpoint: "target",
-      ...w,
+      ...E,
       ...s.readChunksOnline ? {
         filter: "replicate/push"
       } : {}
     });
-    const O = await this.processSync(L, r, S, E, u, o, false);
+    const O = await this.processSync(L, r, S, w, u, o, false);
     if ("DONE" == O) return true;
     if ("CANCELLED" == O) return false;
     if ("FAILED" == O) return false;
@@ -20037,7 +20235,7 @@ var idbProxyableTypes, cursorAdvanceMethods, LiveSyncDBReplicator = class {
         filter: "replicate/pull"
       };
     }
-    const w = r ? {
+    const E = r ? {
       live: true,
       retry: true,
       heartbeat: s.useTimeouts ? false : 3e4,
@@ -20049,7 +20247,7 @@ var idbProxyableTypes, cursorAdvanceMethods, LiveSyncDBReplicator = class {
       db: m.db,
       info: m.info,
       syncOptionBase: b,
-      syncOption: w
+      syncOption: E
     };
   }
   async openContinuousReplication(s, r, o) {
@@ -20072,10 +20270,10 @@ var idbProxyableTypes, cursorAdvanceMethods, LiveSyncDBReplicator = class {
       this.maxPullSeq = Number(`${g.info.update_seq}`.split("-")[0]);
       this.maxPushSeq = Number(`${(await u.info()).update_seq}`.split("-")[0]);
       this.updateInfo();
-      const b = this.docArrived, w = this.docSent;
+      const b = this.docArrived, E = this.docSent;
       if (!o) this.originalSetting = s;
       this.terminateSync();
-      const E = u.sync(_, {
+      const w = u.sync(_, {
         ...m,
         pull: {
           checkpoint: "target"
@@ -20083,7 +20281,7 @@ var idbProxyableTypes, cursorAdvanceMethods, LiveSyncDBReplicator = class {
         push: {
           checkpoint: "source"
         }
-      }), S = "sync", L = await this.processSync(E, r, w, b, S, o);
+      }), S = "sync", L = await this.processSync(w, r, E, b, S, o);
       if ("DONE" == L) return true;
       if ("FAILED" == L) return false;
       if ("NEED_RESURRECT" == L) {
@@ -20428,9 +20626,9 @@ var databaseCache = {}, OpenKeyValueDatabase = async s => {
         Logger(`Hidden file conflicted:${u}`);
         const _ = g._conflicts.sort(((s, r) => Number(s.split("-")[0]) - Number(r.split("-")[0]))), m = g._rev, b = _[0];
         if (u.endsWith(".json")) {
-          const w = _[0], E = Number(w.split("-")[0]), S = null != (o = null == (r = (await this.localDatabase.getRaw(s, {
+          const E = _[0], w = Number(E.split("-")[0]), S = null != (o = null == (r = (await this.localDatabase.getRaw(s, {
             revs_info: true
-          }))._revs_info.filter((s => "available" == s.status && Number(s.rev.split("-")[0]) < E)).first()) ? void 0 : r.rev) ? o : "", L = await this.plugin.mergeObject(u, S, g._rev, w);
+          }))._revs_info.filter((s => "available" == s.status && Number(s.rev.split("-")[0]) < w)).first()) ? void 0 : r.rev) ? o : "", L = await this.plugin.mergeObject(u, S, g._rev, E);
           if (L) {
             Logger(`Object merge:${u}`, LOG_LEVEL_INFO);
             const r = stripAllPrefixes(u);
@@ -20452,10 +20650,10 @@ var databaseCache = {}, OpenKeyValueDatabase = async s => {
             revB: b
           } ];
         }
-        const w = await this.localDatabase.getRaw(s, {
+        const E = await this.localDatabase.getRaw(s, {
           rev: b
-        }), E = ("mtime" in g && g.mtime || 0) < ("mtime" in w && w.mtime || 0) ? m : b;
-        await this.localDatabase.removeRaw(s, E);
+        }), w = ("mtime" in g && g.mtime || 0) < ("mtime" in E && E.mtime || 0) ? m : b;
+        await this.localDatabase.removeRaw(s, w);
         Logger(`Older one has been deleted:${u}`);
         this.conflictResolutionProcessor.enqueue(u);
         return;
@@ -20582,13 +20780,13 @@ var databaseCache = {}, OpenKeyValueDatabase = async s => {
     Logger("Scanning hidden files.", g, "sync_internal");
     const _ = this.settings.syncInternalFilesIgnorePatterns.replace(/\n| /g, "").split(",").filter((s => s)).map((s => new RegExp(s, "i"))), m = normalizePath(this.app.vault.configDir);
     let b = o ? o : await this.scanInternalFiles();
-    const w = !this.settings.usePluginSync ? [] : Object.values(this.settings.pluginSyncExtendedSetting).filter((s => s.mode == MODE_SELECTIVE || s.mode == MODE_PAUSED)).map((s => s.files)).flat().map((s => `${m}/${s}`.toLowerCase()));
-    b = b.filter((s => w.every((r => !s.path.toLowerCase().startsWith(r)))));
-    const E = (await this.localDatabase.allDocsRaw({
+    const E = !this.settings.usePluginSync ? [] : Object.values(this.settings.pluginSyncExtendedSetting).filter((s => s.mode == MODE_SELECTIVE || s.mode == MODE_PAUSED)).map((s => s.files)).flat().map((s => `${m}/${s}`.toLowerCase()));
+    b = b.filter((s => E.every((r => !s.path.toLowerCase().startsWith(r)))));
+    const w = (await this.localDatabase.allDocsRaw({
       startkey: ICHeader,
       endkey: ICHeaderEnd,
       include_docs: true
-    })).rows.map((s => s.doc)).filter((s => !s.deleted)), S = [ ...new Set([ ...b.map((s => normalizePath(s.path))), ...E.map((s => stripAllPrefixes(this.getPath(s)))) ]) ].filter((s => !u || u && -1 !== u.indexOf(s))).filter((s => w.every((r => !s.toLowerCase().startsWith(r))))), L = S.length;
+    })).rows.map((s => s.doc)).filter((s => !s.deleted)), S = [ ...new Set([ ...b.map((s => normalizePath(s.path))), ...w.map((s => stripAllPrefixes(this.getPath(s)))) ]) ].filter((s => !u || u && -1 !== u.indexOf(s))).filter((s => E.every((r => !s.toLowerCase().startsWith(r))))), L = S.length;
     let O = 0, D = 0;
     const k = {}, countUpdatedFolder = s => {
       const r = s.split("/");
@@ -20607,7 +20805,7 @@ var databaseCache = {}, OpenKeyValueDatabase = async s => {
     const T = b.reduce(((s, r) => {
       s[r.path] = r;
       return s;
-    }), {}), I = E.reduce(((s, r) => {
+    }), {}), I = w.reduce(((s, r) => {
       s[stripAllPrefixes(this.getPath(r))] = r;
       return s;
     }), {});
@@ -20735,9 +20933,9 @@ var databaseCache = {}, OpenKeyValueDatabase = async s => {
             type: "newnote"
           };
         }
-        const w = await this.localDatabase.putDBEntry(b, true);
+        const E = await this.localDatabase.putDBEntry(b, true);
         Logger(`STORAGE --\x3e DB:${s.path}: (hidden) Done`);
-        return w;
+        return E;
       } catch (r) {
         Logger(`STORAGE --\x3e DB:${s.path}: (hidden) Failed`);
         Logger(r, LOG_LEVEL_VERBOSE);
@@ -21010,26 +21208,26 @@ var databaseCache = {}, OpenKeyValueDatabase = async s => {
           s.syncInternalFiles = false;
           s.usePluginSync = false;
           if (!s.useIndexedDBAdapter) s.useIndexedDBAdapter = true;
-          const w = await askSelectString(this.app, "How would you like to set it up?", [ g, m, _, o, b ]);
-          if (w == o) {
+          const E = await askSelectString(this.app, "How would you like to set it up?", [ g, m, _, o, b ]);
+          if (E == o) {
             this.plugin.settings = s;
             this.plugin.usedPassphrase = "";
             await this.plugin.saveSettings();
-          } else if (w == g) {
+          } else if (E == g) {
             this.plugin.settings = s;
             this.plugin.usedPassphrase = "";
             await this.fetchLocal();
-          } else if (w == _) {
+          } else if (E == _) {
             this.plugin.settings = s;
             this.plugin.usedPassphrase = "";
             await this.fetchLocalWithKeepLocal();
-          } else if (w == m) {
+          } else if (E == m) {
             const r = "I know this operation will rebuild all my databases with files on this device, and files that are on the remote database and I didn't synchronize to any other devices will be lost and want to proceed indeed.";
             if (await askSelectString(this.app, "Do you really want to do this?", [ "Cancel", r ]) != r) return;
             this.plugin.settings = s;
             this.plugin.usedPassphrase = "";
             await this.rebuildEverything();
-          } else if (w == b) {
+          } else if (E == b) {
             const o = await askYesNo(this.app, "Keep local DB?"), u = await askYesNo(this.app, "Keep remote DB?");
             if ("yes" == o && "yes" == u) {
               this.plugin.settings = s;
@@ -21395,7 +21593,7 @@ function create_if_block_14(s) {
 }
 
 function create_each_block4(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I, A, R, x, P, N, B = s[26].mtimeDisp + "", F = s[26].dirname.split("/").join("​/") + "", M = s[26].filename + "", V = s[26].changes + "";
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I, A, R, x, P, N, B = s[26].mtimeDisp + "", F = s[26].dirname.split("/").join("​/") + "", M = s[26].filename + "", V = s[26].changes + "";
   function click_handler_1() {
     return s[18](s[26]);
   }
@@ -21412,8 +21610,8 @@ function create_each_block4(s) {
       _ = element("td");
       m = element("div");
       b = element("span");
-      w = text("/");
-      E = text(F);
+      E = text("/");
+      w = text(F);
       S = space();
       L = element("span");
       O = element("a");
@@ -21446,8 +21644,8 @@ function create_each_block4(s) {
       append(r, _);
       append(_, m);
       append(m, b);
-      append(b, w);
       append(b, E);
+      append(b, w);
       append(m, S);
       append(m, L);
       append(L, O);
@@ -21469,7 +21667,7 @@ function create_each_block4(s) {
     p(o, g) {
       s = o;
       if (32 & g && B !== (B = s[26].mtimeDisp + "")) set_data(u, B);
-      if (32 & g && F !== (F = s[26].dirname.split("/").join("​/") + "")) set_data(E, F);
+      if (32 & g && F !== (F = s[26].dirname.split("/").join("​/") + "")) set_data(w, F);
       if (32 & g && M !== (M = s[26].filename + "")) set_data(D, M);
       if (G === (G = select_block_type_1(s)) && j) j.p(s, g); else {
         j.d(1);
@@ -21544,7 +21742,7 @@ function create_if_block4(s) {
 }
 
 function create_fragment4(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V, G, j, q, U, z, W, H, K, Q, J, Y, X, Z, ee, te, ne, ie, se, ae, re, oe, le = s[6] && create_if_block_53(s), ce = s[1] && create_if_block_44(s);
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I, A, R, x, P, N, B, F, M, V, G, j, q, U, z, W, H, K, Q, J, Y, X, Z, ee, te, ne, ie, se, ae, re, oe, le = s[6] && create_if_block_53(s), ce = s[1] && create_if_block_44(s);
   function select_block_type(s, r) {
     if (s[6]) return create_if_block_34; else return create_else_block_23;
   }
@@ -21565,8 +21763,8 @@ function create_fragment4(s) {
       m = element("label");
       m.textContent = "From:";
       b = element("input");
-      w = space();
-      E = element("div");
+      E = space();
+      w = element("div");
       S = element("label");
       S.textContent = "To:";
       L = element("input");
@@ -21629,7 +21827,7 @@ function create_fragment4(s) {
       attr(L, "type", "date");
       L.disabled = s[6];
       attr(L, "class", "svelte-1vjy5r1");
-      attr(E, "class", "row svelte-1vjy5r1");
+      attr(w, "class", "row svelte-1vjy5r1");
       attr(k, "for", "");
       attr(k, "class", "svelte-1vjy5r1");
       attr(I, "type", "checkbox");
@@ -21672,10 +21870,10 @@ function create_fragment4(s) {
       append(_, m);
       append(_, b);
       set_input_value(b, s[3]);
-      append(g, w);
       append(g, E);
-      append(E, S);
-      append(E, L);
+      append(g, w);
+      append(w, S);
+      append(w, L);
       set_input_value(L, s[4]);
       append(g, O);
       append(g, D);
@@ -21802,16 +22000,16 @@ function mtimeToDate(s) {
 }
 
 function instance4(s, r, o) {
-  let {plugin: u} = r, g = false, _ = false, m = false, b = Date.now() - 6048e5, w = Date.now() + 1728e5;
-  const E = (new Date).getTimezoneOffset();
-  let S = new Date(b - E).toISOString().split("T")[0], L = new Date(w - E).toISOString().split("T")[0], O = [], D = false;
-  async function getHistory(s, r, E) {
+  let {plugin: u} = r, g = false, _ = false, m = false, b = Date.now() - 6048e5, E = Date.now() + 1728e5;
+  const w = (new Date).getTimezoneOffset();
+  let S = new Date(b - w).toISOString().split("T")[0], L = new Date(E - w).toISOString().split("T")[0], O = [], D = false;
+  async function getHistory(s, r, w) {
     o(6, D = true);
     const S = [], L = await async function fetchChanges() {
       var s, r;
       try {
         const o = u.localDatabase;
-        let E = [];
+        let w = [];
         for await (const S of o.findAllNormalDocs()) {
           if (S.mtime < b) continue;
           if ("newnote" != S.type && "plain" != S.type) continue;
@@ -21829,7 +22027,7 @@ function instance4(s, r, o) {
             if (false === k) continue;
             const R = A.rev, x = "mtime" in k ? k.mtime : 0;
             if (b > x) continue;
-            if (w < x) continue;
+            if (E < x) continue;
             let P = "";
             if (g && !O) {
               const s = getDocData(k.data);
@@ -21876,7 +22074,7 @@ function instance4(s, r, o) {
               }), g = u.rows.length, _ = u.rows.filter((s => "error" in s)).length;
               if (0 == _) V = `✅ ${g}`; else V = `🔎 ${_} ✅ ${g}`;
             }
-            E.push({
+            w.push({
               id: k._id,
               rev: k._rev,
               path: B,
@@ -21892,7 +22090,7 @@ function instance4(s, r, o) {
             });
           }
         }
-        return [ ...E ].sort(((s, r) => r.mtime - s.mtime));
+        return [ ...w ].sort(((s, r) => r.mtime - s.mtime));
       } finally {
         o(6, D = false);
       }
@@ -21901,10 +22099,10 @@ function instance4(s, r, o) {
     o(5, O = [ ...S ]);
   }
   function nextWeek() {
-    o(4, L = new Date(w - E + 6048e5).toISOString().split("T")[0]);
+    o(4, L = new Date(E - w + 6048e5).toISOString().split("T")[0]);
   }
   function prevWeek() {
-    o(3, S = new Date(b - E - 6048e5).toISOString().split("T")[0]);
+    o(3, S = new Date(b - w - 6048e5).toISOString().split("T")[0]);
   }
   onMount((async () => {
     await getHistory();
@@ -21921,8 +22119,8 @@ function instance4(s, r, o) {
   };
   s.$$.update = () => {
     if (31 & s.$$.dirty) {
-      b = new Date(S).getTime() + E;
-      w = new Date(L).getTime() + E;
+      b = new Date(S).getTime() + w;
+      E = new Date(L).getTime() + w;
       getHistory();
     }
   };
@@ -22012,7 +22210,7 @@ function create_each_block5(s) {
 }
 
 function create_fragment5(s) {
-  let r, o, u, g, _, m, b, w, E, S, L, O, D, k, C, T, I, A, R, x, P = ensure_array_like(s[0]), N = [];
+  let r, o, u, g, _, m, b, E, w, S, L, O, D, k, C, T, I, A, R, x, P = ensure_array_like(s[0]), N = [];
   for (let r = 0; r < P.length; r += 1) N[r] = create_each_block5(get_each_context5(s, P, r));
   return {
     c() {
@@ -22023,9 +22221,9 @@ function create_fragment5(s) {
       _ = element("div");
       m = element("label");
       b = element("input");
-      w = element("span");
-      w.textContent = "Wrap";
-      E = space();
+      E = element("span");
+      E.textContent = "Wrap";
+      w = space();
       S = element("label");
       L = element("input");
       O = element("span");
@@ -22040,7 +22238,7 @@ function create_fragment5(s) {
       for (let s = 0; s < N.length; s += 1) N[s].c();
       attr(b, "type", "checkbox");
       attr(b, "class", "svelte-1j0mkaj");
-      attr(w, "class", "svelte-1j0mkaj");
+      attr(E, "class", "svelte-1j0mkaj");
       attr(m, "class", "svelte-1j0mkaj");
       attr(L, "type", "checkbox");
       attr(L, "class", "svelte-1j0mkaj");
@@ -22064,8 +22262,8 @@ function create_fragment5(s) {
       append(_, m);
       append(m, b);
       b.checked = s[1];
-      append(m, w);
-      append(_, E);
+      append(m, E);
+      append(_, w);
       append(_, S);
       append(S, L);
       L.checked = s[2];
@@ -22116,10 +22314,10 @@ function create_fragment5(s) {
 }
 
 function instance5(s, r, o) {
-  let u, g, _ = [], m = false, b = true, w = false;
+  let u, g, _ = [], m = false, b = true, E = false;
   function updateLog(s) {
     const r = s.value;
-    if (!w) {
+    if (!E) {
       o(0, _ = [ ...r ]);
       setTimeout((() => {
         if (g) o(4, g.scrollTop = g.scrollHeight, g);
@@ -22134,15 +22332,15 @@ function instance5(s, r, o) {
   onDestroy((() => {
     if (u) u();
   }));
-  return [ _, m, b, w, g, function input0_change_handler() {
+  return [ _, m, b, E, g, function input0_change_handler() {
     m = this.checked;
     o(1, m);
   }, function input1_change_handler() {
     b = this.checked;
     o(2, b);
   }, function input2_change_handler() {
-    w = this.checked;
-    o(3, w);
+    E = this.checked;
+    o(3, E);
   }, function div2_binding(s) {
     binding_callbacks[s ? "unshift" : "push"]((() => {
       g = s;
@@ -22259,7 +22457,7 @@ var SerializedFileAccess = class {
     this.touchedFiles = this.touchedFiles.slice(0, 100);
   }
   recentlyTouched(s) {
-    const r = `${s.path}-${s.stat.mtime}-${s.stat.size}`;
+    const r = s instanceof import_obsidian.TFile ? `${s.path}-${s.stat.mtime}-${s.stat.size}` : `${s.path}-${s.mtime}-${s.size}`;
     if (-1 == this.touchedFiles.indexOf(r)) return false; else return true;
   }
   clearTouched() {
@@ -22303,7 +22501,7 @@ async function fetchByAPI(s) {
   return u;
 }
 
-var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
+var SETTING_HEADER = "````yaml:livesync-setting\n", SETTING_FOOTER = "\n````", ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
   constructor() {
     super(...arguments);
     this.suspended = false;
@@ -22330,6 +22528,9 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       lastSyncPushSeq: 0,
       syncStatus: "CLOSED"
     });
+    this.isRedFlagRaised = () => this.isFlagFileExist(FLAGMD_REDFLAG);
+    this.isRedFlag2Raised = () => this.isFlagFileExist(FLAGMD_REDFLAG2) || this.isFlagFileExist(FLAGMD_REDFLAG2_HR);
+    this.isRedFlag3Raised = () => this.isFlagFileExist(FLAGMD_REDFLAG3) || this.isFlagFileExist(FLAGMD_REDFLAG3_HR);
     this.usedPassphrase = "";
     this.vaultManager = new StorageEventManagerObsidian(this);
     this.pendingFileEventCount = reactiveSource(0);
@@ -22367,25 +22568,12 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
     this.storageApplyingProcessor = new KeyedQueueProcessor((async s => {
       var r, o;
       const u = s[0], g = this.getPath(u);
-      Logger(`Applying ${g} (${u._id.substring(0, 8)}: ${null == (r = u._rev) ? void 0 : r.substring(0, 5)}) change...`, LOG_LEVEL_VERBOSE);
+      Logger(`Processing ${g} (${u._id.substring(0, 8)}: ${null == (r = u._rev) ? void 0 : r.substring(0, 5)}) change...`, LOG_LEVEL_VERBOSE);
       const _ = this.vaultAccess.getAbstractFileByPath(this.getPathWithoutPrefix(u));
-      if (null == _) {
-        if (u._deleted || u.deleted) return;
-        const s = u;
-        await this.doc2storage(s);
-      } else if (_ instanceof import_obsidian.TFile) {
-        const s = u, r = _;
-        if (this.settings.writeDocumentsIfConflicted) {
-          await this.doc2storage(s, r);
-          this.queueConflictCheck(r);
-        } else {
-          const o = await this.localDatabase.getDBEntryMeta(this.getPath(u), {
-            conflicts: true
-          }, true);
-          if (o && !o._conflicts) await this.doc2storage(s, r); else this.queueConflictCheck(r);
-        }
-      } else Logger(`${this.getPath(u)} is already exist as the folder`);
-      Logger(`Applied ${g} (${u._id.substring(0, 8)}:${null == (o = u._rev) ? void 0 : o.substring(0, 5)}) change...`);
+      if (_ instanceof import_obsidian.TFolder) Logger(`${this.getPath(u)} is already exist as the folder`); else {
+        await this.processEntryDoc(u, _ instanceof import_obsidian.TFile ? _ : void 0);
+        Logger(`Processing ${g} (${u._id.substring(0, 8)}:${null == (o = u._rev) ? void 0 : o.substring(0, 5)}) `);
+      }
     }), {
       suspended: true,
       batchSize: 1,
@@ -22403,6 +22591,11 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
         if ("versioninfo" != r.type) {
           if (r._id != SYNCINFO_ID && !r._id.startsWith("_design")) if ("plain" == r.type || "newnote" == r.type) {
             if (this.databaseQueuedProcessor._isSuspended) Logger(`Processing scheduled: ${r.path}`, LOG_LEVEL_INFO);
+            const s = r.size;
+            if (this.isFileSizeExceeded(s)) {
+              Logger(`Processing ${r.path} has been skipped due to file size exceeding the limit`, LOG_LEVEL_NOTICE);
+              return;
+            }
             this.databaseQueuedProcessor.enqueueWithKey(r.path, r);
           }
         } else if (r.version > VER) {
@@ -22490,14 +22683,14 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       const s = String.fromCharCode.apply(null, [ ...writeString(`${r.username}:${r.password}`) ]), o = window.btoa(s);
       b = "Basic " + o;
     } else b = "";
-    const w = new index_es_default(s, {
+    const E = new index_es_default(s, {
       adapter: "http",
       auth: r,
       skip_setup: !_,
       fetch: async (r, u) => {
         var g, _;
         let m = "";
-        const w = r.toString().substring(s.length), E = null != (g = null == u ? void 0 : u.method) ? g : "GET";
+        const E = r.toString().substring(s.length), w = null != (g = null == u ? void 0 : u.method) ? g : "GET";
         if (null == u ? void 0 : u.body) {
           const r = u.body.toString().length;
           if (r > 1e7) if (isCloudantURI(s)) {
@@ -22525,15 +22718,15 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
           };
           try {
             const s = await fetchByAPI(g);
-            if ("POST" == E || "PUT" == E) this.last_successful_post = s.status - s.status % 100 == 200; else this.last_successful_post = true;
-            Logger(`HTTP:${E}${m} to:${w} -> ${s.status}`, LOG_LEVEL_DEBUG);
+            if ("POST" == w || "PUT" == w) this.last_successful_post = s.status - s.status % 100 == 200; else this.last_successful_post = true;
+            Logger(`HTTP:${w}${m} to:${E} -> ${s.status}`, LOG_LEVEL_DEBUG);
             return new Response(s.arrayBuffer, {
               headers: s.headers,
               status: s.status,
               statusText: `${s.status}`
             });
           } catch (s) {
-            Logger(`HTTP:${E}${m} to:${w} -> failed`, LOG_LEVEL_VERBOSE);
+            Logger(`HTTP:${w}${m} to:${E} -> failed`, LOG_LEVEL_VERBOSE);
             if (-1 !== r.toString().indexOf("_bulk_docs")) this.last_successful_post = false;
             Logger(s);
             throw s;
@@ -22541,20 +22734,20 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
         }
         try {
           const s = await fetch(r, u);
-          if ("POST" == E || "PUT" == E) this.last_successful_post = s.ok; else this.last_successful_post = true;
-          Logger(`HTTP:${E}${m} to:${w} -> ${s.status}`, LOG_LEVEL_DEBUG);
+          if ("POST" == w || "PUT" == w) this.last_successful_post = s.ok; else this.last_successful_post = true;
+          Logger(`HTTP:${w}${m} to:${E} -> ${s.status}`, LOG_LEVEL_DEBUG);
           return s;
         } catch (s) {
-          Logger(`HTTP:${E}${m} to:${w} -> failed`, LOG_LEVEL_VERBOSE);
+          Logger(`HTTP:${w}${m} to:${E} -> failed`, LOG_LEVEL_VERBOSE);
           if (-1 !== r.toString().indexOf("_bulk_docs")) this.last_successful_post = false;
           Logger(s);
           throw s;
         }
       }
     });
-    if ("false" !== u && "string" == typeof u) enableEncryption(w, u, g, false);
+    if ("false" !== u && "string" == typeof u) enableEncryption(E, u, g, false);
     if (m) return {
-      db: w,
+      db: E,
       info: {
         db_name: "",
         doc_count: 0,
@@ -22562,9 +22755,9 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       }
     };
     try {
-      const s = await w.info();
+      const s = await E.info();
       return {
-        db: w,
+        db: E,
         info: s
       };
     } catch (s) {
@@ -22626,22 +22819,26 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
     this.registerInterval(o);
     return o;
   }
-  isRedFlagRaised() {
-    if (null != this.vaultAccess.getAbstractFileByPath(normalizePath(FLAGMD_REDFLAG))) return true; else return false;
+  isFlagFileExist(s) {
+    const r = this.vaultAccess.getAbstractFileByPath(normalizePath(s));
+    if (null != r && r instanceof import_obsidian.TFile) return true; else return false;
   }
-  isRedFlag2Raised() {
-    if (null != this.vaultAccess.getAbstractFileByPath(normalizePath(FLAGMD_REDFLAG2))) return true; else return false;
+  async deleteFlagFile(s) {
+    try {
+      const r = this.vaultAccess.getAbstractFileByPath(normalizePath(s));
+      if (null != r && r instanceof import_obsidian.TFile) await this.vaultAccess.delete(r, true);
+    } catch (r) {
+      Logger(`Could not delete ${s}`);
+      Logger(r, LOG_LEVEL_VERBOSE);
+    }
   }
   async deleteRedFlag2() {
-    const s = this.vaultAccess.getAbstractFileByPath(normalizePath(FLAGMD_REDFLAG2));
-    if (null != s && s instanceof import_obsidian.TFile) await this.vaultAccess.delete(s, true);
-  }
-  isRedFlag3Raised() {
-    if (null != this.vaultAccess.getAbstractFileByPath(normalizePath(FLAGMD_REDFLAG3))) return true; else return false;
+    await this.deleteFlagFile(FLAGMD_REDFLAG2);
+    await this.deleteFlagFile(FLAGMD_REDFLAG2_HR);
   }
   async deleteRedFlag3() {
-    const s = this.vaultAccess.getAbstractFileByPath(normalizePath(FLAGMD_REDFLAG3));
-    if (null != s && s instanceof import_obsidian.TFile) await this.vaultAccess.delete(s, true);
+    await this.deleteFlagFile(FLAGMD_REDFLAG3);
+    await this.deleteFlagFile(FLAGMD_REDFLAG3_HR);
   }
   showHistory(s, r) {
     new DocumentHistoryModal(this.app, this, s, r).open();
@@ -22725,7 +22922,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
         this.settings.suspendFileWatching = true;
         await this.saveSettings();
         if (this.isRedFlag2Raised()) {
-          Logger(`${FLAGMD_REDFLAG2} has been detected! Self-hosted LiveSync suspends all sync and rebuild everything.`, LOG_LEVEL_NOTICE);
+          Logger(`${FLAGMD_REDFLAG2} or ${FLAGMD_REDFLAG2_HR} has been detected! Self-hosted LiveSync suspends all sync and rebuild everything.`, LOG_LEVEL_NOTICE);
           await this.addOnSetup.rebuildEverything();
           await this.deleteRedFlag2();
           if ("yes" == await askYesNo(this.app, "Do you want to disable Suspend file watching and restart obsidian now?")) {
@@ -22734,7 +22931,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
             this.app.commands.executeCommandById("app:reload");
           }
         } else if (this.isRedFlag3Raised()) {
-          Logger(`${FLAGMD_REDFLAG3} has been detected! Self-hosted LiveSync will discard the local database and fetch everything from the remote once again.`, LOG_LEVEL_NOTICE);
+          Logger(`${FLAGMD_REDFLAG3} or ${FLAGMD_REDFLAG3_HR} has been detected! Self-hosted LiveSync will discard the local database and fetch everything from the remote once again.`, LOG_LEVEL_NOTICE);
           await this.addOnSetup.fetchLocal();
           await this.deleteRedFlag3();
           if (this.settings.suspendFileWatching) if ("yes" == await askYesNo(this.app, "Do you want to disable Suspend file watching and restart obsidian now?")) {
@@ -22917,6 +23114,25 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
         this.showGlobalHistory();
       }
     });
+    this.addCommand({
+      id: "livesync-export-config",
+      name: "Write setting markdown manually",
+      checkCallback: s => {
+        if (s) return "" != this.settings.settingSyncFile;
+        this.saveSettingData();
+      }
+    });
+    this.addCommand({
+      id: "livesync-import-config",
+      name: "Parse setting file",
+      editorCheckCallback: (s, r, o) => {
+        if (s) {
+          const s = r.getValue();
+          return "" != this.extractSettingFromWholeText(s).body;
+        }
+        this.checkAndApplySettingFromMarkdown(o.file.path, false);
+      }
+    });
     this.registerView(VIEW_TYPE_GLOBAL_HISTORY, (s => new GlobalHistoryView(s, this)));
     this.registerView(VIEW_TYPE_LOG, (s => new LogPaneView(s, this)));
   }
@@ -22930,7 +23146,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
     Logger("loading plugin");
     this.addSettingTab(new ObsidianLiveSyncSettingTab(this.app, this));
     this.addUIs();
-    const s = "0.22.1", r = "0.22.1";
+    const s = "0.22.2", r = "0.22.2";
     this.manifestVersion = s;
     this.packageVersion = r;
     Logger(`Self-hosted LiveSync v${s} ${r} `);
@@ -23111,6 +23327,116 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
     this.localDatabase.settings = this.settings;
     this.fileEventQueue.delay = this.settings.batchSave ? 5e3 : 100;
     this.ignoreFiles = this.settings.ignoreFiles.split(",").map((s => s.trim()));
+    if ("" != this.settings.settingSyncFile) fireAndForget((() => this.saveSettingToMarkdown(this.settings.settingSyncFile)));
+  }
+  extractSettingFromWholeText(s) {
+    if (-1 === s.indexOf(SETTING_HEADER)) return {
+      preamble: s,
+      body: "",
+      postscript: ""
+    };
+    const r = s.indexOf(SETTING_HEADER), o = -1 == r ? s.length : r, u = -1 == r ? s.length : s.indexOf(SETTING_FOOTER, o), g = -1 == u ? s.length : u, _ = s.substring(o + SETTING_HEADER.length, g);
+    return {
+      preamble: s.substring(0, o),
+      body: _,
+      postscript: s.substring(g + SETTING_FOOTER.length + 1)
+    };
+  }
+  async parseSettingFromMarkdown(s, r) {
+    const o = this.app.vault.getAbstractFileByPath(s);
+    if (!(o instanceof import_obsidian.TFile)) return {
+      preamble: "",
+      body: "",
+      postscript: ""
+    };
+    if (r) return this.extractSettingFromWholeText(r);
+    const u = null != r ? r : await this.app.vault.read(o);
+    return this.extractSettingFromWholeText(u);
+  }
+  async checkAndApplySettingFromMarkdown(s, r) {
+    if (r && !this.settings.notifyAllSettingSyncFile) if (this.settings.settingSyncFile != s) {
+      Logger(`Setting file (${s}) is not matched to the current configuration. skipped.`, LOG_LEVEL_INFO);
+      return;
+    }
+    const {body: o} = await this.parseSettingFromMarkdown(s);
+    let u = {};
+    try {
+      u = (0, import_obsidian.parseYaml)(o);
+    } catch (s) {
+      Logger("Could not parse YAML", LOG_LEVEL_NOTICE);
+      Logger(s, LOG_LEVEL_VERBOSE);
+      return;
+    }
+    if ("settingSyncFile" in u && u.settingSyncFile != s) {
+      Logger("This setting file seems to backed up one. Please fix the filename or settingSyncFile value.", r ? LOG_LEVEL_INFO : LOG_LEVEL_NOTICE);
+      return;
+    }
+    let g = {
+      ...DEFAULT_SETTINGS
+    };
+    g = {
+      ...g,
+      ...u
+    };
+    if (!(null == g ? void 0 : g.writeCredentialsForSettingSync)) {
+      g.couchDB_USER = this.settings.couchDB_USER;
+      g.couchDB_PASSWORD = this.settings.couchDB_PASSWORD;
+      g.passphrase = this.settings.passphrase;
+    }
+    if (!isObjectDifferent(this.generateSettingForMarkdown(this.settings, g.writeCredentialsForSettingSync), this.generateSettingForMarkdown(g))) {
+      Logger("Setting markdown has been detected, but not changed.", r ? LOG_LEVEL_INFO : LOG_LEVEL_NOTICE);
+      return;
+    }
+    const _ = this.settings.settingSyncFile != s ? " (This is not-active file)" : "";
+    this.askInPopup("apply-setting-from-md", `Setting markdown ${s}${_} has been detected. Apply this from {HERE}.`, (s => {
+      s.text = "HERE";
+      s.addEventListener("click", (async () => {
+        const s = "Apply settings", r = "Apply settings and restart obsidian", o = "Apply settings and restart obsidian with red_flag_rebuild.md", u = "Apply settings and restart obsidian with red_flag_fetch.md", _ = await askSelectString(this.app, "Ready for apply the setting.", [ r, s, u, o, "Cancel" ]);
+        if (_ == s || _ == r || _ == o || _ == u) {
+          this.settings = g;
+          await this.saveSettingData();
+          if (_ == s) {
+            Logger("Loaded settings have been applied!", LOG_LEVEL_NOTICE);
+            return;
+          }
+          if (_ == o) await this.app.vault.create(FLAGMD_REDFLAG2_HR, "");
+          if (_ == u) await this.app.vault.create(FLAGMD_REDFLAG3_HR, "");
+          this.app.commands.executeCommandById("app:reload");
+        }
+      }));
+    }));
+  }
+  generateSettingForMarkdown(s, r) {
+    const o = {
+      ...s ? s : this.settings
+    };
+    delete o.encryptedCouchDBConnection;
+    delete o.encryptedPassphrase;
+    if (!o.writeCredentialsForSettingSync && !r) {
+      delete o.couchDB_USER;
+      delete o.couchDB_PASSWORD;
+      delete o.passphrase;
+    }
+    return o;
+  }
+  async saveSettingToMarkdown(s) {
+    const r = this.generateSettingForMarkdown();
+    let o = this.app.vault.getAbstractFileByPath(s);
+    if (!o) {
+      await this.ensureDirectoryEx(s);
+      const r = 'This file contains Self-hosted LiveSync settings as YAML.\nExcept for the `livesync-setting` code block, we can add a note for free.\n\nIf the name of this file matches the value of the "settingSyncFile" setting inside the `livesync-setting` block, LiveSync will tell us whenever the settings change. We can decide to accept or decline the remote setting. (In other words, we can back up this file by renaming it to another name).\n\nWe can perform a command in this file.\n- `Parse setting file` : load the setting from the file.\n\n**Note** Please handle it with all of your care if you have configured to write credentials in.\n\n\n';
+      o = await this.app.vault.create(s, r + SETTING_HEADER + "\n" + SETTING_FOOTER);
+    }
+    if (!(o instanceof import_obsidian.TFile)) {
+      Logger(`Markdown Setting: ${s} already exists as a folder`, LOG_LEVEL_NOTICE);
+      return;
+    }
+    const u = await this.app.vault.read(o), {preamble: g, body: _, postscript: m} = this.extractSettingFromWholeText(u), b = (0, 
+    import_obsidian.stringifyYaml)(r);
+    if (b == _) Logger("Markdown setting: Nothing had been changed", LOG_LEVEL_VERBOSE); else {
+      await this.app.vault.modify(o, g + SETTING_HEADER + b + SETTING_FOOTER + m);
+      Logger(`Markdown setting: ${s} has been updated!`, LOG_LEVEL_VERBOSE);
+    }
   }
   async saveSettings() {
     await this.saveSettingData();
@@ -23222,6 +23548,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       }
       const _ = s.args.cache;
       if ("CREATE" == s.type || "CHANGED" == s.type) {
+        fireAndForget((() => this.checkAndApplySettingFromMarkdown(s.args.file.path, true)));
         const u = `file-last-proc-DELETED-${r.path}`;
         await this.kvDB.set(u, g);
         if (!await this.updateIntoDB(o, false, _)) {
@@ -23269,11 +23596,11 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
     if (r == LOG_LEVEL_DEBUG && !isDebug) return;
     if (r < LOG_LEVEL_INFO && this.settings && this.settings.lessInformationInLog) return;
     if (this.settings && !this.settings.showVerboseLog && r == LOG_LEVEL_VERBOSE) return;
-    const m = this.getVaultName(), b = new Date, w = b.toLocaleString(), E = "string" == typeof s ? s : s instanceof Error ? `${s.name}:${s.message}` : JSON.stringify(s, null, 2);
+    const m = this.getVaultName(), b = new Date, E = b.toLocaleString(), w = "string" == typeof s ? s : s instanceof Error ? `${s.name}:${s.message}` : JSON.stringify(s, null, 2);
     if (s instanceof Error) console.dir(s.stack);
-    const S = w + "->" + E;
+    const S = E + "->" + w;
     console.log(m + ":" + S);
-    if (!(null == (u = this.settings) ? void 0 : u.showOnlyIconsOnEditor)) this.statusLog.value = E;
+    if (!(null == (u = this.settings) ? void 0 : u.showOnlyIconsOnEditor)) this.statusLog.value = w;
     if (null == (g = this.settings) ? void 0 : g.writeLogToTheFile) {
       const s = b.toISOString().split("T")[0], r = `${PREFIXMD_LOGFILE}${s}.md`;
       if (!this.vaultAccess.getAbstractFileByPath(normalizePath(r))) this.app.vault.adapter.append(normalizePath(r), "```\n");
@@ -23281,16 +23608,16 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
     }
     recentLogProcessor.enqueue(S);
     if (r >= LOG_LEVEL_NOTICE) {
-      if (!o) o = E;
+      if (!o) o = w;
       if (o in this.notifies) {
-        if (!(null == (_ = this.notifies[o].notice.noticeEl) ? void 0 : _.isShown())) this.notifies[o].notice = new import_obsidian.Notice(E, 0);
+        if (!(null == (_ = this.notifies[o].notice.noticeEl) ? void 0 : _.isShown())) this.notifies[o].notice = new import_obsidian.Notice(w, 0);
         cancelTask(`notify-${o}`);
-        if (o == E) {
+        if (o == w) {
           this.notifies[o].count++;
-          this.notifies[o].notice.setMessage(`(${this.notifies[o].count}):${E}`);
-        } else this.notifies[o].notice.setMessage(`${E}`);
+          this.notifies[o].notice.setMessage(`(${this.notifies[o].count}):${w}`);
+        } else this.notifies[o].notice.setMessage(`${w}`);
       } else {
-        const s = new import_obsidian.Notice(E, 0);
+        const s = new import_obsidian.Notice(w, 0);
         this.notifies[o] = {
           count: 0,
           notice: s
@@ -23322,67 +23649,63 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       o += "/";
     }
   }
-  async doc2storage(s, r, o) {
+  async processEntryDoc(s, r, o) {
     var u;
     const g = null == r ? "create" : "modify", _ = this.getPath(s);
     if (shouldBeIgnored(_)) return;
     if (!await this.isTargetFile(_)) return;
-    if (s._deleted || s.deleted) {
-      const s = await this.localDatabase.getDBEntry(_, {
-        conflicts: true
-      });
+    const m = await this.localDatabase.getDBEntry(_, {
+      conflicts: true
+    }), b = `STORAGE <- DB (${g}${o ? ",force" : ""},${m ? null == m ? void 0 : m.datatype : "--"}) `;
+    if (m && m._conflicts) if (this.settings.writeDocumentsIfConflicted) {
+      Logger(`Processing: ${r.path}: Conflicted revision has been deleted, but there were more conflicts. `, LOG_LEVEL_INFO);
+      await this.processEntryDoc(s, r, true);
+      return;
+    } else if (true != o) {
+      Logger(`Processing: ${r.path}: Conflicted revision has been deleted, but there were more conflicts...`);
+      this.queueConflictCheck(r);
+      return;
+    }
+    if (s._deleted || s.deleted || false === m) {
       if (_ != r.path) Logger(`delete skipped: ${r.path} :Not exactly matched`, LOG_LEVEL_VERBOSE);
-      if (false === s) await this.deleteVaultItem(r); else if (s._conflicts) if (this.settings.writeDocumentsIfConflicted) {
-        Logger(`Delete: ${r.path}: Conflicted revision has been deleted, but there were more conflicts. `, LOG_LEVEL_INFO);
-        await this.pullFile(_, null, true);
-      } else {
-        Logger(`Delete: ${r.path}: Conflicted revision has been deleted, but there were more conflicts...`);
-        this.queueConflictCheck(r);
-      } else {
-        Logger(`Delete: ${r.path}: Conflict revision has been deleted and resolved`);
-        await this.pullFile(_, null, true);
-      }
+      if (false === m) await this.deleteVaultItem(r); else await this.pullFile(_, null, o);
       return;
     }
-    const m = ~~(((null == (u = null == r ? void 0 : r.stat) ? void 0 : u.mtime) || 0) / 1e3), b = ~~(s.mtime / 1e3), w = await this.localDatabase.getDBEntry(_, {
-      rev: s._rev
-    });
-    if (false === w) return;
-    const E = `STORAGE <- DB (${g}${o ? ",force" : ""},${w.datatype}) `;
-    if ("newnote" != w.datatype && "plain" != w.datatype) {
-      Logger(E + "ERROR, Invalid datatype: " + _ + "(" + w.datatype + ")", LOG_LEVEL_NOTICE);
+    const E = ~~(((null == (u = null == r ? void 0 : r.stat) ? void 0 : u.mtime) || 0) / 1e3), w = ~~(s.mtime / 1e3), S = m;
+    if ("newnote" != S.datatype && "plain" != S.datatype) {
+      Logger(b + "ERROR, Invalid datatype: " + _ + "(" + S.datatype + ")", LOG_LEVEL_NOTICE);
       return;
     }
-    if (!o && m >= b) return;
+    if (!o && E >= w) return;
     if (!isValidPath(_)) {
-      Logger(E + "ERROR, invalid path: " + _, LOG_LEVEL_NOTICE);
+      Logger(b + "ERROR, invalid path: " + _, LOG_LEVEL_NOTICE);
       return;
     }
-    const S = "newnote" == w.datatype ? decodeBinary(w.data) : getDocData(w.data);
+    const L = "newnote" == S.datatype ? decodeBinary(S.data) : getDocData(S.data);
     await this.ensureDirectoryEx(_);
     try {
       let s, o = true;
       if ("create" == g) {
         const r = normalizePath(_);
-        await this.vaultAccess.vaultCreate(r, S, {
-          ctime: w.ctime,
-          mtime: w.mtime
+        await this.vaultAccess.vaultCreate(r, L, {
+          ctime: S.ctime,
+          mtime: S.mtime
         });
         s = this.vaultAccess.getAbstractFileByPath(r);
       } else {
-        o = await this.vaultAccess.vaultModify(r, S, {
-          ctime: w.ctime,
-          mtime: w.mtime
+        o = await this.vaultAccess.vaultModify(r, L, {
+          ctime: S.ctime,
+          mtime: S.mtime
         });
         s = this.vaultAccess.getAbstractFileByPath(getPathFromTFile(r));
       }
       if (o) {
-        Logger(E + _);
+        Logger(b + _);
         this.vaultAccess.touch(s);
         this.app.vault.trigger(g, s);
-      } else Logger(E + "Skipped, the file is the same: " + _, LOG_LEVEL_VERBOSE);
+      } else Logger(b + "Skipped, the file is the same: " + _, LOG_LEVEL_VERBOSE);
     } catch (s) {
-      Logger(E + "ERROR, Could not write: " + _, LOG_LEVEL_NOTICE);
+      Logger(b + "ERROR, Could not write: " + _, LOG_LEVEL_NOTICE);
       Logger(s, LOG_LEVEL_VERBOSE);
     }
   }
@@ -23445,49 +23768,49 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       return `${r ? `📥 ${r} ` : ""}${s ? `📄 ${s} ` : ""}${o ? `💾 ${o}` : ""}${u ? `🧩${u} ` : ""}${g ? `🔌${g} ` : ""}${_ ? `⚙️${_} ` : ""}${m ? `🔩${m} ` : ""}`;
     })), r = reactive((() => {
       const s = this.replicationStat.value, r = s.sent, o = s.arrived, u = s.maxPullSeq, g = s.maxPushSeq, _ = s.lastSyncPullSeq, m = s.lastSyncPushSeq;
-      let b = "", w = "", E = "";
+      let b = "", E = "", w = "";
       switch (s.syncStatus) {
        case "CLOSED":
        case "COMPLETED":
        case "NOT_CONNECTED":
-        E = "⏹";
+        w = "⏹";
         break;
 
        case "STARTED":
-        E = "🌀";
+        w = "🌀";
         break;
 
        case "PAUSED":
-        E = "💤";
+        w = "💤";
         break;
 
        case "CONNECTED":
-        E = "⚡";
+        w = "⚡";
         b = 0 == m ? "" : m >= g ? " (LIVE)" : ` (${g - m})`;
-        w = 0 == _ ? "" : _ >= u ? " (LIVE)" : ` (${u - _})`;
+        E = 0 == _ ? "" : _ >= u ? " (LIVE)" : ` (${u - _})`;
         break;
 
        case "ERRORED":
-        E = "⚠";
+        w = "⚠";
         break;
 
        default:
-        E = "?";
+        w = "?";
       }
       return {
-        w: E,
+        w,
         sent: r,
         pushLast: b,
         arrived: o,
-        pullLast: w
+        pullLast: E
       };
     })), o = reactive((() => {
       const s = this.pendingFileEventCount.value, r = this.fileEventQueue.processingEntities, o = s - r;
       return `${0 != r ? `⏳${r} ` : ""}${0 != o ? ` 🛫${o}` : ""}`;
     })), u = reactive((() => {
-      const {w: u, sent: g, pushLast: _, arrived: m, pullLast: b} = r.value, w = s.value;
+      const {w: u, sent: g, pushLast: _, arrived: m, pullLast: b} = r.value, E = s.value;
       return {
-        message: `Sync: ${u} ↑${g}${_} ↓${m}${b}${o.value} ${w}`
+        message: `Sync: ${u} ↑${g}${_} ↓${m}${b}${o.value} ${E}`
       };
     })), g = reactive((() => {
       const {message: s} = u.value;
@@ -23587,6 +23910,10 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
   async markRemoteResolved() {
     return await this.replicator.markRemoteResolved(this.settings);
   }
+  isFileSizeExceeded(s) {
+    if (this.settings.syncMaxSizeInMB > 0 && s > 0) if (1024 * this.settings.syncMaxSizeInMB * 1024 < s) return true;
+    return false;
+  }
   async syncAllFiles(s) {
     let r = false;
     if (s) Logger("Initializing", LOG_LEVEL_NOTICE, "syncAll");
@@ -23612,45 +23939,48 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       r = true;
       Logger("Database looks empty, save files as initial sync data");
     }
-    const w = u.filter((s => -1 == _.indexOf(getPathFromTFile(s)))), E = _.filter((s => -1 == g.indexOf(s))), S = w.map((s => s.path)), L = u.filter((s => -1 == S.indexOf(s.path)));
+    const E = u.filter((s => -1 == _.indexOf(getPathFromTFile(s)))), w = _.filter((s => -1 == g.indexOf(s))), S = E.map((s => s.path)), L = u.filter((s => -1 == S.indexOf(s.path)));
     Logger("Updating database by new files");
-    const O = [], runAll = async (r, o, u) => {
-      if (0 == o.length) {
-        Logger(`${r}: Nothing to do`);
+    const O = [], D = s ? LOG_LEVEL_NOTICE : LOG_LEVEL_INFO, runAll = async (s, r, o) => {
+      if (0 == r.length) {
+        Logger(`${s}: Nothing to do`);
         return;
       }
-      Logger(r);
+      Logger(s);
       if (!this.localDatabase.isReady) throw Error("Database is not ready!");
-      let g = 0, _ = 0;
-      const m = s ? LOG_LEVEL_NOTICE : LOG_LEVEL_INFO, b = new QueueProcessor((async s => {
+      let u = 0, g = 0;
+      const _ = new QueueProcessor((async r => {
         try {
-          await u(s[0]);
+          await o(r[0]);
+          u++;
+        } catch (r) {
+          Logger(`Error while ${s}`, LOG_LEVEL_NOTICE);
+          Logger(r, LOG_LEVEL_VERBOSE);
           g++;
-        } catch (s) {
-          Logger(`Error while ${r}`, LOG_LEVEL_NOTICE);
-          Logger(s, LOG_LEVEL_VERBOSE);
-          _++;
         }
-        if ((g + _) % 10 == 0) Logger(`${r}: DONE:${g}, FAILED:${_}, LAST:${b._queue.length}`, m, `log-${r}`);
+        if ((u + g) % 10 == 0) Logger(`${s}: DONE:${u}, FAILED:${g}, LAST:${_._queue.length}`, D, `log-${s}`);
       }), {
         batchSize: 1,
         concurrentLimit: 10,
         delay: 0,
         suspended: true
-      }, o);
-      await b.waitForPipeline();
-      Logger(`${r} All done: DONE:${g}, FAILED:${_}`, m, `log-${r}`);
+      }, r);
+      await _.waitForPipeline();
+      Logger(`${s} All done: DONE:${u}, FAILED:${g}`, D, `log-${s}`);
     };
-    O.push(runAll("UPDATE DATABASE", w, (async s => {
-      await this.updateIntoDB(s, r);
+    O.push(runAll("UPDATE DATABASE", E, (async s => {
+      if (!this.isFileSizeExceeded(s.stat.size)) {
+        await this.updateIntoDB(s, r);
+        fireAndForget((() => this.checkAndApplySettingFromMarkdown(s.path, true)));
+      } else Logger(`UPDATE DATABASE: ${s.path} has been skipped due to file size exceeding the limit`, D);
     })));
-    if (!r) O.push(runAll("UPDATE STORAGE", E, (async s => {
+    if (!r) O.push(runAll("UPDATE STORAGE", w, (async s => {
       const r = await this.localDatabase.getDBEntryMeta(s, {}, true);
-      if (r && !(r.deleted || r._deleted)) {
-        Logger(`Check or pull from db:${s}`);
+      if (r && !(r.deleted || r._deleted)) if (!this.isFileSizeExceeded(r.size)) {
         await this.pullFile(s, u, false, null, false);
+        fireAndForget((() => this.checkAndApplySettingFromMarkdown(s, true)));
         Logger(`Check or pull from db:${s} OK`);
-      } else if (r) Logger(`Deletion history skipped: ${s}`, LOG_LEVEL_VERBOSE); else Logger(`entry not found: ${s}`);
+      } else Logger(`UPDATE STORAGE: ${s} has been skipped due to file size exceeding the limit`, D); else if (r) Logger(`Deletion history skipped: ${s}`, LOG_LEVEL_VERBOSE); else Logger(`entry not found: ${s}`);
     })));
     if (!r) {
       let s = {};
@@ -23726,12 +24056,12 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
   }
   async mergeSensibly(s, r, o, u) {
     var g, _, m, b;
-    const w = await this.getConflictedDoc(s, r), E = await this.getConflictedDoc(s, o), S = await this.getConflictedDoc(s, u);
+    const E = await this.getConflictedDoc(s, r), w = await this.getConflictedDoc(s, o), S = await this.getConflictedDoc(s, u);
     let L = false;
-    if (false == w || false == E || false == S) return false;
-    const O = new import_diff_match_patch.diff_match_patch, D = O.diff_linesToChars_(w.data, E.data), k = O.diff_main(D.chars1, D.chars2, false);
+    if (false == E || false == w || false == S) return false;
+    const O = new import_diff_match_patch.diff_match_patch, D = O.diff_linesToChars_(E.data, w.data), k = O.diff_main(D.chars1, D.chars2, false);
     O.diff_charsToLines_(k, D.lineArray);
-    const C = O.diff_linesToChars_(w.data, S.data), T = O.diff_main(C.chars1, C.chars2, false);
+    const C = O.diff_linesToChars_(E.data, S.data), T = O.diff_main(C.chars1, C.chars2, false);
     O.diff_charsToLines_(T, C.lineArray);
     function splitDiffPiece(s) {
       const r = [];
@@ -23784,7 +24114,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
         if (s[0] == import_diff_match_patch.DIFF_INSERT && r[0] == import_diff_match_patch.DIFF_INSERT) if (s[1] == r[1]) {
           P.push(s);
           continue;
-        } else if (E.mtime <= S.mtime) {
+        } else if (w.mtime <= S.mtime) {
           P.push(s);
           P.push(r);
           continue;
@@ -23835,11 +24165,11 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       if (false == g || false == _ || false == m) return false;
       const b = {
         data: tryParseJSON(g.data, {})
-      }, w = {
-        data: tryParseJSON(_.data, {})
       }, E = {
+        data: tryParseJSON(_.data, {})
+      }, w = {
         data: tryParseJSON(m.data, {})
-      }, S = generatePatchObj(b, w), L = generatePatchObj(b, E), O = new Map(flattenObject(S)), D = new Map(flattenObject(L));
+      }, S = generatePatchObj(b, E), L = generatePatchObj(b, w), O = new Map(flattenObject(S)), D = new Map(flattenObject(L));
       for (const [s, r] of O) if (D.has(s)) if (D.get(s) == r) D.delete(s);
       for (const [s, r] of D) if (O.has(s) && O.get(s) != r) return false;
       const k = [ {
@@ -23875,30 +24205,30 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       const _ = g[0], m = Number(_.split("-")[0]), b = null != (o = null == (r = (await this.localDatabase.getRaw(await this.path2id(s), {
         revs_info: true
       }))._revs_info.filter((s => "available" == s.status && Number(s.rev.split("-")[0]) < m)).first()) ? void 0 : r.rev) ? o : "";
-      let w;
+      let E;
       if (b) {
         if (isSensibleMargeApplicable(s)) {
           const r = await this.mergeSensibly(s, b, u._rev, _);
           if (r) {
-            w = r.filter((s => s[0] != import_diff_match_patch.DIFF_DELETE)).map((s => s[1])).join("");
+            E = r.filter((s => s[0] != import_diff_match_patch.DIFF_DELETE)).map((s => s[1])).join("");
             Logger(`Sensible merge:${s}`, LOG_LEVEL_INFO);
           } else Logger("Sensible merge is not applicable.", LOG_LEVEL_VERBOSE);
         } else if (isObjectMargeApplicable(s)) {
           const r = await this.mergeObject(s, b, u._rev, _);
           if (r) {
             Logger(`Object merge:${s}`, LOG_LEVEL_INFO);
-            w = r;
+            E = r;
           } else Logger("Object merge is not applicable.", LOG_LEVEL_VERBOSE);
         }
-        if (null != w) {
+        if (null != E) {
           await this.localDatabase.deleteDBEntry(s, {
             rev: _
           });
           const r = this.vaultAccess.getAbstractFileByPath(stripAllPrefixes(s));
           if (r) {
-            if (await this.vaultAccess.vaultModify(r, w)) await this.updateIntoDB(r);
+            if (await this.vaultAccess.vaultModify(r, E)) await this.updateIntoDB(r);
           } else {
-            const r = await this.vaultAccess.vaultCreate(s, w);
+            const r = await this.vaultAccess.vaultCreate(s, E);
             await this.updateIntoDB(r);
           }
           await this.pullFile(s);
@@ -23920,15 +24250,15 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       Logger(`could not get old revisions, automatically used newer one:${s}`, LOG_LEVEL_NOTICE);
       return AUTO_MERGED;
     }
-    const b = _.data == m.data && _.deleted == m.deleted, w = !isPlainText(s), E = this.settings.resolveConflictsByNewerFile;
-    if (b || w || E) {
+    const b = _.data == m.data && _.deleted == m.deleted, E = !isPlainText(s), w = this.settings.resolveConflictsByNewerFile;
+    if (b || E || w) {
       let r = _;
       if (~~(_.mtime / 1e3) > ~~(m.mtime / 1e3)) r = m;
       await this.localDatabase.deleteDBEntry(s, {
         rev: r.rev
       });
       await this.pullFile(s, null, true);
-      Logger(`Automatically merged (${b ? "same," : ""}${w ? "binary," : ""}${E ? "alwaysNewer" : ""}) :${s}`, LOG_LEVEL_NOTICE);
+      Logger(`Automatically merged (${b ? "same," : ""}${E ? "binary," : ""}${w ? "alwaysNewer" : ""}) :${s}`, LOG_LEVEL_NOTICE);
       return AUTO_MERGED;
     }
     const S = new import_diff_match_patch.diff_match_patch, L = S.diff_main(_.data, m.data);
@@ -23998,7 +24328,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
         Logger(`${s} Skipped`);
         return;
       }
-      await this.doc2storage(r, void 0, o);
+      await this.processEntryDoc(r, void 0, o);
     } else if (_ instanceof import_obsidian.TFile) {
       const r = _, m = await this.localDatabase.getDBEntry(s, u ? {
         rev: u
@@ -24007,7 +24337,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
         Logger(`${s} Skipped`);
         return;
       }
-      await this.doc2storage(m, r, o);
+      await this.processEntryDoc(m, r, o);
     } else Logger(`target files:${s} is exists as the folder`);
   }
   async syncFileBetweenDBandStorage(s, r, o, u) {
@@ -24027,26 +24357,27 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       };
       return u;
     }
-    if (g > _) {
+    if (g > _) if (!this.isFileSizeExceeded(s.stat.size)) {
       Logger("STORAGE -> DB :" + s.path);
       Logger(`${g} > ${_}`);
       await this.updateIntoDB(s, o);
+      fireAndForget((() => this.checkAndApplySettingFromMarkdown(s.path, true)));
       u[m] = {
         storageMtime: g,
         docMtime: _
       };
       return u;
-    } else if (g < _) {
+    } else Logger(`STORAGE -> DB : ${s.path} has been skipped due to file size exceeding the limit`, LOG_LEVEL_NOTICE); else if (g < _) if (!this.isFileSizeExceeded(r.size)) {
       Logger("STORAGE <- DB :" + s.path);
       Logger(`${g} < ${_}`);
       const r = await this.localDatabase.getDBEntry(getPathFromTFile(s), null, false, false);
-      if (false != r) await this.doc2storage(r, s); else Logger("STORAGE <- DB :" + s.path + " Skipped");
+      if (false != r) await this.processEntryDoc(r, s); else Logger(`STORAGE <- DB : ${s.path} has been skipped due to file size exceeding the limit`, LOG_LEVEL_NOTICE);
       u[m] = {
         storageMtime: g,
         docMtime: _
       };
       return u;
-    }
+    } else Logger("STORAGE <- DB :" + s.path + " Skipped (size)");
     Logger("STORAGE == DB :" + s.path, LOG_LEVEL_VERBOSE);
     u[m] = {
       storageMtime: g,
@@ -24097,7 +24428,7 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
       children: [],
       datatype: _,
       type: _
-    }, w = `STORAGE -> DB (${_}) `;
+    }, E = `STORAGE -> DB (${_}) `;
     if (await serialized("file-" + m, (async () => {
       if (this.vaultAccess.recentlyTouched(s)) return true;
       try {
@@ -24112,22 +24443,22 @@ var ObsidianLiveSyncPlugin = class extends import_obsidian.Plugin {
           };
           if (r.deleted != o.deleted) return false;
           if (!await isDocContentSame(s.data, o.data)) return false;
-          Logger(w + "Skipped (not changed) " + m + (b._deleted || b.deleted ? " (deleted)" : ""), LOG_LEVEL_VERBOSE);
+          Logger(E + "Skipped (not changed) " + m + (b._deleted || b.deleted ? " (deleted)" : ""), LOG_LEVEL_VERBOSE);
           return true;
         }
       } catch (s) {
-        if (u) Logger(w + "Error, Could not check the diff for the old one." + (u ? "force writing." : "") + m + (b._deleted || b.deleted ? " (deleted)" : ""), LOG_LEVEL_VERBOSE); else Logger(w + "Error, Could not check the diff for the old one." + m + (b._deleted || b.deleted ? " (deleted)" : ""), LOG_LEVEL_VERBOSE);
+        if (u) Logger(E + "Error, Could not check the diff for the old one." + (u ? "force writing." : "") + m + (b._deleted || b.deleted ? " (deleted)" : ""), LOG_LEVEL_VERBOSE); else Logger(E + "Error, Could not check the diff for the old one." + m + (b._deleted || b.deleted ? " (deleted)" : ""), LOG_LEVEL_VERBOSE);
         return !u;
       }
       return false;
     }))) {
-      Logger(w + " Skip " + m, LOG_LEVEL_VERBOSE);
+      Logger(E + " Skip " + m, LOG_LEVEL_VERBOSE);
       return true;
     }
-    const E = await this.localDatabase.putDBEntry(b, r);
-    Logger(w + m);
+    const w = await this.localDatabase.putDBEntry(b, r);
+    Logger(E + m);
     if (this.settings.syncOnSave && !this.suspended) await this.replicate();
-    return false != E;
+    return false != w;
   }
   async deleteFromDB(s) {
     if (!await this.isTargetFile(s)) return;

@@ -19,8 +19,17 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "e7eefec9a91865ed",
+            "type": "leaf",
+            "state": {
+              "type": "log-log",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -193,10 +202,10 @@
   "left-ribbon": {
     "hiddenItems": {
       "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "obsidian-livesync:Replicate": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true,
+      "obsidian-livesync:Replicate": true,
       "obsidian-livesync:Show log": false,
-      "obsidian-livesync:Show Customization sync": false,
+      "obsidian-livesync:Show Customization sync": true,
       "obsidian-projects:Open projects": false,
       "obsidian-excalidraw-plugin:Create new drawing": false,
       "homepage:Open homepage": false,
@@ -218,7 +227,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e2b5027b4eaefe5a",
+  "active": "e7eefec9a91865ed",
   "lastOpenFiles": [
     "Home.md",
     "Espagnol/Médecine.md",

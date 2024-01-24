@@ -34,10 +34,10 @@
   "buttons",
   "obsidian-enhancing-mindmap",
   "obsidian-dictionary-plugin",
-  "obsidian-livesync",
   "obsidian-latex-suite",
   "obsidian-plugin-toc",
   "obsidian-languagetool-plugin",
   "obsidian-linter",
-  "obsidian-projects"
+  "obsidian-projects",
+  "obsidian-advanced-slides"
 ]

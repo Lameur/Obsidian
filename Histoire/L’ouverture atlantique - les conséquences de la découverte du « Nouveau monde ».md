@@ -82,4 +82,7 @@ q5 :
 -> p106-107
 explosion flux commerciaux (humaine sur atlantique)
 
-Or et Argent -> diverses mines du continent Amérique dans territoires ctrl par couronne d'Espagne
+Or/Argent -> diverses mines du continent Amérique dans territoires ctrl par couronne d'Espagne.  
+	-> Embarqués sur des navires (galions) escortés par Armada et converge vers Séville.  
+	-> déchargés puis redistribués en Eu.  
+doc 5

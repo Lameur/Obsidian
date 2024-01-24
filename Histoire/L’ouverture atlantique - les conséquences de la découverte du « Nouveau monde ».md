@@ -87,3 +87,8 @@ Or/Argent -> diverses mines du continent Amérique dans territoires ctrl par cou
 	-> déchargés puis redistribués en Eu.  
 > doc 5 
 
+1540's -> découverte gisement américain avant 200 hommes.  
+1590's -> 2 couronne.  
+Les colons ont besoin de denrée.  
+Plus en plus de routes commerciales et se rallongent et mettent en liens les continents.  
+1ʳᵉ mondialisation, essor des échanges au niveau mondial du 16ᵉ au 18ᵉ siècle qui entraine indépendance des continents.  

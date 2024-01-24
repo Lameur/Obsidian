@@ -3,16 +3,14 @@
     "migrated": 4,
     "iconPacksPath": ".obsidian/icons",
     "fontSize": 16,
-    "emojiStyle": "none",
+    "emojiStyle": "twemoji",
     "iconColor": null,
     "recentlyUsedIcons": [
       "RiLinksLine",
       "RiLinkedinBoxLine",
-      "RiDatabase2Line",
-      "SiReadme",
-      "RiHome2Line"
+      "RiDatabase2Line"
     ],
-    "recentlyUsedIconsSize": 5,
+    "recentlyUsedIconsSize": 10,
     "rules": [
       {
         "icon": "SiReadme",
@@ -34,6 +32,5 @@
     "iconInFrontmatterEnabled": true,
     "iconsInNotesEnabled": true,
     "iconIdentifier": ":"
-  },
-  "Français.md": "RiDatabase2Line"
+  }
 }

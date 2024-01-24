@@ -60,14 +60,15 @@
   "autoSuggestOptions": {
     "customInstructEnabled": false,
     "customInstruct": "continue the follwing text:\n{{query}}",
-    "isEnabled": false,
+    "isEnabled": true,
     "allowInNewLine": false,
     "delay": 300,
     "numberOfSuggestions": 5,
     "triggerPhrase": "  ",
     "stop": ".",
     "showStatus": true,
-    "customProvider": false
+    "customProvider": false,
+    "selectedProvider": "OpenAI Chat (Langchain)"
   },
   "extractorsOptions": {
     "PDFExtractor": true,
@@ -78,6 +79,34 @@
     "ImageExtractor": true
   },
   "displayErrorInEditor": false,
-  "LLMProviderOptions": {},
-  "LLMProviderOptionsKeysHashed": {}
+  "LLMProviderOptions": {
+    "whisper": {
+      "base_path": "https://api.openai.com/v1"
+    },
+    "OpenAI Chat (Langchain)": {
+      "basePath": "https://api.openai.com/v1",
+      "model": "gpt-3.5-turbo"
+    },
+    "Google GenerativeAI (Langchain)": {
+      "model": "models/gemini-pro"
+    },
+    "OpenAI Chat 1 (Langchain)": {
+      "basePath": "https://api.openai.com/v1"
+    },
+    "Google Palm (Langchain)": {},
+    "Default (Custom)": {
+      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "handlebars_headers_in": "{\n      \"Content-Type\": \"application/json\",\n      \"authorization\": \"Bearer {{api_key}}\"\n}",
+      "handlebars_body_in": "{\n    \"model\": \"{{model}}\",\n    \"temperature\": {{temperature}},\n    \"top_p\": {{top_p}},\n    \"frequency_penalty\": {{frequency_penalty}},\n    \"presence_penalty\": {{presence_penalty}},\n    \"max_tokens\": {{max_tokens}},\n    \"n\": {{n}},\n    \"stream\": {{stream}},\n\t\"stop\": \"{{stop}}\",\n    \"messages\": [\n      {{#each messages}}{{#if @index}},{{/if}}\n      {\n        \"role\": \"{{role}}\",\n        \"content\": \"{{escp content}}\"\n      }{{/each}}\n    ]\n  }",
+      "path_to_choices": "choices",
+      "path_to_message_content": "message.content",
+      "path_to_error_message": "error.message",
+      "sanatization_streaming": "(chunk) => {\n    let resultText = \"\";\n    const lines = chunk.split(\"\\ndata: \");\n  \n    const parsedLines = lines\n      .map((line) => line.replace(/^data: /, \"\").trim()) // Remove the \"data: \" prefix\n      .filter((line) => line !== \"\" && line !== \"[DONE]\") // Remove empty lines and \"[DONE]\"\n      .map((line) => JSON5.parse(line)); // Parse the JSON string\n  \n    for (const parsedLine of parsedLines) {\n      const { choices } = parsedLine;\n      const { delta } = choices[0];\n      const { content } = delta;\n      // Update the UI with the new content\n      if (content) {\n        resultText += content;\n      }\n    }\n    return resultText;\n  }",
+      "model": "gpt-3.5-turbo-16k",
+      "presence_penalty": 0.5,
+      "top_p": 1
+    }
+  },
+  "LLMProviderOptionsKeysHashed": {},
+  "api_key_encrypted": "__@#key_prefix#@__"
 }

@@ -72,3 +72,8 @@ Caractéristique de la passion racinienne :
 
 a- 
 > venus, Hypollyte, ennemie, nommé, le, l'
+
+b- 
+vers 269-301 : passé simple, imparfait
+vers 302-312 : 
+vers 312-316 : 

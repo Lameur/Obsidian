@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Home.md",
+                "file": "Anglais/India.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "Anglais/India.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "Anglais/India.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "Anglais/India.md"
               }
             }
           },
@@ -186,7 +186,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -216,11 +217,11 @@
   },
   "active": "c97d09b8687e4f38",
   "lastOpenFiles": [
-    "Français/Français.md",
+    "Anglais/India 2.md",
     "Home.md",
+    "Français/Français.md",
     "README.md",
     "Files.md",
-    "Anglais/India 2.md",
     "Anglais/India.md",
     "Espagnol/Médecine.md",
     "Espagnol",

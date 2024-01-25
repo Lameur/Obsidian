@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b64051dd3a74eb69",
+        "id": "cd20384225ddb038",
         "type": "tabs",
         "children": [
           {
-            "id": "c97d09b8687e4f38",
+            "id": "461b6a5edb67bb50",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Anglais/India.md",
+                "file": "Home.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Anglais/India.md",
+                "file": "Home.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Anglais/India.md",
+                "file": "Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Anglais/India.md"
+                "file": "Home.md"
               }
             }
           },
@@ -215,14 +215,14 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true
     }
   },
-  "active": "c97d09b8687e4f38",
+  "active": "461b6a5edb67bb50",
   "lastOpenFiles": [
+    "Anglais/India.md",
     "Anglais/India 2.md",
     "Home.md",
     "Français/Français.md",
     "README.md",
     "Files.md",
-    "Anglais/India.md",
     "Espagnol/Médecine.md",
     "Espagnol",
     "Français/Phèdre.md",

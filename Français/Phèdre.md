@@ -35,3 +35,5 @@ Acte I scène 3 :
 moment 1 : Oe fait pression sur Ph.  
 moment 2 : Ph accepte de lui avouer la cause de son mal, mais ça lui est très difficile.  
 moment 3 : l'aveu de Phèdre.  
+
+3- Confession :

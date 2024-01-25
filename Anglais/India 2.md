@@ -2,7 +2,6 @@
 tags:
   - Anglais
 ---
-http://www.engeeholidays.com/agra
 Since the 17th century, travellers have crossed continents to come and see this ultimate memorial to love, and few have been unmoved by its incomparable beauty.
 Taj Mahal stands in the city of Agra, in the northern Indian state of Uttar Pradesh, on the banks of the Yamuna river. It was built in the memory of the beautiful Arjumand Banu Begum, who won the heart of a Mughal prince. She was married at 19 to Emperor Jahangir's third son Prince Khurram and stayed loyally by his side through good times and bad: in the luxurious royal palaces of Agra as well as the transient tents of war camps. In 1627, Khurram became king after a bloody battle of succession; he took the name Shahjahan or King of the World and showered his beloved begum with the highest titles.
 She became Mumtaz Mahal, the Exalted of the Palace and Mumtaz-ul-Zamani, the Exalted of the Age. But Mumtaz Mahal was not destined to be queen for long. In 1630, Shahjahan went on an expedition to the South and, as always, Mumtaz Mahal accompanied him. But she died in childbirth at Burhanpur.

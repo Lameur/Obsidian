@@ -6,6 +6,7 @@
     "emojiStyle": "twemoji",
     "iconColor": null,
     "recentlyUsedIcons": [
+      "LiHome",
       "FiDatabase",
       "RiLinksLine",
       "RiLinkedinBoxLine",
@@ -34,5 +35,6 @@
     "iconsInNotesEnabled": true,
     "iconIdentifier": ":"
   },
-  "Files.md": "FiDatabase"
+  "Files.md": "FiDatabase",
+  "Home.md": "LiHome"
 }

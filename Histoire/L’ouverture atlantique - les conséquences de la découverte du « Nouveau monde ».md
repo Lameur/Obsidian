@@ -83,7 +83,7 @@ q5 :
 -> p106-107
 explosion flux commerciaux (humaine sur atlantique)
 
-Or/Argent -> diverses mines du continent Amérique dans territoires ctrl par couronne d'Espagne.  
+Or/Argent -> diverses mines du continent Amérique dans les territoires ctrl par couronne d'Espagne.  
 	-> Embarqués sur des navires (galions) escortés par Armada et converge vers Séville.  
 	-> déchargés puis redistribués en Eu.  
 > doc 5 
@@ -93,4 +93,11 @@ Or/Argent -> diverses mines du continent Amérique dans territoires ctrl par cou
 Les colons ont besoin de denrée.  
 Plus en plus de routes commerciales et se rallongent et mettent en liens les continents.  
 1ʳᵉ mondialisation, essor des échanges au niveau mondial du 16ᵉ au 18ᵉ siècle qui entraine indépendance des continents.  
-Attire la convatize 
+L'enrichissement du Portugal et de l'Espagne attise la convoitise des autres pays et aux 17ᵉ siècle l'Europe (surtout la France et l'Angleterre) colonise l'Amérique du Nord.  
+La connaissance du monde fait des progrès et permet améliorer la qualité des cartes et on découvre de nouvelles plantes.  
+Là pomme de terre, le maïs et les tomates sont exportée en Europe.  
+Viens d'Europe les chevaux et le bœuf.
+#### b. La traite atlantique  
+Doc 1 p110  
+
+Les colon sont recourt aux esclaves

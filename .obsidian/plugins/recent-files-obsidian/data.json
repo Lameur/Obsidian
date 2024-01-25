@@ -5,6 +5,10 @@
       "path": "Anglais/India 2.md"
     },
     {
+      "basename": "India",
+      "path": "Anglais/India.md"
+    },
+    {
       "basename": "Home",
       "path": "Home.md"
     },
@@ -43,10 +47,6 @@
     {
       "basename": "Médecine",
       "path": "Espagnol/Médecine.md"
-    },
-    {
-      "basename": "India",
-      "path": "Anglais/India.md"
     },
     {
       "basename": "2024-01-10",

@@ -6,6 +6,7 @@
     "emojiStyle": "twemoji",
     "iconColor": null,
     "recentlyUsedIcons": [
+      "SiReadme",
       "LiHome",
       "FiDatabase",
       "RiLinksLine",
@@ -36,5 +37,7 @@
     "iconIdentifier": ":"
   },
   "Files.md": "FiDatabase",
-  "Home.md": "LiHome"
+  "Home.md": "LiHome",
+  "README.md": "SiReadme",
+  "Français.md": "FiDatabase"
 }

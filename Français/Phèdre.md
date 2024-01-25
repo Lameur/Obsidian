@@ -71,9 +71,9 @@ Caractéristique de la passion racinienne :
 - Cause de souffrance  
 
 a- 
-> venus, Hypollyte, ennemie, nommé, le, l'
+> Vénus, Hippolyte, à sa vue, nommé, le, Ce dieu 
 
 b- 
 vers 269-301 : passé simple, imparfait
-vers 302-312 : 
-vers 312-316 : 
+vers 302-312 : passé-composée
+vers 312-316 : Présent

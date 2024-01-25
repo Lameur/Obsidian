@@ -45,3 +45,21 @@ En même temps : équilibre dans la prise de parole/symétrie : En peinture et e
  - Invocation de Vénus, adresser à sa sœur défunte (Ariane)… pourquoi ?
  - Impossibilité de prononcer le nom d'Hippolyte.
 2. Importance de la confession : la tirade (v.269 à 316).
+
+
+Je le v***i***s, je roug***i***s, je pâl***i***s à sa vue.  
+Assonance en [i] → douleur  
+anaphore de "je"  
+rougir/pâlir : antithèse  
+	coup de foudre  
+passé simple + juxtaposition  
+=> immédiateté de la réaction  
+> à sa vue > complément circonstanciel
+
+Caractéristique de la passion racinienne : 
+- Instantanée
+- Puissante
+- Excès / Passion excessive
+- Inévitable
+- Fruit de la fatalité
+- 

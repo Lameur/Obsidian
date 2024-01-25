@@ -60,7 +60,7 @@
   "autoSuggestOptions": {
     "customInstructEnabled": false,
     "customInstruct": "continue the follwing text:\n{{query}}",
-    "isEnabled": true,
+    "isEnabled": false,
     "allowInNewLine": false,
     "delay": 300,
     "numberOfSuggestions": 5,

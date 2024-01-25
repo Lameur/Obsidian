@@ -38,6 +38,5 @@
   },
   "Files.md": "FiDatabase",
   "Home.md": "LiHome",
-  "README.md": "SiReadme",
-  "Français.md": "FiDatabase"
+  "Français/Français.md": "FiDatabase"
 }

@@ -182,8 +182,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 7
+        ]
       }
     ],
     "direction": "horizontal",
@@ -216,7 +215,7 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true
     }
   },
-  "active": "e7eefec9a91865ed",
+  "active": "fad6b591d7c71b62",
   "lastOpenFiles": [
     "Anglais/India.md",
     "Anglais/India 2.md",

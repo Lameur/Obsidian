@@ -6,6 +6,7 @@
     "emojiStyle": "twemoji",
     "iconColor": null,
     "recentlyUsedIcons": [
+      "FiDatabase",
       "RiLinksLine",
       "RiLinkedinBoxLine",
       "RiDatabase2Line"
@@ -32,5 +33,6 @@
     "iconInFrontmatterEnabled": true,
     "iconsInNotesEnabled": true,
     "iconIdentifier": ":"
-  }
+  },
+  "Files.md": "FiDatabase"
 }

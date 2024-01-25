@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Home.md",
-                "mode": "preview",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -216,10 +216,11 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "e7eefec9a91865ed",
+  "active": "dd2ae14f4ea0a9fa",
   "lastOpenFiles": [
-    "Anglais/India 2.md",
+    "Files.md",
     "Home.md",
+    "Anglais/India 2.md",
     "Espagnol/Médecine.md",
     "Espagnol",
     "Français/Phèdre.md",
@@ -231,7 +232,6 @@
     "Daily Note/2024-01-10.md",
     "Anglais/India.md",
     "Anglais",
-    "Files.md",
     "Français.md",
     "Daily Note/2023-11-27.md",
     "Daily Note/Daily_files.md",

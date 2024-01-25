@@ -5,6 +5,10 @@
       "path": "Home.md"
     },
     {
+      "basename": "Files",
+      "path": "Files.md"
+    },
+    {
       "basename": "L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde »",
       "path": "Histoire/L’ouverture atlantique - les conséquences de la découverte du « Nouveau monde ».md"
     },
@@ -31,10 +35,6 @@
     {
       "basename": "Français",
       "path": "Français.md"
-    },
-    {
-      "basename": "Files",
-      "path": "Files.md"
     },
     {
       "basename": "Template",

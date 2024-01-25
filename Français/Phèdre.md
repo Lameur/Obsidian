@@ -56,10 +56,16 @@ passé simple + juxtaposition
 => immédiateté de la réaction  
 > à sa vue > complément circonstanciel
 
-Caractéristique de la passion racinienne : 
-- Instantanée
-- Puissante
-- Excès / Passion excessive
-- Inévitable
-- Fruit de la fatalité
-- 
+<html>
+<body>
+	</br>
+</body>
+
+Caractéristique de la passion racinienne :
+- Instantanée  
+- Puissante  
+- Excès / Passion excessive  
+- Inévitable  
+- Fruit de la fatalité  
+- Complexe  
+- Cause de souffrance  

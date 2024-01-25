@@ -69,3 +69,5 @@ Caractéristique de la passion racinienne :
 - Fruit de la fatalité  
 - Complexe  
 - Cause de souffrance  
+
+a- 

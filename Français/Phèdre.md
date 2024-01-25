@@ -71,3 +71,4 @@ Caractéristique de la passion racinienne :
 - Cause de souffrance  
 
 a- 
+> venus, Hypollyte, ennemie, nommé, le, l'

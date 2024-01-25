@@ -37,3 +37,11 @@ moment 2 : Ph accepte de lui avouer la cause de son mal, mais ça lui est très 
 moment 3 : l'aveu de Phèdre.  
 
 3- Confession :
+Observer le vers 246 : partage en deux entre les deux interlocutrices.  
+Ce vers alexandrin est coupé à l'hémistiche (moitié du vers) : le secret est partagé.  
+En même temps : équilibre dans la prise de parole/symétrie : En peinture et en architecture. Manuel, pp. 164 et 165.  
+
+1. Difficulté de la confession de Phèdre :
+ - Invocation de Vénus, adresser à sa sœur défunte (Ariane)… pourquoi ?
+ - Impossibilité de prononcer le nom d'Hippolyte.
+2. Importance de la confession : la tirade (v.269 à 316).

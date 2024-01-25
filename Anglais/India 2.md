@@ -4,16 +4,16 @@ tags:
 ---
 Since the 17th century, travellers have crossed continents to come and see this ultimate memorial to love, and few have been unmoved by its incomparable beauty.
 Taj Mahal stands in the city of Agra, in the northern Indian state of Uttar Pradesh, on the banks of the Yamuna river. It was built in the memory of the beautiful Arjumand Banu Begum, who won the heart of a Mughal prince. She was married at 19 to Emperor Jahangir's third son Prince Khurram and stayed loyally by his side through good times and bad: in the luxurious royal palaces of Agra as well as the transient tents of war camps. In 1627, Khurram became king after a bloody battle of succession; he took the name Shahjahan or King of the World and showered his beloved begum with the highest titles.
-She became Mumtaz Mahal, the Exalted of the Palace and Mumtaz-ul-Zamani, the Exalted of the Age. But Mumtaz Mahal was not destined to be queen for long. In 1630, Shahjahan went on an expedition to the South and, as always, Mumtaz Mahal accompanied him. But she died in childbirth at Burhanpur.
-She had borne Shahjahan fourteen children, of whom four sons and three daughters survived. When Mumtaz Mahal died, she was just 37 years old. Shahjahan was inconsolable and contemporary chronicles tell of the royal court mourning for two years.
+She became Mumtaz Mahal, the Exalted of the Palace and Mumtaz-ul-Zamani, the Exalted of the Age. But Mumtaz Mahal was not destined to be queen for long. In 1630, Shahjahan went on an expedition to the South and, as always, Mumtaz Mahal accompanied him. But she died in childbirth at Burhanpur.  
+
+She had borne Shahjahan fourteen children, of whom four sons and three daughters survived. When Mumtaz Mahal died, she was just 37 years old. Shahjahan was inconsolable and contemporary chronicles tell of the royal court mourning for two years. She had borne Shahjahan fourteen children, of whom four sons and three daughters survived. When Mumtaz Mahal died, she was just 37 years old. Shahjahan was inconsolable and contemporary chronicles tell of the royal court mourning for two years.  
+
 There was no music, no feasting, and no celebration of any kind. Shahjahan, who was a passionate builder, now decided to erect a memorial marble that the world would never forget. The site selected for the tomb was a garden by the Yamuna river, unshadowed by any other structure. [...]. The site was also chosen because it was located on a bend in the river, and so could be seen from Shahjahan's personal palace in Agra Fort, further upstream.
-[-] The construction of Taj Mahal was started in 1631 and completed at the end of 1653.
-For twenty-two years, twenty thousand workmen are said to be employed on it daily, for their accommodation a small town, named after the deceased empress- Mumtazabad, now known as Taj Ganj, was built adjacent to it. [...] The material was brought in from all over India and central Asia and it took a fleet of 1000 elephants to transport it to the site.
-Red sandstone was brought from Fatehpur Sikri, Jasper from Punjab, Jade and Crystal from China, Turquoise from Tibet, Lapis Lazuli and Sapphire from Sri Lanka, Coal and Cornelian from Arabia and diamonds from Panna. In all 28 kind of rare, semi precious and precious stones were used for inlay work in the Taj Mahal. The chief building material, the white marble was brought from
-quarries
-Makrana,
-in Rajasthan.
-the of http://www.engeeholidays.com/agra_tajmahal_tours.html.  
+[-] The construction of Taj Mahal was started in 1631 and completed at the end of 1653.  
+
+For twenty-two years, twenty thousand workmen are said to be employed on it daily, for their accommodation a small town, named after the deceased empress- Mumtazabad, now known as Taj Ganj, was built adjacent to it. [...] The material was brought in from all over India and central Asia and it took a fleet of 1000 elephants to transport it to the site.  
+Red sandstone was brought from Fatehpur Sikri, Jasper from Punjab, Jade and Crystal from China, Turquoise from Tibet, Lapis Lazuli and Sapphire from Sri Lanka, Coal and Cornelian from Arabia and diamonds from Panna. In all 28 kind of rare, semi precious and precious stones were used for inlay work in the Taj Mahal. The chief building material, the white marble was brought from quarries of 00Makrana,in Rajasthan.  
+http://www.engeeholidays.com/agra_tajmahal_tours.html.  
    
    
 After hour of aimless exploration, I notice a group of prosperous Western tourists armed with camcorders and binoculars, listening intently to an elderly guide at the base of the dome. I join them discreetly. The guide is pointing towards the <mark style="background: #BBFABBA6;">marble dome</mark> and speaking in a rasping voice. I have explained to you the architectural features of the redsandstone forecourt, the Chowk-i Jilo Khana, which we have just passed. Now I will tell you a little bit about the history of the Taj Mahal.

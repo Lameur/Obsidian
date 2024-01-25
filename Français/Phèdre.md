@@ -71,9 +71,19 @@ Caractéristique de la passion racinienne :
 - Cause de souffrance  
 
 a- 
-> Vénus, Hippolyte, à sa vue, nommé, le, Ce dieu 
+> [!NOTE] mots qui désignent Hippolyte :
+> Vénus, Hippolyte, à sa vue, nommé, le, Ce dieu > il domine c'est pensé
 
 b- 
-vers 269-301 : passé simple, imparfait
-vers 302-312 : passé-composée
-vers 312-316 : Présent
+> [!NOTE] vers 269-301 : 
+> passé simple, imparfait
+
+> [!NOTE] vers 302-312 : 
+> passé composée
+
+> [!NOTE] vers 312-316 : 
+> Présent
+
+Acte I se termine avec l'annonce de la mort de Thésée.  
+Hippolyte = prince héritier, doit donc devenir Roi.  
+Quel est alors l'avenir de Phèdre et de ses enfants ?  

@@ -5,6 +5,10 @@
       "path": "Français/Phèdre.md"
     },
     {
+      "basename": "Jean-Jacques Rousseau",
+      "path": "Français/Jean-Jacques Rousseau.md"
+    },
+    {
       "basename": "Home",
       "path": "Home.md"
     },
@@ -43,10 +47,6 @@
     {
       "basename": "Clôture de la pièce de Cendrillons",
       "path": "Français/Clôture de la pièce de Cendrillons.md"
-    },
-    {
-      "basename": "Jean-Jacques Rousseau",
-      "path": "Français/Jean-Jacques Rousseau.md"
     },
     {
       "basename": "Template",

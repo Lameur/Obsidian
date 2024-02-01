@@ -31,7 +31,7 @@ Phèdre est le personnage éponyme, pourtant Racine ne la fait pas apparaître s
 - L'état de Phèdre alarme Oenone : désordre d'esprit, agitation, sensibilité extrême.
 - La raison de cet état demeure inconnue.  
 
-Acte I scène 3 :  
+#### Acte I scène 3 :  
 moment 1 : Oe fait pression sur Ph.  
 moment 2 : Ph accepte de lui avouer la cause de son mal, mais ça lui est très difficile.  
 moment 3 : l'aveu de Phèdre.  
@@ -89,5 +89,17 @@ Hippolyte = prince héritier, doit donc devenir Roi.
 Quel est alors l'avenir de Phèdre et de ses enfants ?  
 
 
-Acte 1 scène 3 :
-- Situer la scène dans l'œuvre 
+#### Scène III, Acte I :  
+- Situer la scène dans l'œuvre
+- Lire 
+- Visionner
+- Analyser  
+ 
+Aveu de Phèdre à Oeunone.  
+Arrivée de Panope qui annonce la mort de Thésée.  
+Conséquence ? le trône reviendrait à H.  
+Conseil donné par Oe à Ph :  
+Aller parler à H, lui propose alliance afin de préserver ses intérêts.  
+H. est consterné.  
+
+#### Scène V, Acte II :  

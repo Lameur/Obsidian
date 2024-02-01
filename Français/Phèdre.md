@@ -103,3 +103,4 @@ Aller parler à H, lui propose alliance afin de préserver ses intérêts.
 H. est consterné.  
 
 #### Scène V, Acte II :  
+p.71 v.670-v.711  

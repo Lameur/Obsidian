@@ -87,3 +87,7 @@ b-
 Acte I se termine avec l'annonce de la mort de Thésée.  
 Hippolyte = prince héritier, doit donc devenir Roi.  
 Quel est alors l'avenir de Phèdre et de ses enfants ?  
+
+
+Acte 1 scène 3 :
+- Situer la scène dans l'œuvre 

@@ -4,24 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "cd20384225ddb038",
+        "id": "369f970bc06df81b",
         "type": "tabs",
         "children": [
           {
-            "id": "461b6a5edb67bb50",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Français/Phèdre.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e896ec1024aba2a7",
+            "id": "676c21da40d4c87d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -33,8 +20,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -229,11 +215,11 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true
     }
   },
-  "active": "e896ec1024aba2a7",
+  "active": "676c21da40d4c87d",
   "lastOpenFiles": [
+    "Home.md",
     "Français/Drawing 2024-01-25 12.06.17.excalidraw.md",
     "Français/Phèdre.md",
-    "Home.md",
     "Anglais/India.md",
     "Anglais/India 2.md",
     "Français/Français.md",

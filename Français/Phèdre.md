@@ -111,5 +111,4 @@ Catharsis ⇾ cautérisation ⇾ opération médicale qui consiste à bruler pou
 
 Hubris : excès, démesure, le débordement.  
 
-===
-||
+p139, Rappels sur le genre théâtrale : évolution historique du théâtre.

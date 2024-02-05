@@ -104,3 +104,7 @@ H. est consterné.
 
 #### Scène V, Acte II :  
 p.71 v.670-v.711  
+
+Catharsis : > grec
+au théâtre le fait pour un spectateur de s'identifier au personnage, d'éprouver ses sentiments, donc de ressentir l'effet de la passion et d'en être purifiée (purgé).  
+Catharsis ⇾ cautérisation ⇾ opération médicale qui consiste à bruler pour nettoyer et mieux cicatriser. 

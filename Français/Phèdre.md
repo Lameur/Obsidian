@@ -113,3 +113,5 @@ Hubris : excès, démesure, le débordement.
 
 p139, Rappels sur le genre théâtrale : évolution historique du théâtre.
 
+
+Nicolas Boileau, L'art poétique, Chant III (extrait), 1674.

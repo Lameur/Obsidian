@@ -110,3 +110,6 @@ au théâtre le fait pour un spectateur de s'identifier au personnage, d'éprouv
 Catharsis ⇾ cautérisation ⇾ opération médicale qui consiste à bruler pour nettoyer et mieux cicatriser. 
 
 Hubris : excès, démesure, le débordement.  
+
+===
+||

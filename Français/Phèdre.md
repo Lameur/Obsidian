@@ -121,4 +121,15 @@ Règles de la tragédie classique :
 - Trois Unités : 1 seul lieu, 1 seule journée, 1 seule action.
 - Règle de vraisemblances.
 - Règle de bienséance.
-- Dénouement imprévue et 
+- Dénouement imprévue et rapide.  
+
+
+08/02/2024  
+Image p164  
+Le jugement de Salomon, N. Poussin, 1649  
+Observation : qu'est-ce qui est représenté  
+Comment : technique et procédé principaux : symétrie -> similitude, opposition  
+Pourquoi : porté de cette œuvre = illustration parfaite de l'esthétique classique : XVIIème siècle  
+- ordre
+- clarté
+- position centrale du roi  

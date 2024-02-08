@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "483abda5da92dc72",
+        "id": "db0e4d0df677fc19",
         "type": "tabs",
         "children": [
           {
-            "id": "70b6b15778e5daf2",
+            "id": "33de38b02d490fc0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -225,12 +225,12 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true
     }
   },
-  "active": "22b8368006271791",
+  "active": "33de38b02d490fc0",
   "lastOpenFiles": [
-    "Français/Jean-Jacques Rousseau.md",
-    "Français/Phèdre.md",
     "Home.md",
-    "Français/Drawing 2024-01-25 12.06.17.excalidraw.md",
+    "Français/Scène.excalidraw.md",
+    "Français/Phèdre.md",
+    "Français/Jean-Jacques Rousseau.md",
     "Anglais/India.md",
     "Anglais/India 2.md",
     "Français/Français.md",

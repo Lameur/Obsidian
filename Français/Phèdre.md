@@ -20,12 +20,12 @@ Aricie :
 
 Le jour = la lumière  
 Argumenter : raison, rationalité : convaincre l'autre | affect, sentiment : persuader  
-Tout m'afflige /3/ et me nuit,/3/ et conspi /3/ re à me nuire./3/ | ritme : 3. sonorité : assonance en I -> gémissement ? douleur ? 
-assonance : son vocalique (de voyelle) répété.  
-allitération : son de consonne répété.  
-rougir = être troublé, éprouver de la honte.  
+Tout m'afflige /3/ et me nuit,/3/ et conspi /3/ re à me nuire./3/ | ritme : 3. Sonorité : assonance en I -> gémissement ? douleur ? 
+Assonance : son vocalique (de voyelle) répété.  
+Allitération : son de consonne répété.  
+Rougir = être troublé, éprouver de la honte.  
 
-Phèdre est le personnage éponyme, pourtant Racine ne la fait pas apparaître sur scène avant la scène 3 de l'acte I. entretemps, d'autres personnages personnages parlent d'elles : Hippolyte, Thésée, Oenone. On apprend que :
+Phèdre est le personnage éponyme, pourtant Racine ne la fait pas apparaître sur scène avant la scène 3 de l'acte I. entretemps, d'autres personnages parlent d'elles : Hippolyte, Thésée, Oenone. On apprend que :
 - Hippolyte la considère comme une belle-mère dur, que lui a-t-elle fait ?
 - Phèdre est à l'article de la mort et qu'elle se laisse mourir.
 - L'état de Phèdre alarme Oenone : désordre d'esprit, agitation, sensibilité extrême.
@@ -111,7 +111,14 @@ Catharsis ⇾ cautérisation ⇾ opération médicale qui consiste à bruler pou
 
 Hubris : excès, démesure, le débordement.  
 
-p139, Rappels sur le genre théâtrale : évolution historique du théâtre.
+p139, Rappels sur le genre théâtral : évolution historique du théâtre.
 
 
-Nicolas Boileau, L'art poétique, Chant III (extrait), 1674.
+*Nicolas Boileau, L'art poétique, Chant III (extrait), 1674.*
+
+Règles de la tragédie classique :  
+- Lieu définie
+- Trois Unités : 1 seul lieu, 1 seule journée, 1 seule action.
+- Règle de vraisemblances.
+- Règle de bienséance.
+- Dénouement imprévue et 

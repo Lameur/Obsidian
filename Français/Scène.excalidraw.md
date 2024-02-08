@@ -20,7 +20,7 @@ Acte II ^x8SP6PPk
 Acte I ^6da3vCYE
 
 Mensonge, dissimulation de la passion
-De la par de Ph ^jaDlLLD5
+De la par de Phèdre de la lâcheté ^jaDlLLD5
 
 %%
 # Drawing
@@ -404,22 +404,22 @@ De la par de Ph ^jaDlLLD5
 			"frameId": null,
 			"roundness": null,
 			"seed": 400914859,
-			"version": 210,
-			"versionNonce": 965798693,
+			"version": 246,
+			"versionNonce": 1033297061,
 			"isDeleted": false,
 			"boundElements": null,
-			"updated": 1707389679179,
+			"updated": 1707389699594,
 			"link": null,
 			"locked": false,
-			"text": "Mensonge, dissimulation de la passion\nDe la par de Ph",
-			"rawText": "Mensonge, dissimulation de la passion\nDe la par de Ph",
+			"text": "Mensonge, dissimulation de la passion\nDe la par de Phèdre de la lâcheté",
+			"rawText": "Mensonge, dissimulation de la passion\nDe la par de Phèdre de la lâcheté",
 			"fontSize": 10.281801314790629,
 			"fontFamily": 1,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"baseline": 22,
 			"containerId": null,
-			"originalText": "Mensonge, dissimulation de la passion\nDe la par de Ph",
+			"originalText": "Mensonge, dissimulation de la passion\nDe la par de Phèdre de la lâcheté",
 			"lineHeight": 1.25
 		},
 		{

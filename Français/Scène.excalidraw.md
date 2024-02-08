@@ -22,6 +22,8 @@ Acte I ^6da3vCYE
 Mensonge, dissimulation de la passion
 De la par de Phèdre de la lâcheté ^jaDlLLD5
 
+Jalousie ^QRTZM0V7
+
 %%
 # Drawing
 ```json
@@ -423,6 +425,43 @@ De la par de Phèdre de la lâcheté ^jaDlLLD5
 			"lineHeight": 1.25
 		},
 		{
+			"id": "QRTZM0V7",
+			"type": "text",
+			"x": 180.4818801942664,
+			"y": 61.6620475390755,
+			"width": 55.89990234375,
+			"height": 17.490600748120674,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "solid",
+			"strokeWidth": 2,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 1625929573,
+			"version": 18,
+			"versionNonce": 138113765,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1707390521555,
+			"link": null,
+			"locked": false,
+			"text": "Jalousie",
+			"rawText": "Jalousie",
+			"fontSize": 13.99248059849654,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 11,
+			"containerId": null,
+			"originalText": "Jalousie",
+			"lineHeight": 1.25
+		},
+		{
 			"id": "DdTcLShGaJW8u4eJMLRf8",
 			"type": "freedraw",
 			"x": 33.35690308245,
@@ -542,8 +581,8 @@ De la par de Phèdre de la lâcheté ^jaDlLLD5
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 244.5181198057336,
-		"scrollY": 308.2598322292961,
+		"scrollX": 189.8306198057336,
+		"scrollY": 221.54108222929608,
 		"zoom": {
 			"value": 1.6
 		},

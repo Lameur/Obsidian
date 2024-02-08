@@ -19,6 +19,9 @@ Acte II ^x8SP6PPk
 
 Acte I ^6da3vCYE
 
+Mensonge, dissimulation de la passion
+De la par de Ph ^jaDlLLD5
+
 %%
 # Drawing
 ```json
@@ -29,8 +32,8 @@ Acte I ^6da3vCYE
 	"elements": [
 		{
 			"type": "ellipse",
-			"version": 84,
-			"versionNonce": 729986661,
+			"version": 85,
+			"versionNonce": 2100438507,
 			"isDeleted": false,
 			"id": "wy4kGJw01v16sq1Bw-a_r",
 			"fillStyle": "solid",
@@ -57,14 +60,14 @@ Acte I ^6da3vCYE
 					"id": "2pVW4yxk"
 				}
 			],
-			"updated": 1707389334154,
+			"updated": 1707389552229,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 47,
-			"versionNonce": 554213829,
+			"version": 48,
+			"versionNonce": 1121698373,
 			"isDeleted": false,
 			"id": "2pVW4yxk",
 			"fillStyle": "solid",
@@ -84,7 +87,7 @@ Acte I ^6da3vCYE
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1707389334154,
+			"updated": 1707389552230,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -100,8 +103,8 @@ Acte I ^6da3vCYE
 		},
 		{
 			"type": "ellipse",
-			"version": 131,
-			"versionNonce": 1267495429,
+			"version": 132,
+			"versionNonce": 996946059,
 			"isDeleted": false,
 			"id": "fMR5-sjaFoJjbJMZ4S97A",
 			"fillStyle": "solid",
@@ -128,14 +131,14 @@ Acte I ^6da3vCYE
 					"id": "lXo1GXXi"
 				}
 			],
-			"updated": 1707389284450,
+			"updated": 1707389552230,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 19,
-			"versionNonce": 2073684325,
+			"version": 20,
+			"versionNonce": 622145957,
 			"isDeleted": false,
 			"id": "lXo1GXXi",
 			"fillStyle": "solid",
@@ -155,7 +158,7 @@ Acte I ^6da3vCYE
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1707389284458,
+			"updated": 1707389552230,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -171,8 +174,8 @@ Acte I ^6da3vCYE
 		},
 		{
 			"type": "ellipse",
-			"version": 80,
-			"versionNonce": 873195900,
+			"version": 81,
+			"versionNonce": 1196156715,
 			"isDeleted": false,
 			"id": "GWg3W-kEm80GtzfSbUfzZ",
 			"fillStyle": "solid",
@@ -199,14 +202,14 @@ Acte I ^6da3vCYE
 					"id": "SsWFOTKr"
 				}
 			],
-			"updated": 1707127784043,
+			"updated": 1707389552231,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 13,
-			"versionNonce": 1377729604,
+			"version": 14,
+			"versionNonce": 287945989,
 			"isDeleted": false,
 			"id": "SsWFOTKr",
 			"fillStyle": "solid",
@@ -226,7 +229,7 @@ Acte I ^6da3vCYE
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1707127784043,
+			"updated": 1707389552231,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -242,8 +245,8 @@ Acte I ^6da3vCYE
 		},
 		{
 			"type": "ellipse",
-			"version": 20,
-			"versionNonce": 1217172220,
+			"version": 21,
+			"versionNonce": 926665163,
 			"isDeleted": false,
 			"id": "mvnC9CHD1FJGOvKxK42Au",
 			"fillStyle": "solid",
@@ -270,14 +273,14 @@ Acte I ^6da3vCYE
 					"id": "6da3vCYE"
 				}
 			],
-			"updated": 1707127794018,
+			"updated": 1707389552232,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 10,
-			"versionNonce": 1712081860,
+			"version": 11,
+			"versionNonce": 1117178981,
 			"isDeleted": false,
 			"id": "6da3vCYE",
 			"fillStyle": "solid",
@@ -297,7 +300,7 @@ Acte I ^6da3vCYE
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1707127793909,
+			"updated": 1707389552232,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -313,8 +316,8 @@ Acte I ^6da3vCYE
 		},
 		{
 			"type": "ellipse",
-			"version": 29,
-			"versionNonce": 2116827716,
+			"version": 30,
+			"versionNonce": 1884706923,
 			"isDeleted": false,
 			"id": "icu-_IP5YvNJcZuSsS70z",
 			"fillStyle": "solid",
@@ -341,14 +344,14 @@ Acte I ^6da3vCYE
 					"id": "x8SP6PPk"
 				}
 			],
-			"updated": 1707127784043,
+			"updated": 1707389552232,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 12,
-			"versionNonce": 1971223548,
+			"version": 13,
+			"versionNonce": 690616261,
 			"isDeleted": false,
 			"id": "x8SP6PPk",
 			"fillStyle": "solid",
@@ -368,7 +371,7 @@ Acte I ^6da3vCYE
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1707127784043,
+			"updated": 1707389552233,
 			"link": null,
 			"locked": false,
 			"fontSize": 20,
@@ -381,6 +384,147 @@ Acte I ^6da3vCYE
 			"originalText": "Acte II",
 			"lineHeight": 1.25,
 			"baseline": 43
+		},
+		{
+			"id": "jaDlLLD5",
+			"type": "text",
+			"x": 42.85687256487188,
+			"y": -136.4089579191099,
+			"width": 187.19854736328125,
+			"height": 25.70450328697657,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "solid",
+			"strokeWidth": 2,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 400914859,
+			"version": 210,
+			"versionNonce": 965798693,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1707389679179,
+			"link": null,
+			"locked": false,
+			"text": "Mensonge, dissimulation de la passion\nDe la par de Ph",
+			"rawText": "Mensonge, dissimulation de la passion\nDe la par de Ph",
+			"fontSize": 10.281801314790629,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 22,
+			"containerId": null,
+			"originalText": "Mensonge, dissimulation de la passion\nDe la par de Ph",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "DdTcLShGaJW8u4eJMLRf8",
+			"type": "freedraw",
+			"x": 33.35690308245,
+			"y": -145.5567139050163,
+			"width": 137.99999237060547,
+			"height": 67.00000762939453,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "solid",
+			"strokeWidth": 2,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 1089634891,
+			"version": 10,
+			"versionNonce": 1348866827,
+			"isDeleted": true,
+			"boundElements": null,
+			"updated": 1707389552233,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					86.99996948242188,
+					56.50001525878906
+				],
+				[
+					88.9999771118164,
+					58.0000114440918
+				],
+				[
+					107.49996185302734,
+					62.5
+				],
+				[
+					112.49996185302734,
+					63.0000114440918
+				],
+				[
+					131.4999771118164,
+					67.00000762939453
+				],
+				[
+					137.99999237060547,
+					67.00000762939453
+				],
+				[
+					137.99999237060547,
+					67.00000762939453
+				]
+			],
+			"pressures": [],
+			"simulatePressure": true,
+			"lastCommittedPoint": [
+				137.99999237060547,
+				67.00000762939453
+			]
+		},
+		{
+			"id": "U984Qs9e",
+			"type": "text",
+			"x": 230.1693801942664,
+			"y": -137.05671009031903,
+			"width": 10,
+			"height": 25,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "solid",
+			"strokeWidth": 2,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"seed": 1607435979,
+			"version": 2,
+			"versionNonce": 1912386187,
+			"isDeleted": true,
+			"boundElements": null,
+			"updated": 1707389668390,
+			"link": null,
+			"locked": false,
+			"text": "",
+			"rawText": "",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 18,
+			"containerId": null,
+			"originalText": "",
+			"lineHeight": 1.25
 		}
 	],
 	"appState": {
@@ -398,7 +542,7 @@ Acte I ^6da3vCYE
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 292.9556198057336,
+		"scrollX": 244.5181198057336,
 		"scrollY": 308.2598322292961,
 		"zoom": {
 			"value": 1.6

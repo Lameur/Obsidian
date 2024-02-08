@@ -134,4 +134,6 @@ Pourquoi : porté de cette œuvre = illustration parfaite de l'esthétique class
 - clarté
 - position centrale du roi  
 
-p156-157
+p156-157  
+Acte IV scène 6  
+v.1251 --> v.1294  

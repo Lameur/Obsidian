@@ -11,12 +11,9 @@
             "id": "33de38b02d490fc0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "Français/Phèdre.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "Français/Scène.excalidraw.md"
               }
             }
           }
@@ -94,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Français/Phèdre.md",
+                "file": "Français/Scène.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +108,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Français/Phèdre.md",
+                "file": "Français/Scène.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +131,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Français/Phèdre.md"
+                "file": "Français/Scène.excalidraw.md"
               }
             }
           },
@@ -188,7 +185,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Français/Phèdre.md"
+                "file": "Français/Scène.excalidraw.md"
               }
             }
           }
@@ -225,11 +222,11 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true
     }
   },
-  "active": "33de38b02d490fc0",
+  "active": "dd2ae14f4ea0a9fa",
   "lastOpenFiles": [
-    "Home.md",
-    "Français/Scène.excalidraw.md",
     "Français/Phèdre.md",
+    "Français/Scène.excalidraw.md",
+    "Home.md",
     "Français/Jean-Jacques Rousseau.md",
     "Anglais/India.md",
     "Anglais/India 2.md",

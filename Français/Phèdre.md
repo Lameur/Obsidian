@@ -133,3 +133,5 @@ Pourquoi : porté de cette œuvre = illustration parfaite de l'esthétique class
 - ordre
 - clarté
 - position centrale du roi  
+
+p156-157

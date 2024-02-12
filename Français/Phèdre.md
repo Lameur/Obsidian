@@ -163,11 +163,10 @@ envie : tué Aricie
 lachetté : ne pas avoué à Thèsè son adultere
 au yeux du spectateur Phèdre est coupable 
 
-L'acceuile à Phèdre est difficile, Racine à etait critiqué pour Phèdre. on lui à reproché de mètre en avant un personnage immorale. Racine se défend -
-
-- le propos est de mon ; 
-
-- elle s'acuse elle-même; 
+L'accueil à Phèdre est difficile, Racine à était critiqué pour Phèdre. on lui à reproché de mètre en avant un personnage immorale. Racine se défend  
+- Le propos est de la pièce est de montrer le danger de la passion.  
+-  Le personnage est lucide sur ses erreurs.
+- 
 
 
 
@@ -175,4 +174,4 @@ L'acceuile à Phèdre est difficile, Racine à etait critiqué pour Phèdre. on 
 
 #### Acte v, Scène dernière
 
-IIIème aveu de 
+IIIème aveu de Phèdre 

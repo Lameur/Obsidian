@@ -11,9 +11,12 @@
             "id": "96a004d747a588cb",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Français/Scène.excalidraw.md"
+                "file": "Français/Phèdre.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -91,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Français/Scène.excalidraw.md",
+                "file": "Français/Phèdre.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -108,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Français/Scène.excalidraw.md",
+                "file": "Français/Phèdre.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Français/Scène.excalidraw.md"
+                "file": "Français/Phèdre.md"
               }
             }
           },
@@ -185,7 +188,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Français/Scène.excalidraw.md"
+                "file": "Français/Phèdre.md"
               }
             }
           }
@@ -224,9 +227,9 @@
   },
   "active": "96a004d747a588cb",
   "lastOpenFiles": [
+    "Français/Scène.excalidraw.md",
     "Home.md",
     "Français/Phèdre.md",
-    "Français/Scène.excalidraw.md",
     "Français/Jean-Jacques Rousseau.md",
     "Anglais/India.md",
     "Anglais/India 2.md",

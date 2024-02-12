@@ -148,11 +148,6 @@ Pourquoi : porté de cette œuvre = illustration parfaite de l'esthétique class
 p156-157  
 Acte IV scène 6  
 v.1251 --> v.1294
-
-
-
-
-
   
 
 10:31 12/02/2024
@@ -165,12 +160,8 @@ au yeux du spectateur Phèdre est coupable
 
 L'accueil à Phèdre est difficile, Racine à était critiqué pour Phèdre. on lui à reproché de mètre en avant un personnage immorale. Racine se défend  
 - Le propos est de la pièce est de montrer le danger de la passion.  
--  Le personnage est lucide sur ses erreurs.
-- 
-
-
-
-
+- Le personnage est lucide sur ses erreurs.
+- Le châtiment de Phèdre est déja dans la pièce.
 
 #### Acte v, Scène dernière
 
